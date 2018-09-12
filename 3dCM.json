@@ -1,5 +1,5 @@
 {
-    "command-line": "3dCM [MASK] [AUTOMASK] [SET] [LOCAL_IJK] [ROI_VALS] [ALL_ROIS] [DSET]",
+    "command-line": "3dCM [MASK] [AUTOMASK] [SET] [LOCAL_IJK] [ROI_VALS] [ALL_ROIS] [DSET] 1> [OUTLOG]",
     "description": "tool description",
     "inputs": [
         {
@@ -8,7 +8,7 @@
             "id": "MASK",
             "name": "MASK",
             "optional": true,
-            "type": "String",
+            "type": "File",
             "value-key": "[MASK]"
         },
         {
@@ -27,6 +27,9 @@
             "name": "SET",
             "optional": true,
             "type": "String",
+            "list": true,
+            "min-list-entries": 3,
+            "max-list-entries": 3,
             "value-key": "[SET]"
         },
         {
@@ -35,7 +38,7 @@
             "id": "LOCAL_IJK",
             "name": "LOCAL_IJK",
             "optional": true,
-            "type": "String",
+            "type": "Flag",
             "value-key": "[LOCAL_IJK]"
         },
         {
@@ -45,6 +48,8 @@
             "name": "ROI_VALS",
             "optional": true,
             "type": "String",
+            "list": true,
+            "min-list-entries": 1,
             "value-key": "[ROI_VALS]"
         },
         {
@@ -53,7 +58,7 @@
             "id": "ALL_ROIS",
             "name": "ALL_ROIS",
             "optional": true,
-            "type": "String",
+            "type": "Flag",
             "value-key": "[ALL_ROIS]"
         },
         {
@@ -61,8 +66,23 @@
             "id": "dset",
             "name": "dset",
             "optional": false,
-            "type": "String",
+            "type": "File",
             "value-key": "[DSET]"
+        },
+        {
+            "description": "NA",
+            "id": "outlog",
+            "name": "outlog",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTLOG]"
+        }
+    ],
+    "output-files": [
+        {
+            "path-template": "[OUTLOG]",
+            "name": "log containing stdout text",
+            "id": "log_file"
         }
     ],
     "name": "tool name",
