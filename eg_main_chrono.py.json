@@ -1,0 +1,60 @@
+{
+    "command-line": "eg_main_chrono.py [HELP] [HIST] [SHOW_VALID_OPTS] [VER] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show module history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-show_valid_opts",
+            "description": "list valid options",
+            "id": "SHOW_VALID_OPTS",
+            "name": "SHOW_VALID_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_VALID_OPTS]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show current version  other options",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set the verbosity level  ----------------------------------------------------------------------------- R Reynolds    March 2009 =============================================================================",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

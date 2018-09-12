@@ -1,0 +1,42 @@
+{
+    "command-line": "@thickness_master [MASKSET] [SURFSET] [OUTDIR]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-maskset",
+            "description": "-maskset mydset      mask dataset for input",
+            "id": "MASKSET",
+            "name": "MASKSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASKSET]"
+        },
+        {
+            "command-line-flag": "-surfset",
+            "description": "-surfset mydset.gii  surface dataset onto which to map thickness (probably a pial/gray matter surface)",
+            "id": "SURFSET",
+            "name": "SURFSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURFSET]"
+        },
+        {
+            "command-line-flag": "-outdir",
+            "description": "-outdir thick_base output directory basename. The output will be placed in a directory with thick_base in its name: mmmm_bb, mmmm_erode, mmmm_in2out  Other options:  takes all options from the three @measure_... scripts  Output: see Output section of help for each of the method scripts This script produces a quick visualization script to see thickness maps in suma for all three methods See related scripts and programs for computing thickness: @measure_erosion_thick, @measure_in2out, @measure_bb_thick and SurfMeasures",
+            "id": "OUTDIR",
+            "name": "OUTDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTDIR]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,42 @@
+{
+    "command-line": "csfft_cache [LEN] [NUM] [MAXVEC]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-len",
+            "description": "-len #     sets FFT length to '#' (power of 2); default = 128",
+            "id": "LEN",
+            "name": "LEN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LEN]"
+        },
+        {
+            "command-line-flag": "-num",
+            "description": "-num #     number of FFTs to do for timing;  default = 100000",
+            "id": "NUM",
+            "name": "NUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUM]"
+        },
+        {
+            "command-line-flag": "-maxvec",
+            "description": "-maxvec #  maximum number of FFTs to do at once; default = 256",
+            "id": "MAXVEC",
+            "name": "MAXVEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAXVEC]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

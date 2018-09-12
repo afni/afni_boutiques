@@ -1,0 +1,87 @@
+{
+    "command-line": "3dDTtoNoisyDWI [DT_IN] [GRADS] [NOISE_DWI] [NOISE_B0] [PREFIX] [MASK] [BVAL] [S0]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-dt_in",
+            "description": "iffusion tensor file, which should have six bricks of DT components ordered in the AFNI (i.e., 3dDWItoDT) manner: Dxx,Dxy,Dyy,Dxz,Dyz,Dzz.",
+            "id": "DT_IN",
+            "name": "DT_IN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DT_IN]"
+        },
+        {
+            "command-line-flag": "-grads",
+            "description": "ext file of gradients arranged in three columns. It is assumed that there is no row of all zeros in the GRADFILE (i.e., representing the b=0 line). If there are N rows in GRADFILE, then the output DWI file will have N+1 bricks (0th will be the b=0 reference set of noise S0 measures).",
+            "id": "GRADS",
+            "name": "GRADS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GRADS]"
+        },
+        {
+            "command-line-flag": "-noise_DWI",
+            "description": "ractional value of noise in DWIs. The magnitude will be set by the b=0 reference signal, S0. Rician noise is used, which is characterized by a standard deviation, sigma, so that FF = sigma/S0 = 1/SNR0. For example, FF=0.05 roughly corresponds to an SNR0=20 'measurement'.",
+            "id": "NOISE_DWI",
+            "name": "NOISE_DWI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOISE_DWI]"
+        },
+        {
+            "command-line-flag": "-noise_B0",
+            "description": "ptional switch to use a different fraction of Rician noise in the b=0 reference image; one might consider it realistic to have a much lower level of noise in the reference signal, S0, mirroring the fact that generally multiple averages of b=0 acquisitions are averaged together. If no fraction is entered here, then the simulation will run with FF2=FF.",
+            "id": "NOISE_B0",
+            "name": "NOISE_B0",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOISE_B0]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput file name prefix. Will have N+1 bricks when GRADFILE has N rows of gradients.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "an include a mask within which to calculate uncert. Otherwise, data should be masked already.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-bval",
+            "description": "ptional DW factor to use if one has DT values scaled to something physical (NB: AFNI 3dDWItoDT works in a world of b=1, so the default setting here is BB=1; one probably doesn't need to change this if using DTs made by 3dDWItoDT).",
+            "id": "BVAL",
+            "name": "BVAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BVAL]"
+        },
+        {
+            "command-line-flag": "-S0",
+            "description": "ptional reference b=0 signal strength.  Default value SS=1000.  This just sets scale of output.  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  + EXAMPLE: 3dDTtoNoisyDWI             \\ -dti_in DTI/DT_DT+orig   \\ -grads GRADS.dat         \\ -noise_DWI 0.1           \\ -noise_B0  0             \\ -prefix NEW_DWIs_SNR10  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  If you use this program, please reference the introductory/description paper for the FATCAT toolbox: Taylor PA, Saad ZS (2013).  FATCAT: (An Efficient) Functional And Tractographic Connectivity Analysis Toolbox. Brain Connectivity 3(5):523-535. ____________________________________________________________________________",
+            "id": "S0",
+            "name": "S0",
+            "optional": true,
+            "type": "String",
+            "value-key": "[S0]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

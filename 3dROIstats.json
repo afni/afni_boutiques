@@ -1,0 +1,248 @@
+{
+    "command-line": "3dROIstats [MASK_F2SHORT] [NUMROI] [ZEROFILL] [ROISEL] [DEBUG] [QUIET] [NOMEANOUT] [NOBRIKLAB] [1DFORMAT] [1DRFORMAT] [NZMEAN] [NZSUM] [NZVOXELS] [MINMAX] [NZMINMAX] [SIGMA] [NZSIGMA] [MEDIAN] [NZMEDIAN] [SUMMARY] [MODE] [NZMODE] [PCXYZ] [NZPCXYZ] [KEY] [DATASETS]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-mask_f2short",
+            "description": "-mask_f2short  Tells the program to convert a float mask to short integers, by simple rounding.  This option is needed when the mask dataset is a 1D file, for instance (since 1D files are read as floats).  Be careful with this, it may not be appropriate to do!",
+            "id": "MASK_F2SHORT",
+            "name": "MASK_F2SHORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK_F2SHORT]"
+        },
+        {
+            "command-line-flag": "-numROI",
+            "description": "-numROI n     Forces the assumption that the mask dataset's ROIs are denoted by 1 to n inclusive.  Normally, the program figures out the ROIs on its own.  This option is useful if a) you are certain that the mask dataset has no values outside the range [0 n], b) there may be some ROIs missing between [1 n] in the mask data- set and c) you want those columns in the output any- way so the output lines up with the output from other invocations of 3dROIstats.  Confused?  Then don't use this option!",
+            "id": "NUMROI",
+            "name": "NUMROI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUMROI]"
+        },
+        {
+            "command-line-flag": "-zerofill",
+            "description": "-zerofill ZF   For ROI labels not found, use 'ZF' instead of a blank in the output file. This option is useless without -numROI. The option -zerofill defaults to '0'.",
+            "id": "ZEROFILL",
+            "name": "ZEROFILL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZEROFILL]"
+        },
+        {
+            "command-line-flag": "-roisel",
+            "description": "-roisel SEL.1D Only considers ROIs denoted by values found in SEL.1D Note that the order of the ROIs as specified in SEL.1D is not preserved. So an SEL.1D of '2 8 20' produces the same output as '8 20 2'",
+            "id": "ROISEL",
+            "name": "ROISEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ROISEL]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "-debug        Print out debugging information",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "-quiet        Do not print out labels for columns or rows",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-nomeanout",
+            "description": "-nomeanout    Do not print out the mean column. Default is to always start with the mean value. This option cannot be used with -summary",
+            "id": "NOMEANOUT",
+            "name": "NOMEANOUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOMEANOUT]"
+        },
+        {
+            "command-line-flag": "-nobriklab",
+            "description": "-nobriklab    Do not print the sub-brick label next to its index",
+            "id": "NOBRIKLAB",
+            "name": "NOBRIKLAB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOBRIKLAB]"
+        },
+        {
+            "command-line-flag": "-1Dformat",
+            "description": "-1Dformat     Output results in a 1D format that includes commented labels",
+            "id": "1DFORMAT",
+            "name": "1DFORMAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1DFORMAT]"
+        },
+        {
+            "command-line-flag": "-1DRformat",
+            "description": "-1DRformat    Output results in a 1D format that includes uncommented labels. This format does not work well with typical 1D programs, but it is useful for R functions.  The following options specify what stats are computed.  By default the mean is always computed.",
+            "id": "1DRFORMAT",
+            "name": "1DRFORMAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1DRFORMAT]"
+        },
+        {
+            "command-line-flag": "-nzmean",
+            "description": "-nzmean       Compute the mean using only non_zero voxels.  Implies the opposite for the normal mean computed",
+            "id": "NZMEAN",
+            "name": "NZMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZMEAN]"
+        },
+        {
+            "command-line-flag": "-nzsum",
+            "description": "-nzsum        Compute the sum using only non_zero voxels.",
+            "id": "NZSUM",
+            "name": "NZSUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZSUM]"
+        },
+        {
+            "command-line-flag": "-nzvoxels",
+            "description": "-nzvoxels     Compute the number of non_zero voxels",
+            "id": "NZVOXELS",
+            "name": "NZVOXELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZVOXELS]"
+        },
+        {
+            "command-line-flag": "-minmax",
+            "description": "-minmax       Compute the min/max of all voxels",
+            "id": "MINMAX",
+            "name": "MINMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MINMAX]"
+        },
+        {
+            "command-line-flag": "-nzminmax",
+            "description": "-nzminmax     Compute the min/max of non_zero voxels",
+            "id": "NZMINMAX",
+            "name": "NZMINMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZMINMAX]"
+        },
+        {
+            "command-line-flag": "-sigma",
+            "description": "-sigma        Compute the standard deviation of all voxels",
+            "id": "SIGMA",
+            "name": "SIGMA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SIGMA]"
+        },
+        {
+            "command-line-flag": "-nzsigma",
+            "description": "-nzsigma      Compute the standard deviation of all non_zero voxels",
+            "id": "NZSIGMA",
+            "name": "NZSIGMA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZSIGMA]"
+        },
+        {
+            "command-line-flag": "-median",
+            "description": "-median       Compute the median of all voxels.",
+            "id": "MEDIAN",
+            "name": "MEDIAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MEDIAN]"
+        },
+        {
+            "command-line-flag": "-nzmedian",
+            "description": "-nzmedian     Compute the median of non_zero voxels.",
+            "id": "NZMEDIAN",
+            "name": "NZMEDIAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZMEDIAN]"
+        },
+        {
+            "command-line-flag": "-summary",
+            "description": "-summary      Only output a summary line with the grand mean across all briks in the input dataset. This option cannot be used with -nomeanout.",
+            "id": "SUMMARY",
+            "name": "SUMMARY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUMMARY]"
+        },
+        {
+            "command-line-flag": "-mode",
+            "description": "-mode       Compute the mode of all voxels. (integral valued sets only)",
+            "id": "MODE",
+            "name": "MODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODE]"
+        },
+        {
+            "command-line-flag": "-nzmode",
+            "description": "-nzmode     Compute the mode of non_zero voxels.",
+            "id": "NZMODE",
+            "name": "NZMODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZMODE]"
+        },
+        {
+            "command-line-flag": "-pcxyz",
+            "description": "-pcxyz      Compute the principal direction of the voxels in the ROI including the three eigen values. You'll get 12 values out per ROI, per sub-brick, with this option. pc0x pc0y pc0z pc1x pc1y pc1z pc2x pc2y pc2z eig0 eig1 eig2",
+            "id": "PCXYZ",
+            "name": "PCXYZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PCXYZ]"
+        },
+        {
+            "command-line-flag": "-nzpcxyz",
+            "description": "-nzpcxyz    Same as -pcxyz, but exclude zero valued voxels.",
+            "id": "NZPCXYZ",
+            "name": "NZPCXYZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZPCXYZ]"
+        },
+        {
+            "command-line-flag": "-key",
+            "description": "-key        Output the integer key for the ROI in question  The output is printed to stdout (the terminal), and can be saved to a file using the usual redirection operation '>'.  N.B.: The input datasets and the mask dataset can use sub-brick selectors, as detailed in the output of 3dcalc -help.  INPUT DATASET NAMES ------------------- This program accepts datasets that are modified on input according to the following schemes: 'r1+orig[3..5]'                                    {sub-brick selector} 'r1+orig<100..200>'                                {sub-range selector} 'r1+orig[3..5]<100..200>'                          {both selectors} '3dcalc( -a r1+orig -b r2+orig -expr 0.5*(a+b) )'  {calculation} For the gruesome details, see the output of 'afni -help'.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "KEY",
+            "name": "KEY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEY]"
+        },
+        {
+            "description": "NA",
+            "id": "datasets",
+            "name": "datasets",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASETS]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

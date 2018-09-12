@@ -1,0 +1,78 @@
+{
+    "command-line": "quickspec [TN] [TSN] [TSNAD] [TSNADM] [TSNADL] [SPEC] [H]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-tn",
+            "description": "specify surface type and name. See below for help on the parameters.",
+            "id": "TN",
+            "name": "TN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TN]"
+        },
+        {
+            "command-line-flag": "-tsn",
+            "description": "specify surface type state and name. TYPE: Choose from the following (case sensitive): 1D: 1D format FS: FreeSurfer ascii format PLY: ply format MNI: MNI obj ascii format BYU: byu format SF: Caret/SureFit format BV: BrainVoyager format GII: GIFTI format NAME: Name of surface file. For SF and 1D formats, NAME is composed of two names the coord file followed by the topo file STATE: State of the surface. Default is S1, S2.... for each surface.",
+            "id": "TSN",
+            "name": "TSN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TSN]"
+        },
+        {
+            "command-line-flag": "-tsnad",
+            "description": " specify surface type, state, name, anatomical correctness, and its Local Domain Parent. ANATFLAG: 'Y' if surface is anatomically correct (default). 'N' if it is not anatomically correct. LDP: Name of Local Domain Parent surface. Use SAME (default) if surface is its own LDP.",
+            "id": "TSNAD",
+            "name": "TSNAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TSNAD]"
+        },
+        {
+            "command-line-flag": "-tsnadm",
+            "description": " specify surface type, state, name, anatomical correctness, Local Domain Parent, and node marker file. MARKER: A niml.do Displayable Object (DO) to put at every node of the surface. See @DO.examples for information about displayable objects",
+            "id": "TSNADM",
+            "name": "TSNADM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TSNADM]"
+        },
+        {
+            "command-line-flag": "-tsnadl",
+            "description": " specify surface type, state, name, anatomical correctness, Local Domain Parent, and a label dataset file. LABELDSET: A surface dataset containing node labels.",
+            "id": "TSNADL",
+            "name": "TSNADL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TSNADL]"
+        },
+        {
+            "command-line-flag": "-spec",
+            "description": "Name of spec file output. Default is quick.spec The program will only overwrite quick.spec (the default) spec file.",
+            "id": "SPEC",
+            "name": "SPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEC]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "-h or -help: This message here.  You can use any combinaton of -tn and -tsn options. Fields in the spec file that are (or cannot) be specified by this program are set to default values.  This program was written to ward off righteous whiners and is not meant to replace the venerable @SUMA_Make_Spec_XX scripts.   Compile Date: Sep  7 2018  Ziad S. Saad SSCC/NIMH/NIH saadz@mail.nih.gov Tue Dec 30",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

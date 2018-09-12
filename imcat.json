@@ -1,0 +1,255 @@
+{
+    "command-line": "imcat [SCALE_IMAGE] [SCALE_PIXELS] [SCALE_INTENSITY] [GSCALE] [RGB_OUT] [RES_IN] [RESPAD_IN] [PAD_VAL] [CROP] [AUTOCROP_CTOL] [AUTOCROP_ATOL] [AUTOCROP] [ZERO_WRAP] [WHITE_WRAP] [GRAY_WRAP] [IMAGE_WRAP] [RAND_WRAP] [PREFIX] [MATRIX] [NX] [NY] [MATRIX_FROM_SCALE] [GAP] [GAP_COL] [FNAME1] [FNAME2] [ETC.]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-scale_image",
+            "description": "Multiply each image IM(i,j) in output image matrix IM by the color or intensity of the pixel (i,j) in SCALE_IMG.",
+            "id": "SCALE_IMAGE",
+            "name": "SCALE_IMAGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE_IMAGE]"
+        },
+        {
+            "command-line-flag": "-scale_pixels",
+            "description": "Multiply each pixel (i,j) in output image by the color or intensity of the pixel (i,j) in SCALE_IMG. SCALE_IMG is automatically resized to the resolution of the output image.",
+            "id": "SCALE_PIXELS",
+            "name": "SCALE_PIXELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE_PIXELS]"
+        },
+        {
+            "command-line-flag": "-scale_intensity",
+            "description": "Instead of multiplying by the color of pixel (i,j), use its intensity (average color)",
+            "id": "SCALE_INTENSITY",
+            "name": "SCALE_INTENSITY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE_INTENSITY]"
+        },
+        {
+            "command-line-flag": "-gscale",
+            "description": "Apply FAC in addition to scaling of -scale_* options",
+            "id": "GSCALE",
+            "name": "GSCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GSCALE]"
+        },
+        {
+            "command-line-flag": "-rgb_out",
+            "description": "Force output to be in rgb, even if input is bytes. This option is turned on automatically in certain cases.",
+            "id": "RGB_OUT",
+            "name": "RGB_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RGB_OUT]"
+        },
+        {
+            "command-line-flag": "-res_in",
+            "description": "Set resolution of all input images to RX by RY pixels. Default is to make all input have the same resolution as the first image.",
+            "id": "RES_IN",
+            "name": "RES_IN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RES_IN]"
+        },
+        {
+            "command-line-flag": "-respad_in",
+            "description": "Like -res_in, but resample to the max while respecting the aspect ratio, and then pad to achieve desired pixel count.",
+            "id": "RESPAD_IN",
+            "name": "RESPAD_IN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RESPAD_IN]"
+        },
+        {
+            "command-line-flag": "-pad_val",
+            "description": "Set the padding value, should it be needed by -respad_in to VAL. VAL is typecast to byte, default is 0, max is 255.",
+            "id": "PAD_VAL",
+            "name": "PAD_VAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAD_VAL]"
+        },
+        {
+            "command-line-flag": "-crop",
+            "description": "Crop images by L (Left), R (Right), T (Top), B (Bottom) pixels. Cutting is performed after any resolution change, if any, is to be done.",
+            "id": "CROP",
+            "name": "CROP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CROP]"
+        },
+        {
+            "command-line-flag": "-autocrop_ctol",
+            "description": "A line is eliminated if none of its R G B values differ by more than CTOL% from those of the corner pixel.",
+            "id": "AUTOCROP_CTOL",
+            "name": "AUTOCROP_CTOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOCROP_CTOL]"
+        },
+        {
+            "command-line-flag": "-autocrop_atol",
+            "description": "A line is eliminated if none of its R G B values differ by more than ATOL% from those of line average.",
+            "id": "AUTOCROP_ATOL",
+            "name": "AUTOCROP_ATOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOCROP_ATOL]"
+        },
+        {
+            "command-line-flag": "-autocrop",
+            "description": "This option is the same as using both of -autocrop_atol 20 and -autocrop_ctol 20 NOTE: Do not mix -autocrop* options with -crop Cropping is determined from the 1st input image and applied to to all remaining ones. ++ Options for output:",
+            "id": "AUTOCROP",
+            "name": "AUTOCROP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOCROP]"
+        },
+        {
+            "command-line-flag": "-zero_wrap",
+            "description": "If number of images is not enough to fill matrix solid black images are used.",
+            "id": "ZERO_WRAP",
+            "name": "ZERO_WRAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZERO_WRAP]"
+        },
+        {
+            "command-line-flag": "-white_wrap",
+            "description": "If number of images is not enough to fill matrix solid white images are used.",
+            "id": "WHITE_WRAP",
+            "name": "WHITE_WRAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WHITE_WRAP]"
+        },
+        {
+            "command-line-flag": "-gray_wrap",
+            "description": "If number of images is not enough to fill matrix solid gray images are used. GRAY must be between 0 and 1.0",
+            "id": "GRAY_WRAP",
+            "name": "GRAY_WRAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GRAY_WRAP]"
+        },
+        {
+            "command-line-flag": "-image_wrap",
+            "description": "If number of images is not enough to fill matrix images on command line are reused (default)",
+            "id": "IMAGE_WRAP",
+            "name": "IMAGE_WRAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IMAGE_WRAP]"
+        },
+        {
+            "command-line-flag": "-rand_wrap",
+            "description": "When reusing images to fill matrix, randomize the order in refill section only.",
+            "id": "RAND_WRAP",
+            "name": "RAND_WRAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RAND_WRAP]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Prefix the output files with string 'ppp' Note: If the prefix ends with .1D, then a 1D file containing the average of RGB values. You can view the output with 1dgrayplot.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-matrix",
+            "description": "Specify number of images in each row and column of IM at the same time.",
+            "id": "MATRIX",
+            "name": "MATRIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATRIX]"
+        },
+        {
+            "command-line-flag": "-nx",
+            "description": "Number of images in each row (3 for example below)",
+            "id": "NX",
+            "name": "NX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NX]"
+        },
+        {
+            "command-line-flag": "-ny",
+            "description": "Number of images in each column (4 for example below) Example: If 12 images appearing on the command line are to be assembled into a 3x4 IM matrix they would appear in this order: 0  1  2 3  4  5 6  7  8 9  10 11 NOTE: The program will try to guess if neither NX nor NY are specified.",
+            "id": "NY",
+            "name": "NY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NY]"
+        },
+        {
+            "command-line-flag": "-matrix_from_scale",
+            "description": "Set NX and NY to be the same as the SCALE_IMG's dimensions. (needs -scale_image)",
+            "id": "MATRIX_FROM_SCALE",
+            "name": "MATRIX_FROM_SCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATRIX_FROM_SCALE]"
+        },
+        {
+            "command-line-flag": "-gap",
+            "description": "[7m** ERROR:\u001b[0m Too few options Put a line G pixels wide between images.",
+            "id": "GAP",
+            "name": "GAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GAP]"
+        },
+        {
+            "command-line-flag": "-gap_col",
+            "description": "Set color of line to R G B values. Values range between 0 and 255.  Example 0 (assuming afni is in ~/abin directory): Resizing an image: imcat -prefix big -res_in 1024 1024 \\ ~/abin/funstuff/face_zzzsunbrain.jpg imcat -prefix small -res_in 64 64 \\ ~/abin/funstuff/face_zzzsunbrain.jpg aiv small.ppm big.ppm  Example 1: Stitching together images: (Can be used to make very high resolution SUMA images. Read about 'Ctrl+r' in SUMA's GUI help.) imcat -prefix cat -matrix 14 12 \\ ~/abin/funstuff/face_*.jpg aiv cat.ppm  Example 2: Stitching together 3 images getting rid of annoying white boundary:  imcat -prefix surfview_pry3b.jpg -ny 1 -autocrop surfview.000[789].jpg  Example 20 (assuming afni is in ~/abin directory): imcat -prefix bigcat.jpg -scale_image ~/abin/afnigui_logo.jpg \\ -matrix_from_scale -rand_wrap -rgb_out -respad_in 128 128 \\ -pad_val 128 ~/abin/funstuff/face_*.jpg aiv   bigcat.jpg bigcat.jpg Crop/Zoom in to see what was done. In practice, you want to use a faster image viewer to examine the result. Zooming on such a large image is not fast in aiv. Be careful with this toy. Images get real big, real quick.  You can look at the output image file with afni -im ppp.ppm  [then open the Sagittal image window]  Usage: imcat [options] fname1 fname2 etc. Puts a set images into an image matrix (IM) montage of NX by NY images. The minimum set of input is N images (N >= 1). If need be, the default is to reuse images until the desired NX by NY size is achieved. See options -zero_wrap and -image_wrap for more detail.  OPTIONS: ++ Options for editing, coloring input images:",
+            "id": "GAP_COL",
+            "name": "GAP_COL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GAP_COL]"
+        },
+        {
+            "description": "NA",
+            "id": "fname1",
+            "name": "fname1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FNAME1]"
+        },
+        {
+            "description": "NA",
+            "id": "fname2",
+            "name": "fname2",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FNAME2]"
+        },
+        {
+            "description": "NA",
+            "id": "etc.",
+            "name": "etc.",
+            "optional": false,
+            "type": "String",
+            "value-key": "[ETC.]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

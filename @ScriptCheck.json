@@ -1,0 +1,41 @@
+{
+    "command-line": "@ScriptCheck [CLEAN] [SUFFIX] [<SCRIPT1>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-clean",
+            "description": "Clean bad line breaks",
+            "id": "CLEAN",
+            "name": "CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLEAN]"
+        },
+        {
+            "command-line-flag": "-suffix",
+            "description": "Rename uncleaned file Script1.SUFF The default for SUFF is .uncln  Example: echo \"A good line\" > ./___toy echo \"A good break \\\" >> ./___toy echo \"A harmless \\ slash\" >> ./___toy echo \"A bad break \\  \" >> ./___toy echo \"The end\" >> ./___toy  To find the bad line breaks @ScriptCheck ___toy  To find and clean the bad line breaks @ScriptCheck -clean ___toy  The uncleaned (original) file goes into ___toy.uncln  Use file_tool -show_file_type -infiles YOURFILE To check for non-printable characters, and a whole lot more.",
+            "id": "SUFFIX",
+            "name": "SUFFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUFFIX]"
+        },
+        {
+            "description": "NA",
+            "id": "<Script1>",
+            "name": "<Script1>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<SCRIPT1>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

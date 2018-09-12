@@ -1,0 +1,86 @@
+{
+    "command-line": "3dTnorm [PREFIX] [NORM2] [NORMR] [NORM1] [NORMX] [POLORT] [L1FIT] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "use string 'p' for the prefix of the output dataset [DEFAULT = 'tnorm']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-norm2",
+            "description": "L2 normalize (sum of squares = 1) [DEFAULT]",
+            "id": "NORM2",
+            "name": "NORM2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORM2]"
+        },
+        {
+            "command-line-flag": "-normR",
+            "description": "normalize so sum of squares = number of time points * e.g., so RMS = 1.",
+            "id": "NORMR",
+            "name": "NORMR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORMR]"
+        },
+        {
+            "command-line-flag": "-norm1",
+            "description": "L1 normalize (sum of absolute values = 1)",
+            "id": "NORM1",
+            "name": "NORM1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORM1]"
+        },
+        {
+            "command-line-flag": "-normx",
+            "description": "Scale so max absolute value = 1 (L_infinity norm)",
+            "id": "NORMX",
+            "name": "NORMX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORMX]"
+        },
+        {
+            "command-line-flag": "-polort",
+            "description": "Detrend with polynomials of order p before normalizing [DEFAULT = don't do this] * Use '-polort 0' to remove the mean, for example",
+            "id": "POLORT",
+            "name": "POLORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POLORT]"
+        },
+        {
+            "command-line-flag": "-L1fit",
+            "description": "Detrend with L1 regression (L2 is the default) * This option is here just for the hell of it  Notes: * Each voxel is processed separately * A voxel that is all zero will be unchanged (duh) * Output dataset is in float format, no matter what the input format * This program is for producing regressors to use in 3dTfitter * Also see programs 1dnorm and 3dcalc  ++ Compile date = Sep  7 2018 {:}",
+            "id": "L1FIT",
+            "name": "L1FIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[L1FIT]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

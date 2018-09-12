@@ -1,0 +1,267 @@
+{
+    "command-line": "1dDW_Grad_o_Mat [IN_GRAD_ROWS] [OUT_GRAD_ROWS] [IN_GRAD_COLS] [IN_GRAD_COLS_BWT] [IN_GMATA_COLS] [IN_GMATT_COLS] [IN_BMATA_COLS] [IN_BMATT_COLS] [OUT_GRAD_COLS] [OUT_GRAD_COLS_BWT] [OUT_GMATA_COLS] [OUT_GMATT_COLS] [OUT_BMATA_COLS] [OUT_BMATT_COLS] [PROC_DSET] [PREF_DSET] [DWI_COMP_FAC] [FLIP_X] [FLIP_Y] [FLIP_Z] [BREF_MEAN_TOP] [KEEP_B0S] [PUT_ZEROS_TOP] [BMAX_REF] [IN_BVALS] [OUT_BVAL_COL] [OUT_BVAL_ROW_SEP] [OUT_BVAL_COL_SEP]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-in_grad_rows",
+            "description": "INFILE                                  \\ { -flip_x | -flip_y | -flip_z }                            \\ { -keep_b0s } { -put_zeros_top } { -out_bval_col }         \\ { -bref_mean_top }                                         \\ { -in_bvals BVAL_IN }                                      \\ { -bmax_ref THRESH }                                       \\ { -out_grad_cols  | -out_grad_cols_bwt |                   \\ -out_gmatT_cols | -out_gmatA_cols |                      \\ -out_bmatT_cols | -out_gmatA_cols |                      \\",
+            "id": "IN_GRAD_ROWS",
+            "name": "IN_GRAD_ROWS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_GRAD_ROWS]"
+        },
+        {
+            "command-line-flag": "-out_grad_rows",
+            "description": "OUTFILE                                \\ { -out_bval_row_sep | -out_bval_col_sep BB }  where: (one of the following six formats of input must be given):",
+            "id": "OUT_GRAD_ROWS",
+            "name": "OUT_GRAD_ROWS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_GRAD_ROWS]"
+        },
+        {
+            "command-line-flag": "-in_grad_cols",
+            "description": "nput file of 3 columns of gradients.",
+            "id": "IN_GRAD_COLS",
+            "name": "IN_GRAD_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_GRAD_COLS]"
+        },
+        {
+            "command-line-flag": "-in_grad_cols_bwt",
+            "description": "nput file of 3 columns of gradients, each weighted by the b-value.",
+            "id": "IN_GRAD_COLS_BWT",
+            "name": "IN_GRAD_COLS_BWT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_GRAD_COLS_BWT]"
+        },
+        {
+            "command-line-flag": "-in_gmatA_cols",
+            "description": "nput file of 6 columns of g-matrix in 'A(FNI)' `diagonal first'-format. (See above.)",
+            "id": "IN_GMATA_COLS",
+            "name": "IN_GMATA_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_GMATA_COLS]"
+        },
+        {
+            "command-line-flag": "-in_gmatT_cols",
+            "description": "nput file of 6 columns of g-matr in 'T(ORTOISE)' `row first'-format. (See above.)",
+            "id": "IN_GMATT_COLS",
+            "name": "IN_GMATT_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_GMATT_COLS]"
+        },
+        {
+            "command-line-flag": "-in_bmatA_cols",
+            "description": "nput file of 6 columns of b-matrix in 'A(FNI)' `diagonal first'-format. (See above.)",
+            "id": "IN_BMATA_COLS",
+            "name": "IN_BMATA_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_BMATA_COLS]"
+        },
+        {
+            "command-line-flag": "-in_bmatT_cols",
+            "description": "nput file of 6 columns of b-matr in 'T(ORTOISE)' `row first'-format. (See above.) (one of the following five formats of output must be given):",
+            "id": "IN_BMATT_COLS",
+            "name": "IN_BMATT_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_BMATT_COLS]"
+        },
+        {
+            "command-line-flag": "-out_grad_cols",
+            "description": "utput file of 3 columns of gradients.",
+            "id": "OUT_GRAD_COLS",
+            "name": "OUT_GRAD_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_GRAD_COLS]"
+        },
+        {
+            "command-line-flag": "-out_grad_cols_bwt",
+            "description": "utput file of 3 columns of gradients, each weighted by the b-value.",
+            "id": "OUT_GRAD_COLS_BWT",
+            "name": "OUT_GRAD_COLS_BWT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_GRAD_COLS_BWT]"
+        },
+        {
+            "command-line-flag": "-out_gmatA_cols",
+            "description": "utput file of 6 columns of g-matrix in 'A(FNI)' `diagonal first'-format. (See above.)",
+            "id": "OUT_GMATA_COLS",
+            "name": "OUT_GMATA_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_GMATA_COLS]"
+        },
+        {
+            "command-line-flag": "-out_gmatT_cols",
+            "description": "utput file of 6 cols of g-matr in 'T(ORTOISE)' `row first'-format. (See above.)",
+            "id": "OUT_GMATT_COLS",
+            "name": "OUT_GMATT_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_GMATT_COLS]"
+        },
+        {
+            "command-line-flag": "-out_bmatA_cols",
+            "description": "utput file of 6 columns of b-matrix in 'A(FNI)' `diagonal first'-format. (See above.)",
+            "id": "OUT_BMATA_COLS",
+            "name": "OUT_BMATA_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_BMATA_COLS]"
+        },
+        {
+            "command-line-flag": "-out_bmatT_cols",
+            "description": "utput file of 6 cols of b-matr in 'T(ORTOISE)' `row first'-format. (See above.)",
+            "id": "OUT_BMATT_COLS",
+            "name": "OUT_BMATT_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_BMATT_COLS]"
+        },
+        {
+            "command-line-flag": "-proc_dset",
+            "description": "nput a dataset DSET of X 'b=0' and Y DWI bricks, matching the X zero- and Y nonzero-gradient entries in the INFILE. The 'processing' will: 1) extract all the 'b=0' bricks, 2) average them, 3) store the result in the zeroth brick of the output PREFIX data set, and 4) place the DWIs (kept in their original order) as the next Y bricks of PREFIX. This option cannot be used with '-keep_b0s'. The output set has Y+1 bricks.  The option is probably mostly useful only if X>1.",
+            "id": "PROC_DSET",
+            "name": "PROC_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PROC_DSET]"
+        },
+        {
+            "command-line-flag": "-pref_dset",
+            "description": "utput dataset filename prefix (required and iff using '-proc_dset', above).",
+            "id": "PREF_DSET",
+            "name": "PREF_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREF_DSET]"
+        },
+        {
+            "command-line-flag": "-dwi_comp_fac",
+            "description": "ption for averaging DWI bricks in DSET that have been acquired with exactly N_REP repeated sets of gradients. *You* the user must know how many repetitions have been performed (this program will perform a simplistic gradient comparison using dot products to flag possible errors, but this is by no means bulletproof.  Use wisely.",
+            "id": "DWI_COMP_FAC",
+            "name": "DWI_COMP_FAC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DWI_COMP_FAC]"
+        },
+        {
+            "command-line-flag": "-flip_x",
+            "description": "hange sign of first column of gradients",
+            "id": "FLIP_X",
+            "name": "FLIP_X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_X]"
+        },
+        {
+            "command-line-flag": "-flip_y",
+            "description": "hange sign of second column of gradients",
+            "id": "FLIP_Y",
+            "name": "FLIP_Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_Y]"
+        },
+        {
+            "command-line-flag": "-flip_z",
+            "description": "hange sign of third column of gradients",
+            "id": "FLIP_Z",
+            "name": "FLIP_Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_Z]"
+        },
+        {
+            "command-line-flag": "-bref_mean_top",
+            "description": "hen averaging the reference X 'b0' values (which is default behavior), have the mean of the X values be represented in the top row; default behavior is to have nothing representing the b0 information in the top row (for historical functionality reasons).  NB: if your reference 'b0' actually has b>0, you might not want to average the b0 refs together, because their images could have differing contrast if the same reference vector wasn't used for each.",
+            "id": "BREF_MEAN_TOP",
+            "name": "BREF_MEAN_TOP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BREF_MEAN_TOP]"
+        },
+        {
+            "command-line-flag": "-keep_b0s",
+            "description": "efault function is to get rid of all reference image, but this option acts as switch to keep them.",
+            "id": "KEEP_B0S",
+            "name": "KEEP_B0S",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_B0S]"
+        },
+        {
+            "command-line-flag": "-put_zeros_top",
+            "description": "hatever the output format is, add a row at the top with all zeros.",
+            "id": "PUT_ZEROS_TOP",
+            "name": "PUT_ZEROS_TOP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PUT_ZEROS_TOP]"
+        },
+        {
+            "command-line-flag": "-bmax_ref",
+            "description": "HRESH is a scalar number below which b-values (in BVAL_IN) are considered `zero' or reference. Sometimes, for the reference images, the scanner has a value like b=5 s/mm^2, instead of strictly b=0 strictly. One can still flag such values as being associated with a reference image and trim it out, using, for the example case here, '-bmax_ref 5.1'.",
+            "id": "BMAX_REF",
+            "name": "BMAX_REF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BMAX_REF]"
+        },
+        {
+            "command-line-flag": "-in_bvals",
+            "description": "VAL_IN is a file of b-values, such as the 'bval' file generated by dcm2nii.",
+            "id": "IN_BVALS",
+            "name": "IN_BVALS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_BVALS]"
+        },
+        {
+            "command-line-flag": "-out_bval_col",
+            "description": "witch to put a column of the bvalues as the first column in the output data.",
+            "id": "OUT_BVAL_COL",
+            "name": "OUT_BVAL_COL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_BVAL_COL]"
+        },
+        {
+            "command-line-flag": "-out_bval_row_sep",
+            "description": "utput a file BB of bvalues in a single row.",
+            "id": "OUT_BVAL_ROW_SEP",
+            "name": "OUT_BVAL_ROW_SEP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_BVAL_ROW_SEP]"
+        },
+        {
+            "command-line-flag": "-out_bval_col_sep",
+            "description": "utput a file BB of bvalues in a single row.  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  If you use this program, please reference the introductory/description paper for the FATCAT toolbox: Taylor PA, Saad ZS (2013).  FATCAT: (An Efficient) Functional And Tractographic Connectivity Analysis Toolbox. Brain Connectivity 3(5):523-535. ____________________________________________________________________________",
+            "id": "OUT_BVAL_COL_SEP",
+            "name": "OUT_BVAL_COL_SEP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_BVAL_COL_SEP]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

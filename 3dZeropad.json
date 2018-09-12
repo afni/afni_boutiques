@@ -1,0 +1,140 @@
+{
+    "command-line": "3dZeropad [I] [S] [A] [P] [L] [R] [Z] [RL] [AP] [IS] [MM] [MASTER] [PREFIX] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-I",
+            "description": "adds 'n' planes of zero at the Inferior edge",
+            "id": "I",
+            "name": "I",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I]"
+        },
+        {
+            "command-line-flag": "-S",
+            "description": "adds 'n' planes of zero at the Superior edge",
+            "id": "S",
+            "name": "S",
+            "optional": true,
+            "type": "String",
+            "value-key": "[S]"
+        },
+        {
+            "command-line-flag": "-A",
+            "description": "adds 'n' planes of zero at the Anterior edge",
+            "id": "A",
+            "name": "A",
+            "optional": true,
+            "type": "String",
+            "value-key": "[A]"
+        },
+        {
+            "command-line-flag": "-P",
+            "description": "adds 'n' planes of zero at the Posterior edge",
+            "id": "P",
+            "name": "P",
+            "optional": true,
+            "type": "String",
+            "value-key": "[P]"
+        },
+        {
+            "command-line-flag": "-L",
+            "description": "adds 'n' planes of zero at the Left edge",
+            "id": "L",
+            "name": "L",
+            "optional": true,
+            "type": "String",
+            "value-key": "[L]"
+        },
+        {
+            "command-line-flag": "-R",
+            "description": "adds 'n' planes of zero at the Right edge",
+            "id": "R",
+            "name": "R",
+            "optional": true,
+            "type": "String",
+            "value-key": "[R]"
+        },
+        {
+            "command-line-flag": "-z",
+            "description": "adds 'n' planes of zeros on EACH of the dataset z-axis (slice-direction) faces",
+            "id": "Z",
+            "name": "Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Z]"
+        },
+        {
+            "command-line-flag": "-RL",
+            "description": "These options specify that planes should be added/cut",
+            "id": "RL",
+            "name": "RL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RL]"
+        },
+        {
+            "command-line-flag": "-AP",
+            "description": "symmetrically to make the resulting volume have",
+            "id": "AP",
+            "name": "AP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AP]"
+        },
+        {
+            "command-line-flag": "-IS",
+            "description": "'a', 'b', and 'c' slices in the respective directions.",
+            "id": "IS",
+            "name": "IS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IS]"
+        },
+        {
+            "command-line-flag": "-mm",
+            "description": "pad counts 'n' are in mm instead of slices: * each 'n' is an integer * at least 'n' mm of slices will be added/removed: n =  3 and slice thickness = 2.5 mm ==> 2 slices added n = -6 and slice thickness = 2.5 mm ==> 3 slices removed",
+            "id": "MM",
+            "name": "MM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MM]"
+        },
+        {
+            "command-line-flag": "-master",
+            "description": "match the volume described in dataset 'mset': * mset must have the same orientation and grid spacing as dataset to be padded * the goal of -master is to make the output dataset from 3dZeropad match the spatial 'extents' of mset (cf. 3dinfo output) as much as possible, by adding/subtracting slices as needed. * you can't use -I,-S,..., or -mm with -master",
+            "id": "MASTER",
+            "name": "MASTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASTER]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "write result into dataset with prefix 'ppp' [default = 'zeropad']  Nota Bene: * You can use negative values of n to cut planes off the edges of a dataset.  At least one plane must be added/removed or the program won't do anything. * Anat parent and Talairach markers are NOT preserved in the new dataset. * If the old dataset has z-slice-dependent time offsets, and if new (zero filled) z-planes are added, the time offsets of the new slices will be set to zero. * You can use program '3dinfo' to find out how many planes a dataset has in each direction. * Program works for byte-, short-, float-, and complex-valued datasets. * You can use a sub-brick selector on the input dataset.  Author: RWCox - July 2000  ++ Compile date = Sep  7 2018 {:}",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

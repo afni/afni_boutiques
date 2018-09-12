@@ -1,0 +1,409 @@
+{
+    "command-line": "file_tool [INFILES] [HELP] [VERSION] [HIST] [DEBUG] [GE_ALL] [GE_HEADER] [GE_EXTRAS] [GE_UV17] [GE_RUN] [GE_OFF] [GE4_ALL] [GE4_IMAGE] [GE4_SERIES] [GE4_STUDY] [DEF_ANA_HDR] [DIFF_ANA_HDRS] [DISP_ANA_HDR] [HEX] [MOD_ANA_HDR] [MOD_FIELD] [PREFIX] [OVERWRITE] [SHOW_BAD_ALL] [SHOW_BAD_BACKSLASH] [SHOW_BAD_CHAR] [SHOW_FILE_TYPE] [FIX_RICH_QUOTES] [TEST] [LENGTH] [MOD_DATA] [MOD_TYPE] [OFFSET] [QUIET] [DISP_HEX] [DISP_HEX1] [DISP_HEX2] [DISP_HEX4] [DISP_INT2] [DISP_INT4] [DISP_REAL4] [SWAP_BYTES] [FILE2] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-infiles",
+            "description": "-infiles old.hdr  ----- script file checking examples -----  0. check for any script issues (Unix, backslashes, chars) (-test is the same as -show_bad_all)  file_tool -test -infiles my_scripts_*.txt  1. in each file, check whether it is a UNIX file type  file_tool -show_file_type -infiles my_scripts_*.txt  2. in one file, convert a non-UNIX file type to UNIX (basically a dos2unix operation)  file_tool -show_file_type -infile non.unix.txt -prefix is.unix.txt  3. in each file, look for spaces after trailing backslashes '\\'  file_tool -show_bad_backslash -infiles my_scripts_*.txt  4. in ONE file, correct spaces after trailing backslashes '\\'  file_tool -show_bad_backslash -infile scripts.txt -prefix s.fixed.txt  ----- character modification examples -----  1. in each file, change the 8 characters at 2515 to 'hi there':  file_tool -mod_data \"hi there\" -offset 2515 -length 8 -infiles I.*  2. in each file, change the 21 characters at 2515 to all 'x's (and print out extra debug info)  file_tool -debug 1 -mod_data x -mod_type val -offset 2515 \\ -length 21 -infiles I.*  ----- raw number modification examples -----  1. in each file, change the 3 short integers starting at position 2508 to '2 -419 17'  file_tool -mod_data '2 -419 17' -mod_type sint2 -offset 2508 \\ -length 6 -infiles I.*  2. in each file, change the 3 binary floats starting at position 2508 to '-83.4 2 17' (and set the next 8 bytes to zero by setting the length to 20, instead of just 12).  file_tool -mod_data '-83.4 2 17' -mod_type float4 -offset 2508 \\ -length 20 -infiles I.*  3. in each file, change the 3 binary floats starting at position 2508 to '-83.4 2 17', and apply byte swapping  file_tool -mod_data '-83.4 2 17' -mod_type float4 -offset 2508 \\ -length 12 -swap_bytes -infiles I.*  notes:  o  Use of '-infiles' is required. o  Use of '-length' or a GE information option is required. o  As of this version, only modification with text is supported. Editing binary data is coming soon to a workstation near you.  special options:",
+            "id": "INFILES",
+            "name": "INFILES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFILES]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "show this help information : e.g. -help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-version",
+            "description": "show version information : e.g. -version",
+            "id": "VERSION",
+            "name": "VERSION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERSION]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show the program's modification history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "print extra info along the way : e.g. -debug 1 : default is 0, max is 2  required 'options':",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-ge_all",
+            "description": "display GE header and extras info",
+            "id": "GE_ALL",
+            "name": "GE_ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GE_ALL]"
+        },
+        {
+            "command-line-flag": "-ge_header",
+            "description": "display GE header info",
+            "id": "GE_HEADER",
+            "name": "GE_HEADER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GE_HEADER]"
+        },
+        {
+            "command-line-flag": "-ge_extras",
+            "description": "display extra GE image info",
+            "id": "GE_EXTRAS",
+            "name": "GE_EXTRAS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GE_EXTRAS]"
+        },
+        {
+            "command-line-flag": "-ge_uv17",
+            "description": "display the value of uv17 (the run #)",
+            "id": "GE_UV17",
+            "name": "GE_UV17",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GE_UV17]"
+        },
+        {
+            "command-line-flag": "-ge_run",
+            "description": "(same as -ge_uv17)",
+            "id": "GE_RUN",
+            "name": "GE_RUN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GE_RUN]"
+        },
+        {
+            "command-line-flag": "-ge_off",
+            "description": "display file offsets for various fields  GEMS 4.x info options:",
+            "id": "GE_OFF",
+            "name": "GE_OFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GE_OFF]"
+        },
+        {
+            "command-line-flag": "-ge4_all",
+            "description": "display GEMS 4.x series and image headers",
+            "id": "GE4_ALL",
+            "name": "GE4_ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GE4_ALL]"
+        },
+        {
+            "command-line-flag": "-ge4_image",
+            "description": "display GEMS 4.x image header",
+            "id": "GE4_IMAGE",
+            "name": "GE4_IMAGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GE4_IMAGE]"
+        },
+        {
+            "command-line-flag": "-ge4_series",
+            "description": "display GEMS 4.x series header",
+            "id": "GE4_SERIES",
+            "name": "GE4_SERIES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GE4_SERIES]"
+        },
+        {
+            "command-line-flag": "-ge4_study",
+            "description": "display GEMS 4.x study header  ANALYZE info options:",
+            "id": "GE4_STUDY",
+            "name": "GE4_STUDY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GE4_STUDY]"
+        },
+        {
+            "command-line-flag": "-def_ana_hdr",
+            "description": "display the definition of an ANALYZE header",
+            "id": "DEF_ANA_HDR",
+            "name": "DEF_ANA_HDR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEF_ANA_HDR]"
+        },
+        {
+            "command-line-flag": "-diff_ana_hdrs",
+            "description": "display field differences between 2 headers",
+            "id": "DIFF_ANA_HDRS",
+            "name": "DIFF_ANA_HDRS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIFF_ANA_HDRS]"
+        },
+        {
+            "command-line-flag": "-disp_ana_hdr",
+            "description": "display ANALYZE headers",
+            "id": "DISP_ANA_HDR",
+            "name": "DISP_ANA_HDR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_ANA_HDR]"
+        },
+        {
+            "command-line-flag": "-hex",
+            "description": "display field values in hexidecimal",
+            "id": "HEX",
+            "name": "HEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HEX]"
+        },
+        {
+            "command-line-flag": "-mod_ana_hdr",
+            "description": "modify ANALYZE headers",
+            "id": "MOD_ANA_HDR",
+            "name": "MOD_ANA_HDR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_ANA_HDR]"
+        },
+        {
+            "command-line-flag": "-mod_field",
+            "description": "specify a field and value(s) to modify",
+            "id": "MOD_FIELD",
+            "name": "MOD_FIELD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_FIELD]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "specify an output filename",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-overwrite",
+            "description": "specify to overwrite the input file(s)  script file options:",
+            "id": "OVERWRITE",
+            "name": "OVERWRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OVERWRITE]"
+        },
+        {
+            "command-line-flag": "-show_bad_all",
+            "description": "show lines with whitespace after '\\'  This is meant to find problems in script files where the script programmer has spaces or tabs after a final '\\' on the line.  That would break the line continuation.  The -test option is a shorthand version of this one.",
+            "id": "SHOW_BAD_ALL",
+            "name": "SHOW_BAD_ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_BAD_ALL]"
+        },
+        {
+            "command-line-flag": "-show_bad_backslash",
+            "description": "show lines with whitespace after '\\'  This is meant to find problems in script files where the script programmer has spaces or tabs after a final '\\' on the line.  That would break the line continuation.  ** If the -prefix option is specified, whitespace after backslashes will be removed in the given output file.  This can also be used in conjunction with -overwrite.  See also -prefix and -overwrite.",
+            "id": "SHOW_BAD_BACKSLASH",
+            "name": "SHOW_BAD_BACKSLASH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_BAD_BACKSLASH]"
+        },
+        {
+            "command-line-flag": "-show_bad_char",
+            "description": "show any non-printable characters'\\'  Sometimes non-visible-but-detrimental characters appear in scripts due to editors or email programs.  This option helps to point out their presence to the user.  See also -show_bad_all or -test.",
+            "id": "SHOW_BAD_CHAR",
+            "name": "SHOW_BAD_CHAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_BAD_CHAR]"
+        },
+        {
+            "command-line-flag": "-show_file_type",
+            "description": "print file type of UNIX, Mac or DOS  Shell scripts need to be UNIX type files.  This option will inform the programmer if there are end of line characters that define an alternate file type.",
+            "id": "SHOW_FILE_TYPE",
+            "name": "SHOW_FILE_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_FILE_TYPE]"
+        },
+        {
+            "command-line-flag": "-fix_rich_quotes",
+            "description": "-fix_rich_quotes y/n : replace rich-text quotes with ASCII  e.g. -fix_rich_quotes no  Rich text quote values seem to be: single: 0xe28098   or   0x e28099 double: 0xe2809c   or   0x e2809d  In the case of scripts being fixed (e.g. -test -prefix P), rich-text quote characters will be replaced by ASCII quotes by default.  Use this option to turn off that behavior.",
+            "id": "FIX_RICH_QUOTES",
+            "name": "FIX_RICH_QUOTES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIX_RICH_QUOTES]"
+        },
+        {
+            "command-line-flag": "-test",
+            "description": "short for -show_bad_all  Check script files for known issues.  raw ascii options:",
+            "id": "TEST",
+            "name": "TEST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEST]"
+        },
+        {
+            "command-line-flag": "-length",
+            "description": "specify the number of bytes to print/modify : e.g. -length 17  This includes numbers after the conversion to binary.  So if -mod_data is '2 -63 186', and -mod_type is 'sint2' (or signed shorts), then 6 bytes will be written (2 bytes for each of 3 short integers).  ** Note that if the -length argument is MORE than what is needed to write the numbers out, the remaining length of bytes will be written with zeros.  If '17' is given for the length, and 3 short integers are given as data, there will be 11 bytes of 0 written after the 6 bytes of data.",
+            "id": "LENGTH",
+            "name": "LENGTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LENGTH]"
+        },
+        {
+            "command-line-flag": "-mod_data",
+            "description": "specify a string to change the data to : e.g. -mod_data hello : e.g. -mod_data '2 -17.4 649' : e.g. -mod_data \"change to this string\"  This is the data that will be written into the modified file.  If the -mod_type is 'str' or 'char', then the output data will be those characters.  If the -mod_type is any other (i.e. a binary numerical format), then the output will be the -mod_data, converted from numerical text to binary.  ** Note that a list of numbers must be contained in quotes, so that it will be processed as a single parameter.",
+            "id": "MOD_DATA",
+            "name": "MOD_DATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_DATA]"
+        },
+        {
+            "command-line-flag": "-mod_type",
+            "description": "specify the data type to write to the file : e.g. -mod_type string : e.g. -mod_type sint2 : e.g. -mod_type float4 : default is 'str'  TYPE can be one of:  str       : perform a string substitution char, val : perform a (repeated?) character substitution uint1     : single byte unsigned int   (binary write) sint1     : single byte   signed int   (binary write) uint2     : two    byte unsigned int   (binary write) sint2     : two    byte   signed int   (binary write) uint4     : four   byte unsigned int   (binary write) sint4     : four   byte   signed int   (binary write) float4    : four   byte floating point (binary write) float8    : eight  byte floating point (binary write)  If 'str' is used, which is the default action, the data is replaced by the contents of the string DATA (from the '-mod_data' option).  If 'char' is used, then LENGTH bytes are replaced by the first character of DATA, repeated LENGTH times.  For any of the others, the list of numbers found in the -mod_data option will be written in the supplied binary format.  LENGTH must be large enough to accommodate this list.  And if LENGTH is higher, the output will be padded with zeros, to fill to the requested length.",
+            "id": "MOD_TYPE",
+            "name": "MOD_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_TYPE]"
+        },
+        {
+            "command-line-flag": "-offset",
+            "description": "use this offset into each file : e.g. -offset 100 : default is 0  This is the offset into each file for the data to be read or modified.",
+            "id": "OFFSET",
+            "name": "OFFSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OFFSET]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "do not output header information  numeric options:",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-disp_hex",
+            "description": "display bytes in hex",
+            "id": "DISP_HEX",
+            "name": "DISP_HEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_HEX]"
+        },
+        {
+            "command-line-flag": "-disp_hex1",
+            "description": "display bytes in hex",
+            "id": "DISP_HEX1",
+            "name": "DISP_HEX1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_HEX1]"
+        },
+        {
+            "command-line-flag": "-disp_hex2",
+            "description": "display 2-byte integers in hex",
+            "id": "DISP_HEX2",
+            "name": "DISP_HEX2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_HEX2]"
+        },
+        {
+            "command-line-flag": "-disp_hex4",
+            "description": "display 4-byte integers in hex",
+            "id": "DISP_HEX4",
+            "name": "DISP_HEX4",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_HEX4]"
+        },
+        {
+            "command-line-flag": "-disp_int2",
+            "description": "display 2-byte integers",
+            "id": "DISP_INT2",
+            "name": "DISP_INT2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_INT2]"
+        },
+        {
+            "command-line-flag": "-disp_int4",
+            "description": "display 4-byte integers",
+            "id": "DISP_INT4",
+            "name": "DISP_INT4",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_INT4]"
+        },
+        {
+            "command-line-flag": "-disp_real4",
+            "description": "display 4-byte real numbers",
+            "id": "DISP_REAL4",
+            "name": "DISP_REAL4",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_REAL4]"
+        },
+        {
+            "command-line-flag": "-swap_bytes",
+            "description": "use byte-swapping on numbers  If this option is used, then byte swapping is done on any multi-byte numbers read from or written to the file.  - R Reynolds, version: 3.19 (June 18, 2018), compiled: Sep  7 2018",
+            "id": "SWAP_BYTES",
+            "name": "SWAP_BYTES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SWAP_BYTES]"
+        },
+        {
+            "description": "NA",
+            "id": "file2",
+            "name": "file2",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FILE2]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

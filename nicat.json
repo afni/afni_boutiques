@@ -1,0 +1,41 @@
+{
+    "command-line": "nicat [REOPEN] [R] [STREAMSPEC]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-reopen",
+            "description": "reopen the stream after connection to the stream specified by 'rr'",
+            "id": "REOPEN",
+            "name": "REOPEN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REOPEN]"
+        },
+        {
+            "command-line-flag": "-r",
+            "description": "Copy the stream to stdout instead; the 'streamspec' will be opened for reading.",
+            "id": "R",
+            "name": "R",
+            "optional": true,
+            "type": "String",
+            "value-key": "[R]"
+        },
+        {
+            "description": "NA",
+            "id": "streamspec",
+            "name": "streamspec",
+            "optional": false,
+            "type": "String",
+            "value-key": "[STREAMSPEC]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

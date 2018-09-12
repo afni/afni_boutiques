@@ -1,0 +1,130 @@
+{
+    "command-line": "count [SEED] [SSEED] [COLUMN] [DIGITS] [FORM] [ROOT] [SEP] [SUFFIX] [SCALE] [COMMA] [SKIPNMODM] [BOT] [TOP]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-seed",
+            "description": "-seed        seed number for random number generator (for S and R above)",
+            "id": "SEED",
+            "name": "SEED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SEED]"
+        },
+        {
+            "command-line-flag": "-sseed",
+            "description": "-sseed       seed string for random number generator (for S and R above)",
+            "id": "SSEED",
+            "name": "SSEED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SSEED]"
+        },
+        {
+            "command-line-flag": "-column",
+            "description": "-column      writes output, one number per line (with root and suffix, if any)",
+            "id": "COLUMN",
+            "name": "COLUMN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COLUMN]"
+        },
+        {
+            "command-line-flag": "-digits",
+            "description": "-digits n    prints numbers with 'n' digits [default=4]",
+            "id": "DIGITS",
+            "name": "DIGITS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIGITS]"
+        },
+        {
+            "command-line-flag": "-form",
+            "description": "-form CFRM   print the numbers with the CFRM formatting string. e.g.: count -form %c 49 130 or count -form '%03d<:-)' 97 99 You can't use any type of C formatting, only those who take an integer for an input. Using '%f', or '%s' will cause a crash.",
+            "id": "FORM",
+            "name": "FORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FORM]"
+        },
+        {
+            "command-line-flag": "-root",
+            "description": "-root rrr    prints string 'rrr' before the number [default=empty]",
+            "id": "ROOT",
+            "name": "ROOT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ROOT]"
+        },
+        {
+            "command-line-flag": "-sep",
+            "description": "-sep s       prints single character 's' between the numbers [default=blank] [normally you would not use '-sep' with '-column']",
+            "id": "SEP",
+            "name": "SEP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SEP]"
+        },
+        {
+            "command-line-flag": "-suffix",
+            "description": "-suffix sss  prints string 'sss' after the number [default=empty]",
+            "id": "SUFFIX",
+            "name": "SUFFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUFFIX]"
+        },
+        {
+            "command-line-flag": "-scale",
+            "description": "-scale fff   multiplies each number by the factor 'fff'; if this option is used, -digits is ignored and the floating point format '%g' is used for output. ('fff' can be a floating point number.)",
+            "id": "SCALE",
+            "name": "SCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE]"
+        },
+        {
+            "command-line-flag": "-comma",
+            "description": "-comma       put commas between the outputs, instead of spaces (same as '-sep ,')",
+            "id": "COMMA",
+            "name": "COMMA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COMMA]"
+        },
+        {
+            "command-line-flag": "-skipnmodm",
+            "description": "-skipnmodm n m   skip over numbers with a modulus of n with m",
+            "id": "SKIPNMODM",
+            "name": "SKIPNMODM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKIPNMODM]"
+        },
+        {
+            "description": "NA",
+            "id": "bot",
+            "name": "bot",
+            "optional": false,
+            "type": "String",
+            "value-key": "[BOT]"
+        },
+        {
+            "description": "NA",
+            "id": "top",
+            "name": "top",
+            "optional": false,
+            "type": "String",
+            "value-key": "[TOP]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

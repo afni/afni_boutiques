@@ -1,0 +1,114 @@
+{
+    "command-line": "3dANOVA3 [TYPE] [ALEVELS] [BLEVELS] [CLEVELS] [DSET] [ADIFF] [BDIFF] [BCONTR] [ABCONTR] [ABDIFF] [BUCKET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-type",
+            "description": "-type  k          type of ANOVA model to be used: k = 1   A,B,C fixed;          AxBxC k = 2   A,B,C random;         AxBxC k = 3   A fixed; B,C random;  AxBxC k = 4   A,B fixed; C random;  AxBxC k = 5   A,B fixed; C random;  AxB,BxC,C(A)",
+            "id": "TYPE",
+            "name": "TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TYPE]"
+        },
+        {
+            "command-line-flag": "-alevels",
+            "description": "number of levels of factor A",
+            "id": "ALEVELS",
+            "name": "ALEVELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALEVELS]"
+        },
+        {
+            "command-line-flag": "-blevels",
+            "description": "number of levels of factor B",
+            "id": "BLEVELS",
+            "name": "BLEVELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLEVELS]"
+        },
+        {
+            "command-line-flag": "-clevels",
+            "description": "number of levels of factor C",
+            "id": "CLEVELS",
+            "name": "CLEVELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLEVELS]"
+        },
+        {
+            "command-line-flag": "-dset",
+            "description": "-dset 1 1 1 filename           data set for level 1 of factor A and level 1 of factor B and level 1 of factor C . . .                           . . .",
+            "id": "DSET",
+            "name": "DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSET]"
+        },
+        {
+            "command-line-flag": "-adiff",
+            "description": "-adiff   1 2           MvsW             \\",
+            "id": "ADIFF",
+            "name": "ADIFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ADIFF]"
+        },
+        {
+            "command-line-flag": "-bdiff",
+            "description": "-bdiff   2 3           FvsD             \\",
+            "id": "BDIFF",
+            "name": "BDIFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BDIFF]"
+        },
+        {
+            "command-line-flag": "-bcontr",
+            "description": "-bcontr -0.5 1 -0.5    FvsHD            \\",
+            "id": "BCONTR",
+            "name": "BCONTR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BCONTR]"
+        },
+        {
+            "command-line-flag": "-aBcontr",
+            "description": "-aBcontr 1 -1 : 1      MHvsWH           \\",
+            "id": "ABCONTR",
+            "name": "ABCONTR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ABCONTR]"
+        },
+        {
+            "command-line-flag": "-aBdiff",
+            "description": "1      same_as_MHvsWH   \\",
+            "id": "ABDIFF",
+            "name": "ABDIFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ABDIFF]"
+        },
+        {
+            "command-line-flag": "-bucket",
+            "description": "-bucket donut_anova   N.B.: For this program, the user must specify 1 and only 1 sub-brick with each -dset command. That is, if an input dataset contains more than 1 sub-brick, a sub-brick selector must be used, e.g.:",
+            "id": "BUCKET",
+            "name": "BUCKET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BUCKET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

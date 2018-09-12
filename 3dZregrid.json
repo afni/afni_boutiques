@@ -1,0 +1,77 @@
+{
+    "command-line": "3dZregrid [DZ] [NZ] [ZSIZE] [PREFIX] [VERB] [NSIZE] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-dz",
+            "description": "sets slice thickness to D mm",
+            "id": "DZ",
+            "name": "DZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DZ]"
+        },
+        {
+            "command-line-flag": "-nz",
+            "description": "sets slice count to N",
+            "id": "NZ",
+            "name": "NZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZ]"
+        },
+        {
+            "command-line-flag": "-zsize",
+            "description": "sets thickness of dataset (center-to-center of first and last slices) to Z mm",
+            "id": "ZSIZE",
+            "name": "ZSIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZSIZE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "write result in dataset with prefix P",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "write progress reports to stderr  At least one of '-dz', '-nz', or '-zsize' must be given. On the other hand, using all 3 is over-specification. The following combinations make sense:",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-nsize",
+            "description": "-nsize and -zsize together ==> like setting D = Z/N  NOTES: * If the input is a 3D+time dataset with slice-dependent time offsets, the output will have its time offsets cleared. It probably makes sense to do 3dTshift BEFORE using this program in such a case. * The output of this program is centered around the same location as the input dataset.  Slices outside the original volume (e.g., when Z is increased) will be zero.  This is NOT the same as using 3dZeropad, which only adds zeros, and does not interpolate to a new grid. * Linear interpolation is used between slices.  However, new slice positions outside the old volume but within 0.5 old slice thicknesses will get a copy of the last slice. New slices outside this buffer zone will be all zeros.  EXAMPLE: You have two 3D anatomical datasets from the same subject that need to be registered.  Unfortunately, the first one has slice thickness 1.2 mm and the second 1.3 mm.  Assuming they have the same number of slices, then do something like 3dZregrid -dz 1.2 -prefix ElvisZZ Elvis2+orig 3dvolreg -base Elvis1+orig -prefix Elvis2reg ElvisZZ+orig  ++ Compile date = Sep  7 2018 {:}",
+            "id": "NSIZE",
+            "name": "NSIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NSIZE]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

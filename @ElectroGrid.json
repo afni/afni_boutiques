@@ -1,0 +1,42 @@
+{
+    "command-line": "@ElectroGrid [STRIP] [GRID] [COORDS]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-strip",
+            "description": "Make an Nx strip (array) of electrodes.",
+            "id": "STRIP",
+            "name": "STRIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STRIP]"
+        },
+        {
+            "command-line-flag": "-grid",
+            "description": "Make an Nx by Ny grid of electrodes. A node at (i,j) has a node ID = i+Nx*j with 0<=i<Nx and 0<=j<=Ny  Optional parameters:",
+            "id": "GRID",
+            "name": "GRID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GRID]"
+        },
+        {
+            "command-line-flag": "-coords",
+            "description": "-coords XYZ.1D: Specify the coordinates of the nodes on the grid, or the array. XYZ.1D should have three columns, with each row specifying the coordinates of one node. You can use sub-brick selectors to select from more than three columns.  The fist row is for node 0, second for node 1, etc. The ordering is trivial for an array. For a grid you need to be a bit more careful. You march along the x direction first, then move up the y. A flat grid (Z=0) for a 2x3 electrodes system would have coordinates layed out as such: #  X Y Z   (ID shown here for clarity) 0 0 0            0 1 0 0            1 0 1 0            2 1 1 0            3 0 2 0            4 1 2 0            5  Usually, you would have coordinates in the subject's anatomical space.  [-prefix PREFIX]: Use PREFIX for the output surface. [-with_markers]: Add markers to the surface at each electrode. See examples below for detail. [-echo]    : set echo  Examples: Make a flat 4 electrode array: Node X coordinates are regularly spaced from 0 to 3. Node Y coordinates are small and random, to allow array representation as a surface  @ElectroGrid -prefix flat4 -strip 4 suma -i flat4.gii  Make a flat 4 electrode array and assign anatomical coordinates in first three columns of file:   HPelectrodes_AF.1D  @ElectroGrid -prefix HP_array -strip 4 \\",
+            "id": "COORDS",
+            "name": "COORDS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COORDS]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

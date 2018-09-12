@@ -1,0 +1,69 @@
+{
+    "command-line": "@help.AFNI [MATCH] [LYNX] [VI] [LESS] [NEDIT] [NOVIEW]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-match",
+            "description": "-match 'word1 [word2 word3]' : Looks for occurence of each word in the list in the help file. For a match with multiple words, all the words must be on the same line of text in the help file.",
+            "id": "MATCH",
+            "name": "MATCH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATCH]"
+        },
+        {
+            "command-line-flag": "-lynx",
+            "description": "Set viewer to lynx",
+            "id": "LYNX",
+            "name": "LYNX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LYNX]"
+        },
+        {
+            "command-line-flag": "-vi",
+            "description": "Set viewer to vi",
+            "id": "VI",
+            "name": "VI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VI]"
+        },
+        {
+            "command-line-flag": "-less",
+            "description": "Set viewer to less (default)",
+            "id": "LESS",
+            "name": "LESS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LESS]"
+        },
+        {
+            "command-line-flag": "-nedit",
+            "description": "Set viewer to nedit",
+            "id": "NEDIT",
+            "name": "NEDIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEDIT]"
+        },
+        {
+            "command-line-flag": "-noview",
+            "description": "Set viewer to no view",
+            "id": "NOVIEW",
+            "name": "NOVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOVIEW]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

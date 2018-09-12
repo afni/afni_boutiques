@@ -1,0 +1,58 @@
+{
+    "command-line": "imstat [NOLABEL] [QUIET] [PIXSTAT] [IMAGE_FILE] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-nolabel",
+            "description": "don't write labels on each file's summary line",
+            "id": "NOLABEL",
+            "name": "NOLABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOLABEL]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "don't print statistics for each file",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-pixstat",
+            "description": "if more than one image file is given, then 'prefix.mean' and 'prefix.sdev' will be written as the pixel-wise statistics images of the whole collection.  These images will be in the 'flim' floating point format.  [This option only works on 2D images!]",
+            "id": "PIXSTAT",
+            "name": "PIXSTAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PIXSTAT]"
+        },
+        {
+            "description": "NA",
+            "id": "image_file",
+            "name": "image_file",
+            "optional": false,
+            "type": "String",
+            "value-key": "[IMAGE_FILE]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

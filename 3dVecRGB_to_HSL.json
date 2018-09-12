@@ -1,0 +1,51 @@
+{
+    "command-line": "3dVecRGB_to_HSL [PREFIX] [IN_VEC] [MASK] [IN_SCAL]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput file name part.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-in_vec",
+            "description": "nput RGB vector file of three bricks, presumably each having values in the interval [0,1].",
+            "id": "IN_VEC",
+            "name": "IN_VEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_VEC]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "an include a whole brain mask within which to calculate things. Otherwise, data should be masked already.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-in_scal",
+            "description": "an input scalar a file (single brick), which will be appended to the output file, with the utility of being an extra set of 'brightness' values (mainly aimed at loading in an FA data set for tract volume coloration).  This input is not required.  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  + EXAMPLE (such as prepping for tract volume viewing):  3dVecRGB_to_HSL  -in_vec DT_V1+orig.  -in_scal DT_FA+orig     \\ -mask mask+orig.  -prefix HSL  ____________________________________________________________________________",
+            "id": "IN_SCAL",
+            "name": "IN_SCAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_SCAL]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

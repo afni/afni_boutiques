@@ -1,0 +1,68 @@
+{
+    "command-line": "parse_fs_lt_log.py [HELP] [HIST] [VER] [LABELS] [LOGFILE] [\\]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show the revision history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show the version number  ------------------------------------------ process options:",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-labels",
+            "description": "specify a list of labels to search for  e.g. -labels Left-Cerebral-White-Matter  Left-Cerebellum-White-Matter  \\ Right-Cerebral-White-Matter Right-Cerebellum-White-Matter \\ CC_Posterior CC_Mid_Posterior CC_Central CC_Mid_Anterior  \\ CC_Anterior Brain-Stem  e.g. -labels FS_white_matter  For convenience, there are 2 label groups:  FS_white_matter (as in the example):  Left-Cerebral-White-Matter  Left-Cerebellum-White-Matter Right-Cerebral-White-Matter Right-Cerebellum-White-Matter CC_Posterior CC_Mid_Posterior CC_Central CC_Mid_Anterior CC_Anterior Brain-Stem  FS_ventricles  Left-Lateral-Ventricle Left-Inf-Lat-Vent 3rd-Ventricle 4th-Ventricle CSF Right-Lateral-Ventricle Right-Inf-Lat-Vent 5th-Ventricle",
+            "id": "LABELS",
+            "name": "LABELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABELS]"
+        },
+        {
+            "command-line-flag": "-logfile",
+            "description": "specify rank log file  e.g. -logfile aparc+aseg_rank.niml.lt.log  ------------------------------------------ R Reynolds    May, 2016 =============================================================================",
+            "id": "LOGFILE",
+            "name": "LOGFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOGFILE]"
+        },
+        {
+            "description": "NA",
+            "id": "\\",
+            "name": "\\",
+            "optional": false,
+            "type": "String",
+            "value-key": "[\\]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

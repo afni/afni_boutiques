@@ -1,0 +1,33 @@
+{
+    "command-line": "ccalc [FORM] [EVAL]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-form",
+            "description": "Format output in a nice form Choose from: double: Macho numbers (default). nice: Metrosexual output. int (or rint): Rounded to nearest integer. cint: Rounded up. fint: Rounded down. %n.mf: custom format string, used as in printf. format string can contain %%, \\n and other regular characters. See man fprintf and man printf for details. You can also replace: -form int    with    -i -form nice   with    -n -form double with    -d -form fint   with    -f -form cint   with    -c Mandatory parameter: (must come last on command line)",
+            "id": "FORM",
+            "name": "FORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FORM]"
+        },
+        {
+            "command-line-flag": "-eval",
+            "description": "EXPR is the expression to evaluate. Example: ccalc -eval '3 + 5 * sin(22)' or: ccalc -eval 3 +5 '*' 'sin(22)' You can not use variables in EXPR as you do with 3dcalc. Example with formatting: ccalc -form '********\\n%6.4f%%\\n********' -eval '100*328/457' gives: ******** 0.7177% ******** Try also: ccalc -i 3.6 ccalc -f 3.6 ccalc -c 3.6 ccalc -form '%3.5d' 3.3 ccalc -form '**%5d**' 3.3 ccalc -form '**%-5d**' 3.3  ** SECRET: You don't need to use -eval if you are not using any other options. I hate typing it for quick command line calculations. But that feature might be removed in the future, so always use -eval when you are using this program in your scripts.",
+            "id": "EVAL",
+            "name": "EVAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EVAL]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

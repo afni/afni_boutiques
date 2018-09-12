@@ -1,0 +1,68 @@
+{
+    "command-line": "3dRankizer [BRANK] [MASK] [PREFIX] [PERCENTIZE] [PERCENTIZE_MASK] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-brank",
+            "description": "-brank bbb   Set the 'base' rank to 'bbb' instead of 1. (You could also do this with 3dcalc.)",
+            "id": "BRANK",
+            "name": "BRANK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BRANK]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "-mask mset   Means to use the dataset 'mset' as a mask: Only voxels with nonzero values in 'mset' will be used from 'dataset'.  Voxels outside the mask will get rank 0.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix ppp  Write results into float-format dataset 'ppp' Output is in float format to allow for non-integer ranks resulting from ties.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-percentize",
+            "description": "Divide rank by the number of voxels in the dataset x 100.0",
+            "id": "PERCENTIZE",
+            "name": "PERCENTIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERCENTIZE]"
+        },
+        {
+            "command-line-flag": "-percentize_mask",
+            "description": "Divide rank by the number of voxels in the mask x 100.0  Author: RW Cox  [[a quick hack for his own purposes]]  ++ Compile date = Sep  7 2018 {:}",
+            "id": "PERCENTIZE_MASK",
+            "name": "PERCENTIZE_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERCENTIZE_MASK]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

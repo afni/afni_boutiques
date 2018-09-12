@@ -1,0 +1,96 @@
+{
+    "command-line": "adwarp [APAR] [DPAR] [PREFIX] [DXYZ] [VERBOSE] [FORCE] [RESAM] [THR] [FUNC]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-apar",
+            "description": "Set the anat parent dataset to 'aset'.  This is a nonoptional option (must be present).",
+            "id": "APAR",
+            "name": "APAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[APAR]"
+        },
+        {
+            "command-line-flag": "-dpar",
+            "description": "Set the data parent dataset to 'dset'.  This is a nonoptional option (must be present). Note: dset may contain a sub-brick selector, e.g.,  -dpar 'dset+orig[2,5,7]'",
+            "id": "DPAR",
+            "name": "DPAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DPAR]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Set the prefix for the output dataset to 'ppp'. The default is the prefix of 'dset'.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-dxyz",
+            "description": "Set the grid spacing in the output datset to 'ddd' mm.  The default is 1 mm.",
+            "id": "DXYZ",
+            "name": "DXYZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DXYZ]"
+        },
+        {
+            "command-line-flag": "-verbose",
+            "description": "Print out progress reports.",
+            "id": "VERBOSE",
+            "name": "VERBOSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERBOSE]"
+        },
+        {
+            "command-line-flag": "-force",
+            "description": "Write out result even if it means deleting an existing dataset.  The default is not to overwrite.",
+            "id": "FORCE",
+            "name": "FORCE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FORCE]"
+        },
+        {
+            "command-line-flag": "-resam",
+            "description": "Set resampling mode to 'rrr' for all sub-bricks --- OR ---",
+            "id": "RESAM",
+            "name": "RESAM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RESAM]"
+        },
+        {
+            "command-line-flag": "-thr",
+            "description": "Set resampling mode to 'rrr' for threshold sub-bricks",
+            "id": "THR",
+            "name": "THR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THR]"
+        },
+        {
+            "command-line-flag": "-func",
+            "description": "Set resampling mode to 'rrr' for functional sub-bricks  The resampling mode 'rrr' must be one of the following: NN = Nearest Neighbor Li = Linear Interpolation Cu = Cubic Interpolation Bk = Blocky Interpolation  NOTE:  The default resampling mode is Li for all sub-bricks.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "FUNC",
+            "name": "FUNC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FUNC]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,528 @@
+{
+    "command-line": "afni_restproc.py [ANAT] [EPI] [HELP] [CHANGELOG] [PREFIX] [DEST] [TSNR] [SNR] [CORRMAP] [CORRMAPT] [SCRIPT] [TLRC] [TLRCLAST] [EPISIZE] [ALIGN] [ALIGNBASE] [EPI2ANAT] [UNIFORMIZE] [ANAT_HAS_SKULL] [ASEG] [WMSIZE] [GLOBALWM] [VENTERODE] [WMERODE] [RVT] [INCLUDEBRAIN] [DREG] [REGRESSOR] [GLOBALREGMASK] [LOCALREGMASK] [OUTCENSOR] [FRACLIMIT] [MOTLIMIT] [DVARSCENSOR] [FDLIMIT] [DVARSLIMIT] [CENSORLEFT] [CENSORRIGHT] [CENSORUNION] [KEEPUNCENSORED] [LOCALNORM] [GLOBALNORM] [MODENORM] [NORMVAL] [SMOOTH] [SMOOTHRAD] [SMOOTHTOGETHER] [SMOOTHFIRST] [TRCUT] [POLORT] [BANDPASS] [SETBANDS] [BPASSREGS] [EXEC] [APPLY_CENSOR] [MEAN] [CEXPR]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-anat",
+            "description": "a is the high resolution anatomy file",
+            "id": "ANAT",
+            "name": "ANAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANAT]"
+        },
+        {
+            "command-line-flag": "-epi",
+            "description": "e is the epi timeseries to process  Optional Options:  Informational Options:",
+            "id": "EPI",
+            "name": "EPI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EPI]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "isplay this help message",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-changelog",
+            "description": "isplay a log of changes to this script  Output Options:",
+            "id": "CHANGELOG",
+            "name": "CHANGELOG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHANGELOG]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "repend p to each of the final output files. Default is rest_proc.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-dest",
+            "description": "ut the results in directory d. Default is to match p.",
+            "id": "DEST",
+            "name": "DEST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEST]"
+        },
+        {
+            "command-line-flag": "-tsnr",
+            "description": "ompute the tSNR of the EPI as described below.",
+            "id": "TSNR",
+            "name": "TSNR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TSNR]"
+        },
+        {
+            "command-line-flag": "-snr",
+            "description": "ompute the SNR of the EPI. n should be a scan collected with the RF turned off. This will look like static on an old TV and is used to estimate the variance of the noise inherent in the system. c should be the number of channels in the coil you used and will determine a correction factor.",
+            "id": "SNR",
+            "name": "SNR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SNR]"
+        },
+        {
+            "command-line-flag": "-corrmap",
+            "description": "un 3dTcorrMap on the clean data.",
+            "id": "CORRMAP",
+            "name": "CORRMAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CORRMAP]"
+        },
+        {
+            "command-line-flag": "-corrmapt",
+            "description": "se t as the threshold when computing average correlation strengths. Default is 0.3. The idea here is that you may be interested in the average correlation between each voxel and all other voxels it is connected to, but below a certain threshold two voxels could be considered disconnected, so discard those weak correlations. Regardless of what t is, mean correlations without thresholding are also stored.",
+            "id": "CORRMAPT",
+            "name": "CORRMAPT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CORRMAPT]"
+        },
+        {
+            "command-line-flag": "-script",
+            "description": "rite all commands to a script named sc. This script can be modified and run later, similar to the output from afni_proc.py  Alignment Options:",
+            "id": "SCRIPT",
+            "name": "SCRIPT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCRIPT]"
+        },
+        {
+            "command-line-flag": "-tlrc",
+            "description": "o the preprocessing in talairach space. Default is to stay in orig space.",
+            "id": "TLRC",
+            "name": "TLRC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TLRC]"
+        },
+        {
+            "command-line-flag": "-tlrclast",
+            "description": "o all preprocessing in orig space, but then talairach the results. Pick either -tlrc or -tlrclast (or neither).",
+            "id": "TLRCLAST",
+            "name": "TLRCLAST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TLRCLAST]"
+        },
+        {
+            "command-line-flag": "-episize",
+            "description": "ubic voxel size of all datasets (other than the anatomy) after transforming them to talairach space. Default is 2. This only works with -tlrclast or -tlrc.",
+            "id": "EPISIZE",
+            "name": "EPISIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EPISIZE]"
+        },
+        {
+            "command-line-flag": "-align",
+            "description": "-align [on]/off :Do the Alignment etc. step. Turn this option off if all of the datasets are already aligned.",
+            "id": "ALIGN",
+            "name": "ALIGN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALIGN]"
+        },
+        {
+            "command-line-flag": "-alignbase",
+            "description": "lign both the epi and anat datasets to b. b should be an epi dataset and the first image will be used for alignment. This option makes sense if you have several epi runs and you want all of them aligned to the same base.  Also, this option only makes sense when not using -tlrc or -epi2anat (-tlrclast is ok).",
+            "id": "ALIGNBASE",
+            "name": "ALIGNBASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALIGNBASE]"
+        },
+        {
+            "command-line-flag": "-epi2anat",
+            "description": "lign epi to anat instead of anat to epi. This only makes sense when not using -tlrc.",
+            "id": "EPI2ANAT",
+            "name": "EPI2ANAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EPI2ANAT]"
+        },
+        {
+            "command-line-flag": "-uniformize",
+            "description": "niformize anat before alignment.  Sometimes This helps with skull stripping problems.",
+            "id": "UNIFORMIZE",
+            "name": "UNIFORMIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNIFORMIZE]"
+        },
+        {
+            "command-line-flag": "-anat_has_skull",
+            "description": "-anat_has_skull [yes]/no :Set this option to no if the anatomy has already been skull stripped (useful when default skull stripping doesn't work right).  Regressor Options:",
+            "id": "ANAT_HAS_SKULL",
+            "name": "ANAT_HAS_SKULL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANAT_HAS_SKULL]"
+        },
+        {
+            "command-line-flag": "-aseg",
+            "description": "is the aseg segmentation file from freesurfer. It should be aligned with the anatomy supplied as -anat and can be in .mgz, .nii, or .BRIK format.",
+            "id": "ASEG",
+            "name": "ASEG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ASEG]"
+        },
+        {
+            "command-line-flag": "-wmsize",
+            "description": "adius (in mm) of the sphere to use when computing the local white matter regressors. Default is 15mm",
+            "id": "WMSIZE",
+            "name": "WMSIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WMSIZE]"
+        },
+        {
+            "command-line-flag": "-globalwm",
+            "description": "se the global wm average as a single regressor instead of computing local wm regressors.",
+            "id": "GLOBALWM",
+            "name": "GLOBALWM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GLOBALWM]"
+        },
+        {
+            "command-line-flag": "-venterode",
+            "description": "umber of nonmask neighbors required to cause erosion in the ventricles. Default is 2",
+            "id": "VENTERODE",
+            "name": "VENTERODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VENTERODE]"
+        },
+        {
+            "command-line-flag": "-wmerode",
+            "description": "umber of nonmask neighbors required to cause erosion in the WM mask. Default is 1.",
+            "id": "WMERODE",
+            "name": "WMERODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WMERODE]"
+        },
+        {
+            "command-line-flag": "-rvt",
+            "description": "is the RVT file produced by RetroTS.m",
+            "id": "RVT",
+            "name": "RVT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RVT]"
+        },
+        {
+            "command-line-flag": "-includebrain",
+            "description": "nclude the whole brain average regressor.",
+            "id": "INCLUDEBRAIN",
+            "name": "INCLUDEBRAIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INCLUDEBRAIN]"
+        },
+        {
+            "command-line-flag": "-dreg",
+            "description": "dd the derivatives of all regressors as regressors.",
+            "id": "DREG",
+            "name": "DREG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DREG]"
+        },
+        {
+            "command-line-flag": "-regressor",
+            "description": "se re as a regressor. re will be processed in the same way the other regressors are (detrended, catenated). If you do alignment and registration outside of this script, it may be a good idea to provide the motion parameters as a regressor. re can be either a 3d+t volume (specifying a different regressor for each voxel) or a .1D file (specifying a single global regressor).",
+            "id": "REGRESSOR",
+            "name": "REGRESSOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REGRESSOR]"
+        },
+        {
+            "command-line-flag": "-globalregmask",
+            "description": "se the average signal extracted from the mask g as a global regressor of noninterest. This will produce one regressor used for all voxels.",
+            "id": "GLOBALREGMASK",
+            "name": "GLOBALREGMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GLOBALREGMASK]"
+        },
+        {
+            "command-line-flag": "-localregmask",
+            "description": "-localregmask rm rr :Use the local average signal extracted from rm as a regressor of noninterest. This will produce a different regressor for each voxel. rm should be a mask defining the ROI to use and rr is the radius in mm to use when computing local average signals. -regressor, -globalregmask and -localregmask can be used multiple times to supply an arbitrary number of regressors.  Censoring Options:",
+            "id": "LOCALREGMASK",
+            "name": "LOCALREGMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOCALREGMASK]"
+        },
+        {
+            "command-line-flag": "-outcensor",
+            "description": "ensor timepoints based on their number of outliers and head motion magnitude. Censored time points are cut out.",
+            "id": "OUTCENSOR",
+            "name": "OUTCENSOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTCENSOR]"
+        },
+        {
+            "command-line-flag": "-fraclimit",
+            "description": "hen using -outcensor, fraction of voxels identified as outliers needed to censor a time point. Default is 0.05.",
+            "id": "FRACLIMIT",
+            "name": "FRACLIMIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FRACLIMIT]"
+        },
+        {
+            "command-line-flag": "-motlimit",
+            "description": "hen using -outcensor, limit on rms motion to censor a point. Default is 0.3.",
+            "id": "MOTLIMIT",
+            "name": "MOTLIMIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOTLIMIT]"
+        },
+        {
+            "command-line-flag": "-dvarscensor",
+            "description": "reate a censor file based on FD (framewise displacement) and DVARS as from Power et. al, Neuroimage 2012.",
+            "id": "DVARSCENSOR",
+            "name": "DVARSCENSOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DVARSCENSOR]"
+        },
+        {
+            "command-line-flag": "-fdlimit",
+            "description": "et the FD limit to be ff",
+            "id": "FDLIMIT",
+            "name": "FDLIMIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FDLIMIT]"
+        },
+        {
+            "command-line-flag": "-dvarslimit",
+            "description": "et the DVARS limit to be dd",
+            "id": "DVARSLIMIT",
+            "name": "DVARSLIMIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DVARSLIMIT]"
+        },
+        {
+            "command-line-flag": "-censorleft",
+            "description": "ensor s steps to the left of bad time points. Default is 1.",
+            "id": "CENSORLEFT",
+            "name": "CENSORLEFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSORLEFT]"
+        },
+        {
+            "command-line-flag": "-censorright",
+            "description": "ensor ss steps to the right of bad time points. Default is 2.",
+            "id": "CENSORRIGHT",
+            "name": "CENSORRIGHT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSORRIGHT]"
+        },
+        {
+            "command-line-flag": "-censorunion",
+            "description": "ensor the union of fraclimit and motlimit or FD and DVARS, instead of the intersection.",
+            "id": "CENSORUNION",
+            "name": "CENSORUNION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSORUNION]"
+        },
+        {
+            "command-line-flag": "-keepuncensored",
+            "description": "eep a copy of the uncensored timeseries. It will be called [prefix].cleanEPI.uncensored+[view]  Normalization Options:",
+            "id": "KEEPUNCENSORED",
+            "name": "KEEPUNCENSORED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEPUNCENSORED]"
+        },
+        {
+            "command-line-flag": "-localnorm",
+            "description": "ormalize based on voxelwise mean",
+            "id": "LOCALNORM",
+            "name": "LOCALNORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOCALNORM]"
+        },
+        {
+            "command-line-flag": "-globalnorm",
+            "description": "ormalize based on global mean",
+            "id": "GLOBALNORM",
+            "name": "GLOBALNORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GLOBALNORM]"
+        },
+        {
+            "command-line-flag": "-modenorm",
+            "description": "ormalize based on global mode using 100 bins",
+            "id": "MODENORM",
+            "name": "MODENORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODENORM]"
+        },
+        {
+            "command-line-flag": "-normval",
+            "description": "cale the selected attribute to be n  Smoothing Options:",
+            "id": "NORMVAL",
+            "name": "NORMVAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORMVAL]"
+        },
+        {
+            "command-line-flag": "-smooth",
+            "description": "-smooth [on]/off:Smooth the clean timeseries data.",
+            "id": "SMOOTH",
+            "name": "SMOOTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SMOOTH]"
+        },
+        {
+            "command-line-flag": "-smoothrad",
+            "description": "WHM size of smoothing to apply after cleaning the data.  Default is 4mm. Smoothing is done using a grey/nongrey matter mask by default.",
+            "id": "SMOOTHRAD",
+            "name": "SMOOTHRAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SMOOTHRAD]"
+        },
+        {
+            "command-line-flag": "-smoothtogether",
+            "description": "mooth everything inside a brain mask together, rather than smoothing the grey/nongrey matter separately.",
+            "id": "SMOOTHTOGETHER",
+            "name": "SMOOTHTOGETHER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SMOOTHTOGETHER]"
+        },
+        {
+            "command-line-flag": "-smoothfirst",
+            "description": "mooth the data before doing regression, instead of after.  Misc. Processing Options: -despike[on]/off:Despike the timeseries as the fist preprocessing step.",
+            "id": "SMOOTHFIRST",
+            "name": "SMOOTHFIRST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SMOOTHFIRST]"
+        },
+        {
+            "command-line-flag": "-trcut",
+            "description": "umber of TRs to throw away.  Default is 4.",
+            "id": "TRCUT",
+            "name": "TRCUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TRCUT]"
+        },
+        {
+            "command-line-flag": "-polort",
+            "description": "olynomial to detrend from the regressors and the timeseries.  Similar to 3dDeconvolve -polort A, default is floor(1 + TR*nVOLS / 150).",
+            "id": "POLORT",
+            "name": "POLORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POLORT]"
+        },
+        {
+            "command-line-flag": "-bandpass",
+            "description": "o bandpass filtering with LHz < f < HHz. Default is 0.009 and 0.08.",
+            "id": "BANDPASS",
+            "name": "BANDPASS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BANDPASS]"
+        },
+        {
+            "command-line-flag": "-setbands",
+            "description": "et L and H for bandpass filtering",
+            "id": "SETBANDS",
+            "name": "SETBANDS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SETBANDS]"
+        },
+        {
+            "command-line-flag": "-bpassregs",
+            "description": "lso bandpass filter the regressors.",
+            "id": "BPASSREGS",
+            "name": "BPASSREGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BPASSREGS]"
+        },
+        {
+            "command-line-flag": "-exec",
+            "description": "-exec [on]/off  :Execute the commands. Turn this off and use -script to get things setup without running anything.  Other Options:",
+            "id": "EXEC",
+            "name": "EXEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXEC]"
+        },
+        {
+            "command-line-flag": "-apply_censor",
+            "description": "-apply_censor e c p :This option is used to apply a censor file to remove timepoints from a timeseries. If it is given, this is the only option that will be processed. e is the timeseries to censor. c is a 1D file consisting of a single column of 0's and 1's which must be the same length as e. Time points with 1's in c will be kept, 0's will be discarded. p is the prefix to use for the output timeseries.  The following steps should be done before running this script: Create anatomical regressor masks: If you want to remove anatomical regressors or noninterest, the average ventricle signal, for example, you will need to provide masks used to extract these signals. This can be done in two different ways. Either supply the aseg file produced by freesurfer, which is used to extract the ventricle and white matter ROIs, or supply your own arbitrary masks with the -globalregmask or -localregmask options. Align the segmentation file with the experimental anatomy: If given, The aseg file from freesurfer (it can be in mgz, nii, or BRIK format) is assumed to be in alignment with the experimental anatomy.  The aseg and anat files will already be aligned if the anatomy is the one used by freesurfer.  If it is not, you may need to use something like @SUMA_AlignToExperiment. Create the RVT file: This is done by processing the experiment's cardiac and respiratory files using RetroTS.m, available in the AFNI Matlab library. While it is probably beneficial to remove the estimated cardiac and respiratory signals, this step is not necessary and this script will run fine without them.  Processing is done in the following steps: Copy Files: The output directory (specified by -dest) is created and input files are copied to dest/tmp Despike: This step is done first, if at all, so that spikes are not 'smeared around' by registration and slice timing correction Alignment etc.: This step aligns the epi and anat datasets while also taking care of slice timing correction and the talairach transformation, if requested. These steps are combined using align_epi_anat.py to minimize the number of interpolations required. If processing is done in +orig space, the anat is aligned to the epi by default. Using -epi2anat will cause the epi to be aligned to the anat. The appropriate transformation is also applied to the aseg file and any masks provided by",
+            "id": "APPLY_CENSOR",
+            "name": "APPLY_CENSOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[APPLY_CENSOR]"
+        },
+        {
+            "command-line-flag": "-mean",
+            "description": "-mean prefix.MeanCorr -Hist 400 prefix.CorHist",
+            "id": "MEAN",
+            "name": "MEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MEAN]"
+        },
+        {
+            "command-line-flag": "-Cexpr",
+            "description": "-Cexpr 'step(r-t)*r' prefix.MeanCorrGT where t can be specified using -corrmapt and is 0.3 by default.  Things to check after running this script: Alignment: Make sure the various mask datasets are in good alignment with the anatomical dataset. Mask Coverage: Make sure the ventricle and white matter masks cover what you think are appropriate voxels.    Example Usage:   #Basic usage: #Remove RVT, motion parameters, WM and ventricle signals from #epi+orig #Store the results in a directory named preproc #Prefix each result file with subjX #Processing is done in orig space afni_restproc.py -anat mprage+orig. \\ -epi epi+orig. \\ -rvt RVT.slibase.1D \\ -aseg aseg.mgz \\ -dest preproc \\ -prefix subjX  #Produce a tsnr map and results from 3dTcorrMap using a threshold of .15 #Write a script called proc.tcsh but don't execute it yet #This script can be modified and executed at your leisure afni_restproc.py -anat mprage+orig. \\ -epi epi+orig. \\ -rvt RVT.slibase.1D \\ -aseg aseg.mgz \\ -dest preproc \\ -prefix subjX \\ -corrmap \\ -corrmapt .15 \\ -tsnr \\ -script proc.tcsh \\",
+            "id": "CEXPR",
+            "name": "CEXPR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CEXPR]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

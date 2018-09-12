@@ -1,0 +1,59 @@
+{
+    "command-line": "3dTwotoComplex [PREFIX] [RI] [MP] [MASK] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "Write output into dataset with prefix 'ppp'. [default='cmplx']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-RI",
+            "description": "The 2 inputs are real and imaginary parts. [this is the default]",
+            "id": "RI",
+            "name": "RI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RI]"
+        },
+        {
+            "command-line-flag": "-MP",
+            "description": "The 2 inputs are magnitude and phase. [phase is in radians, please!]",
+            "id": "MP",
+            "name": "MP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MP]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Only output nonzero values where the mask dataset 'mset' is nonzero. Notes: * Input datasets must be byte-, short-, or float-valued. * You might calculate the component datasets using 3dcalc. * At present, there is limited support for complex datasets. About the only thing you can do is display them in 2D slice windows in AFNI.  -- RWCox - March 2006  ++ Compile date = Sep  7 2018 {:}",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

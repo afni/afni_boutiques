@@ -1,0 +1,195 @@
+{
+    "command-line": "3dHist [INPUT] [DIND] [MASK] [MASK_RANGE] [CMASK] [THISHIST] [PREFIX] [EQUALIZED] [NBIN] [MIN] [MAX] [BINWIDTH] [IGNORE_OUT] [RHIST] [SHOWHIST] [AT] [GET] [VOXVOL] [VAL_AT] [QUIET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "Dset providing values for histogram. Exact 0s are not counted",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-dind",
+            "description": "Use sub-brick SB from the input rather than 0",
+            "id": "DIND",
+            "name": "DIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIND]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Provide mask dataset to select subset of input.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-mask_range",
+            "description": "Specify the range of values to consider from MSET. Default is anything non-zero",
+            "id": "MASK_RANGE",
+            "name": "MASK_RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK_RANGE]"
+        },
+        {
+            "command-line-flag": "-cmask",
+            "description": "Provide cmask expression. Voxels where expression is 0 are excluded from computations. For example: -cmask '-a T1.div.r+orig -b T1.uni.r+orig -expr step(a/b-10)'",
+            "id": "CMASK",
+            "name": "CMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CMASK]"
+        },
+        {
+            "command-line-flag": "-thishist",
+            "description": "-thishist HIST.niml.hist: Read this previously created histogram instead of forming one from DSET. Obviously, DSET, or -mask options are not needed",
+            "id": "THISHIST",
+            "name": "THISHIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THISHIST]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Write histogram to niml file called PREF.niml.hist",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-equalized",
+            "description": "Write a histogram equalized version of the input dataset Histogram Creation Parameters: By default, the program will select bin number, bin width, and range automatically. You can also set the parameters manually with the following options.",
+            "id": "EQUALIZED",
+            "name": "EQUALIZED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EQUALIZED]"
+        },
+        {
+            "command-line-flag": "-nbin",
+            "description": "Use K bins.",
+            "id": "NBIN",
+            "name": "NBIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NBIN]"
+        },
+        {
+            "command-line-flag": "-min",
+            "description": "Minimum intensity.",
+            "id": "MIN",
+            "name": "MIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN]"
+        },
+        {
+            "command-line-flag": "-max",
+            "description": "Maximum intensity.",
+            "id": "MAX",
+            "name": "MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX]"
+        },
+        {
+            "command-line-flag": "-binwidth",
+            "description": "Bin width",
+            "id": "BINWIDTH",
+            "name": "BINWIDTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BINWIDTH]"
+        },
+        {
+            "command-line-flag": "-ignore_out",
+            "description": "Do not count samples outside the user specified range.",
+            "id": "IGNORE_OUT",
+            "name": "IGNORE_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE_OUT]"
+        },
+        {
+            "command-line-flag": "-rhist",
+            "description": "-rhist RHIST.niml.hist: Use previously created histogram to set range and binwidth parameters.",
+            "id": "RHIST",
+            "name": "RHIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RHIST]"
+        },
+        {
+            "command-line-flag": "-showhist",
+            "description": "Display histogram to stdout You can also graph it with: 1dRplot HistOut.niml.hist  Histogram Queries:",
+            "id": "SHOWHIST",
+            "name": "SHOWHIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOWHIST]"
+        },
+        {
+            "command-line-flag": "-at",
+            "description": "Set the value at which you want histogram values",
+            "id": "AT",
+            "name": "AT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AT]"
+        },
+        {
+            "command-line-flag": "-get",
+            "description": "-get 'PAR1,PAR2,PAR3..': Return the following PAR* properties at VAL Choose from: freq: Frequency (normalized count) count: Count bin: Continuous bin location estimate cdf: Cumulative count rcdf: Reverse cumulative count (from the top) ncdf: The normalized version of cdf nrcdf: The reverse version of ncdf outl: 1.0-(2*smallest tail area) 0 means VAL splits area in the middle 1 means VAL is at either end of the histogram ALL: All the above. You can select multiple ones with something like:",
+            "id": "GET",
+            "name": "GET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GET]"
+        },
+        {
+            "command-line-flag": "-voxvol",
+            "description": "A voxel's volume in mm^3. To be used with upvol if no dataset is available or if you want to override it.",
+            "id": "VOXVOL",
+            "name": "VOXVOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VOXVOL]"
+        },
+        {
+            "command-line-flag": "-val_at",
+            "description": "Return the value (magnitude) where histogram property PAR is equal to PARVAL PAR can only be one of: cdf, rcdf, ncdf, nrcdf, upvol For upvol, PARVAL is in Liters",
+            "id": "VAL_AT",
+            "name": "VAL_AT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VAL_AT]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "Return a concise output to simplify parsing. For the moment, this option only affects output of option -val_at  Examples: #A histogram a la 3dhistog: 3dHist -input T1+orig. #Getting parameters from previously created histogram: 3dHist -thishist HistOut.niml.hist -at 144.142700 #Or the reverse query: 3dHist -thishist HistOut.niml.hist -val_at ncdf 0.132564 #Compute histogram and find dataset threshold (approximate) #such that 1.5 liters of voxels remain above it. 3dHist -prefix toy -input flair_axial.nii.gz -val_at upvol 1.5    ++ Compile date = Sep  7 2018 {:}",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

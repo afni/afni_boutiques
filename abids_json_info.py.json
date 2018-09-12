@@ -1,0 +1,103 @@
+{
+    "command-line": "abids_json_info.py [JSON] [TR] [TE] [TE_SEC] [MATCH_NII] [FIELD] [LIST_FIELDS] [HELP] [[-JSON] []]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-json",
+            "description": "-json JSON [JSON ...] Specify .json file(s).  BIDS specific arguments:",
+            "id": "JSON",
+            "name": "JSON",
+            "optional": true,
+            "type": "String",
+            "value-key": "[JSON]"
+        },
+        {
+            "command-line-flag": "-TR",
+            "description": "-TR                   Print the TR from the json file in seconds, from the \"RepetitionTime\" field.",
+            "id": "TR",
+            "name": "TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR]"
+        },
+        {
+            "command-line-flag": "-TE",
+            "description": "-TE                   Print out the \"EchoTime\" field in milliseconds (the json file stores it in seconds)",
+            "id": "TE",
+            "name": "TE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TE]"
+        },
+        {
+            "command-line-flag": "-TE_sec",
+            "description": "-TE_sec               Print the \"EchoTime\" field in seconds",
+            "id": "TE_SEC",
+            "name": "TE_SEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TE_SEC]"
+        },
+        {
+            "command-line-flag": "-match_nii",
+            "description": "-match_nii            Is there a .nii or .nii.gz file that matches the .json file? (1 if the dataset is loadable)  Optional arguments:",
+            "id": "MATCH_NII",
+            "name": "MATCH_NII",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATCH_NII]"
+        },
+        {
+            "command-line-flag": "-field",
+            "description": "-field STR [STR ...]  Print any field or list of fields from the json file.",
+            "id": "FIELD",
+            "name": "FIELD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIELD]"
+        },
+        {
+            "command-line-flag": "-list_fields",
+            "description": "-list_fields          Print a list of the available fields from the .json file. (This must be the only argument specified)",
+            "id": "LIST_FIELDS",
+            "name": "LIST_FIELDS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIST_FIELDS]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "-help                 Show this help and exit.  ------------------------------------------ Justin Rajendra circa 05/2018 Keep on keeping on! ------------------------------------------",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "description": "NA",
+            "id": "[-json",
+            "name": "[-json",
+            "optional": false,
+            "type": "String",
+            "value-key": "[[-JSON]"
+        },
+        {
+            "description": "NA",
+            "id": "]",
+            "name": "]",
+            "optional": false,
+            "type": "String",
+            "value-key": "[]]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,177 @@
+{
+    "command-line": "3dSimARMA11 [NXY] [NZ] [DIV] [NTR] [TR] [BAS] [NBB] [VBB] [BLR] [MXA] [MNA] [MXB] [MNB] [SMX] [SMN] [1D] [TMX] [PRE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-nxy",
+            "description": "size of 2D image to produce                [default=256 ]",
+            "id": "NXY",
+            "name": "NXY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NXY]"
+        },
+        {
+            "command-line-flag": "-nz",
+            "description": "number of slices to produce                [default=1   ]",
+            "id": "NZ",
+            "name": "NZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZ]"
+        },
+        {
+            "command-line-flag": "-div",
+            "description": "size of subdivisions to use                [default=16  ]",
+            "id": "DIV",
+            "name": "DIV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIV]"
+        },
+        {
+            "command-line-flag": "-nTR",
+            "description": "number of time points to produce           [default=200 ]",
+            "id": "NTR",
+            "name": "NTR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NTR]"
+        },
+        {
+            "command-line-flag": "-TR",
+            "description": "TR to use for the output dataset           [default=2.5 ]",
+            "id": "TR",
+            "name": "TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR]"
+        },
+        {
+            "command-line-flag": "-bas",
+            "description": "mean value to use for constant baseline    [default=30  ]",
+            "id": "BAS",
+            "name": "BAS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BAS]"
+        },
+        {
+            "command-line-flag": "-nbb",
+            "description": "number of baseline polynomials to produce  [default=3   ]",
+            "id": "NBB",
+            "name": "NBB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NBB]"
+        },
+        {
+            "command-line-flag": "-vbb",
+            "description": "stdev of baseline polynomial coefficients  [default=3   ]",
+            "id": "VBB",
+            "name": "VBB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VBB]"
+        },
+        {
+            "command-line-flag": "-blr",
+            "description": "FWHM of blurring to be applied to baseline [default=5   ]",
+            "id": "BLR",
+            "name": "BLR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLR]"
+        },
+        {
+            "command-line-flag": "-mxa",
+            "description": "max value of ARMA11 parameter 'a' to use   [default=+0.8]",
+            "id": "MXA",
+            "name": "MXA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MXA]"
+        },
+        {
+            "command-line-flag": "-mna",
+            "description": "min value of ARMA11 parameter 'a' to use   [default= 0.0]",
+            "id": "MNA",
+            "name": "MNA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MNA]"
+        },
+        {
+            "command-line-flag": "-mxb",
+            "description": "max value of ARMA11 parameter 'b' to use   [default=+0.5]",
+            "id": "MXB",
+            "name": "MXB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MXB]"
+        },
+        {
+            "command-line-flag": "-mnb",
+            "description": "max value of ARMA11 parameter 'b' to use   [default=-0.5]",
+            "id": "MNB",
+            "name": "MNB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MNB]"
+        },
+        {
+            "command-line-flag": "-smx",
+            "description": "max value of time series stdev to use      [default=5   ]",
+            "id": "SMX",
+            "name": "SMX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SMX]"
+        },
+        {
+            "command-line-flag": "-smn",
+            "description": "min value of time series stdev to use      [default=1   ]",
+            "id": "SMN",
+            "name": "SMN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SMN]"
+        },
+        {
+            "command-line-flag": "-1D",
+            "description": "1D file to use for response model          [no default  ]",
+            "id": "1D",
+            "name": "1D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1D]"
+        },
+        {
+            "command-line-flag": "-tmx",
+            "description": "max value of tau to use                    [default=3   ]",
+            "id": "TMX",
+            "name": "TMX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TMX]"
+        },
+        {
+            "command-line-flag": "-pre",
+            "description": "output dataset prefix                      [default=Simm]  There is very little error checking.  If you do something stooopid (e.g., '-mxa 2.0'), then that's just tough for you.",
+            "id": "PRE",
+            "name": "PRE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PRE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

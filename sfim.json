@@ -1,0 +1,67 @@
+{
+    "command-line": "sfim [SFINT] [BASE] [LOCALBASE] [PREFIX] [IMAGE_FILES] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-sfint",
+            "description": "'iname' is the name of a file which has the interval definitions; an example is 3*# 5*rest 4*A 5*rest 4*B 5*rest 4*A 5*rest which says: - ignore the 1st 3 images - take the next 5 as being in task state 'rest' - take the next 4 as being in task state 'A' and so on; task names that start with a nonalphabetic character are like the '#' above and mean 'ignore'. *** the default 'iname' is 'sfint'",
+            "id": "SFINT",
+            "name": "SFINT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SFINT]"
+        },
+        {
+            "command-line-flag": "-base",
+            "description": "'bname' is the task state name to use as the baseline; other task states will have the mean baseline state subtracted; if there are no task states from 'iname' that match 'bname', this subtraction will not occur. *** the default 'bname' is 'rest'",
+            "id": "BASE",
+            "name": "BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASE]"
+        },
+        {
+            "command-line-flag": "-localbase",
+            "description": "if this option is present, then each non-base task state interval has the mean of the two nearest base intervals subtracted instead of the grand mean of all the base task intervals.",
+            "id": "LOCALBASE",
+            "name": "LOCALBASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOCALBASE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "'pname' is the prefix for output image filenames for all states:  the i'th interval with task state name 'fred' will be writen to file 'pname.fred.i'. *** the default 'pname' is 'sfim'  Output files are the base-mean-removed averages for each non-base task interval, and simply the mean for each base task interval. Output images are in the 'flim' (floating pt. image) format, and may be converted to 16 bit shorts using the program 'ftosh'.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "description": "NA",
+            "id": "image_files",
+            "name": "image_files",
+            "optional": false,
+            "type": "String",
+            "value-key": "[IMAGE_FILES]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

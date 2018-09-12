@@ -1,0 +1,105 @@
+{
+    "command-line": "cifti_tool [HELP] [INPUT] [OUTPUT] [AS_CEXT] [DISP_CEXT] [EVAL_CEXT] [EVAL_TYPE] [VERB] [VERB_READ] [VBOTH]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "specify input dataset",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-output",
+            "description": "where to write output",
+            "id": "OUTPUT",
+            "name": "OUTPUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTPUT]"
+        },
+        {
+            "command-line-flag": "-as_cext",
+            "description": "process the input as just an extension",
+            "id": "AS_CEXT",
+            "name": "AS_CEXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AS_CEXT]"
+        },
+        {
+            "command-line-flag": "-disp_cext",
+            "description": "display the CIFTI extension",
+            "id": "DISP_CEXT",
+            "name": "DISP_CEXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_CEXT]"
+        },
+        {
+            "command-line-flag": "-eval_cext",
+            "description": "evaluate the CIFTI extension",
+            "id": "EVAL_CEXT",
+            "name": "EVAL_CEXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EVAL_CEXT]"
+        },
+        {
+            "command-line-flag": "-eval_type",
+            "description": "method for evaluation of axml elements  valid ETYPES: has_data       - show elements with attached text data has_bdata      - show elements with attached binary data num_tokens     - show the number of tokens in such text show           - like -disp_cext show_names     - show element names, maybe depth indented show_summary   - summarize contents of dataset show_text_data - show the actual text data",
+            "id": "EVAL_TYPE",
+            "name": "EVAL_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EVAL_TYPE]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set the verbose level to LEVEL",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-verb_read",
+            "description": "set verbose level when reading",
+            "id": "VERB_READ",
+            "name": "VERB_READ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB_READ]"
+        },
+        {
+            "command-line-flag": "-vboth",
+            "description": "apply both -verb options",
+            "id": "VBOTH",
+            "name": "VBOTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VBOTH]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

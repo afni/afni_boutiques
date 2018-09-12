@@ -1,0 +1,149 @@
+{
+    "command-line": "3dECM [FULL] [FECM] [THRESH] [SPARSITY] [SHIFT] [SCALE] [EPS] [MAX_ITER] [POLORT] [AUTOCLIP] [AUTOMASK] [MASK] [PREFIX] [MEMORY] [DSET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-full",
+            "description": "uses the full power method (Lohmann et. al. 2010). Enables the use of thresholding and calculating thresholded centrality. Uses sparse array to reduce memory requirement. Automatically selected if -thresh, or -sparsity are used.",
+            "id": "FULL",
+            "name": "FULL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FULL]"
+        },
+        {
+            "command-line-flag": "-fecm",
+            "description": "uses a shortcut that substantially speeds up computation, but is less flexibile in what can be done the similarity matrix. i.e. does not allow thresholding correlation coefficients. based on fast eigenvector centrality mapping (Wink et. al 2012). Default when -thresh, or -sparsity are NOT used.",
+            "id": "FECM",
+            "name": "FECM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FECM]"
+        },
+        {
+            "command-line-flag": "-thresh",
+            "description": "exclude connections with correlation < r. cannot be used with FECM",
+            "id": "THRESH",
+            "name": "THRESH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THRESH]"
+        },
+        {
+            "command-line-flag": "-sparsity",
+            "description": "only include the top p% connectoins in the calculation cannot be used with FECM method. (default = 100)",
+            "id": "SPARSITY",
+            "name": "SPARSITY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPARSITY]"
+        },
+        {
+            "command-line-flag": "-shift",
+            "description": "value that should be added to correlation coeffs to enforce non-negativity, s >= 0. [default = 0.0, unless -fecm is specified in which case the default is 1.0 (e.g. Wink et al 2012)].",
+            "id": "SHIFT",
+            "name": "SHIFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHIFT]"
+        },
+        {
+            "command-line-flag": "-scale",
+            "description": "value that correlation coeffs should be multiplied by after shifting, x >= 0 [default = 1.0, unless -fecm is specified in which case the default is 0.5 (e.g. Wink et al 2012)].",
+            "id": "SCALE",
+            "name": "SCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE]"
+        },
+        {
+            "command-line-flag": "-eps",
+            "description": "sets the stopping criterion for the power iteration l2|v_old - v_new| < eps*|v_old|. default = .001 (0.1%)",
+            "id": "EPS",
+            "name": "EPS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EPS]"
+        },
+        {
+            "command-line-flag": "-max_iter",
+            "description": "sets the maximum number of iterations to use in in the power iteration. default = 1000",
+            "id": "MAX_ITER",
+            "name": "MAX_ITER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX_ITER]"
+        },
+        {
+            "command-line-flag": "-polort",
+            "description": "Remove polynomical trend of order 'm', for m=0..3. [default is m=1; removal is by least squares]. Using m=0 means that just the mean is removed.",
+            "id": "POLORT",
+            "name": "POLORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POLORT]"
+        },
+        {
+            "command-line-flag": "-autoclip",
+            "description": "Clip off low-intensity regions in the dataset,",
+            "id": "AUTOCLIP",
+            "name": "AUTOCLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOCLIP]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "so that the correlation is only computed between high-intensity (presumably brain) voxels.  The mask is determined the same way that 3dAutomask works.",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Mask to define 'in-brain' voxels. Reducing the number the number of voxels included in the calculation will significantly speedup the calculation. Consider using a mask to constrain the calculations to the grey matter rather than the whole brain. This is also preferrable to using -autoclip or -automask.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Save output into dataset with prefix 'p' [default prefix is 'ecm'].",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-memory",
+            "description": "Calculating eignevector centrality can consume alot of memory. If unchecked this can crash a computer or cause it to hang. If the memory hits this limit the tool will error out, rather than affecting the system [default is 2G].  Notes: * The output dataset is a bucket type of floats. * The program prints out an estimate of its memory used when it ends.  It also prints out a progress 'meter' to keep you pacified.  -- RWCox - 31 Jan 2002 and 16 Jul 2010 -- Cameron Craddock - 13 Nov 2015 -- Daniel Clark - 14 March 2016  ========================================================================= * This binary version of 3dECM is compiled using OpenMP, a semi- automatic parallelizer software toolkit, which splits the work across multiple CPUs/cores on the same shared memory computer. * OpenMP is NOT like MPI -- it does not work with CPUs connected only by a network (e.g., OpenMP doesn't work with 'cluster' setups). * For implementation and compilation details, please see https://afni.nimh.nih.gov/pub/dist/doc/misc/OpenMP.html * The number of CPU threads used will default to the maximum number on your system. You can control this value by setting environment variable OMP_NUM_THREADS to some smaller value (including 1). * Un-setting OMP_NUM_THREADS resets OpenMP back to its default state of using all CPUs available. ++ However, on some systems, it seems to be necessary to set variable OMP_NUM_THREADS explicitly, or you only get one CPU. ++ On other systems with many CPUS, you probably want to limit the CPU count, since using more than (say) 16 threads is probably useless. * You must set OMP_NUM_THREADS in the shell BEFORE running the program, since OpenMP queries this variable BEFORE the program actually starts. ++ You can't usefully set this variable in your ~/.afnirc file or on the command line with the '-D' option. * How many threads are useful? That varies with the program, and how well it was coded. You'll have to experiment on your own systems! * The number of CPUs on this particular computer system is ...... 4. * The maximum number of CPUs that will be used is now set to .... 4. =========================================================================  ++ Compile date = Sep  7 2018 {:}",
+            "id": "MEMORY",
+            "name": "MEMORY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MEMORY]"
+        },
+        {
+            "description": "NA",
+            "id": "dset",
+            "name": "dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

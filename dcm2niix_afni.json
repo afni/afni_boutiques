@@ -1,0 +1,203 @@
+{
+    "command-line": "dcm2niix_afni [B] [BA] [C] [D] [F] [G] [H] [I] [L] [M] [N] [O] [P] [R] [S] [T] [U] [V] [X] [Z] [<IN_FOLDER>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-b",
+            "description": "BIDS sidecar (y/n/o [o=only: no NIfTI], default y)",
+            "id": "B",
+            "name": "B",
+            "optional": true,
+            "type": "String",
+            "value-key": "[B]"
+        },
+        {
+            "command-line-flag": "-ba",
+            "description": "anonymize BIDS (y/n, default y)",
+            "id": "BA",
+            "name": "BA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BA]"
+        },
+        {
+            "command-line-flag": "-c",
+            "description": "comment stored in NIfTI aux_file (up to 24 characters)",
+            "id": "C",
+            "name": "C",
+            "optional": true,
+            "type": "String",
+            "value-key": "[C]"
+        },
+        {
+            "command-line-flag": "-d",
+            "description": "directory search depth. Convert DICOMs in sub-folders of in_folder? (0..9, default 5)",
+            "id": "D",
+            "name": "D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[D]"
+        },
+        {
+            "command-line-flag": "-f",
+            "description": "filename (%a=antenna  (coil) number, %b=basename, %c=comments, %d=description, %e=echo number, %f=folder name, %i=ID of patient, %j=seriesInstanceUID, %k=studyInstanceUID, %m=manufacturer, %n=name of patient, %p=protocol, %r=instance number, %s=series number, %t=time, %u=acquisition number, %v=vendor, %x=study ID; %z=sequence name; default '%f_%p_%t_%s')",
+            "id": "F",
+            "name": "F",
+            "optional": true,
+            "type": "String",
+            "value-key": "[F]"
+        },
+        {
+            "command-line-flag": "-g",
+            "description": "generate defaults file (y/n/o/i [o=only: reset and write defaults; i=ignore: reset defaults], default n)",
+            "id": "G",
+            "name": "G",
+            "optional": true,
+            "type": "String",
+            "value-key": "[G]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "show help",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-i",
+            "description": "ignore derived, localizer and 2D images (y/n, default n)",
+            "id": "I",
+            "name": "I",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I]"
+        },
+        {
+            "command-line-flag": "-l",
+            "description": "losslessly scale 16-bit integers to use dynamic range (y/n, default n)",
+            "id": "L",
+            "name": "L",
+            "optional": true,
+            "type": "String",
+            "value-key": "[L]"
+        },
+        {
+            "command-line-flag": "-m",
+            "description": "merge 2D slices from same series regardless of study time, echo, coil, orientation, etc. (y/n, default n)",
+            "id": "M",
+            "name": "M",
+            "optional": true,
+            "type": "String",
+            "value-key": "[M]"
+        },
+        {
+            "command-line-flag": "-n",
+            "description": "only convert this series number - can be used up to 16 times (default convert all)",
+            "id": "N",
+            "name": "N",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N]"
+        },
+        {
+            "command-line-flag": "-o",
+            "description": "output directory (omit to save to input folder)",
+            "id": "O",
+            "name": "O",
+            "optional": true,
+            "type": "String",
+            "value-key": "[O]"
+        },
+        {
+            "command-line-flag": "-p",
+            "description": "Philips precise float (not display) scaling (y/n, default y)",
+            "id": "P",
+            "name": "P",
+            "optional": true,
+            "type": "String",
+            "value-key": "[P]"
+        },
+        {
+            "command-line-flag": "-r",
+            "description": "rename instead of convert DICOMs (y/n, default n)",
+            "id": "R",
+            "name": "R",
+            "optional": true,
+            "type": "String",
+            "value-key": "[R]"
+        },
+        {
+            "command-line-flag": "-s",
+            "description": "single file mode, do not convert other images in folder (y/n, default n)",
+            "id": "S",
+            "name": "S",
+            "optional": true,
+            "type": "String",
+            "value-key": "[S]"
+        },
+        {
+            "command-line-flag": "-t",
+            "description": "text notes includes private patient details (y/n, default n)",
+            "id": "T",
+            "name": "T",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T]"
+        },
+        {
+            "command-line-flag": "-u",
+            "description": "up-to-date check",
+            "id": "U",
+            "name": "U",
+            "optional": true,
+            "type": "String",
+            "value-key": "[U]"
+        },
+        {
+            "command-line-flag": "-v",
+            "description": "verbose (n/y or 0/1/2 [no, yes, logorrheic], default 0)",
+            "id": "V",
+            "name": "V",
+            "optional": true,
+            "type": "String",
+            "value-key": "[V]"
+        },
+        {
+            "command-line-flag": "-x",
+            "description": "crop (y/n, default n)",
+            "id": "X",
+            "name": "X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[X]"
+        },
+        {
+            "command-line-flag": "-z",
+            "description": "gz compress images (y/i/n/3, default n) [y=pigz, i=internal:miniz, n=no, 3=no,3D] Defaults file : /home/jovyan/.dcm2nii.ini Examples : dcm2niix_afni /Users/chris/dir dcm2niix_afni -c \"my comment\" /Users/chris/dir dcm2niix_afni -o /users/cr/outdir/ -z y ~/dicomdir dcm2niix_afni -f %p_%s -b y -ba n ~/dicomdir dcm2niix_afni -f mystudy%s ~/dicomdir dcm2niix_afni -o \"~/dir with spaces/dir\" ~/dicomdir Example output filename: '/myFolder_MPRAGE_19770703150928_1.nii'",
+            "id": "Z",
+            "name": "Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Z]"
+        },
+        {
+            "description": "NA",
+            "id": "<in_folder>",
+            "name": "<in_folder>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<IN_FOLDER>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

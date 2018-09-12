@@ -1,0 +1,429 @@
+{
+    "command-line": "gifti_tool [READ_DAS] [SET_EXTERN_FILELIST] [MOD_DAS] [DA_INDEX_LIST] [HELP] [HIST] [VER] [GIFTI_HIST] [GIFTI_VER] [GIFTI_DTD_URL] [GIFTI_ZLIB] [B64_CHECK] [BUF_SIZE] [GIFTI_TEST] [INFILE] [NO_DATA] [NO_UPDATES] [SHOW_GIFTI] [VERB] [ENCODING] [PERM_BY_IORD] [WRITE_1D] [WRITE_ASC] [WRITE_GIFTI] [ZLEVEL] [1] [MOD_ADD_DATA] [MOD_DA_ATR] [MOD_DA_META] [MOD_GIM_ATR] [MOD_GIM_META] [MOD_IND_ORD] [MOD_TO_FLOAT] [NEW_DSET] [NEW_NUMDA] [NEW_INTENT] [NEW_DTYPE] [NEW_NDIM] [NEW_DIMS] [NEW_DATA] [APPROX_GIFTI] [COMPARE_GIFTI] [COMPARE_DATA] [COMPARE_VERB] [COPY_GIFTI_META] [COPY_DA_META]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-read_DAs",
+            "description": "-read_DAs 4 0 5 OR  gifti_tool -infile time_series.gii'[4,0,5]'  \\ -write_gifti ts3.gii  3. write datasets in other formats  a. FreeSurfer-style .asc surface dataset  gifti_tool -infile pial.gii -write_asc pial.asc  b. .1D time series surface dataset  gifti_tool -infile time_series.gii -write_1D ts.1D  4. create a new gifti dataset from nothing, where  a. - the dataset has 3 DataArray elements - the data will be of type 'short' (NIFTI_TYPE_INT16) - the intent codes will reflect a t-test - the data will be 2-dimensional (per DataArray), 5 by 2 shorts - memory will be allocated for the data (a modification option) - the result will be written to created.gii  gifti_tool -new_dset                                \\ -new_numDA 3 -new_dtype NIFTI_TYPE_INT16 \\ -new_intent NIFTI_INTENT_TTEST           \\ -new_ndim 2 -new_dims 5 2 0 0 0 0        \\ -mod_add_data -write_gifti created.gii  b. - the dataset has 12 DataArray elements (40 floats each) - the data is partitioned over 2 files (so 6*40 floats in each)  ** Note: since dataset creation does not add data (without -mod_add_data), this operation will not create or try to overwrite the external datafiles.  gifti_tool -new_dset -new_numDA 12                   \\ -new_ndim 1 -new_dims 40 0 0 0 0 0        \\",
+            "id": "READ_DAS",
+            "name": "READ_DAS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[READ_DAS]"
+        },
+        {
+            "command-line-flag": "-set_extern_filelist",
+            "description": "-set_extern_filelist ext1.bin ext2.bin    \\ -write_gifti points_to_extern.gii  5. modify a gifti dataset  a. apply various modifications at the GIFTI level and to all DAs  - set the Version attribute at the GIFTI level - set 'Date' as GIFTI MetaData, with value of today's date - set 'Description' as GIFTI MetaData, with some value - set all DA Intent attributes to be an F-test - set 'Name' as an attribute of all DAs, with some value - read created.gii, and write to first_mod.gii  gifti_tool -mod_gim_atr Version 1.0                       \\ -mod_gim_meta Date \"`date`\"                    \\ -mod_gim_meta Description 'modified surface'   \\ -mod_DA_atr Intent NIFTI_INTENT_FTEST          \\ -mod_DA_meta Name 'same name for all DAs'      \\ -infile created.gii -write_gifti first_mod.gii  b. modify the 'Name' attribute is DA index #42 only  gifti_tool -mod_DA_meta Name 'data from pickle #42'       \\",
+            "id": "SET_EXTERN_FILELIST",
+            "name": "SET_EXTERN_FILELIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET_EXTERN_FILELIST]"
+        },
+        {
+            "command-line-flag": "-mod_DAs",
+            "description": "-mod_DAs 42                                    \\ -infile stats.gii -write_gifti mod_stats.gii  c. set the data to point to a single external data file, without overwriting the external file on write (so use -no_data), and where the DataArrays will point to sequential partitions of the file  gifti_tool -infiles created.gii -no_data          \\",
+            "id": "MOD_DAS",
+            "name": "MOD_DAS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_DAS]"
+        },
+        {
+            "command-line-flag": "-DA_index_list",
+            "description": "-DA_index_list 0 3 6                   \\ -infiles source.gii destination.gii    \\ -write_gifti meta_copy.gii  ----------------------------------------------------------------------  (all warranties are void in Montana, and after 4 pm on Tuesdays)  ---------------------------------------------------------------------- informational options:",
+            "id": "DA_INDEX_LIST",
+            "name": "DA_INDEX_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DA_INDEX_LIST]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "display this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "display the modification history of gifti_tool",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "display the gifti_tool version",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-gifti_hist",
+            "description": "display thd modification history of gifticlib",
+            "id": "GIFTI_HIST",
+            "name": "GIFTI_HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GIFTI_HIST]"
+        },
+        {
+            "command-line-flag": "-gifti_ver",
+            "description": "display gifticlib version",
+            "id": "GIFTI_VER",
+            "name": "GIFTI_VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GIFTI_VER]"
+        },
+        {
+            "command-line-flag": "-gifti_dtd_url",
+            "description": "display the gifti DTD URL",
+            "id": "GIFTI_DTD_URL",
+            "name": "GIFTI_DTD_URL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GIFTI_DTD_URL]"
+        },
+        {
+            "command-line-flag": "-gifti_zlib",
+            "description": "display whether the zlib is linked in library  ---------------------------------------- general/input options",
+            "id": "GIFTI_ZLIB",
+            "name": "GIFTI_ZLIB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GIFTI_ZLIB]"
+        },
+        {
+            "command-line-flag": "-b64_check",
+            "description": "set method for checking base64 errors  e.g. -b64_check COUNT  This option sets the preference for how to deal with errors in Base64 encoded data (whether compressed or not).  The default is SKIPnCOUNT, which skips any illegal characters, and reports a count of the number found.  TYPE = NONE       : no checks - assume all is well TYPE = DETECT     : report whether errors were found TYPE = COUNT      : count the number of bad chars TYPE = SKIP       : ignore any bad characters TYPE = SKIPnCOUNT : ignore but count bad characters  This default adds perhaps 10% to the reading time.",
+            "id": "B64_CHECK",
+            "name": "B64_CHECK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[B64_CHECK]"
+        },
+        {
+            "command-line-flag": "-buf_size",
+            "description": "set the buffer size (given to expat library)  e.g. -buf_size 1024",
+            "id": "BUF_SIZE",
+            "name": "BUF_SIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BUF_SIZE]"
+        },
+        {
+            "command-line-flag": "-gifti_test",
+            "description": "test whether each gifti dataset is valid  This performs a consistency check on each input GIFTI dataset.  Lists and dimensions must be consistent.",
+            "id": "GIFTI_TEST",
+            "name": "GIFTI_TEST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GIFTI_TEST]"
+        },
+        {
+            "command-line-flag": "-infile",
+            "description": "specify one or more GIFTI datasets as input  e.g. -input pial.gii e.g. -input run1.gii run2.gii e.g. -input MAKE_IM                 (create a new image) e.g. -input run1.gii'[3,4,5]'       (read DAs 3,4,5    ) e.g. -input run1.gii'[0..16(2)]'    (read evens from 0 to 16) e.g. -input run1.gii'[4..$]'        (read all but 0..3)  There are 2 special ways to specify input.  One is via the name 'MAKE_IM'.  That 'input' filename tell gifti_tool to create a new dataset, applying any '-new_*' options to it.  (refer to options: -new_*)  The other special way is to specify which DataArray elements should be read in, using AFNI-style syntax within '[]'.  The quotes prevent the shell from interpreting the brackets.  DataArray indices are zero-based.  The list of DAs can be comma-delimited, and can use '..' or '-' to specify a range, and a value in parentheses to be used as a step.  The '$' character means the last index (numDA-1).",
+            "id": "INFILE",
+            "name": "INFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFILE]"
+        },
+        {
+            "command-line-flag": "-no_data",
+            "description": "do not read in data  This option means not to read in the Data element in any DataArray, akin to reading only the header.",
+            "id": "NO_DATA",
+            "name": "NO_DATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_DATA]"
+        },
+        {
+            "command-line-flag": "-no_updates",
+            "description": "do not allow the library to modify metadata  By default, the library may update some metadata fields, such as 'gifticlib-version'.  The -no_updates option will prevent that operation.",
+            "id": "NO_UPDATES",
+            "name": "NO_UPDATES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_UPDATES]"
+        },
+        {
+            "command-line-flag": "-show_gifti",
+            "description": "show final gifti image  Display all of the dataset information on the screen (sans data).  This includes meta data and all DataArray elements.",
+            "id": "SHOW_GIFTI",
+            "name": "SHOW_GIFTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_GIFTI]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set verbose level   (default: 1)  e.g. -verb 2  Print extra information to the screen.  The VERB level can be from 0 to 8, currently.  Level 0 is considered 'quiet' mode, and should only report serious errors.  Level 1 is the default.  ---------------------------------------- output options",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-encoding",
+            "description": "set the data encoding for any output file  e.g. -encoding BASE64GZIP  TYPE = ASCII      : ASCII encoding TYPE = BASE64     : base64 binary TYPE = BASE64GZIP : base64 compressed binary  This operation can also be performed via -mod_DA_atr: e.g. -mod_DA_atr Encoding BASE64GZIP",
+            "id": "ENCODING",
+            "name": "ENCODING",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ENCODING]"
+        },
+        {
+            "command-line-flag": "-perm_by_iord",
+            "description": "-perm_by_iord 0/1 : do we permute based on index order (default=1)  e.g. -perm_by_iord 0  This option simply controls whether datasets are forced into row-major data storage order upon read.  It is typically desirable, since this is a C library, and so conversion of indices to data (D[a][b][c]) assumes row-major ordering. But Matlab and Fortran use column-major order.  For the GIFTI library, the default is to permute the data to row major order (if not already in it).  For gifti_tool, the default is to convert to row major order when any of the -write_* options are applied, but to leave the order unchanged otherwise (for inspection and such).  See also -mod_ind_ord.",
+            "id": "PERM_BY_IORD",
+            "name": "PERM_BY_IORD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERM_BY_IORD]"
+        },
+        {
+            "command-line-flag": "-write_1D",
+            "description": "write out data to AFNI style 1D file  e.g. -write_1D stats.1D  Currently, all DAs need to be of the same datatype.  This restriction could be lifted if there is interest.",
+            "id": "WRITE_1D",
+            "name": "WRITE_1D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_1D]"
+        },
+        {
+            "command-line-flag": "-write_asc",
+            "description": "write out geometry to FreeSurfer style ASC file  e.g. -write_asc pial.asc  To write a surface file in FreeSurfer asc format, it must contain DataArray elements of intent NIFTI_INTENT_POINTSET and NIFTI_INTENT_TRIANGLE.  The POINTSET data is written as node coordinates and the TRIANGLE data as triangles (node index triplets).",
+            "id": "WRITE_ASC",
+            "name": "WRITE_ASC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_ASC]"
+        },
+        {
+            "command-line-flag": "-write_gifti",
+            "description": "write out dataset as gifti image  e.g. -write_gifti new.pial.gii",
+            "id": "WRITE_GIFTI",
+            "name": "WRITE_GIFTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_GIFTI]"
+        },
+        {
+            "command-line-flag": "-zlevel",
+            "description": "set compression level (-1 or 0..9)  This option sets the compression level used by zlib.  Some LEVEL values are noteworthy:",
+            "id": "ZLEVEL",
+            "name": "ZLEVEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZLEVEL]"
+        },
+        {
+            "command-line-flag": "-1",
+            "description": "specify to use the default of zlib (currently 6) 0   : no compression (but still needs a few extra bytes) 1   : fastest but weakest compression 6   : default (good speed/compression trade-off) 9   : slowest but strongest compression  ---------------------------------------- modification options  These modification options will affect every DataArray element specified by the -mod_DAs option.  If the option is not used, then ALL DataArray elements will be affected.",
+            "id": "1",
+            "name": "1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1]"
+        },
+        {
+            "command-line-flag": "-mod_add_data",
+            "description": "add data to empty DataArray elements  Allocate data in every DataArray element.  Datasets can be created without any stored data.  This will allocate data and fill it with zeros of the given type.",
+            "id": "MOD_ADD_DATA",
+            "name": "MOD_ADD_DATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_ADD_DATA]"
+        },
+        {
+            "command-line-flag": "-mod_DA_atr",
+            "description": "set the NAME=VALUE attribute pair  e.g. -mod_DA_atr Intent NIFTI_INTENT_ZSCORE  This option will set the DataArray attribute corresponding to NAME to the value, VALUE.  Attribute name=value pairs are specified in the gifti DTD (see -gifti_dtd_url).  One NAME=VALUE pair can be specified per -mod_DA_atr option.  Multiple -mod_DA_atr options can be used.",
+            "id": "MOD_DA_ATR",
+            "name": "MOD_DA_ATR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_DA_ATR]"
+        },
+        {
+            "command-line-flag": "-mod_DA_meta",
+            "description": "set the NAME=VALUE pair in DA's MetaData  e.g. -mod_DA_meta Description 'the best dataset, ever'  Add a MetaData entry to each DataArray element for this NAME and VALUE.  If 'NAME' already exists, the old value is replaced by VALUE.",
+            "id": "MOD_DA_META",
+            "name": "MOD_DA_META",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_DA_META]"
+        },
+        {
+            "command-line-flag": "-mod_gim_atr",
+            "description": "set the GIFTI NAME=VALUE attribute pair  e.g. -mod_gim_atr Version 3.141592  Set the GIFTI element attribute corresponding to NAME to the value, VALUE.  Given that numDA is computed and version will rarely change, this option will probably not feel much love.",
+            "id": "MOD_GIM_ATR",
+            "name": "MOD_GIM_ATR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_GIM_ATR]"
+        },
+        {
+            "command-line-flag": "-mod_gim_meta",
+            "description": "add this pair to the GIFTI MetaData  e.g. -mod_gim_meta date \"`date`\"  Add a MetaData entry to each DataArray element for this NAME and VALUE pair.  If NAME exists, VALUE will replace the old value.",
+            "id": "MOD_GIM_META",
+            "name": "MOD_GIM_META",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_GIM_META]"
+        },
+        {
+            "command-line-flag": "-mod_ind_ord",
+            "description": "modify the index order (1=RowMajor, 2=ColMajor)  e.g. -mod_ind_ord 2  Arrange the data by the given ArrayIndexingOrder.  ORD = 1 : convert to row major order ORD = 2 : convert to column major order",
+            "id": "MOD_IND_ORD",
+            "name": "MOD_IND_ORD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_IND_ORD]"
+        },
+        {
+            "command-line-flag": "-mod_to_float",
+            "description": "change all DataArray data to float  Convert all DataArray elements of all datasets to datatype NIFTI_TYPE_FLOAT32 (4-byte floats).  If the data does not actually exist, only the attribute will be set.  Otherwise all of the data will be converted.  There are some types for which this operation may not be appropriate.  ----------------------------------------  creation (new dataset) options",
+            "id": "MOD_TO_FLOAT",
+            "name": "MOD_TO_FLOAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_TO_FLOAT]"
+        },
+        {
+            "command-line-flag": "-new_dset",
+            "description": "create a new GIFTI dataset",
+            "id": "NEW_DSET",
+            "name": "NEW_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEW_DSET]"
+        },
+        {
+            "command-line-flag": "-new_numDA",
+            "description": "new dataset will have NUMDA DataArray elements e.g. -new_numDA 3",
+            "id": "NEW_NUMDA",
+            "name": "NEW_NUMDA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEW_NUMDA]"
+        },
+        {
+            "command-line-flag": "-new_intent",
+            "description": "DA elements will have intent INTENT e.g. -new_intent NIFTI_INTENT_FTEST",
+            "id": "NEW_INTENT",
+            "name": "NEW_INTENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEW_INTENT]"
+        },
+        {
+            "command-line-flag": "-new_dtype",
+            "description": "set datatype to TYPE e.g. -new_dtype NIFTI_TYPE_FLOAT32",
+            "id": "NEW_DTYPE",
+            "name": "NEW_DTYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEW_DTYPE]"
+        },
+        {
+            "command-line-flag": "-new_ndim",
+            "description": "set Dimensionality to NUMDIMS (see -new_dims)",
+            "id": "NEW_NDIM",
+            "name": "NEW_NDIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEW_NDIM]"
+        },
+        {
+            "command-line-flag": "-new_dims",
+            "description": "-new_dims D0...D5 : set dims[] to these 6 values e.g. -new_ndim 2 -new_dims 7 2 0 0 0 0",
+            "id": "NEW_DIMS",
+            "name": "NEW_DIMS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEW_DIMS]"
+        },
+        {
+            "command-line-flag": "-new_data",
+            "description": "allocate space for data in created dataset  ---------------------------------------- comparison options",
+            "id": "NEW_DATA",
+            "name": "NEW_DATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEW_DATA]"
+        },
+        {
+            "command-line-flag": "-approx_gifti",
+            "description": "approximate comparison of GIFTI dsets  This compares all data elements of the two GIFTI structures. The attributes, MetaData, etc. are ignored if they do not pertain directly to the data.  The comparisons allow for small, fractional differences, which depend on the datatype.",
+            "id": "APPROX_GIFTI",
+            "name": "APPROX_GIFTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[APPROX_GIFTI]"
+        },
+        {
+            "command-line-flag": "-compare_gifti",
+            "description": "specifies to compare two GIFTI datasets  This compares all elements of the two GIFTI structures. The attributes, LabelTabels, MetaData are compared, and then each of the included DataArray elements.  All sub-structures of the DataArrays are compared, except for the actual 'data', which requires the '-compare_data' flag.  There must be exactly 2 input datasets to use this option. See example #7 for sample usage.",
+            "id": "COMPARE_GIFTI",
+            "name": "COMPARE_GIFTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COMPARE_GIFTI]"
+        },
+        {
+            "command-line-flag": "-compare_data",
+            "description": "flag to request comparison of the data  Data comparison is done per DataArray element.  Comparing data is a separate operation from comparing GIFTI. Neither implies the other.",
+            "id": "COMPARE_DATA",
+            "name": "COMPARE_DATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COMPARE_DATA]"
+        },
+        {
+            "command-line-flag": "-compare_verb",
+            "description": "set the verbose level of comparisons  Data comparison is done per DataArray element.  Setting the verb level will have the following effect:  0 : quiet, only return whether there was a difference 1 : show whether there was a difference 2 : show whether there was a difference per DataArray 3 : show all differences  ---------------------------------------- MetaData copy options",
+            "id": "COMPARE_VERB",
+            "name": "COMPARE_VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COMPARE_VERB]"
+        },
+        {
+            "command-line-flag": "-copy_gifti_meta",
+            "description": "copy MetaData with name MD_NAME  e.g. -copy_gifti_meta AFNI_History  Copy the MetaData with the given name from the first input dataset to the second (last).  This applies to MetaData at the GIFTI level (not in the DataArray elements).",
+            "id": "COPY_GIFTI_META",
+            "name": "COPY_GIFTI_META",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COPY_GIFTI_META]"
+        },
+        {
+            "command-line-flag": "-copy_DA_meta",
+            "description": "copy MetaData with name MD_NAME  e.g. -copy_DA_meta intent_p1  Copy the MetaData with the given name from the first input dataset to the second (last).  This applies to MetaData at DataArray level.  This will apply to all DataArray elements, unless the",
+            "id": "COPY_DA_META",
+            "name": "COPY_DA_META",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COPY_DA_META]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

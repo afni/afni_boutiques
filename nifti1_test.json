@@ -1,0 +1,86 @@
+{
+    "command-line": "nifti1_test [A2] [N2] [N1] [NA] [ZA2] [ZN2] [ZN1] [INFILE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-a2",
+            "description": "> write an ANALYZE 7.5 file pair: prefix.hdr/prefix.img",
+            "id": "A2",
+            "name": "A2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[A2]"
+        },
+        {
+            "command-line-flag": "-n2",
+            "description": "> write a NIFTI-1 file pair: prefix.hdr/prefix.img",
+            "id": "N2",
+            "name": "N2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N2]"
+        },
+        {
+            "command-line-flag": "-n1",
+            "description": "> write a NIFTI-1 single file: prefix.nii",
+            "id": "N1",
+            "name": "N1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N1]"
+        },
+        {
+            "command-line-flag": "-na",
+            "description": "> write a NIFTI-1 ASCII+binary file: prefix.nia",
+            "id": "NA",
+            "name": "NA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NA]"
+        },
+        {
+            "command-line-flag": "-za2",
+            "description": "write an ANALYZE 7.5 file pair: prefix.hdr.gz/prefix.img.gz",
+            "id": "ZA2",
+            "name": "ZA2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZA2]"
+        },
+        {
+            "command-line-flag": "-zn2",
+            "description": "write a NIFTI-1 file pair: prefix.hdr.gz/prefix.img.gz",
+            "id": "ZN2",
+            "name": "ZN2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZN2]"
+        },
+        {
+            "command-line-flag": "-zn1",
+            "description": "write a NIFTI-1 single file: prefix.nii.gz The default is '-n1'.  If prefix is not given, then the header info from infile file is printed to stdout.  Please note that the '.nia' format is NOT part of the NIFTI-1 specification, but is provided mostly for ease of visualization (e.g., you can edit a .nia file and change some header fields, then rewrite it as .nii)  sizeof(nifti_1_header)=348",
+            "id": "ZN1",
+            "name": "ZN1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZN1]"
+        },
+        {
+            "description": "NA",
+            "id": "infile",
+            "name": "infile",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INFILE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

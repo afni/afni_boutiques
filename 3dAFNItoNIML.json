@@ -1,0 +1,50 @@
+{
+    "command-line": "3dAFNItoNIML [DATA] [ASCII] [TCP] [DSET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-data",
+            "description": "Also put the data into the output (will be huge).",
+            "id": "DATA",
+            "name": "DATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATA]"
+        },
+        {
+            "command-line-flag": "-ascii",
+            "description": "Format in ASCII, not binary (even huger).",
+            "id": "ASCII",
+            "name": "ASCII",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ASCII]"
+        },
+        {
+            "command-line-flag": "-tcp",
+            "description": "ost:port == Instead of stdout, send the dataset to a socket. (implies '-data' as well)  -- RWCox - Mar 2005  ++ Compile date = Sep  7 2018 {:}",
+            "id": "TCP",
+            "name": "TCP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TCP]"
+        },
+        {
+            "description": "NA",
+            "id": "dset",
+            "name": "dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

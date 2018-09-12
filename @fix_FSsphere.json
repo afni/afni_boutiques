@@ -1,0 +1,92 @@
+{
+    "command-line": "@fix_FSsphere [SPEC] [SPHERE] [NITER] [LIM] [PROJECT_FIRST] [<-SPEC] [SPEC>] [<-SPHERE] [SPHERE.ASC>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-spec",
+            "description": "Spec file",
+            "id": "SPEC",
+            "name": "SPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEC]"
+        },
+        {
+            "command-line-flag": "-sphere",
+            "description": "-sphere SPHERE.asc: SPHERE.asc is the sphere to be used. Optional parameters:",
+            "id": "SPHERE",
+            "name": "SPHERE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPHERE]"
+        },
+        {
+            "command-line-flag": "-niter",
+            "description": "Number of local smoothing operations. Default is 3000",
+            "id": "NITER",
+            "name": "NITER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NITER]"
+        },
+        {
+            "command-line-flag": "-lim",
+            "description": "Extent, in mm, by which troubled sections are fattened. Default is 6",
+            "id": "LIM",
+            "name": "LIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIM]"
+        },
+        {
+            "command-line-flag": "-project_first",
+            "description": "Project to a sphere, before smoothing. Default is: 0  Output: Corrected surface is called SPHERE_fxd.asc  Example: @fix_FSsphere -spec ./2005-10-01-km_rh.spec -sphere ./rh.sphere.asc",
+            "id": "PROJECT_FIRST",
+            "name": "PROJECT_FIRST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PROJECT_FIRST]"
+        },
+        {
+            "description": "NA",
+            "id": "<-spec",
+            "name": "<-spec",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-SPEC]"
+        },
+        {
+            "description": "NA",
+            "id": "SPEC>",
+            "name": "SPEC>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SPEC>]"
+        },
+        {
+            "description": "NA",
+            "id": "<-sphere",
+            "name": "<-sphere",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-SPHERE]"
+        },
+        {
+            "description": "NA",
+            "id": "SPHERE.asc>",
+            "name": "SPHERE.asc>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SPHERE.ASC>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

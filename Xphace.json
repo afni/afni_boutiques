@@ -1,0 +1,23 @@
+{
+    "command-line": "Xphace [IM1]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "im1",
+            "name": "im1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[IM1]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

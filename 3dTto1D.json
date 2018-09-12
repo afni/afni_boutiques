@@ -1,0 +1,96 @@
+{
+    "command-line": "3dTto1D [HELP] [HIST] [VER] [INPUT] [METHOD] [AUTOMASK] [MASK] [PREFIX] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show program history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show program version  -------------------------------------------------- required command arguments:",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "specify input dataset  e.g. -input epi_r1+orig e.g. -input dfile.r01.1D\\'  Specify the input dataset to be processed.  This should be a set of 3D time series.  If the input is in 1D format, a transpose operator will typically be required.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-method",
+            "description": "specify 4D to 1D conversion method  e.g. -method srms e.g. -method DVARS e.g. -method dvars e.g. -method enorm  Details of the computational methods are at the top of the help. The methods (which are case insensitive) include:  enorm      : Euclidean norm of first differences = sqrt(sum squares(first diffs))  rms        : RMS (root mean square) of first differences = DVARS = enorm/sqrt(nvox)  srms       : scaled (by grand mean) RMS of first differences = DVARS/mean  * seems like the most useful method for censoring  s_srms     : SRMS shifted by grand mean abs of first diffs = SRMS - mean(abs(first diffs))  mdiff      : mean absolute first differences = mean(abs(first diff))  smdiff     : mdiff scaled by grand mean = mdiff/mean  4095_count : count of voxels that are exactly 4095  4095_frac  : fraction of voxels that are exactly 4095 = 4095_count/(mask size)  4095_warn  : state whether global max is exactly 4095 (no 1D output)  -------------------------------------------------- optional command arguments:",
+            "id": "METHOD",
+            "name": "METHOD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[METHOD]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "restrict computation to automask",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "restrict computation to given mask",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "specify output file e.g.     -prefix SVAR_run1.1D default: -prefix stdout",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "specify verbose level e.g.     -verb 2 default: -verb 1  -------------------------------------------------- R Reynolds  July, 2017 ------------------------------------------------------------------------- 3dTto1D version 1.2, 1 February 2018 compiled: Sep  7 2018",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

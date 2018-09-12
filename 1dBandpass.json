@@ -1,0 +1,75 @@
+{
+    "command-line": "1dBandpass [DT] [ORT] [NODETREND] [NORM] [FBOT] [FTOP] [INFILE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-dt",
+            "description": "set time step to 'dd' sec [default = 1.0]",
+            "id": "DT",
+            "name": "DT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DT]"
+        },
+        {
+            "command-line-flag": "-ort",
+            "description": "-ort f.1D  = Also orthogonalize input to columns in f.1D [only one '-ort' option is allowed]",
+            "id": "ORT",
+            "name": "ORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ORT]"
+        },
+        {
+            "command-line-flag": "-nodetrend",
+            "description": "Skip the quadratic detrending of the input",
+            "id": "NODETREND",
+            "name": "NODETREND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NODETREND]"
+        },
+        {
+            "command-line-flag": "-norm",
+            "description": "Make output time series have L2 norm = 1  Example: 1deval -num 1000 -expr 'gran(0,1)' > r1000.1D 1dBandpass 0.025 0.20 r1000.1D  > f1000.1D 1dfft f1000.1D - | 1dplot -del 0.000977 -stdin -plabel 'Filtered |FFT|'  Goal: * Mostly to test the functions in thd_bandpass.c -- RWCox -- May 2009  ++ Compile date = Sep  7 2018 {:}",
+            "id": "NORM",
+            "name": "NORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORM]"
+        },
+        {
+            "description": "NA",
+            "id": "fbot",
+            "name": "fbot",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FBOT]"
+        },
+        {
+            "description": "NA",
+            "id": "ftop",
+            "name": "ftop",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FTOP]"
+        },
+        {
+            "description": "NA",
+            "id": "infile",
+            "name": "infile",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INFILE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

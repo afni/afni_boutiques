@@ -1,0 +1,213 @@
+{
+    "command-line": "3dROIMaker [INSET] [THRESH] [PREFIX] [REFSET] [VOLTHR] [ONLY_SOME_TOP] [ONLY_CONN_TOP] [INFLATE] [TRIM_OFF_WM] [WM_SKEL] [SKEL_THR] [SKEL_STOP] [SKEL_STOP_STRICT] [CSF_SKEL] [MASK] [NEIGH_FACE_ONLY] [NEIGH_FACE_EDGE] [NEIGH_UPTO_VERT] [NIFTI] [PREINFL_INSET] [PREINFL_INFLATE] [DUMP_NO_LABTAB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-inset",
+            "description": "D volume(s) of values, esp. of functionally-derived quantities like correlation values or ICA Z-scores.",
+            "id": "INSET",
+            "name": "INSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSET]"
+        },
+        {
+            "command-line-flag": "-thresh",
+            "description": "hreshold for values in INSET, used to great ROI islands from the 3D volume's sea of values.",
+            "id": "THRESH",
+            "name": "THRESH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THRESH]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "refix of output name, with output files being: PREFIX_GM* and PREFIX_GMI* (see `Outputs', above). and can provide:",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-refset",
+            "description": "D (or multi-subbrick) volume containing integer values with which to label specific GM ROIs after thresholding.  This can be useful to assist in having similar ROIs across a group labelled with the same integer in the output GM and GMI maps. If an INSET ROI has no corresponding REFSET label, then the former is marked with an integer greater than the max refset label. If an INSET ROI overlaps with multiple REFSET ROIs, then the former is split amongst the latter-- overlap regions get labelled first, and then REFSET labels grow to cover the INSET ROI in question.  NB: it is possible to utilize negative-valued ROIs (voxels =-1) to represent NOT- regions for tracking, for example.",
+            "id": "REFSET",
+            "name": "REFSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REFSET]"
+        },
+        {
+            "command-line-flag": "-volthr",
+            "description": "nteger number representing minimum size a cluster of voxels must have in order to remain a GM ROI after the values have been thresholded.  Number might be estimated with 3dAlphaSim, or otherwise, to reduce number of `noisy' clusters.",
+            "id": "VOLTHR",
+            "name": "VOLTHR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VOLTHR]"
+        },
+        {
+            "command-line-flag": "-only_some_top",
+            "description": "fter '-volthr' but before any ref-matching or inflating, one can restrict each found region to keep only N voxels with the highest inset values. (If an ROI has <N voxels, then all would be kept.) This option can result in unconnected pieces.",
+            "id": "ONLY_SOME_TOP",
+            "name": "ONLY_SOME_TOP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ONLY_SOME_TOP]"
+        },
+        {
+            "command-line-flag": "-only_conn_top",
+            "description": "imilar-ish to preceding option, but instead of just selecting only N max voxels, do the following algorithm: start the ROI with the peak voxel; search the ROI's neighbors for the highest value; add that voxel to the ROI; continue until either the ROI has reached N voxels or whole region has been  added. The returned ROI is contiguous and 'locally' maximal but not necessarily globally so within the original volume.",
+            "id": "ONLY_CONN_TOP",
+            "name": "ONLY_CONN_TOP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ONLY_CONN_TOP]"
+        },
+        {
+            "command-line-flag": "-inflate",
+            "description": "umber of voxels which with to pad each found ROI in order to turn GM ROIs into inflated (GMI) ROIs. ROIs won't overlap with each other, and a WM skeleton can also be input to keep ROIs from expanding through a large amount of WM ~artificially (see below).",
+            "id": "INFLATE",
+            "name": "INFLATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFLATE]"
+        },
+        {
+            "command-line-flag": "-trim_off_wm",
+            "description": "witch to trim the INSET to exclude voxels in WM, by excluding those which overlap an input WM skeleton, SKEL (see `-wm_skel', below; to trim off CSF, see separate `-csf_skel').  NB: trimming is done before volume thresholding the ROIs, so fewer ROIs might pass, or some input regions might be split apart creating a greater number of regions.",
+            "id": "TRIM_OFF_WM",
+            "name": "TRIM_OFF_WM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TRIM_OFF_WM]"
+        },
+        {
+            "command-line-flag": "-wm_skel",
+            "description": "D volume containing info of WM, as might be defined from an FA map or anatomical segmentation.  Can be to guide ROI inflation with `-skel_stop'.",
+            "id": "WM_SKEL",
+            "name": "WM_SKEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WM_SKEL]"
+        },
+        {
+            "command-line-flag": "-skel_thr",
+            "description": "f the skeleton is not a mask, one can put in a threshold value for it, such as having THR=0.2 if SKEL were a FA map.",
+            "id": "SKEL_THR",
+            "name": "SKEL_THR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKEL_THR]"
+        },
+        {
+            "command-line-flag": "-skel_stop",
+            "description": "witch to stop inflation at locations which are already on WM skeleton (default: off; and need `-wm_skel' to be able to use).",
+            "id": "SKEL_STOP",
+            "name": "SKEL_STOP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKEL_STOP]"
+        },
+        {
+            "command-line-flag": "-skel_stop_strict",
+            "description": "imilar to '-skel_stop', but this also does not allow any inflation *into* the skel-region.  The '-skel_stop' let's the inflation go one layer *into* the skel-region, so this is stricter. This option might be my preference these days.",
+            "id": "SKEL_STOP_STRICT",
+            "name": "SKEL_STOP_STRICT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKEL_STOP_STRICT]"
+        },
+        {
+            "command-line-flag": "-csf_skel",
+            "description": "imilar to SKEL, a 3D volume containing info of CSF. NB: however, with CSF_SK, info must just be a binary mask already, and it will only be applied in trimming procedure (no affect on inflation); if input, INSET is automatically trimmed of CSF, independent of using `-trim_off_wm'.  Again, trimming done before volume thresholding, so may decrease/separate regions (though, that may be useful/more physiological).",
+            "id": "CSF_SKEL",
+            "name": "CSF_SKEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CSF_SKEL]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "an include a mask within which to apply threshold. Otherwise, data should be masked already. Guess this would be useful if the MINTHR were a negative value. It's also useful to ensure that the output *_GMI* ROI masks stay within the brain-- this probably won't often matter too much. For an N-brick inset, one can input an N- or 1-brick mask.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-neigh_face_only",
+            "description": "**DEPRECATED SWITCH** -> it's now default behavior to have facewise-only neighbors, in order to be consistent with the default usage of the clusterize function in the AFNI window.",
+            "id": "NEIGH_FACE_ONLY",
+            "name": "NEIGH_FACE_ONLY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEIGH_FACE_ONLY]"
+        },
+        {
+            "command-line-flag": "-neigh_face_edge",
+            "description": "an loosen the definition of neighbors, so that voxels can share a face or an edge in order to be grouped into same ROI (AFNI default is that neighbors share at least one edge).",
+            "id": "NEIGH_FACE_EDGE",
+            "name": "NEIGH_FACE_EDGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEIGH_FACE_EDGE]"
+        },
+        {
+            "command-line-flag": "-neigh_upto_vert",
+            "description": "an loosen the definition of neighbors, so that voxels can be grouped into the same ROI if they share at least one vertex (see above for default).",
+            "id": "NEIGH_UPTO_VERT",
+            "name": "NEIGH_UPTO_VERT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEIGH_UPTO_VERT]"
+        },
+        {
+            "command-line-flag": "-nifti",
+            "description": "witch to output *.nii.gz GM and GMI files (default format is BRIK/HEAD).",
+            "id": "NIFTI",
+            "name": "NIFTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NIFTI]"
+        },
+        {
+            "command-line-flag": "-preinfl_inset",
+            "description": "s a possible use, one might want to start with a WM ROI, inflate it to find the nearest GM, then expand that GM, and subtract away the WM+CSF parts. Requires use of a '-wm_skel' and '-skel_stop', and replaces using '-inset'. The size of initial expansion through WM is entered using the option below; then WM+CSF is subtracted. The *_GM+orig* set is returned. In the *_GMI+orig* set, the number of voxels expanded in GM is set using the '-inflate' value (WM+CSF is subtracted again before output).",
+            "id": "PREINFL_INSET",
+            "name": "PREINFL_INSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREINFL_INSET]"
+        },
+        {
+            "command-line-flag": "-preinfl_inflate",
+            "description": "umber of voxels for initial inflation of PSET.",
+            "id": "PREINFL_INFLATE",
+            "name": "PREINFL_INFLATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREINFL_INFLATE]"
+        },
+        {
+            "command-line-flag": "-dump_no_labtab",
+            "description": "witch for turning off labeltable attachment to the output GM and GMI files (from either from a '-refset REFSET' or from automatic generation from integer labels. * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  + EXAMPLE: 3dROIMaker                     \\ -inset CORR_VALUES+orig.    \\ -thresh 0.6                 \\ -prefix ROI_MAP             \\ -volthr 100                 \\ -inflate 2                  \\ -wm_skel WM_T1+orig.        \\ -skel_stop_strict  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  If you use this program, please reference the introductory/description paper for the FATCAT toolbox: Taylor PA, Saad ZS (2013).  FATCAT: (An Efficient) Functional And Tractographic Connectivity Analysis Toolbox. Brain Connectivity 3(5):523-535. ____________________________________________________________________________",
+            "id": "DUMP_NO_LABTAB",
+            "name": "DUMP_NO_LABTAB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DUMP_NO_LABTAB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

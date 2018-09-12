@@ -1,0 +1,465 @@
+{
+    "command-line": "@chauffeur_afni [HELP] [VER] [ULAY] [OLAY] [MODE_4D] [OLAY_OFF] [PREFIX] [ULAY_RANGE] [ULAY_RANGE_NZ] [GLOBALRANGE] [FUNC_RANGE] [FUNC_RANGE_PERC_NZ] [FUNC_RANGE_PERC] [FUNC_RESAM] [THR_OLAY] [THRFLAG] [THR_OLAY_P2STAT] [THR_OLAY_PSIDE] [CBAR] [PBAR_POSONLY] [CBAR_NCOLORS] [CBAR_TOPVAL] [OPACITY] [BLOWUP] [SET_XHAIRS] [DELTA_SLICES] [SET_SUBBRICKS] [SAVE_FTYPE] [SET_IJK] [SET_DICOM_XYZ] [MONTX] [MONTY] [ALPHA_PAR] [ALPHA_FLOOR] [ALPHA_EDGIZE_NO] [IMAGE_ZOOM_NN_NO] [CROP_AXI_X] [CROP_AXI_Y] [CROP_SAG_X] [CROP_SAG_Y] [CROP_COR_X] [CROP_COR_Y] [ZEROCOLOR] [LABEL_MODE] [LABEL_SIZE] [LABEL_COLOR] [LABEL_SETBACK] [LABEL_STRING] [IMAGE_LABEL_IJK] [DO_CLEAN]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "-help, -h          :see helpfile (here!)",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "ee version number",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-ulay",
+            "description": "ame of underlay dset (required); can be 3D or 4D set, depending on the circumstances.  For 4D, though, strongly consider using \"@djunct_4d_imager\".",
+            "id": "ULAY",
+            "name": "ULAY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ULAY]"
+        },
+        {
+            "command-line-flag": "-olay",
+            "description": "ame of overlay dset (opt).",
+            "id": "OLAY",
+            "name": "OLAY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OLAY]"
+        },
+        {
+            "command-line-flag": "-mode_4D",
+            "description": "or each viewing plane (sag, cor, axi) one slice is selected across all volumes in a 4D data set (e.g., using one of the \"-set_* ..\" opts, below). A montage of those slices is made for any ulay UUU and olay OOO selected.  Note that with this option: + the user cannot thresold by statistic with the \"-thr_olay_p2stat ..\" opt (-> because different stats in a volume might have different conversions) + when using this opt, at least on of UUU and OOO *must* have >1 volumes. + if one of the ulay/olay volumes has only one brick, it will be viewed in the same way across the entire montage (i.e., as if it were a constant volume throughout 'time').",
+            "id": "MODE_4D",
+            "name": "MODE_4D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODE_4D]"
+        },
+        {
+            "command-line-flag": "-olay_off",
+            "description": "xplicitly state you are not using olay (opt); if not used and no olay is given, then the user just gets prompted to be sure they haven't forgotten the olay dset.",
+            "id": "OLAY_OFF",
+            "name": "OLAY_OFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OLAY_OFF]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "refix for output files (required).",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-ulay_range",
+            "description": "pecify min and max range values of ulay dset; if a \"%\" is on both numbers, then treat the numerical part of UMIN and UMAX as percentiles from which to calculate actual values; otherwise, treat UMIN and UMAX as values directly. (def: UMIN=0% and UMAX=98%). (See DR: SET_ULAY_RANGE) Also, see \"Special Ulay Range\" and \"Combining %ile values...\" in NOTES, below.",
+            "id": "ULAY_RANGE",
+            "name": "ULAY_RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ULAY_RANGE]"
+        },
+        {
+            "command-line-flag": "-ulay_range_nz",
+            "description": "-ulay_range_nz UMIN UMAX :same as the preceding opt, but when \"%\" is on both numbers, here the percentiles are only calculated over the *non-zero* voxels.  The above one is more in line with the AFNI GUI default behavior for percentile calcs (though GUI by default works slicewise). If %ile values are not given, then both this and the above option produce identical results for the same UMIN and UMAX values.  (See DR: SET_ULAY_RANGE) \"Special Ulay Range\" and \"Combining %ile values...\" in NOTES, below.",
+            "id": "ULAY_RANGE_NZ",
+            "name": "ULAY_RANGE_NZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ULAY_RANGE_NZ]"
+        },
+        {
+            "command-line-flag": "-globalrange",
+            "description": "pecify how lookup range for matching ulay values is done (def: VOLUME); (see ENV: AFNI_IMAGE_GLOBALRANGE) Ignored if '-ulay_range* ..' is set. Note for '-mode_4D': this setting applies to the resliced volume (i.e., the one made of one slice of each subbrick).  See \"Combining %ile values...\" in NOTES, below.",
+            "id": "GLOBALRANGE",
+            "name": "GLOBALRANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GLOBALRANGE]"
+        },
+        {
+            "command-line-flag": "-func_range",
+            "description": "pecify upper value FR of the olay dset to be matched to top of colorbar (def: calc 98%ile non-zero value of dset and use that).",
+            "id": "FUNC_RANGE",
+            "name": "FUNC_RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FUNC_RANGE]"
+        },
+        {
+            "command-line-flag": "-func_range_perc_nz",
+            "description": "-func_range_perc_nz FRP :alternative to \"-func_range ...\"; specify a percentile value FRP to use to make the upper value of the olay dset to be matched to the top of the colorbar (def: calc 98%ile non-zero value of dset and use that).  NB: this percentile range is always among *non-zero* voxel values with this option; see below.",
+            "id": "FUNC_RANGE_PERC_NZ",
+            "name": "FUNC_RANGE_PERC_NZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FUNC_RANGE_PERC_NZ]"
+        },
+        {
+            "command-line-flag": "-func_range_perc",
+            "description": "ame as above option, but this is a percentile among *all* voxel values, not just those with non-zero values.",
+            "id": "FUNC_RANGE_PERC",
+            "name": "FUNC_RANGE_PERC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FUNC_RANGE_PERC]"
+        },
+        {
+            "command-line-flag": "-func_resam",
+            "description": "et the resampling mode for dsets; valid values are:   NN  Li  Cu  Bk (def: NN; hey, voxels are voxels!). (See DR: SET_FUNC_RESAM)",
+            "id": "FUNC_RESAM",
+            "name": "FUNC_RESAM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FUNC_RESAM]"
+        },
+        {
+            "command-line-flag": "-thr_olay",
+            "description": "hreshold the olay dset at THR (def: 0, or unthreshold). If you are thresholding a statistic brick, then you should see the \"-thr_olay_p2stat ...\" option, below. (See DR: SET_THRESHNEW)",
+            "id": "THR_OLAY",
+            "name": "THR_OLAY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THR_OLAY]"
+        },
+        {
+            "command-line-flag": "-thrflag",
+            "description": "-thrflag   'fff'   :further control of how the THR value is interpreted (def: \"*\"). (See DR: SET_THRESHNEW)",
+            "id": "THRFLAG",
+            "name": "THRFLAG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THRFLAG]"
+        },
+        {
+            "command-line-flag": "-thr_olay_p2stat",
+            "description": "n alternative way to specify a voxelwise threshold (i.e., instead of \"-thr_olay ...\"), when thresholding based on a statistic; you can specify the p-value you want, and using internal header information, the appropriate value for whatever statistic is in the statistic brick will be calculated and applied; you likely need to use \"-set_subbricks i j k\" with this, where 'k' would be the index of the statistic brick (and likely 'j' would be the index of the associated coefficient/beta brick; 'i' would be the brick of the underlay volume, and if there is only a single volume there, it could just be either '0' or '-1'). And see next option '-thr_olay_pside', below.",
+            "id": "THR_OLAY_P2STAT",
+            "name": "THR_OLAY_P2STAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THR_OLAY_P2STAT]"
+        },
+        {
+            "command-line-flag": "-thr_olay_pside",
+            "description": "required if using '-thr_olay_p2stat ..') specify the sidedness of the testing for the conversion of p-to-stat.  Valid values for SS at present include: bisided 2sided 1sided",
+            "id": "THR_OLAY_PSIDE",
+            "name": "THR_OLAY_PSIDE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THR_OLAY_PSIDE]"
+        },
+        {
+            "command-line-flag": "-cbar",
+            "description": "pecify a new colorbar, where CCC can be any of the cbars in the standard AFNI list (def: Plasma).",
+            "id": "CBAR",
+            "name": "CBAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CBAR]"
+        },
+        {
+            "command-line-flag": "-pbar_posonly",
+            "description": "or color range specification, default is to use both positive and negative values; enter this flag to use only the positive range. (See DR: SET_PBAR_ALL)",
+            "id": "PBAR_POSONLY",
+            "name": "PBAR_POSONLY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PBAR_POSONLY]"
+        },
+        {
+            "command-line-flag": "-cbar_ncolors",
+            "description": "et colorscale mode (def: 99) (See DR: SET_PBAR_ALL, the 2nd usage case, description about '99').",
+            "id": "CBAR_NCOLORS",
+            "name": "CBAR_NCOLORS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CBAR_NCOLORS]"
+        },
+        {
+            "command-line-flag": "-cbar_topval",
+            "description": "et colorscale mode (def: 1) (See DR: SET_PBAR_ALL, the 2nd usage case, description about 'topval').",
+            "id": "CBAR_TOPVAL",
+            "name": "CBAR_TOPVAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CBAR_TOPVAL]"
+        },
+        {
+            "command-line-flag": "-opacity",
+            "description": "nter an \"opacity factor\" for the olay, where OO is an integer in the interval [0, 9], with the 9 being opaque (see DR).",
+            "id": "OPACITY",
+            "name": "OPACITY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OPACITY]"
+        },
+        {
+            "command-line-flag": "-blowup",
+            "description": "nter a \"blowup factor\", where BB is an integer in the interval [1, 8].  Increases spatial resolution in the output by a factor of BB (see DR; def: 2).",
+            "id": "BLOWUP",
+            "name": "BLOWUP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLOWUP]"
+        },
+        {
+            "command-line-flag": "-set_xhairs",
+            "description": "pecify type and/or existence of crosshairs in the image (see DR: SET_XHAIRS).",
+            "id": "SET_XHAIRS",
+            "name": "SET_XHAIRS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET_XHAIRS]"
+        },
+        {
+            "command-line-flag": "-delta_slices",
+            "description": "hen montaging, (DS, DC, DA) is the integer number of slices to use as spacing between views along the (sag, cor, axi) axes, respectively (def: automatically calculate to ~evenly fit the number of selected montage slices along this axis).  (See DR: \"mont=PxQ:R\"; basically, each D? is the 'R' value along the given axis).  Users can specify a delta_slice value along *some* axis and leave other(s) to be chosen automatically, by specifying a D? value >0 for their own value, and given any other D? value -1.  For example: -delta_slices 40 -1 -1 would specify every 40th slice along the sag axis, while the cor and axi spacing would be automatically calculated.",
+            "id": "DELTA_SLICES",
+            "name": "DELTA_SLICES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DELTA_SLICES]"
+        },
+        {
+            "command-line-flag": "-set_subbricks",
+            "description": "or 3D image viewing, specify subbricks being viewed in the ulay, olay and threshold dsets (def: \"-1 -1 -1\", which means ignore these values). This is the way to specify different overlay and threshold subbricks for displaying, such as using the \"beta\" or \"coefficient\" for color and the \"statistic\" as the threshold level.  (See DR: SET_SUBBRICKS)",
+            "id": "SET_SUBBRICKS",
+            "name": "SET_SUBBRICKS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET_SUBBRICKS]"
+        },
+        {
+            "command-line-flag": "-save_ftype",
+            "description": "ype of file as which to save images; key types are listed in the Driver description (def: PNG) (See DR: SAVE_ALLJPEG, SAVE_ALLPNG, SAVE_MPEG, SAVE_AGIF, SAVE_JPEG, SAVE_PNG; for which the user would enter just the non-\"SAVE_\" part, just as \"PNG\", \"MPEG\", etc.)",
+            "id": "SAVE_FTYPE",
+            "name": "SAVE_FTYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_FTYPE]"
+        },
+        {
+            "command-line-flag": "-set_ijk",
+            "description": "et the controller coordinates to the given triple, which are integer index selectors along the three spatial axes.  This essentially specifies the middle image in the montage (def: for each coordinate, choose middle slice along axis).",
+            "id": "SET_IJK",
+            "name": "SET_IJK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET_IJK]"
+        },
+        {
+            "command-line-flag": "-set_dicom_xyz",
+            "description": "et the controller coordinates to the given triple, which are the (x, y, z) coordinates in AFNI's favorite RAI DICOM notation.  (def: for each coordinate, choose middle slice along axis).",
+            "id": "SET_DICOM_XYZ",
+            "name": "SET_DICOM_XYZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET_DICOM_XYZ]"
+        },
+        {
+            "command-line-flag": "-montx",
+            "description": "n creating montage, the number of image panels in a row, i.e., the number of columns (def: 3); the total number of panels per axis is: MX*MY (see below \"-monty ...\").  (See DR: \"mont=PxQ:R\"; basically, MX is the 'P' value).",
+            "id": "MONTX",
+            "name": "MONTX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MONTX]"
+        },
+        {
+            "command-line-flag": "-monty",
+            "description": "n creating montage, the number of image panels in a column, i.e., the number of rows (def: 3); the total number of panels per axis is: MX*MY (see above \"-montx ...\").  (See DR: \"mont=PxQ:R\"; basically, MY is the 'Q' value).",
+            "id": "MONTY",
+            "name": "MONTY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MONTY]"
+        },
+        {
+            "command-line-flag": "-alpha_par",
+            "description": "n addition to representing olay values as colors with a threshold, one also apply opacity information to 'soften' the effect of thresholding; see DR: SET_FUNC_ALPHA for a description of this behavior (def: \"Off\", which is just standard thresholding stuff).",
+            "id": "ALPHA_PAR",
+            "name": "ALPHA_PAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALPHA_PAR]"
+        },
+        {
+            "command-line-flag": "-alpha_floor",
+            "description": "econd parameter for more complicated olay thresholding behavior.  Too complicated for simple me to explain-- see DR: SET_FUNC_ALPHA (def: \"\"; this empty string means use default value, which at time of writing is 0)",
+            "id": "ALPHA_FLOOR",
+            "name": "ALPHA_FLOOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALPHA_FLOOR]"
+        },
+        {
+            "command-line-flag": "-alpha_edgize_no",
+            "description": "ven *more* control over fancy alpha-based thresholding; for this, see ENV: AFNI_EDGIZE_OVERLAY, whose default value is \"YES\". Using this option changes that value to 'NO' internally.",
+            "id": "ALPHA_EDGIZE_NO",
+            "name": "ALPHA_EDGIZE_NO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALPHA_EDGIZE_NO]"
+        },
+        {
+            "command-line-flag": "-image_zoom_nn_no",
+            "description": "he default zoom is set to NN mode, so no smoothing occurs (see ENV: AFNI_IMAGE_ZOOM_NN).  This option changes behavior internally to set this variable to have the value \"NO\".",
+            "id": "IMAGE_ZOOM_NN_NO",
+            "name": "IMAGE_ZOOM_NN_NO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IMAGE_ZOOM_NN_NO]"
+        },
+        {
+            "command-line-flag": "-crop_axi_x",
+            "description": "-crop_axi_x CAX1 CAX2,",
+            "id": "CROP_AXI_X",
+            "name": "CROP_AXI_X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CROP_AXI_X]"
+        },
+        {
+            "command-line-flag": "-crop_axi_y",
+            "description": "rop axial image(s) to be between voxels CAX1 and CAX2 along the x-axis (inclusive) and CAY1 and CAY2 along the y-axis. These values are integer row and column numbers. (See DR: \"crop=x1:x2,y1:y2\"; CAX1 is x1, etc.; def: no cropping -- CAX1=0, CAX2=0, etc.)",
+            "id": "CROP_AXI_Y",
+            "name": "CROP_AXI_Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CROP_AXI_Y]"
+        },
+        {
+            "command-line-flag": "-crop_sag_x",
+            "description": "-crop_sag_x CSX1 CSX2,",
+            "id": "CROP_SAG_X",
+            "name": "CROP_SAG_X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CROP_SAG_X]"
+        },
+        {
+            "command-line-flag": "-crop_sag_y",
+            "description": "ame as other '-crop_*' above, but for sagittal images.",
+            "id": "CROP_SAG_Y",
+            "name": "CROP_SAG_Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CROP_SAG_Y]"
+        },
+        {
+            "command-line-flag": "-crop_cor_x",
+            "description": "-crop_cor_x CCX1 CCX2,",
+            "id": "CROP_COR_X",
+            "name": "CROP_COR_X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CROP_COR_X]"
+        },
+        {
+            "command-line-flag": "-crop_cor_y",
+            "description": "ame as other '-crop_*' above, but for coronal images.",
+            "id": "CROP_COR_Y",
+            "name": "CROP_COR_Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CROP_COR_Y]"
+        },
+        {
+            "command-line-flag": "-zerocolor",
+            "description": "hange the default 'background' ulay color of zero values (def: \"Black\"); ZC can be set to any allowed AFNI value (see ENV: AFNI_IMAGE_ZEROCOLOR).  This option is mainly for G. Chen, who flaunts convention whenever possible.",
+            "id": "ZEROCOLOR",
+            "name": "ZEROCOLOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZEROCOLOR]"
+        },
+        {
+            "command-line-flag": "-label_mode",
+            "description": "ontrol labels, ON/OFF and location (def: 1); (see ENV: AFNI_IMAGE_LABEL_MODE)",
+            "id": "LABEL_MODE",
+            "name": "LABEL_MODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABEL_MODE]"
+        },
+        {
+            "command-line-flag": "-label_size",
+            "description": "ontrol labels, size (def: 3); (see ENV: AFNI_IMAGE_LABEL_SIZE)",
+            "id": "LABEL_SIZE",
+            "name": "LABEL_SIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABEL_SIZE]"
+        },
+        {
+            "command-line-flag": "-label_color",
+            "description": "ontrol labels, color (def: white); (see ENV: AFNI_IMAGE_LABEL_COLOR)",
+            "id": "LABEL_COLOR",
+            "name": "LABEL_COLOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABEL_COLOR]"
+        },
+        {
+            "command-line-flag": "-label_setback",
+            "description": "ontrol labels, offset from edge (def: 0.01); (see ENV: AFNI_IMAGE_LABEL_SETBACK)",
+            "id": "LABEL_SETBACK",
+            "name": "LABEL_SETBACK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABEL_SETBACK]"
+        },
+        {
+            "command-line-flag": "-label_string",
+            "description": "ontrol labels, string automatically appended to the slice (def: \"\"); (see ENV: AFNI_IMAGE_LABEL_STRING)",
+            "id": "LABEL_STRING",
+            "name": "LABEL_STRING",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABEL_STRING]"
+        },
+        {
+            "command-line-flag": "-image_label_ijk",
+            "description": "f this option is used, then the image label will be based on the slice index rather than the spatial (mm) coordinate; thanks, Bob! (see ENV: AFNI_IMAGE_LABEL_IJK)",
+            "id": "IMAGE_LABEL_IJK",
+            "name": "IMAGE_LABEL_IJK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IMAGE_LABEL_IJK]"
+        },
+        {
+            "command-line-flag": "-do_clean",
+            "description": "y default, the temporary directory of copying files and such is not removed;  using this option means that that working directory *is* removed.  # ========================================================================  NOTES ~1~  + Description of \"4D mode\" ~2~  In this case the assumption/requirement is that you have at least one 4D data set to look at; for each viewing plane, one slice is selected across time for viewing.  For each viewing plane, the slices across time are spatially concatenated to form a single, temporary 3D dset (a \"planar\" or \"slicewise\" volume), which is what is actually put into AFNI to generate images in that relevant plane.  How percentile values are calculated is discussed in the next \"NOTE\", below.  When both an overlay and underlay are used, the usual resampling rules of the AFNI GUI apply (and user can specify the resampling option with \"-func_resam ..\").  If one volume is 4D and one is 3D (e.g., for checking alignment across time), then the relevant single slice of the 3D volume is basically just repeated in a given plane.   + Combining %ile values \"-mode_4D\" for olay and/or ulay ~2~  When using a percentile to set a range in 4D mode for either ulay (e.g., \"-ulay_range* ..\") or olay (e.g., \"-func_range_perc_nz* ..\"), that percentile is calculated for each of the three \"planar\" or \"slicewise\" volumes, and then the *max* of those three numbers is applied with the colorbar.  If one of your ulay or olay in 4D mode is just a 3D volume and you want a percentile related to the whole thing, you can calculate any of those values beforehand using \"3dBrickStat -percentile ..\", and then apply those.   + Special Ulay Range ~2~  If UMAX is a percentile >100%, then what happens is this: the 98%ile value in the dset is calculated, and the result is multiplied by (UMAX/98); the ulay dataset is 'ceilinged' at the 98%ile value, and its upper range is set to UMAX/98.  The purpose of this madness?  To give a nice, controllably darkened ulay (esp. when that is an anatomical).  My suspicion is that having a darker-than-usual ulay is nice to allow the overlay colors to show up better.  I am currently of the opinion that a UMAX of around ~150-190% is a nice value (and UMIN can be set to 0%)  # ========================================================================  EXAMPLES ~1~  A) Basic vanilla: make a 3x5 montage of just a ulay; there will be 15 slices shown, evenly spaced along each axis, with some labels on the corners.  @chauffeur_afni                     \\ -ulay    MY_ULAY.nii.gz         \\ -prefix  PRETTY_PICTURE         \\ -montx 5 -monty 3               \\ -set_xhairs OFF                 \\ -label_mode 1 -label_size 3     \\ -do_clean   B) Make a 3x5 montage of an overlayed data set that has an ROI map, so we want it to be colored-by-integer.  Put the images into a pre-existing directory, SUBDIR/.  @chauffeur_afni                       \\ -ulay  MY_ULAY.nii.gz             \\ -olay  MY_OLAY.nii.gz             \\ -pbar_posonly                     \\ -cbar \"ROI_i256\"                  \\ -func_range 256                   \\ -opacity 4                        \\ -prefix   SUBDIR/PRETTY_PICTURE2  \\ -montx 5 -monty 3                 \\ -set_xhairs OFF                   \\ -label_mode 1 -label_size 3       \\ -do_clean   C) Make a 3x5 montage of an overlayed data set that shows the beta coefficients stored in brick [1] while thresholding the associated statistic stored in brick [2] at voxelwise p=0.001, overlayed on the anatomical volume.  @chauffeur_afni                       \\ -ulay  anat.nii.gz                \\ -olay  stats.nii.gz               \\ -cbar Plasma                      \\ -func_range 3                     \\ -thr_olay_p2stat 0.001            \\ -thr_olay_pside  bisided          \\ -set_subbricks -1 1 2             \\ -opacity 4                        \\ -prefix   STAT_MAP                \\ -montx 5 -monty 3                 \\ -set_xhairs OFF                   \\ -label_mode 1 -label_size 3       \\ -do_clean  # -------------------------------------------------------------------",
+            "id": "DO_CLEAN",
+            "name": "DO_CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_CLEAN]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,87 @@
+{
+    "command-line": "fat_proc_imit2w_from_t1w [INSET] [PREFIX] [MASK] [SS_BLUR_FWHM] [WORKDIR] [NO_QC_VIEW] [QC_PREFIX] [NO_CLEAN]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-inset",
+            "description": "s the full name of the input T1w volume;",
+            "id": "INSET",
+            "name": "INSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSET]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput prefix for files and snapshots (required).",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "n optional input of a pre-skullstripped T1_FILE (this can be either a mask or a skullstripped volume). This can be useful if the default skullstripping options in this script ain't getting the job done and other ones have to be done (skullstripping is probably the slowest part of this set of steps).",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-ss_blur_fwhm",
+            "description": "ptional, can add in blurring during the 3dSkullStrip part of this program, in units of mm (default FWHM: 2).",
+            "id": "SS_BLUR_FWHM",
+            "name": "SS_BLUR_FWHM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SS_BLUR_FWHM]"
+        },
+        {
+            "command-line-flag": "-workdir",
+            "description": "pecify a working directory, which can be removed; (default name = '__WORKING_imit2w_from_t1w')",
+            "id": "WORKDIR",
+            "name": "WORKDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WORKDIR]"
+        },
+        {
+            "command-line-flag": "-no_qc_view",
+            "description": "urn off the automatic creation of QC montages (which are produced by default).",
+            "id": "NO_QC_VIEW",
+            "name": "NO_QC_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_QC_VIEW]"
+        },
+        {
+            "command-line-flag": "-qc_prefix",
+            "description": "hange the prefix of the QC images (default: use the prefix of the volumes).",
+            "id": "QC_PREFIX",
+            "name": "QC_PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QC_PREFIX]"
+        },
+        {
+            "command-line-flag": "-no_clean",
+            "description": "s an optional switch to NOT remove working directory '__WORKING_imit2w_from_t1w'; (default: remove working dir).  ------------------------------------------------------------------------  OUTPUTS:  PREFIX.nii.gz         :a volume with T2w-like tissue contrast made from a T1w one; the outside of the brain has scaled skull and noise, for having a non-zero SNR estimation. PREFIX_orig.nii.gz    :a somewhat cleaned/processed version of the input T1w volume; it also has a scaled skull and noise outside the brain. PREFIX_orig_ss.nii.gz :a skull-stripped version of PREFIX_t1w.nii.gz.  PREFIX_qc* :QC images of the skull-stripped T1w volume and of the final imitation-T2w volume.  -------------------------------------------------------------------------  EXAMPLE:  fat_proc_imit2w_from_t1w   \\ -inset T1.nii.gz               \\ -prefix imit2w or  fat_proc_imit2w_from_t1w   \\ -inset T1.nii.gz               \\ -mask  mask_WB.nii.gz          \\ -prefix imit2w -no_clean  -------------------------------------------------------------------------",
+            "id": "NO_CLEAN",
+            "name": "NO_CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CLEAN]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

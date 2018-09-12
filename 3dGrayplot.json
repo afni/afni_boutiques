@@ -1,0 +1,114 @@
+{
+    "command-line": "3dGrayplot [MASK] [INPUT] [PREFIX] [DIMEN] [POLORT] [FWHM] [PVORDER] [PEELORDER] [IJKORDER] [RANGE] [PERCENT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-mask",
+            "description": "Name of mask dataset [REQUIRED] * Voxels that are 0 in mset will not be processed. * Dataset must be byte-valued (8 bits: 0..255); shorts (16 bits) are also acceptable, but only values from 1.255 will be processed. * Each distinct value from 1..255 will be processed separately, and the output image will be ordered with the mask=1 voxels on top, mask=2 voxels next, and so on down the image. * A partition (e.g., mask=3) with fewer than 9 voxels will not be processed at all. * If there is more than one partition, horizontal dashed lines will drawn between them.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "Alternative way to input dataset to process.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix ppp.png = Name for output file. * Default is Grayplot.png * If the filename ends in '.jpg', a JPEG file is output. * If the filename ends in '.pgm', a PGM file is output. * If the filename does not end in '.jpg' OR in '.png' OR in '.pgm', then '.png' will be added at the end.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-dimen",
+            "description": "Output size of image in pixels. * X = width  = time axis direction * Y = height = space dimensions * Defaults are X=1024 Y=512.",
+            "id": "DIMEN",
+            "name": "DIMEN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIMEN]"
+        },
+        {
+            "command-line-flag": "-polort",
+            "description": "Order of polynomials for detrending. * Default value is 2 (mean, slope, quadratic curve). * Use '-1' if data is already detrended and de-meaned. (e.g., is an AFNI errts.* file)",
+            "id": "POLORT",
+            "name": "POLORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POLORT]"
+        },
+        {
+            "command-line-flag": "-fwhm",
+            "description": "FWHM of blurring radius to use in the dataset before making the image. * Each partition (i.e., mask=1, mask=2, ...) is blurred independently, as in program 3dBlurInMask. * Default value is 6 mm. * '-fwhm 0' will prevent blurring (e.g., if the input dataset is already blurred). * If the dataset was NOT previously blurred, a little blurring here will help bring out larger scale features in the times series.",
+            "id": "FWHM",
+            "name": "FWHM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FWHM]"
+        },
+        {
+            "command-line-flag": "-pvorder",
+            "description": "Within each mask partition, order the voxels (top to bottom) by how well they match the two leading principal components of that partition. The result is to make the top part of each partition be made up of voxels with similar time series, and the bottom part will be more 'random looking'. * The default order of voxels is just the index order in which they appear in the dataset.",
+            "id": "PVORDER",
+            "name": "PVORDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PVORDER]"
+        },
+        {
+            "command-line-flag": "-peelorder",
+            "description": "Within each mask partition, order the voxels by how many 'peel' steps are needed to get from the partition boundary to a given voxel.",
+            "id": "PEELORDER",
+            "name": "PEELORDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PEELORDER]"
+        },
+        {
+            "command-line-flag": "-ijkorder",
+            "description": "Set the intra-partition ordering to the default, by dataset 3D index ('ijk'). In AFNI's +tlrc ordering, this ordering primarily will be from Inferior to Superior in the brain (from top to bottom in the grayplot image).",
+            "id": "IJKORDER",
+            "name": "IJKORDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IJKORDER]"
+        },
+        {
+            "command-line-flag": "-range",
+            "description": "Set the range of the data to be plotted to be 'X'. When this option is used, then: * a value of 0 will be plotted as middle-gray * a value of +X (or above) will be plotted as white * a value of -X (or below) will be plotted as black Thus, this option should be used with data that is centered around zero -- or will be so after '-polort' detrending. * For example, if you are applying this option to an afni_proc.py 'errts' (residuals) dataset, a good value of X to use is 3 or 4, since those values are in percents. * The @grayplot script uses '-range 3.89' since that is the value at which a standard normal N(0,1) deviate has a 1e-4 two-sided tail probability. (If nothing else, this sounds cool.) If you do NOT use '-range', then the data will be automatically normalized so each voxel time series has RMS value 1, and then the grayscale plot will be black-to-white being the min-to-max, where the min and max computed over the entire detrended and normalized dataset. * This default automatic normalizing and scaling makes it almost impossible to directly compare grayplots from different datasets. This difficulty is why the '-range' and '-percent' options were added [30 Jul 2018].",
+            "id": "RANGE",
+            "name": "RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANGE]"
+        },
+        {
+            "command-line-flag": "-percent",
+            "description": "Use this option on 'raw' time series datasets, to compute the mean of each voxel timeseries and then use that value to scale the values to percent differences from the mean. * NOT suitable for use with a residual 'errts' dataset! * Should be combined with '-range'. * Detrending will be applied while calculating the mean. By default, that will be quadratic detrending of each voxel time series, but that can be changed with the '-polort' option.  ** Quick hack for Cesar Caballero-Gaudes, April 2019, by @AFNIman. As such, this program may be modified in the future to be more useful, or at least more beautifully gorgeous.  ** Applied to 'raw' EPI data, the results may not be very informative. It seems to be more useful to look at the grayplot calculated from pre-processed data (e.g., time series registered, filtered, etc.).  ** See also the script @grayplot, which can process the results from afni_proc.py and produce an image with the grayplot combined with a graph of the motion magnitude, and with the GM, WM, and CSF in different partitions.",
+            "id": "PERCENT",
+            "name": "PERCENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERCENT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

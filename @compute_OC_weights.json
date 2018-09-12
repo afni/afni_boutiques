@@ -1,0 +1,132 @@
+{
+    "command-line": "@compute_OC_weights [ECHO_DSETS] [PREFIX] [SUM_WEIGHT_TOLERANCE] [ECHO_TIMES] [ECHO_TIMES_FILE] [DEF_TO_EQUAL] [OC_METHOD] [T2_STAR_LIMIT] [WORK_DIR] [VERB] [HELP] [HIST] [VER]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-echo_dsets",
+            "description": "-echo_dsets pb02*r01*volreg*.HEAD  2. specify working directory and resulting weights dataset prefix  @compute_OC_weights -echo_times_file etimes.1D \\",
+            "id": "ECHO_DSETS",
+            "name": "ECHO_DSETS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO_DSETS]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix OC.run1 -work_dir OC.work.run1  ----------------------------------------------------------------------  random babble:  The T2* map is not actually used, but rather 1/T2* (to avoid repeated division).  T2* is restricted to the range (0, T2S_LIMIT), where the default limit is 300 (see -t2_star_limit).  A \"bad\" T2* value (T2* <= 0 or T2* > T2S_LIMIT) will lead to use of the limit T2S_LIMIT, so that as R2 decreases and goes negative, the results converge.  If the sum of the weights is not almost exactly 1.0 (see the option,",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-sum_weight_tolerance",
+            "description": "-sum_weight_tolerance), the weights will also default to equal (see option -def_to_equal).  Basically, the program is designed such that either a reasonable T2* is computed and applied, or the weighting result will be 1/num_echoes.  ----------------------------------------------------------------------  required parameters:",
+            "id": "SUM_WEIGHT_TOLERANCE",
+            "name": "SUM_WEIGHT_TOLERANCE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUM_WEIGHT_TOLERANCE]"
+        },
+        {
+            "command-line-flag": "-echo_times",
+            "description": "-echo_times \"TE1 TE2 ...\" - specify echo times (use quotes to pass list as one parameter)  e.g. -echo_times \"15 30.5 41\"  Specify echo times as a list.  Use either -echo_times or -echo_times_files.",
+            "id": "ECHO_TIMES",
+            "name": "ECHO_TIMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO_TIMES]"
+        },
+        {
+            "command-line-flag": "-echo_times_file",
+            "description": "-echo_times_file FILE     - specify file with echo times (e.g. it could contain 15 30.5 41)  Specify echo times from a text file.  Use either -echo_times or -echo_times_files.",
+            "id": "ECHO_TIMES_FILE",
+            "name": "ECHO_TIMES_FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO_TIMES_FILE]"
+        },
+        {
+            "command-line-flag": "-def_to_equal",
+            "description": "-def_to_equal yes/no      - specify whether to default to equal weights (default = no)  In the case where T2* seems huge or <= 0, or if the sum of the fractional weights is not close to 1 (see -tolerance), one might want to apply default weights equal to 1/num_echoes (so echoes are weighted equally).  Without this, the weighting for such 'bad' voxels is based on the T2* limit.  See -t2_star_limit.",
+            "id": "DEF_TO_EQUAL",
+            "name": "DEF_TO_EQUAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEF_TO_EQUAL]"
+        },
+        {
+            "command-line-flag": "-oc_method",
+            "description": "-oc_method METHOD         - specify which method to employ  e.g.     -oc_method OC_B default: -oc_method OC_A  The OC_B method differs from OC_A by solving for T2* using log(mean()) to solving log() over time, with the intention of being more accurate.  methods:  OC_A      : compute T2* from log(mean(time series)) this is the original implementation  OC_B      : compute T2* from log(time series)  * So far, testing has shown almost undetectable differences, so it may be a moot point.",
+            "id": "OC_METHOD",
+            "name": "OC_METHOD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OC_METHOD]"
+        },
+        {
+            "command-line-flag": "-t2_star_limit",
+            "description": "-t2_star_limit LIMIT      - specify limit for T2* values (default = 300)  When the system of equations does not show a reasonably fast decay, the slopes will be such that T2* is huge or possibly negative.  In such cases, it is applied as the LIMIT from this option.",
+            "id": "T2_STAR_LIMIT",
+            "name": "T2_STAR_LIMIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T2_STAR_LIMIT]"
+        },
+        {
+            "command-line-flag": "-work_dir",
+            "description": "-work_dir WDIR            - specify directory to compute results in  All the processing is done in a new sub-directory.  If this program is to be applied one run at a time, it is important to specify such working directories to keep the names unique.",
+            "id": "WORK_DIR",
+            "name": "WORK_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WORK_DIR]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "-verb                     - increase verbosity of output   terminal options:",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "-help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "-hist",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "-ver  ---------------------------------------------------------------------- R Reynolds, Feb, 2016               Thanks to Javier Gonzalez-Castillo",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

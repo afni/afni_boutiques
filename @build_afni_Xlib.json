@@ -1,0 +1,84 @@
+{
+    "command-line": "@build_afni_Xlib [AFNIX] [G] [LIB32] [LIB64] [LOCALINSTALL] [DIR1] [DIR2] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-afniX",
+            "description": "install under /usr/local/afniX (default is ../install)",
+            "id": "AFNIX",
+            "name": "AFNIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFNIX]"
+        },
+        {
+            "command-line-flag": "-g",
+            "description": "compile with -g to add symbols (no longer the default)",
+            "id": "G",
+            "name": "G",
+            "optional": true,
+            "type": "String",
+            "value-key": "[G]"
+        },
+        {
+            "command-line-flag": "-lib32",
+            "description": "install libs under lib, and force 32-bit compile (on Linux: add --target=i386)",
+            "id": "LIB32",
+            "name": "LIB32",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIB32]"
+        },
+        {
+            "command-line-flag": "-lib64",
+            "description": "install libs under lib64 (default is lib)",
+            "id": "LIB64",
+            "name": "LIB64",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIB64]"
+        },
+        {
+            "command-line-flag": "-localinstall",
+            "description": "install under each package directory   examples:  @build_afni_Xlib -help  @build_afni_Xlib lesstif @build_afni_Xlib -afniX -lib64 openmotif libXt @build_afni_Xlib -lib64 -localinstall -g lesstif  note: do not install both lesstif and openmotif (of course :)  note: for compiling AFNI, set XROOT to the install dir in Makefile",
+            "id": "LOCALINSTALL",
+            "name": "LOCALINSTALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOCALINSTALL]"
+        },
+        {
+            "description": "NA",
+            "id": "dir1",
+            "name": "dir1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DIR1]"
+        },
+        {
+            "description": "NA",
+            "id": "dir2",
+            "name": "dir2",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DIR2]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

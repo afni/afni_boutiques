@@ -1,0 +1,96 @@
+{
+    "command-line": "slow_surf_clustsim.py [HELP] [HIST] [SHOW_DEFAULT_CVARS] [SHOW_DEFAULT_UVARS] [SHOW_VALID_OPTS] [VER] [PRINT_SCRIPT] [SAVE_SCRIPT] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show module history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-show_default_cvars",
+            "description": "list default control variables",
+            "id": "SHOW_DEFAULT_CVARS",
+            "name": "SHOW_DEFAULT_CVARS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_DEFAULT_CVARS]"
+        },
+        {
+            "command-line-flag": "-show_default_uvars",
+            "description": "list default user variables",
+            "id": "SHOW_DEFAULT_UVARS",
+            "name": "SHOW_DEFAULT_UVARS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_DEFAULT_UVARS]"
+        },
+        {
+            "command-line-flag": "-show_valid_opts",
+            "description": "list valid options",
+            "id": "SHOW_VALID_OPTS",
+            "name": "SHOW_VALID_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_VALID_OPTS]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show current version  other options -on_surface yes/no        : if yes, start from noise on the surface (so no volume data is involved)",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-print_script",
+            "description": "print script to terminal",
+            "id": "PRINT_SCRIPT",
+            "name": "PRINT_SCRIPT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PRINT_SCRIPT]"
+        },
+        {
+            "command-line-flag": "-save_script",
+            "description": "save script to given file -uvar value ...           : set the user variable (use -show_default_uvars to see user vars)",
+            "id": "SAVE_SCRIPT",
+            "name": "SAVE_SCRIPT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_SCRIPT]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set the verbosity level  ----------------------------------------------------------------------------- R Reynolds    June 2011 =============================================================================",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

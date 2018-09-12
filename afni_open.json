@@ -1,0 +1,267 @@
+{
+    "command-line": "afni_open [W] [E] [D] [X] [B] [R] [AW] [GLOBAL_HELP] [GOPTS_HELP] [HELP] [H] [H_VIEW] [HVIEW] [H_WEB] [HWEB] [H_FIND] [H_RAW] [H_SPX] [H_ASPX] [ALL_OPTS] [OVERWRITE] [OK_1D_TEXT] [DNAME] [VNAME] [SKIP_AFNIRC] [PAD_TO_NODE] [PIF] [ECHO_EDU]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-w",
+            "description": "Use METHOD to open FILES. Acceptable values for METHOD are: editor: Open with text editor. downloader: Fetch with wget or curl. browser: Open in browser afni: Open with AFNI suma: Open with SUMA 1dplot: Open with 1dplot ExamineXmat: Open with ExamineXmat iviewer: Open with image viewer afniweb: Get from afni website. readme: Search for appropriate README This option is in the same spirit of apsearch -view_readme option. To see a list of all readme files, run: apsearch -list_all_afni_readmes",
+            "id": "W",
+            "name": "W",
+            "optional": true,
+            "type": "String",
+            "value-key": "[W]"
+        },
+        {
+            "command-line-flag": "-e",
+            "description": "Same as -w editor",
+            "id": "E",
+            "name": "E",
+            "optional": true,
+            "type": "String",
+            "value-key": "[E]"
+        },
+        {
+            "command-line-flag": "-d",
+            "description": "Same as -w downloader",
+            "id": "D",
+            "name": "D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[D]"
+        },
+        {
+            "command-line-flag": "-x",
+            "description": "Same as -w ExamineXmat",
+            "id": "X",
+            "name": "X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[X]"
+        },
+        {
+            "command-line-flag": "-b",
+            "description": "Same as -w browser",
+            "id": "B",
+            "name": "B",
+            "optional": true,
+            "type": "String",
+            "value-key": "[B]"
+        },
+        {
+            "command-line-flag": "-r",
+            "description": "Same as -w readme",
+            "id": "R",
+            "name": "R",
+            "optional": true,
+            "type": "String",
+            "value-key": "[R]"
+        },
+        {
+            "command-line-flag": "-aw",
+            "description": "Same as -w afniweb  If no method is specifed, the program tries to guess from the filename.",
+            "id": "AW",
+            "name": "AW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AW]"
+        },
+        {
+            "command-line-flag": "-global_help",
+            "description": "Show help for global options.",
+            "id": "GLOBAL_HELP",
+            "name": "GLOBAL_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GLOBAL_HELP]"
+        },
+        {
+            "command-line-flag": "-gopts_help",
+            "description": "Show help for global options.",
+            "id": "GOPTS_HELP",
+            "name": "GOPTS_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GOPTS_HELP]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "You're looking at it.  Global Options: ===============",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "Mini help, at time, same as -help in many cases.",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open help in text editor. AFNI will try to find a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open help in web browser. AFNI will try to find a browser.",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Look for lines in this programs's -help output that match (approximately) WORD.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "command-line-flag": "-h_raw",
+            "description": "Help string unedited",
+            "id": "H_RAW",
+            "name": "H_RAW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_RAW]"
+        },
+        {
+            "command-line-flag": "-h_spx",
+            "description": "Help string in sphinx loveliness, but do not try to autoformat",
+            "id": "H_SPX",
+            "name": "H_SPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_SPX]"
+        },
+        {
+            "command-line-flag": "-h_aspx",
+            "description": "Help string in sphinx with autoformatting of options, etc.",
+            "id": "H_ASPX",
+            "name": "H_ASPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_ASPX]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "Try to identify all options for the program from the output of its -help option. Some options might be missed and others misidentified. Use this output for hints only.",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "command-line-flag": "-overwrite",
+            "description": "Overwrite existing output dataset. Equivalent to setting env. AFNI_DECONFLICT=OVERWRITE",
+            "id": "OVERWRITE",
+            "name": "OVERWRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OVERWRITE]"
+        },
+        {
+            "command-line-flag": "-ok_1D_text",
+            "description": "Zero out uncommented text in 1D file. Equivalent to setting env. AFNI_1D_ZERO_TEXT=YES",
+            "id": "OK_1D_TEXT",
+            "name": "OK_1D_TEXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OK_1D_TEXT]"
+        },
+        {
+            "command-line-flag": "-Dname",
+            "description": "al: Set environment variable 'name' to value 'val' For example: -DAFNI_1D_ZERO_TEXT=YES",
+            "id": "DNAME",
+            "name": "DNAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DNAME]"
+        },
+        {
+            "command-line-flag": "-Vname",
+            "description": "Print value of environment variable 'name' to stdout and quit. This is more reliable that the shell's env query because it would include envs set in .afnirc files and .sumarc files for SUMA programs. For example: -VAFNI_1D_ZERO_TEXT=",
+            "id": "VNAME",
+            "name": "VNAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VNAME]"
+        },
+        {
+            "command-line-flag": "-skip_afnirc",
+            "description": "Do not read the afni resource (like ~/.afnirc) file.",
+            "id": "SKIP_AFNIRC",
+            "name": "SKIP_AFNIRC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKIP_AFNIRC]"
+        },
+        {
+            "command-line-flag": "-pad_to_node",
+            "description": "Output a full dset from node 0 to MAX_NODE-1 ** Instead of directly setting NODE to an integer you can set NODE to something like: ld120 (or rd17) which sets NODE to be the maximum node index on an Icosahedron with -ld 120. See CreateIcosahedron for details. d:DSET.niml.dset which sets NODE to the maximum node found in dataset DSET.niml.dset. ** This option is for surface-based datasets only. Some programs may not heed it, so check the output if you are not sure.",
+            "id": "PAD_TO_NODE",
+            "name": "PAD_TO_NODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAD_TO_NODE]"
+        },
+        {
+            "command-line-flag": "-pif",
+            "description": "Does absolutely nothing but provide for a convenient way to tag a process and find it in the output of ps -a",
+            "id": "PIF",
+            "name": "PIF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PIF]"
+        },
+        {
+            "command-line-flag": "-echo_edu",
+            "description": "Echos the entire command line to stdout (without -echo_edu) for edification purposes   ++ Compile date = Sep  7 2018 {:}",
+            "id": "ECHO_EDU",
+            "name": "ECHO_EDU",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO_EDU]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

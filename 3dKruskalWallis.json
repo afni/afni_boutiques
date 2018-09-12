@@ -1,0 +1,42 @@
+{
+    "command-line": "3dKruskalWallis [LEVELS] [DSET] [OUT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-levels",
+            "description": "number of treatments",
+            "id": "LEVELS",
+            "name": "LEVELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LEVELS]"
+        },
+        {
+            "command-line-flag": "-dset",
+            "description": "-dset 1 filename               data set for treatment #1 . . .                           . . .",
+            "id": "DSET",
+            "name": "DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSET]"
+        },
+        {
+            "command-line-flag": "-out",
+            "description": "-out prefixnamename            Kruskal-Wallis statistics are written to file prefixname   N.B.: For this program, the user must specify 1 and only 1 sub-brick with each -dset command. That is, if an input dataset contains more than 1 sub-brick, a sub-brick selector must be used, e.g.:",
+            "id": "OUT",
+            "name": "OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

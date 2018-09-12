@@ -1,0 +1,191 @@
+{
+    "command-line": "@ScaleVolume [INPUT] [PREFIX] [MASK] [VAL_CLIP] [PERC_CLIP] [SCALE_BY_MEAN] [SCALE_BY_MEDIAN] [NORM] [FEAT_NORM] [FEAT_ZNORM] [H_WEB] [HWEB] [H_VIEW] [HVIEW] [ALL_OPTS] [H_FIND] [<-INPUT] [DSET>] [<-PREFIX] [PREFIX>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "Dset to scale",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Prefix of output",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Restrict to non-zero values of MSET Method 1: (default) Scale a volume so that its values range between V0 and V1",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-val_clip",
+            "description": "Min and Max of output dset Default V0 = 0 and V1 = 255",
+            "id": "VAL_CLIP",
+            "name": "VAL_CLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VAL_CLIP]"
+        },
+        {
+            "command-line-flag": "-perc_clip",
+            "description": "Set lowest P0 percentile to Min and highest P1 percentile to Max Default P0 = 2 and P1 = 98 Output sub-brick labels are prefixed with SV.  At the moment, Method 1 only operates on volumes with one sub-brick  Method 2:",
+            "id": "PERC_CLIP",
+            "name": "PERC_CLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERC_CLIP]"
+        },
+        {
+            "command-line-flag": "-scale_by_mean",
+            "description": "Divide each sub-brick by mean of non-zero voxels Output sub-brick labels are prefixed with mea.",
+            "id": "SCALE_BY_MEAN",
+            "name": "SCALE_BY_MEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE_BY_MEAN]"
+        },
+        {
+            "command-line-flag": "-scale_by_median",
+            "description": "Divide each sub-brick by median of non-zero voxels Output sub-brick labels are prefixed with med.  Method 3:",
+            "id": "SCALE_BY_MEDIAN",
+            "name": "SCALE_BY_MEDIAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE_BY_MEDIAN]"
+        },
+        {
+            "command-line-flag": "-norm",
+            "description": "For each time series T, Tnorm= (T-mean(T))/stdev(T) Output sub-brick labels are prefixed with tz.  Method 4:",
+            "id": "NORM",
+            "name": "NORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORM]"
+        },
+        {
+            "command-line-flag": "-feat_norm",
+            "description": "For each sub-brick B, Bnorm= (B-min(B))/(max(B)-min(B))*99+1 Output sub-brick labels are prefixed with r.  Method 5:",
+            "id": "FEAT_NORM",
+            "name": "FEAT_NORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FEAT_NORM]"
+        },
+        {
+            "command-line-flag": "-feat_znorm",
+            "description": "For each sub-brick B, Bnorm= (B-mean(B))/stdev(B) Output sub-brick labels are prefixed with z.  Global Help Options: --------------------",
+            "id": "FEAT_ZNORM",
+            "name": "FEAT_ZNORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FEAT_ZNORM]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open webpage with help for this program",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "Same as -h_web",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open -help output in a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "Same as -hview",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "List all of the options for this script",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Search for lines containing WORD in -help output. Seach is approximate.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "description": "NA",
+            "id": "<-input",
+            "name": "<-input",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-INPUT]"
+        },
+        {
+            "description": "NA",
+            "id": "DSET>",
+            "name": "DSET>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET>]"
+        },
+        {
+            "description": "NA",
+            "id": "<-prefix",
+            "name": "<-prefix",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-PREFIX]"
+        },
+        {
+            "description": "NA",
+            "id": "PREFIX>",
+            "name": "PREFIX>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[PREFIX>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,87 @@
+{
+    "command-line": "3dEigsToDT [EIG_VALS] [EIG_VECS] [PREFIX] [MASK] [FLIP_X] [FLIP_Y] [FLIP_Z] [SCALE_EIGS]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-eig_vals",
+            "description": "hould be a searchable descriptor for finding all three required eigenvalue files.  Thus, on a Linux commandline, one would expect: $ ls NAME1 to list all three eigenvalue files in descending order of magnitude. This program will also only take the first three matches (not including doubling of BRIK/HEAD files in AFNI-format).",
+            "id": "EIG_VALS",
+            "name": "EIG_VALS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EIG_VALS]"
+        },
+        {
+            "command-line-flag": "-eig_vecs",
+            "description": "hould be a searchable descriptor for finding all three required eigenvector files.  Thus, on a Linux commandline, one would expect: $ ls NAME2 to list all three eigenvector files in order matching the eigenvalue files. This program will also only take the first three matches (not including doubling of BRIK/HEAD files in AFNI-format). -> Try to make NAME1 and NAME2 as specific as possible, so that the search&load gets everything as right as possible. Also, if using the wildcard character, '*', then make sure to enclose the option value with apostrophes (see EXAMPLE, below).",
+            "id": "EIG_VECS",
+            "name": "EIG_VECS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EIG_VECS]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput file name prefix. Would suggest putting a 'DT' label in it.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "an include a mask within which to calculate uncert. Otherwise, data should be masked already.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-flip_x",
+            "description": "hange sign of first element of eigenvectors.",
+            "id": "FLIP_X",
+            "name": "FLIP_X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_X]"
+        },
+        {
+            "command-line-flag": "-flip_y",
+            "description": "hange sign of second element of eigenvectors.",
+            "id": "FLIP_Y",
+            "name": "FLIP_Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_Y]"
+        },
+        {
+            "command-line-flag": "-flip_z",
+            "description": "hange sign of third element of eigenvectors. -> Only a single flip would ever be necessary; the combination of any two flips is mathematically equivalent to the sole application of the remaining one.",
+            "id": "FLIP_Z",
+            "name": "FLIP_Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_Z]"
+        },
+        {
+            "command-line-flag": "-scale_eigs",
+            "description": "escale the eigenvalues, dividing by a number that is X>0. Could be used to reintroduce the DW scale of the original b-values, if some other program has remorselessly scaled it away.  * * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * **  + EXAMPLE: 3dEigsToDT            \\ -eig_vals 'DTI/DT_L*'   \\ -eig_vecs 'DTI/DT_V*'   \\ -prefix DTI/NEW_DT    \\ -scale_eigs 1000      \\ -flip_y  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * If you use this program, please reference the introductory/description paper for the FATCAT toolbox: Taylor PA, Saad ZS (2013). FATCAT: (An Efficient) Functional And Tractographic Connectivity Analysis Toolbox. Brain Connectivity.",
+            "id": "SCALE_EIGS",
+            "name": "SCALE_EIGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE_EIGS]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,58 @@
+{
+    "command-line": "3dnoise [BLAST] [SNR] [NL] [DATASETS] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-blast",
+            "description": "Set values at or below the cutoff to zero. In 3D+time datasets, a spatial location is set to zero only if a majority of time points fall below the cutoff; in that case all the values at that location are zeroed.",
+            "id": "BLAST",
+            "name": "BLAST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLAST]"
+        },
+        {
+            "command-line-flag": "-snr",
+            "description": "Set cutoff to 'fac' times the estimated noise level.  Default fac = 2.5.  What to use for this depends strongly on your MRI system -- I often use 5, but our true SNR is about 100 for EPI.",
+            "id": "SNR",
+            "name": "SNR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SNR]"
+        },
+        {
+            "command-line-flag": "-nl",
+            "description": "Set the noise level to 'x', skipping the estimation procedure.  Also sets fac=1.0. You can use program 3dClipLevel to get an estimate of a value for 'x'. Author -- RW Cox  ++ Compile date = Sep  7 2018 {:}",
+            "id": "NL",
+            "name": "NL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NL]"
+        },
+        {
+            "description": "NA",
+            "id": "datasets",
+            "name": "datasets",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASETS]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

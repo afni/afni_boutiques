@@ -1,0 +1,33 @@
+{
+    "command-line": "@xyz_to_ijk [INSET] [XYZ]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-inset",
+            "description": "req) volume VV whose header information sets the FOV and coordinates",
+            "id": "INSET",
+            "name": "INSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSET]"
+        },
+        {
+            "command-line-flag": "-xyz",
+            "description": "req) three coordinates (in units of the dset, like mm), that will be translated to 'i j k' values by the program.",
+            "id": "XYZ",
+            "name": "XYZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[XYZ]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

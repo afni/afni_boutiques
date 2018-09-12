@@ -1,0 +1,76 @@
+{
+    "command-line": "stimband [VERB] [MATRIX] [MIN_FREQ] [MIN_BWIDTH] [MIN_POW] [MATRIXFILE] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-verb",
+            "description": "print (to stderr) the power band for each individual stimulus column from each matrix.",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-matrix",
+            "description": "another way to read 1 or more matrix files.",
+            "id": "MATRIX",
+            "name": "MATRIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATRIX]"
+        },
+        {
+            "command-line-flag": "-min_freq",
+            "description": "set the minimum frequency output for the band to 'aa' [default value = 0.01].",
+            "id": "MIN_FREQ",
+            "name": "MIN_FREQ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN_FREQ]"
+        },
+        {
+            "command-line-flag": "-min_bwidth",
+            "description": "set the minimum bandwidth output (top frequency minus bottom frequency) to 'bb' [default = 0.03].",
+            "id": "MIN_BWIDTH",
+            "name": "MIN_BWIDTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN_BWIDTH]"
+        },
+        {
+            "command-line-flag": "-min_pow",
+            "description": "set the minimum power fraction to 'ff'% instead of the default 90%; ff must be in the range 50..99 (inclusive).  Quick Hack by RWCox, December 2015 -- Merry X and Happy New Y!",
+            "id": "MIN_POW",
+            "name": "MIN_POW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN_POW]"
+        },
+        {
+            "description": "NA",
+            "id": "matrixfile",
+            "name": "matrixfile",
+            "optional": false,
+            "type": "String",
+            "value-key": "[MATRIXFILE]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

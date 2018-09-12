@@ -1,0 +1,69 @@
+{
+    "command-line": "abids_tool.py [INPUT] [TR_MATCH] [ADD_TR] [ADD_SLICE_TIMES] [COPY] [HELP]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "-input DSET [DSET ...] At least one 3d+time dataset.  Only one of these:",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-TR_match",
+            "description": "-TR_match             Check if the TR in the json file matches the TR from input dataset header. (1 if match)",
+            "id": "TR_MATCH",
+            "name": "TR_MATCH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR_MATCH]"
+        },
+        {
+            "command-line-flag": "-add_TR",
+            "description": "-add_TR               Add the TR from the BIDS json file to the input dataset using 3drefit.",
+            "id": "ADD_TR",
+            "name": "ADD_TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ADD_TR]"
+        },
+        {
+            "command-line-flag": "-add_slice_times",
+            "description": "-add_slice_times      Add the slice times from the BIDS json file to the input dataset using 3drefit.",
+            "id": "ADD_SLICE_TIMES",
+            "name": "ADD_SLICE_TIMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ADD_SLICE_TIMES]"
+        },
+        {
+            "command-line-flag": "-copy",
+            "description": "-copy PREFIX [PREFIX ...] Copy both the NIFTI dataset(s) AND matching .json file(s) to PREFIX. Must have the same number of prefixes as datasets!  Optional arguments:",
+            "id": "COPY",
+            "name": "COPY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COPY]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "-help                 Show this help and exit.  ------------------------------------------ Justin Rajendra circa 05/2018 For Wolverine, hiya Bub... Keep on keeping on! ------------------------------------------",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

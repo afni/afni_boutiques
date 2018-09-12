@@ -1,0 +1,176 @@
+{
+    "command-line": "@align_partial_oblique [BASE] [INPUT] [SUFFIX] [KEEP_TMP] [CLEAN] [DXYZ] [DX] [DY] [DZ] [SCRIPT] [TO] [ALIGN] [A] [FULL] [COVERAGE] [T1] [WEIGHTED] [NON-OBLIQUE] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-base",
+            "description": "Reference anatomical full coverage volume.",
+            "id": "BASE",
+            "name": "BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASE]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "The name says it all.  Optional parameters:",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-suffix",
+            "description": "Output dataset name is formed by adding SUF to the prefix of the base dataset. The default suffix is _alnd_PartialCoverageObliqueT1",
+            "id": "SUFFIX",
+            "name": "SUFFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUFFIX]"
+        },
+        {
+            "command-line-flag": "-keep_tmp",
+            "description": "Keep temporary files.",
+            "id": "KEEP_TMP",
+            "name": "KEEP_TMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_TMP]"
+        },
+        {
+            "command-line-flag": "-clean",
+            "description": "Clean all temp files, likely left from -keep_tmp option then exit.",
+            "id": "CLEAN",
+            "name": "CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLEAN]"
+        },
+        {
+            "command-line-flag": "-dxyz",
+            "description": "Cubic voxel size of output DSET in TLRC space Default MM is 1. If you do not want your output voxels to be cubic Then use the -dx, -dy, -dz options below.",
+            "id": "DXYZ",
+            "name": "DXYZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DXYZ]"
+        },
+        {
+            "command-line-flag": "-dx",
+            "description": "Size of voxel in the x direction (Right-Left). Default is 1mm.",
+            "id": "DX",
+            "name": "DX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DX]"
+        },
+        {
+            "command-line-flag": "-dy",
+            "description": "Size of voxel in the y direction (Anterior-Posterior). Default is 1mm.",
+            "id": "DY",
+            "name": "DY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DY]"
+        },
+        {
+            "command-line-flag": "-dz",
+            "description": "Size of voxel in the z direction. (Inferior-Superior).Default is 1mm. Example: @align_partial_oblique -base ah_SurfVol+orig. -input ah_T1W_anat+orig.   Written by Ziad S. Saad, for Ikuko (saadz@mail.nih.gov) SSCC/NIMH/NIH/DHHS",
+            "id": "DZ",
+            "name": "DZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DZ]"
+        },
+        {
+            "description": "NA",
+            "id": "script",
+            "name": "script",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SCRIPT]"
+        },
+        {
+            "description": "NA",
+            "id": "to",
+            "name": "to",
+            "optional": false,
+            "type": "String",
+            "value-key": "[TO]"
+        },
+        {
+            "description": "NA",
+            "id": "align",
+            "name": "align",
+            "optional": false,
+            "type": "String",
+            "value-key": "[ALIGN]"
+        },
+        {
+            "description": "NA",
+            "id": "a",
+            "name": "a",
+            "optional": false,
+            "type": "String",
+            "value-key": "[A]"
+        },
+        {
+            "description": "NA",
+            "id": "full",
+            "name": "full",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FULL]"
+        },
+        {
+            "description": "NA",
+            "id": "coverage",
+            "name": "coverage",
+            "optional": false,
+            "type": "String",
+            "value-key": "[COVERAGE]"
+        },
+        {
+            "description": "NA",
+            "id": "T1",
+            "name": "T1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[T1]"
+        },
+        {
+            "description": "NA",
+            "id": "weighted",
+            "name": "weighted",
+            "optional": false,
+            "type": "String",
+            "value-key": "[WEIGHTED]"
+        },
+        {
+            "description": "NA",
+            "id": "non-oblique",
+            "name": "non-oblique",
+            "optional": false,
+            "type": "String",
+            "value-key": "[NON-OBLIQUE]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,266 @@
+{
+    "command-line": "3dBrickStat [QUICK] [SLOW] [MIN] [MAX] [MEAN] [SUM] [VAR] [STDEV] [COUNT] [VOLUME] [POSITIVE] [NEGATIVE] [ZERO] [NON-POSITIVE] [NON-NEGATIVE] [NON-ZERO] [ABSOLUTE] [NAN] [NONAN] [MASK] [MRANGE] [MVALUE] [AUTOMASK] [PERCENTILE] [MEDIAN] [VER] [HELP] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-quick",
+            "description": "get the information from the header only (default)",
+            "id": "QUICK",
+            "name": "QUICK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUICK]"
+        },
+        {
+            "command-line-flag": "-slow",
+            "description": "read the whole dataset to find the min and max values all other options except min and max imply slow",
+            "id": "SLOW",
+            "name": "SLOW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SLOW]"
+        },
+        {
+            "command-line-flag": "-min",
+            "description": "print the minimum value in dataset",
+            "id": "MIN",
+            "name": "MIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN]"
+        },
+        {
+            "command-line-flag": "-max",
+            "description": "print the maximum value in dataset (default)",
+            "id": "MAX",
+            "name": "MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX]"
+        },
+        {
+            "command-line-flag": "-mean",
+            "description": "print the mean value in dataset",
+            "id": "MEAN",
+            "name": "MEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MEAN]"
+        },
+        {
+            "command-line-flag": "-sum",
+            "description": "print the sum of values in the dataset",
+            "id": "SUM",
+            "name": "SUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUM]"
+        },
+        {
+            "command-line-flag": "-var",
+            "description": "print the variance in the dataset",
+            "id": "VAR",
+            "name": "VAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VAR]"
+        },
+        {
+            "command-line-flag": "-stdev",
+            "description": "print the standard deviation in the dataset -stdev and -var are mutually exclusive",
+            "id": "STDEV",
+            "name": "STDEV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STDEV]"
+        },
+        {
+            "command-line-flag": "-count",
+            "description": "print the number of voxels included",
+            "id": "COUNT",
+            "name": "COUNT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COUNT]"
+        },
+        {
+            "command-line-flag": "-volume",
+            "description": "print the volume of voxels included in microliters",
+            "id": "VOLUME",
+            "name": "VOLUME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VOLUME]"
+        },
+        {
+            "command-line-flag": "-positive",
+            "description": "include only positive voxel values",
+            "id": "POSITIVE",
+            "name": "POSITIVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POSITIVE]"
+        },
+        {
+            "command-line-flag": "-negative",
+            "description": "include only negative voxel values",
+            "id": "NEGATIVE",
+            "name": "NEGATIVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEGATIVE]"
+        },
+        {
+            "command-line-flag": "-zero",
+            "description": "include only zero voxel values",
+            "id": "ZERO",
+            "name": "ZERO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZERO]"
+        },
+        {
+            "command-line-flag": "-non-positive",
+            "description": "-non-positive = include only voxel values 0 or negative",
+            "id": "NON-POSITIVE",
+            "name": "NON-POSITIVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NON-POSITIVE]"
+        },
+        {
+            "command-line-flag": "-non-negative",
+            "description": "-non-negative = include only voxel values 0 or greater",
+            "id": "NON-NEGATIVE",
+            "name": "NON-NEGATIVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NON-NEGATIVE]"
+        },
+        {
+            "command-line-flag": "-non-zero",
+            "description": "-non-zero = include only voxel values not equal to 0",
+            "id": "NON-ZERO",
+            "name": "NON-ZERO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NON-ZERO]"
+        },
+        {
+            "command-line-flag": "-absolute",
+            "description": "use absolute value of voxel values for all calculations can be combined with restrictive non-positive, non-negative, etc. even if not practical. Ignored for percentile and median computations.",
+            "id": "ABSOLUTE",
+            "name": "ABSOLUTE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ABSOLUTE]"
+        },
+        {
+            "command-line-flag": "-nan",
+            "description": "include only voxel values that are finite numbers, not NaN, or inf. -nan forces -slow mode.",
+            "id": "NAN",
+            "name": "NAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NAN]"
+        },
+        {
+            "command-line-flag": "-nonan",
+            "description": "xclude voxel values that are not numbers",
+            "id": "NONAN",
+            "name": "NONAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NONAN]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "use dset as mask to include/exclude voxels",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-mrange",
+            "description": "Only accept values between MIN and MAX (inclusive) from the mask. Default it to accept all non-zero voxels.",
+            "id": "MRANGE",
+            "name": "MRANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MRANGE]"
+        },
+        {
+            "command-line-flag": "-mvalue",
+            "description": "Only accept values equal to VAL from the mask.",
+            "id": "MVALUE",
+            "name": "MVALUE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MVALUE]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "automatically compute mask for dataset Can not be combined with -mask",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-percentile",
+            "description": "-percentile p0 ps p1 write the percentile values starting at p0% and ending at p1% at a step of ps% Output is of the form p% value   p% value ... Percentile values are output first. Only one sub-brick is accepted as input with this option. Write the author if you REALLY need this option to work with multiple sub-bricks.",
+            "id": "PERCENTILE",
+            "name": "PERCENTILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERCENTILE]"
+        },
+        {
+            "command-line-flag": "-median",
+            "description": "-median a shortcut for -percentile 50 1 50",
+            "id": "MEDIAN",
+            "name": "MEDIAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MEDIAN]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "print author and version info",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "print this help screen  INPUT DATASET NAMES ------------------- This program accepts datasets that are modified on input according to the following schemes: 'r1+orig[3..5]'                                    {sub-brick selector} 'r1+orig<100..200>'                                {sub-range selector} 'r1+orig[3..5]<100..200>'                          {both selectors} '3dcalc( -a r1+orig -b r2+orig -expr 0.5*(a+b) )'  {calculation} For the gruesome details, see the output of 'afni -help'.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

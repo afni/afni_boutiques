@@ -1,0 +1,129 @@
+{
+    "command-line": "@AfniEnv [SET] [GET] [UNSET] [HELP] [H_WEB] [HWEB] [H_VIEW] [HVIEW] [ALL_OPTS] [H_FIND] [<-SET] [NAME] [VALUE>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-set",
+            "description": "Set environment variable NAME  to value VALUE",
+            "id": "SET",
+            "name": "SET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET]"
+        },
+        {
+            "command-line-flag": "-get",
+            "description": "Get the value (same as apsearch -Vname option)",
+            "id": "GET",
+            "name": "GET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GET]"
+        },
+        {
+            "command-line-flag": "-unset",
+            "description": "The opposite of -set",
+            "id": "UNSET",
+            "name": "UNSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNSET]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "this message  Note that this script only modifies the contents of your .afnirc file which is determined to be: /root/.afnirc  See also: apsearch -afni_rc_file apsearch -view_readme env  Global Help Options: --------------------",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open webpage with help for this program",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "Same as -h_web",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open -help output in a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "Same as -hview",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "List all of the options for this script",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Search for lines containing WORD in -help output. Seach is approximate.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "description": "NA",
+            "id": "<-set",
+            "name": "<-set",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-SET]"
+        },
+        {
+            "description": "NA",
+            "id": "NAME",
+            "name": "NAME",
+            "optional": false,
+            "type": "String",
+            "value-key": "[NAME]"
+        },
+        {
+            "description": "NA",
+            "id": "VALUE>",
+            "name": "VALUE>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[VALUE>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

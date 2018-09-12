@@ -1,0 +1,101 @@
+{
+    "command-line": "@Shift_Volume [RAI_SHIFT] [MNI_ANAT_TO_MNI] [MNI_TO_MNI_ANAT] [DSET] [NO_CP] [PREFIX] [<] [>] [<-DSET] [DSET>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-rai_shift",
+            "description": "Move dset by dR dA dI mm (RAI coord sys). or:",
+            "id": "RAI_SHIFT",
+            "name": "RAI_SHIFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RAI_SHIFT]"
+        },
+        {
+            "command-line-flag": "-MNI_Anat_to_MNI",
+            "description": "(same as -rai_shift-rai_shift 0 -4 -5) Moves a dataset from MNI Anatomical space to MNI space.",
+            "id": "MNI_ANAT_TO_MNI",
+            "name": "MNI_ANAT_TO_MNI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MNI_ANAT_TO_MNI]"
+        },
+        {
+            "command-line-flag": "-MNI_to_MNI_Anat",
+            "description": "(same as -rai_shift-rai_shift 0 4 5) Moves a dataset from MNI space to MNI Anatomical space. For the -MNI_* options, See Eickhoff et al. Neuroimage (25) 2005",
+            "id": "MNI_TO_MNI_ANAT",
+            "name": "MNI_TO_MNI_ANAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MNI_TO_MNI_ANAT]"
+        },
+        {
+            "command-line-flag": "-dset",
+            "description": "Typically an anatomical dset to be aligned to BASE.",
+            "id": "DSET",
+            "name": "DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSET]"
+        },
+        {
+            "command-line-flag": "-no_cp",
+            "description": "Do not create new data, shift existing ones This is a good option if you know what you are doing.",
+            "id": "NO_CP",
+            "name": "NO_CP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CP]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Prefix for output dset.  Requires 3drefit newer than Oct. 02/02.  Ziad Saad (saadz@mail.nih.gov) SSCC/NIMH/ National Institutes of Health, Bethesda Maryland",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "description": "NA",
+            "id": "<",
+            "name": "<",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<]"
+        },
+        {
+            "description": "NA",
+            "id": ">",
+            "name": ">",
+            "optional": false,
+            "type": "String",
+            "value-key": "[>]"
+        },
+        {
+            "description": "NA",
+            "id": "<-dset",
+            "name": "<-dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-DSET]"
+        },
+        {
+            "description": "NA",
+            "id": "DSET>",
+            "name": "DSET>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

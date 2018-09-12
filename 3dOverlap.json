@@ -1,0 +1,48 @@
+{
+    "command-line": "3dOverlap [SAVE] [DSET1] [DSET2] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-save",
+            "description": "Save the count of overlaps at each voxel into a dataset with prefix 'ppp' (properly thresholded, this could be used as a mask dataset). Example: 3dOverlap -save abcnum a+orig b+orig c+orig 3dmaskave -mask 'abcnum+orig<3..3>' a+orig  Also see program 3dABoverlap :)  ++ Compile date = Sep  7 2018 {:}",
+            "id": "SAVE",
+            "name": "SAVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE]"
+        },
+        {
+            "description": "NA",
+            "id": "dset1",
+            "name": "dset1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET1]"
+        },
+        {
+            "description": "NA",
+            "id": "dset2",
+            "name": "dset2",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET2]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

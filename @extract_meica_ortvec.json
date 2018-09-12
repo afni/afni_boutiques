@@ -1,0 +1,51 @@
+{
+    "command-line": "@extract_meica_ortvec [PREFIX] [MEICA_DIR] [WORK_DIR] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "name for output 1D ortvec file",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-meica_dir",
+            "description": "directory for meica files",
+            "id": "MEICA_DIR",
+            "name": "MEICA_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MEICA_DIR]"
+        },
+        {
+            "command-line-flag": "-work_dir",
+            "description": "sub-directory for work",
+            "id": "WORK_DIR",
+            "name": "WORK_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WORK_DIR]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set verbosity level   More options will be added, but this is enough to get used by afni_proc.py for now.  -------  Author: R Reynolds  May, 2018",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

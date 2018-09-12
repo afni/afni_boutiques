@@ -1,0 +1,87 @@
+{
+    "command-line": "3dmatmult [HELP] [HIST] [VER] [INPUTA] [INPUTB] [PREFIX] [DATUM] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show program history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show program version  ---------------------------------------- required command arguments:",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-inputA",
+            "description": "specify first (matrix) dataset  The slices of this dataset might be transformation matrices.",
+            "id": "INPUTA",
+            "name": "INPUTA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INPUTA]"
+        },
+        {
+            "command-line-flag": "-inputB",
+            "description": "specify second (matrix) dataset  This dataset might be any image.",
+            "id": "INPUTB",
+            "name": "INPUTB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INPUTB]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "specify output dataset prefix  This will be the name of the product (output) dataset.  ---------------------------------------- optional command arguments:",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-datum",
+            "description": "specify output data type  Valid TYPEs are 'byte', 'short' and 'float'.  The default is that of the inputB dataset.",
+            "id": "DATUM",
+            "name": "DATUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATUM]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "specify verbosity level  The default level is 1, while 0 is considered 'quiet'.  ---------------------------------------- * If you need to re-orient a 3D dataset so that the rows, columns and slices are correct for 3dmatmult, you can use the one of the programs 3daxialize or 3dresample for this purpose.  * To multiply a constant matrix into a vector at each voxel, the program 3dmatcalc is the proper tool.  ---------------------------------------------------------------------- R. Reynolds    (requested by W. Gaggl)  3dmatmult version 0.0, 29 September 2008 compiled: Sep  7 2018",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

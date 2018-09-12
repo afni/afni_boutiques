@@ -1,0 +1,311 @@
+{
+    "command-line": "3dWarpDrive [SHIFT_ONLY] [SHIFT_ROTATE] [SHIFT_ROTATE_SCALE] [AFFINE_GENERAL] [BILINEAR_GENERAL] [LINEAR] [CUBIC] [NN] [QUINTIC] [BASE] [VERB] [PREFIX] [INPUT] [SUMM] [MAXITE] [DELTA] [WEIGHT] [THRESH] [TWOPASS] [FINAL] [PARFIX] [1DFILE] [FLOAT] [COARSEROT] [1DMATRIX_SAVE] [SDU] [DSU] [USD] [SUPPER] [SLOWER] [ASHIFT] [BSHIFT] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-shift_only",
+            "description": "3 parameters (shifts)",
+            "id": "SHIFT_ONLY",
+            "name": "SHIFT_ONLY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHIFT_ONLY]"
+        },
+        {
+            "command-line-flag": "-shift_rotate",
+            "description": "6 parameters (shifts + angles)",
+            "id": "SHIFT_ROTATE",
+            "name": "SHIFT_ROTATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHIFT_ROTATE]"
+        },
+        {
+            "command-line-flag": "-shift_rotate_scale",
+            "description": "9 parameters (shifts + angles + scale factors)",
+            "id": "SHIFT_ROTATE_SCALE",
+            "name": "SHIFT_ROTATE_SCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHIFT_ROTATE_SCALE]"
+        },
+        {
+            "command-line-flag": "-affine_general",
+            "description": "12 parameters (3 shifts + 3x3 matrix)",
+            "id": "AFFINE_GENERAL",
+            "name": "AFFINE_GENERAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFFINE_GENERAL]"
+        },
+        {
+            "command-line-flag": "-bilinear_general",
+            "description": "39 parameters (3 + 3x3 + 3x3x3)  N.B.: At this time, the image intensity is NOT adjusted for the Jacobian of the transformation. N.B.: -bilinear_general is not yet implemented.  ------------- Other Options: -------------",
+            "id": "BILINEAR_GENERAL",
+            "name": "BILINEAR_GENERAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BILINEAR_GENERAL]"
+        },
+        {
+            "command-line-flag": "-linear",
+            "description": "-linear   }",
+            "id": "LINEAR",
+            "name": "LINEAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LINEAR]"
+        },
+        {
+            "command-line-flag": "-cubic",
+            "description": "= Chooses spatial interpolation method.",
+            "id": "CUBIC",
+            "name": "CUBIC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CUBIC]"
+        },
+        {
+            "command-line-flag": "-NN",
+            "description": "=   [default = linear; inaccurate but fast]",
+            "id": "NN",
+            "name": "NN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NN]"
+        },
+        {
+            "command-line-flag": "-quintic",
+            "description": "[for accuracy, try '-cubic -final quintic']",
+            "id": "QUINTIC",
+            "name": "QUINTIC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUINTIC]"
+        },
+        {
+            "command-line-flag": "-base",
+            "description": "Load dataset 'bbb' as the base to which the input dataset will be matched. [This is a mandatory option]",
+            "id": "BASE",
+            "name": "BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASE]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Print out lots of information along the way.",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Sets the prefix of the output dataset. If 'ppp' is 'NULL', no output dataset is written.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "You can put the input dataset anywhere in the command line option list by using the '-input' option, instead of always putting it last.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-summ",
+            "description": "Save summary of calculations into text file 'sss'. (N.B.: If 'sss' is '-', summary goes to stdout.)  ----------------- Technical Options: -----------------",
+            "id": "SUMM",
+            "name": "SUMM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUMM]"
+        },
+        {
+            "command-line-flag": "-maxite",
+            "description": "Allow up to 'm' iterations for convergence.",
+            "id": "MAXITE",
+            "name": "MAXITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAXITE]"
+        },
+        {
+            "command-line-flag": "-delta",
+            "description": "Distance, in voxel size, used to compute image derivatives using finite differences. [Default=1.0]",
+            "id": "DELTA",
+            "name": "DELTA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DELTA]"
+        },
+        {
+            "command-line-flag": "-weight",
+            "description": "Set the weighting applied to each voxel proportional to the brick specified here. [Default=computed by program from base]",
+            "id": "WEIGHT",
+            "name": "WEIGHT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WEIGHT]"
+        },
+        {
+            "command-line-flag": "-thresh",
+            "description": "Set the convergence parameter to be RMS 't' voxels movement between iterations.  [Default=0.03]",
+            "id": "THRESH",
+            "name": "THRESH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THRESH]"
+        },
+        {
+            "command-line-flag": "-twopass",
+            "description": "Do the parameter estimation in two passes, coarse-but-fast first, then fine-but-slow second (much like the same option in program 3dvolreg). This is useful if large-ish warping is needed to align the volumes.",
+            "id": "TWOPASS",
+            "name": "TWOPASS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TWOPASS]"
+        },
+        {
+            "command-line-flag": "-final",
+            "description": "-final 'mode' = Set the final warp to be interpolated using 'mode' instead of the spatial interpolation method used to find the warp parameters.",
+            "id": "FINAL",
+            "name": "FINAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FINAL]"
+        },
+        {
+            "command-line-flag": "-parfix",
+            "description": "Fix the n'th parameter of the warp model to the value 'v'.  More than one -parfix option can be used, to fix multiple parameters.",
+            "id": "PARFIX",
+            "name": "PARFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PARFIX]"
+        },
+        {
+            "command-line-flag": "-1Dfile",
+            "description": "Write out the warping parameters to the file named 'ename'.  Each sub-brick of the input dataset gets one line in this file.  Each parameter in the model gets one column.",
+            "id": "1DFILE",
+            "name": "1DFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1DFILE]"
+        },
+        {
+            "command-line-flag": "-float",
+            "description": "Write output dataset in float format, even if input dataset is short or byte.",
+            "id": "FLOAT",
+            "name": "FLOAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLOAT]"
+        },
+        {
+            "command-line-flag": "-coarserot",
+            "description": "Initialize shift+rotation parameters by a brute force coarse search, as in the similar 3dvolreg option.",
+            "id": "COARSEROT",
+            "name": "COARSEROT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COARSEROT]"
+        },
+        {
+            "command-line-flag": "-1Dmatrix_save",
+            "description": "Save base-to-input transformation matrices in file 'ff' (1 row per sub-brick in the input dataset).  If 'ff' does NOT end in '.1D', then the program will append '.aff12.1D' to 'ff' to make the output filename. *N.B.: This matrix is the coordinate transformation from base to input DICOM coordinates.  To get the inverse matrix (input-to-base), use the cat_matvec program, as in cat_matvec fred.aff12.1D -I  ---------------------- AFFINE TRANSFORMATIONS: ---------------------- The options below control how the affine tranformations (-shift_rotate, -shift_rotate_scale, -affine_general) are structured in terms of 3x3 matrices:",
+            "id": "1DMATRIX_SAVE",
+            "name": "1DMATRIX_SAVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1DMATRIX_SAVE]"
+        },
+        {
+            "command-line-flag": "-SDU",
+            "description": "-SDU or -SUD }= Set the order of the matrix multiplication",
+            "id": "SDU",
+            "name": "SDU",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SDU]"
+        },
+        {
+            "command-line-flag": "-DSU",
+            "description": "-DSU or -DUS }= for the affine transformations:",
+            "id": "DSU",
+            "name": "DSU",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSU]"
+        },
+        {
+            "command-line-flag": "-USD",
+            "description": "-USD or -UDS }=   S = triangular shear (params #10-12) D = diagonal scaling matrix (params #7-9) U = rotation matrix (params #4-6) Default order is '-SDU', which means that the U matrix is applied first, then the D matrix, then the S matrix.",
+            "id": "USD",
+            "name": "USD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USD]"
+        },
+        {
+            "command-line-flag": "-Supper",
+            "description": "Set the S matrix to be upper or lower",
+            "id": "SUPPER",
+            "name": "SUPPER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUPPER]"
+        },
+        {
+            "command-line-flag": "-Slower",
+            "description": "triangular [Default=lower triangular]",
+            "id": "SLOWER",
+            "name": "SLOWER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SLOWER]"
+        },
+        {
+            "command-line-flag": "-ashift",
+            "description": "Apply the shift parameters (#1-3) after OR",
+            "id": "ASHIFT",
+            "name": "ASHIFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ASHIFT]"
+        },
+        {
+            "command-line-flag": "-bshift",
+            "description": "before the matrix transformation. [Default=after]  The matrices are specified in DICOM-ordered (x=-R+L,y=-A+P,z=-I+S) coordinates as:  [U] = [Rotate_y(param#6)] [Rotate_x(param#5)] [Rotate_z(param #4)] (angles are in degrees)  [D] = diag( param#7 , param#8 , param#9 )  [    1        0     0 ]        [ 1 param#10 param#11 ] [S] = [ param#10    1     0 ]   OR   [ 0    1     param#12 ] [ param#11 param#12 1 ]        [ 0    0        1     ]  For example, the default (-SDU/-ashift/-Slower) has the warp specified as [x]_warped = [S] [D] [U] [x]_in + [shift]. The shift vector comprises parameters #1, #2, and #3.  The goal of the program is to find the warp parameters such that I([x]_warped) = s * J([x]_in) as closely as possible in a weighted least squares sense, where 's' is a scaling factor (an extra, invisible, parameter), J(x) is the base image, I(x) is the input image, and the weight image is a blurred copy of J(x).  Using '-parfix', you can specify that some of these parameters are fixed.  For example, '-shift_rotate_scale' is equivalent '-affine_general -parfix 10 0 -parfix 11 0 -parfix 12 0'. Don't attempt to use the '-parfix' option unless you understand this example!  ------------------------- RWCox - November 2004 -------------------------  ++ Compile date = Sep  7 2018 {:}",
+            "id": "BSHIFT",
+            "name": "BSHIFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BSHIFT]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,77 @@
+{
+    "command-line": "1dgrayplot [INSTALL] [IGNORE] [FLIP] [SEP] [USE] [PS] [TSFILE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-install",
+            "description": "Install a new X11 colormap (for X11 PseudoColor)",
+            "id": "INSTALL",
+            "name": "INSTALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSTALL]"
+        },
+        {
+            "command-line-flag": "-ignore",
+            "description": "Skip first 'nn' rows in the input file [default = 0]",
+            "id": "IGNORE",
+            "name": "IGNORE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE]"
+        },
+        {
+            "command-line-flag": "-flip",
+            "description": "Plot x and y axes interchanged. [default: data columns plotted DOWN the screen]",
+            "id": "FLIP",
+            "name": "FLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP]"
+        },
+        {
+            "command-line-flag": "-sep",
+            "description": "Separate scales for each column.",
+            "id": "SEP",
+            "name": "SEP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SEP]"
+        },
+        {
+            "command-line-flag": "-use",
+            "description": "Plot 'mm' points [default: all of them]",
+            "id": "USE",
+            "name": "USE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USE]"
+        },
+        {
+            "command-line-flag": "-ps",
+            "description": "Don't draw plot in a window; instead, write it to stdout in PostScript format. N.B.: If you view this result in 'gv', you should turn 'anti-alias' off, and switch to landscape mode.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "PS",
+            "name": "PS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PS]"
+        },
+        {
+            "description": "NA",
+            "id": "tsfile",
+            "name": "tsfile",
+            "optional": false,
+            "type": "String",
+            "value-key": "[TSFILE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

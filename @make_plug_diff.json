@@ -1,0 +1,78 @@
+{
+    "command-line": "@make_plug_diff [COMMENTS] [LINUX] [VTK] [XM] [ASRC] [ABIN] [DIFF]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-comments",
+            "description": "output comments only",
+            "id": "COMMENTS",
+            "name": "COMMENTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COMMENTS]"
+        },
+        {
+            "command-line-flag": "-linux",
+            "description": "flag for doing linuxy things",
+            "id": "LINUX",
+            "name": "LINUX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LINUX]"
+        },
+        {
+            "command-line-flag": "-vtk",
+            "description": "Directory where vtk is installed",
+            "id": "VTK",
+            "name": "VTK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VTK]"
+        },
+        {
+            "command-line-flag": "-xm",
+            "description": "Directory where motif is installed",
+            "id": "XM",
+            "name": "XM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[XM]"
+        },
+        {
+            "command-line-flag": "-asrc",
+            "description": "Full path to AFNI's src/ directory",
+            "id": "ASRC",
+            "name": "ASRC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ASRC]"
+        },
+        {
+            "command-line-flag": "-abin",
+            "description": "Path, relative to ASRCDIR, to abin",
+            "id": "ABIN",
+            "name": "ABIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ABIN]"
+        },
+        {
+            "command-line-flag": "-diff",
+            "description": "name of directory containing diffusion code  Sample compilation on GIMLI (OSX 10.5) @make_plug_diff         -vtk /sw    -xm /sw  \\ -asrc /Users/ziad/b.AFNI.now/src \\ -abin ../abin  -diff afni-diff-plugin-0.86  Sample compilation on linux (FC 10) @make_plug_diff         -xm /usr -asrc /home/ziad/b.AFNI.now/src \\ -abin ../abin -diff afni-diff-plugin-0.86 \\ -linux",
+            "id": "DIFF",
+            "name": "DIFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIFF]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,123 @@
+{
+    "command-line": "3dGenFeatureDist [CLASSES] [OTHER] [NO_OTHER] [FEATURES] [SIG] [SAMP] [HSPEC] [PREFIX] [SHOWTHESEHISTS] [OVERWRITE] [DEBUG] [LABELTABLE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-classes",
+            "description": "-classes 'CLASS_STRING': CLASS_STRING is a semicolon delimited string of class labels. For example",
+            "id": "CLASSES",
+            "name": "CLASSES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLASSES]"
+        },
+        {
+            "command-line-flag": "-OTHER",
+            "description": "Add histograms for an 'OTHER' class that has a uniform pdf.",
+            "id": "OTHER",
+            "name": "OTHER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OTHER]"
+        },
+        {
+            "command-line-flag": "-no_OTHER",
+            "description": "Opposite of -OTHER.",
+            "id": "NO_OTHER",
+            "name": "NO_OTHER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_OTHER]"
+        },
+        {
+            "command-line-flag": "-features",
+            "description": "-features 'FEATURES_STRING': FEATURES_STRING is a semicolon delimited string of features. For example",
+            "id": "FEATURES",
+            "name": "FEATURES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FEATURES]"
+        },
+        {
+            "command-line-flag": "-sig",
+            "description": "-sig 'FEATURE_VOL1 FEATURE_VOL2 ...': Specify volumes that define the features. Each sub-brick is a feature and the sub-brick's name is used to name the feature. Multiple volumes get catenated. Each occurence of -sig option must be paired with a -samp option. Think of each pair of '-sig, -samp' options as describing data on the same voxel grid; Think from the same subject. When specifying training data from K subjects, you will end up using K pairs of '-sig, -samp'. All volumes from the kth -sig instance should have the same voxel grid as each other and as that of the kth -samp datasets.",
+            "id": "SIG",
+            "name": "SIG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SIG]"
+        },
+        {
+            "command-line-flag": "-samp",
+            "description": "-samp 'SAMPLE_VOX1 SAMPLE_VOX2 ...': Specify which voxels belong to each class of interest. Each of the volumes should contain voxel values (keys) that are defined in -labeltable. You can specify multiple volumes, they all get catenated. Any volume can contain voxels from 1 or more classes. Each occurence of -samp option must be paired with a -sig option. Think of each pair of '-sig, -samp' options as describing data on the same voxel grid; Think from the same subject. When specifying training data from K subjects, you will end up using K pairs of '-sig, -samp'. All volumes from the kth -samp instance should have the same voxel grid as each other and as that of the kth -sig datasets.",
+            "id": "SAMP",
+            "name": "SAMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAMP]"
+        },
+        {
+            "command-line-flag": "-hspec",
+            "description": "Set histogram parameters for feature FEATURE FEATURE: String label of feature MIN, MAX: Range of histogram NBINS: Number of bins Use this option to set the histogram parameters for the features for the automatic parameter selection was lousy. You can specify for multiple features by using multiple -hspec instances. The only condition is that all feature labels (FEATURE) must be part of the set named in -features.",
+            "id": "HSPEC",
+            "name": "HSPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HSPEC]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "PREF is the prefix for all output volume that are not debugging related.  default: GenFeatDist",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-ShowTheseHists",
+            "description": "Show histograms specified by HISTNAMES and quit. HISTNAMES can specify just one .niml.hist file or a bunch of them using a space, or comma separated list. List multiple names between quotes.",
+            "id": "SHOWTHESEHISTS",
+            "name": "SHOWTHESEHISTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOWTHESEHISTS]"
+        },
+        {
+            "command-line-flag": "-overwrite",
+            "description": "An option common to almost all AFNI programs. It is automatically turned on if you provide no PREF.",
+            "id": "OVERWRITE",
+            "name": "OVERWRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OVERWRITE]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "Debugging level  default: 1",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-labeltable",
+            "description": "Specify the label table  default: 1",
+            "id": "LABELTABLE",
+            "name": "LABELTABLE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABELTABLE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

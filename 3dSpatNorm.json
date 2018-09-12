@@ -1,0 +1,95 @@
+{
+    "command-line": "3dSpatNorm [PREFIX] [ORIG_SPACE] [VERB] [MONKEY] [MARMOST] [RAT] [HUMAN] [BOTTOM_CUTS] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "Write output dataset using 'ppp' for the prefix.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-orig_space",
+            "description": "Write output dataset using the same grid as dataset.",
+            "id": "ORIG_SPACE",
+            "name": "ORIG_SPACE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ORIG_SPACE]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Write out progress reports",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-monkey",
+            "description": "Monkey business",
+            "id": "MONKEY",
+            "name": "MONKEY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MONKEY]"
+        },
+        {
+            "command-line-flag": "-marmost",
+            "description": "Marmoset head",
+            "id": "MARMOST",
+            "name": "MARMOST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MARMOST]"
+        },
+        {
+            "command-line-flag": "-rat",
+            "description": "Rat head",
+            "id": "RAT",
+            "name": "RAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RAT]"
+        },
+        {
+            "command-line-flag": "-human",
+            "description": "Bone head (default)",
+            "id": "HUMAN",
+            "name": "HUMAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HUMAN]"
+        },
+        {
+            "command-line-flag": "-bottom_cuts",
+            "description": "Make approximate cuts at the bottom to shave non brain areas. CUTFLAGS is a string of characters indicating which sides to cut. An 'A' cuts along the anterior side 'P' for posterior, and 'R', 'L' for right, and left, respectively. To cut all four, use: -bottom_cuts APLR Note: -bottom_cuts only works for Human heads. -------------------------------------------------------------------- * This program is obsolete, and should not be used by most people. * --------------------------------------------------------------------  ++ Compile date = Sep  7 2018 {:}",
+            "id": "BOTTOM_CUTS",
+            "name": "BOTTOM_CUTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BOTTOM_CUTS]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

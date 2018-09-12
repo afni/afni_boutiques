@@ -1,0 +1,51 @@
+{
+    "command-line": "RSFgen [NT] [NUM_STIMTS] [NREPS] [MARKOV]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-nt",
+            "description": "length of time series",
+            "id": "NT",
+            "name": "NT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NT]"
+        },
+        {
+            "command-line-flag": "-num_stimts",
+            "description": "number of input stimuli (experimental conditions) [-nblock i k]    k = block length for stimulus i  (1<=i<=p) (default: k = 1) [-seed s]        s = random number seed [-quiet]         flag to suppress screen output [-one_file]      place stimulus functions into a single .1D file [-one_col]       write stimulus functions as a single column of decimal integers (default: multiple columns of binary nos.) [-prefix pname]  pname = prefix for p output .1D stimulus functions e.g., pname1.1D, pname2.1D, ..., pnamep.1D  The following Random Permutation, Markov Chain, and Input Table options are mutually exclusive.  Random Permutation options:",
+            "id": "NUM_STIMTS",
+            "name": "NUM_STIMTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUM_STIMTS]"
+        },
+        {
+            "command-line-flag": "-nreps",
+            "description": "number of repetitions for stimulus i  (1<=i<=p) [-pseed s]       s = stim label permutation random number seed p Note: Require n >= Sum (r[i] * k[i]) i=1  Markov Chain options:",
+            "id": "NREPS",
+            "name": "NREPS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NREPS]"
+        },
+        {
+            "command-line-flag": "-markov",
+            "description": "file containing the transition prob. matrix [-pzero z]       probability of a zero (i.e., null) state (default: z = 0)  Input Table row permutation options: [-table dfile]   dfile = filename of column or table of numbers Note: dfile may have a column selector attached Note: With this option, all other input options, except -seed and -prefix, are ignored   Warning: This program will overwrite pre-existing .1D files",
+            "id": "MARKOV",
+            "name": "MARKOV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MARKOV]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

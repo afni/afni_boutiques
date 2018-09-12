@@ -1,0 +1,39 @@
+{
+    "command-line": "@AfniOrient2RAImap [<ORIENTATION] [CODE>] [.....]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "<Orientation",
+            "name": "<Orientation",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<ORIENTATION]"
+        },
+        {
+            "description": "NA",
+            "id": "code>",
+            "name": "code>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[CODE>]"
+        },
+        {
+            "description": "NA",
+            "id": ".....",
+            "name": ".....",
+            "optional": false,
+            "type": "String",
+            "value-key": "[.....]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,86 @@
+{
+    "command-line": "3dETC [INPUT] [PREFIX] [THRESH] [MASK] [1DINDEX] [1TINDEX] [NN] [INPUTDATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "alternative way to input the dataset",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "output prefix",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-thresh",
+            "description": "1D file with column #1 = p-value column #2 = cluster threshold",
+            "id": "THRESH",
+            "name": "THRESH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THRESH]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "dataset with mask",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-1dindex",
+            "description": "output comes from sub-brick #ii",
+            "id": "1DINDEX",
+            "name": "1DINDEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1DINDEX]"
+        },
+        {
+            "command-line-flag": "-1tindex",
+            "description": "threshold on sub-brick #jj",
+            "id": "1TINDEX",
+            "name": "1TINDEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1TINDEX]"
+        },
+        {
+            "command-line-flag": "-NN",
+            "description": "nn is 1 or 2 or 3 [default 1]  -- Experimental - RWCox - 24 Dec 2015",
+            "id": "NN",
+            "name": "NN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NN]"
+        },
+        {
+            "description": "NA",
+            "id": "inputdataset",
+            "name": "inputdataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUTDATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

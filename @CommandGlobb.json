@@ -1,0 +1,71 @@
+{
+    "command-line": "@CommandGlobb [COMMAND] [LINE>] [DIR>] [1>] [<BRICK] [2>] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "Command",
+            "name": "Command",
+            "optional": false,
+            "type": "String",
+            "value-key": "[COMMAND]"
+        },
+        {
+            "description": "NA",
+            "id": "line>",
+            "name": "line>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[LINE>]"
+        },
+        {
+            "description": "NA",
+            "id": "Dir>",
+            "name": "Dir>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DIR>]"
+        },
+        {
+            "description": "NA",
+            "id": "1>",
+            "name": "1>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[1>]"
+        },
+        {
+            "description": "NA",
+            "id": "<Brick",
+            "name": "<Brick",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<BRICK]"
+        },
+        {
+            "description": "NA",
+            "id": "2>",
+            "name": "2>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[2>]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

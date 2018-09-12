@@ -1,0 +1,85 @@
+{
+    "command-line": "3dUpsample [1] [PREFIX] [VERB] [N] [INPUT] [DATUM] [N] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-1",
+            "description": "-1 or -one = Use linear interpolation. Otherwise, or -linear   7th order polynomial interpolation is used.",
+            "id": "1",
+            "name": "1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Define the prefix name of the output dataset. [default prefix is 'Upsam']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Be eloquently and mellifluosly verbose.",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-n",
+            "description": "An alternate way to specify n",
+            "id": "N",
+            "name": "N",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "An alternate way to specify dataset",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-datum",
+            "description": "Use datatype ddd at output. Choose from float (default), short, byte. Example: -------- 3dUpsample -prefix LongFred 5 Fred+orig  Nota Bene: ---------- * You should not use this for files that were 3dTcat-ed across imaging run boundaries, since that will result in interpolating between non-contiguous time samples! * If the input has M time points, the output will have n*M time points.  The last n-1 of them will be past the end of the original time series. * This program gobbles up memory and diskspace as a function of n. You can reduce output file size with -datum option.  --- RW Cox - April 2008  ++ Compile date = Sep  7 2018 {:}",
+            "id": "DATUM",
+            "name": "DATUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATUM]"
+        },
+        {
+            "description": "NA",
+            "id": "n",
+            "name": "n",
+            "optional": false,
+            "type": "String",
+            "value-key": "[N]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,42 @@
+{
+    "command-line": "1dGentimes [FIRST] [1PHASE] [2PHASE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-first",
+            "description": "Set first stimulus time to 'ff' seconds. [Default=0]",
+            "id": "FIRST",
+            "name": "FIRST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIRST]"
+        },
+        {
+            "command-line-flag": "-1phase",
+            "description": "Each stimulus has only 1 phase.  'gg' is the file specifying the allowable gaps between stimuli, which will be chosen randomly without replacement.  This gap file should have 1 row.",
+            "id": "1PHASE",
+            "name": "1PHASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1PHASE]"
+        },
+        {
+            "command-line-flag": "-2phase",
+            "description": "Each stimulus has 2 phases.  'gg' is the gap file.  The first row is the gap between phase #1 and phase #2.  The second row is the gap between phase #2 and the next phase #1.   ++ Compile date = Sep  7 2018 {:}",
+            "id": "2PHASE",
+            "name": "2PHASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[2PHASE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

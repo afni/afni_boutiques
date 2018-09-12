@@ -1,0 +1,58 @@
+{
+    "command-line": "3dABoverlap [NO_AUTOMASK] [QUIET] [VERB] [A] [B]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-no_automask",
+            "description": "consider input datasets as masks (automask does not work on mask datasets)",
+            "id": "NO_AUTOMASK",
+            "name": "NO_AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "be as quiet as possible (without being entirely mute)",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "print out some progress reports (to stderr)  NOTES ----- * If an input dataset is comprised of bytes and contains only one sub-brick, then this program assumes it is already an automask- generated dataset and the automask operation will be skipped.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "description": "NA",
+            "id": "A",
+            "name": "A",
+            "optional": false,
+            "type": "String",
+            "value-key": "[A]"
+        },
+        {
+            "description": "NA",
+            "id": "B",
+            "name": "B",
+            "optional": false,
+            "type": "String",
+            "value-key": "[B]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

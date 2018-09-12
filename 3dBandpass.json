@@ -1,0 +1,192 @@
+{
+    "command-line": "3dBandpass [DESPIKE] [ORT] [DSORT] [NODETREND] [DT] [NFFT] [NORM] [MASK] [AUTOMASK] [BLUR] [LOCALPV] [INPUT] [BAND] [PREFIX] [QUIET] [NOTRANS] [NOSAT] [FBOT] [FTOP] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-despike",
+            "description": "Despike each time series before other processing. ++ Hopefully, you don't actually need to do this, which is why it is optional.",
+            "id": "DESPIKE",
+            "name": "DESPIKE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DESPIKE]"
+        },
+        {
+            "command-line-flag": "-ort",
+            "description": "-ort f.1D       = Also orthogonalize input to columns in f.1D ++ Multiple '-ort' options are allowed.",
+            "id": "ORT",
+            "name": "ORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ORT]"
+        },
+        {
+            "command-line-flag": "-dsort",
+            "description": "Orthogonalize each voxel to the corresponding voxel time series in dataset 'fset', which must have the same spatial and temporal grid structure as the main input dataset. ++ At present, only one '-dsort' option is allowed.",
+            "id": "DSORT",
+            "name": "DSORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSORT]"
+        },
+        {
+            "command-line-flag": "-nodetrend",
+            "description": "Skip the quadratic detrending of the input that occurs before the FFT-based bandpassing. ++ You would only want to do this if the dataset had been detrended already in some other program.",
+            "id": "NODETREND",
+            "name": "NODETREND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NODETREND]"
+        },
+        {
+            "command-line-flag": "-dt",
+            "description": "set time step to 'dd' sec [default=from dataset header]",
+            "id": "DT",
+            "name": "DT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DT]"
+        },
+        {
+            "command-line-flag": "-nfft",
+            "description": "set the FFT length to 'N' [must be a legal value]",
+            "id": "NFFT",
+            "name": "NFFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NFFT]"
+        },
+        {
+            "command-line-flag": "-norm",
+            "description": "Make all output time series have L2 norm = 1 ++ i.e., sum of squares = 1",
+            "id": "NORM",
+            "name": "NORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORM]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Mask dataset",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "Create a mask from the input dataset",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-blur",
+            "description": "Blur (inside the mask only) with a filter width (FWHM) of 'fff' millimeters.",
+            "id": "BLUR",
+            "name": "BLUR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLUR]"
+        },
+        {
+            "command-line-flag": "-localPV",
+            "description": "Replace each vector by the local Principal Vector (AKA first singular vector) from a neighborhood of radius 'rrr' millimiters. ++ Note that the PV time series is L2 normalized. ++ This option is mostly for Bob Cox to have fun with.",
+            "id": "LOCALPV",
+            "name": "LOCALPV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOCALPV]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "Alternative way to specify input dataset.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-band",
+            "description": "Alternative way to specify passband frequencies.",
+            "id": "BAND",
+            "name": "BAND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BAND]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Set prefix name of output dataset.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "Turn off the fun and informative messages. (Why?)",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-notrans",
+            "description": "Don't check for initial positive transients in the data: *OR*             ++ The test is a little slow, so skipping it is OK,",
+            "id": "NOTRANS",
+            "name": "NOTRANS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOTRANS]"
+        },
+        {
+            "command-line-flag": "-nosat",
+            "description": "-nosat               if you KNOW the data time series are transient-free. ++ Or set AFNI_SKIP_SATCHECK to YES. ++ Initial transients won't be handled well by the bandpassing algorithm, and in addition may seriously contaminate any further processing, such as inter-voxel correlations via InstaCorr. ++ No other tests are made [yet] for non-stationary behavior in the time series data.  ========================================================================= * This binary version of 3dBandpass is compiled using OpenMP, a semi- automatic parallelizer software toolkit, which splits the work across multiple CPUs/cores on the same shared memory computer. * OpenMP is NOT like MPI -- it does not work with CPUs connected only by a network (e.g., OpenMP doesn't work with 'cluster' setups). * For implementation and compilation details, please see https://afni.nimh.nih.gov/pub/dist/doc/misc/OpenMP.html * The number of CPU threads used will default to the maximum number on your system. You can control this value by setting environment variable OMP_NUM_THREADS to some smaller value (including 1). * Un-setting OMP_NUM_THREADS resets OpenMP back to its default state of using all CPUs available. ++ However, on some systems, it seems to be necessary to set variable OMP_NUM_THREADS explicitly, or you only get one CPU. ++ On other systems with many CPUS, you probably want to limit the CPU count, since using more than (say) 16 threads is probably useless. * You must set OMP_NUM_THREADS in the shell BEFORE running the program, since OpenMP queries this variable BEFORE the program actually starts. ++ You can't usefully set this variable in your ~/.afnirc file or on the command line with the '-D' option. * How many threads are useful? That varies with the program, and how well it was coded. You'll have to experiment on your own systems! * The number of CPUs on this particular computer system is ...... 4. * The maximum number of CPUs that will be used is now set to .... 4. * At present, the only part of 3dBandpass that is parallelized is the '-blur' option, which processes each sub-brick independently. =========================================================================  ++ Compile date = Sep  7 2018 {:}",
+            "id": "NOSAT",
+            "name": "NOSAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOSAT]"
+        },
+        {
+            "description": "NA",
+            "id": "fbot",
+            "name": "fbot",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FBOT]"
+        },
+        {
+            "description": "NA",
+            "id": "ftop",
+            "name": "ftop",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FTOP]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

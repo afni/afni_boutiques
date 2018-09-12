@@ -1,0 +1,220 @@
+{
+    "command-line": "fim2 [PCNT] [PCTHRESH] [IM1] [NUM] [NON] [COEF] [ORT] [IDEAL] [POLREF] [FIMFILE] [CORR] [CORFILE] [CNRFILE] [SIGFILE] [FITFILE] [SUBORT] [FLIM] [CLEAN] [CLIP] [Q] [REGBASE] [IMAGE_FILES] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-pcnt",
+            "description": "-pcnt #         correlation coeff. threshold will be 1 - 0.01 * #",
+            "id": "PCNT",
+            "name": "PCNT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PCNT]"
+        },
+        {
+            "command-line-flag": "-pcthresh",
+            "description": "-pcthresh #     correlation coeff. threshold will be #",
+            "id": "PCTHRESH",
+            "name": "PCTHRESH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PCTHRESH]"
+        },
+        {
+            "command-line-flag": "-im1",
+            "description": "-im1 #          index of image file to use as first in time series; default is 1; previous images are filled with this image to synchronize with the reference time series",
+            "id": "IM1",
+            "name": "IM1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IM1]"
+        },
+        {
+            "command-line-flag": "-num",
+            "description": "-num #          number of images to actually use, if more than this many are specified on the command line;  default is to use all images",
+            "id": "NUM",
+            "name": "NUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUM]"
+        },
+        {
+            "command-line-flag": "-non",
+            "description": "-non            this option turns off the default normalization of the output activation image;  the user should provide a scaling factor via '-coef #', or '1' will be used",
+            "id": "NON",
+            "name": "NON",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NON]"
+        },
+        {
+            "command-line-flag": "-coef",
+            "description": "-coef #         the scaling factor used to convert the activation output from floats to short ints (if -non is also present)",
+            "id": "COEF",
+            "name": "COEF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COEF]"
+        },
+        {
+            "command-line-flag": "-ort",
+            "description": "filename of a time series to which the image data will be orthogonalized before correlations are computed; any number of -ort options (from 0 on up) may be used",
+            "id": "ORT",
+            "name": "ORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ORT]"
+        },
+        {
+            "command-line-flag": "-ideal",
+            "description": "filename of a time series to which the image data is to be correlated; exactly one such time series is required;  if the -ideal option is not used, then the first filename after all the options will be used N.B.: This version of fim2 allows the specification of more than one ideal time series file.  Each one is separately correlated with the image time series and the one most highly correlated is selected for each pixel.  Multiple ideals are specified using more than one '-ideal fname' option, or by using the form '-ideal [ fname1 fname2 ... ]' -- this latter method allows the use of wildcarded ideal filenames. The '[' character that indicates the start of a group of ideals can actually be any ONE of these: [{/% and the ']' that ends the group can be:  ]}/%  [Format of ort and ideal time series files: ASCII; one number per line; Same number of lines as images in the time series; Value over 33333 --> don't use this image in the analysis]",
+            "id": "IDEAL",
+            "name": "IDEAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IDEAL]"
+        },
+        {
+            "command-line-flag": "-polref",
+            "description": "-polref #       use polynomials of order 0..# as extra 'orts'; [or -polort #]    default is 0 (yielding a constant vector). Use # = -1 to suppress this feature.",
+            "id": "POLREF",
+            "name": "POLREF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POLREF]"
+        },
+        {
+            "command-line-flag": "-fimfile",
+            "description": "filename to save activation magnitudes in; if not given, the last name on the command line will be used",
+            "id": "FIMFILE",
+            "name": "FIMFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIMFILE]"
+        },
+        {
+            "command-line-flag": "-corr",
+            "description": "-corr           if present, indicates to write correlation output to image file 'fimfile.CORR' (next option is better)",
+            "id": "CORR",
+            "name": "CORR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CORR]"
+        },
+        {
+            "command-line-flag": "-corfile",
+            "description": "filename to save correlation image in; if not present, and -corr is not present, correlation image is not saved.",
+            "id": "CORFILE",
+            "name": "CORFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CORFILE]"
+        },
+        {
+            "command-line-flag": "-cnrfile",
+            "description": "filename to save contrast-to-noise image in; if not present, will not be computed or saved; CNR is scaled by 100 if images are output as shorts and is written 'as-is' if output as floats (see -flim). [CNR is defined here to be alpha/sigma, where alpha = amplitude of normalized ideal in a pixel sigma = standard deviation of pixel after removal of orts and ideal normalized ideal = ideal scaled so that trough-to-peak height is one.]",
+            "id": "CNRFILE",
+            "name": "CNRFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CNRFILE]"
+        },
+        {
+            "command-line-flag": "-sigfile",
+            "description": "filename to save standard deviation image in; the standard deviation is of what is left after the least squares removal of the -orts, -polrefs, and -ideal. N.B.: This is always output in the -flim format!",
+            "id": "SIGFILE",
+            "name": "SIGFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SIGFILE]"
+        },
+        {
+            "command-line-flag": "-fitfile",
+            "description": "-fitfile fname  Image files of the least squares fit coefficients of all the -ort and -polref time series that are projected out of the data time series before the -ideal is fit.  The actual filenames will be fname.01 fname.02 .... Their order is -orts, then -polrefs, and last -ideal. N.B.: These are always output in the -flim format!",
+            "id": "FITFILE",
+            "name": "FITFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FITFILE]"
+        },
+        {
+            "command-line-flag": "-subort",
+            "description": "-subort fname   A new timeseries of images is written to disk, with names of the form 'fname.0001', etc.  These images have the orts and polrefs (but not ideals) subtracted out. N.B.: These are always output in the -flim format!",
+            "id": "SUBORT",
+            "name": "SUBORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUBORT]"
+        },
+        {
+            "command-line-flag": "-flim",
+            "description": "-flim           If present, write outputs in mrilib 'float' format, rather than scale+convert to integers [The 'ftosh' program can later convert to short integers]",
+            "id": "FLIM",
+            "name": "FLIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIM]"
+        },
+        {
+            "command-line-flag": "-clean",
+            "description": "-clean          if present, then output images won't have the +/- 10000 values forced into their corners for scaling purposes.",
+            "id": "CLEAN",
+            "name": "CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLEAN]"
+        },
+        {
+            "command-line-flag": "-clip",
+            "description": "-clip           if present, output correlations, etc., will be set to zero in regions of low intensity.",
+            "id": "CLIP",
+            "name": "CLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLIP]"
+        },
+        {
+            "command-line-flag": "-q",
+            "description": "-q              if present, indicates 'quiet' operation. -dfspace[:0]    Indicates to use the 'dfspace' filter (a la imreg) to register the images spatially before filtering.",
+            "id": "Q",
+            "name": "Q",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Q]"
+        },
+        {
+            "command-line-flag": "-regbase",
+            "description": "-regbase fname   Indicates to read image in file 'fname' as the base image for registration.  If not given, the first image in the time series that is used in the correlation computations will be used.  This is also the image that is used to define 'low intensity' for the -clip option.",
+            "id": "REGBASE",
+            "name": "REGBASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REGBASE]"
+        },
+        {
+            "description": "NA",
+            "id": "image_files",
+            "name": "image_files",
+            "optional": false,
+            "type": "String",
+            "value-key": "[IMAGE_FILES]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

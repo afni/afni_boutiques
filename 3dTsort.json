@@ -1,0 +1,113 @@
+{
+    "command-line": "3dTsort [PREFIX] [INC] [DEC] [RANK] [IND] [VAL] [RANDOM] [RANFFT] [RANDFT] [DATUM] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "use string 'p' for the prefix of the output dataset [DEFAULT = 'tsort']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-inc",
+            "description": "sort into increasing order [default]",
+            "id": "INC",
+            "name": "INC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INC]"
+        },
+        {
+            "command-line-flag": "-dec",
+            "description": "sort into decreasing order",
+            "id": "DEC",
+            "name": "DEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEC]"
+        },
+        {
+            "command-line-flag": "-rank",
+            "description": "output rank instead of sorted values ranks range from 1 to Nvals",
+            "id": "RANK",
+            "name": "RANK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANK]"
+        },
+        {
+            "command-line-flag": "-ind",
+            "description": "output sorting index. (0 to Nvals -1) See example below.",
+            "id": "IND",
+            "name": "IND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IND]"
+        },
+        {
+            "command-line-flag": "-val",
+            "description": "output sorted values (default)",
+            "id": "VAL",
+            "name": "VAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VAL]"
+        },
+        {
+            "command-line-flag": "-random",
+            "description": "randomly shuffle (permute) the time points in each voxel * Each voxel is permuted independently! * Why is this here? Someone asked for it :)",
+            "id": "RANDOM",
+            "name": "RANDOM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANDOM]"
+        },
+        {
+            "command-line-flag": "-ranFFT",
+            "description": "randomize each time series by scrambling the FFT phase * Each voxel is treated separately! * Why is this here? cf. Matthew 7:7-8 :)",
+            "id": "RANFFT",
+            "name": "RANFFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANFFT]"
+        },
+        {
+            "command-line-flag": "-ranDFT",
+            "description": "Almost the same as above, but: * In '-ranFFT', the FFT length is taken to be the next integer >= data length for which the FFT algorithm is efficient. This will result in data padding unless the data length is exactly 'nice' for FFT. * In '-ranDFT', the DFT length is exactly the data length. If the data length is a large-ish prime number (say 997), this operation can be slow. * The DFT/FFT algorithm is reasonably fast when the data length prime factors contain only 2s, 3s, and/or 5s. * Using '-ranDFT' can preserve the spectral (temporal correlation) structure of the original data a little better than '-ranFFT'. * The only reason to use '-ranFFT' instead of '-ranDFT' is for speed. For example, with 997 time points, '-ranFFT' was about 13 times faster (FFT length=1000) than '-ranDFT'.",
+            "id": "RANDFT",
+            "name": "RANDFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANDFT]"
+        },
+        {
+            "command-line-flag": "-datum",
+            "description": "Coerce the output data to be stored as the given type D, which may be byte, short, or float (default).  Notes: * Each voxel is sorted (or processed) separately. * Sub-brick labels are not rearranged! * This program is useful only in limited cases. It was written to sort the -stim_times_IM beta weights output by 3dDeconvolve. * Also see program 1dTsort, for sorting text files of numbers.  Examples: setenv AFNI_1D_TIME YES echo '8 6 3 9 2 7' > test.1D 3dTsort -overwrite test.1D 1dcat tsort.1D  3dTsort -overwrite -rank test.1D 1dcat tsort.1D   3dTsort -overwrite -ind test.1D 1dcat tsort.1D  3dTsort -overwrite -dec test.1D 1dcat tsort.1D   ++ Compile date = Sep  7 2018 {:}",
+            "id": "DATUM",
+            "name": "DATUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATUM]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

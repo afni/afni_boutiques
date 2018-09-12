@@ -1,0 +1,23 @@
+{
+    "command-line": "3dMINCtoAFNI [DATASET.MNC]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "dataset.mnc",
+            "name": "dataset.mnc",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET.MNC]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

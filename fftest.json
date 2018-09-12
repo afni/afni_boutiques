@@ -1,0 +1,39 @@
+{
+    "command-line": "fftest [LEN] [NUM] [NVEC]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "len",
+            "name": "len",
+            "optional": false,
+            "type": "String",
+            "value-key": "[LEN]"
+        },
+        {
+            "description": "NA",
+            "id": "num",
+            "name": "num",
+            "optional": false,
+            "type": "String",
+            "value-key": "[NUM]"
+        },
+        {
+            "description": "NA",
+            "id": "nvec",
+            "name": "nvec",
+            "optional": false,
+            "type": "String",
+            "value-key": "[NVEC]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

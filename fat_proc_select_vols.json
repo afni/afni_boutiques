@@ -1,0 +1,87 @@
+{
+    "command-line": "fat_proc_select_vols [IN_DWI] [IN_IMG] [IN_BADS] [PREFIX] [APPLY_TO_VOLS] [DO_MOVIE] [WORKDIR] [NO_CMD_OUT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-in_dwi",
+            "description": "nput DWI set (required).",
+            "id": "IN_DWI",
+            "name": "IN_DWI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_DWI]"
+        },
+        {
+            "command-line-flag": "-in_img",
+            "description": "d image of DDD, such as made by a fat_proc* script, or @djunct_*imager directly (required).",
+            "id": "IN_IMG",
+            "name": "IN_IMG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_IMG]"
+        },
+        {
+            "command-line-flag": "-in_bads",
+            "description": "optional) a single column file of integers, such as made by a previous run of fat_proc_select_vols. For example, if one has dual phase-encoded DWI data, then one might make a list of bads from the AP-acquired set and then add to it any bad indices from the PA-acquired set.",
+            "id": "IN_BADS",
+            "name": "IN_BADS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_BADS]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput prefix for files. Required.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-apply_to_vols",
+            "description": "witch to apply the created selection of good volumes to the DWI dset.  NB: if you are using this function to select out bad volumes from a dual phase encode set, then you *wouldn't* want to use this option, because you want to apply the complete removal to *both* volumes.  Note also, that once you apply this selection to the volumes, you also need to apply it to any bval, bvec, bmatrix, etc. text files!",
+            "id": "APPLY_TO_VOLS",
+            "name": "APPLY_TO_VOLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[APPLY_TO_VOLS]"
+        },
+        {
+            "command-line-flag": "-do_movie",
+            "description": "-do_movie AGIF | MPEG: when \"-apply_to_vols\" is used, static images are output by default;  one can use this option with either of the given arguments to output a movie of the newly created dset.  Only those arguments can be used at present.",
+            "id": "DO_MOVIE",
+            "name": "DO_MOVIE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_MOVIE]"
+        },
+        {
+            "command-line-flag": "-workdir",
+            "description": "pecify a working directory, which can be removed; (default name = '__WORKING_select_vols').",
+            "id": "WORKDIR",
+            "name": "WORKDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WORKDIR]"
+        },
+        {
+            "command-line-flag": "-no_cmd_out",
+            "description": "on't save the command line call of this program and the location where it was run (otherwise, it is saved by default in the ODIR/).  # ----------------------------------------------------------------------  EXAMPLE  fat_proc_select_vols    \\ -in_dwi DWI.nii.gz               \\ -in_img QC/DWI_sepscl.sag.png    \\ -prefix DWI_trim   fat_proc_select_vols    \\ -in_dwi DWI_ap.nii.gz             \\ -in_img QC/DWI_ap_sepscl.sag.png  \\ -in_bads DWI_trim_bads.txt        \\ -prefix DWI_trim_both  # -----------------------------------------------------------------------",
+            "id": "NO_CMD_OUT",
+            "name": "NO_CMD_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CMD_OUT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

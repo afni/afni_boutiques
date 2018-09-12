@@ -1,0 +1,58 @@
+{
+    "command-line": "3dLRflip [LR] [X] [PREFIX] [DSET] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-LR",
+            "description": "-LR | -AP | -IS: Axis about which to flip the data Default is -LR. or",
+            "id": "LR",
+            "name": "LR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LR]"
+        },
+        {
+            "command-line-flag": "-X",
+            "description": "-X | -Y | -Z: Flip about 1st, 2nd or 3rd directions, respectively. Note: Only one of these 6 options can be used at a time.",
+            "id": "X",
+            "name": "X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[X]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Prefix to use for output. If you have multiple datasets as input, you are better off letting the program choose a prefix for each output.   ++ Compile date = Sep  7 2018 {:}",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "description": "NA",
+            "id": "dset",
+            "name": "dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

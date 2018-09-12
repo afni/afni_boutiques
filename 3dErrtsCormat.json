@@ -1,0 +1,68 @@
+{
+    "command-line": "3dErrtsCormat [CONCAT] [INPUT] [MASK] [MAXLAG] [POLORT] [DSET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-concat",
+            "description": "as in 3dDeconvolve",
+            "id": "CONCAT",
+            "name": "CONCAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CONCAT]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "alternate way of telling what dataset to read",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "mask dataset",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-maxlag",
+            "description": "set maximum lag",
+            "id": "MAXLAG",
+            "name": "MAXLAG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAXLAG]"
+        },
+        {
+            "command-line-flag": "-polort",
+            "description": "set polort level (default=0)  -- RWCox -- June 2008 -- for my own pleasant purposes -- Also see program 3dLocalCormat to do this on each voxel, and optionally estimate the ARMA(1,1) model parameters.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "POLORT",
+            "name": "POLORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POLORT]"
+        },
+        {
+            "description": "NA",
+            "id": "dset",
+            "name": "dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

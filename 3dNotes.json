@@ -1,0 +1,77 @@
+{
+    "command-line": "3dNotes [A] [H] [HH] [D] [SES] [HELP] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-a",
+            "description": "-a   \"str\"  : Add the string \"str\" to the list of notes.  Note that you can use the standard C escape codes, \\n for newline \\t for tab, etc.",
+            "id": "A",
+            "name": "A",
+            "optional": true,
+            "type": "String",
+            "value-key": "[A]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "-h   \"str\"   : Append the string \"str\" to the dataset's history.  This can only appear once on the command line.  As this is added to the history, it cannot easily be deleted. But, history is propagated to the children of this dataset.",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-HH",
+            "description": "-HH  \"str\"   : Replace any existing history note with \"str\".  This line cannot be used with '-h'.",
+            "id": "HH",
+            "name": "HH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HH]"
+        },
+        {
+            "command-line-flag": "-d",
+            "description": "deletes note number num.",
+            "id": "D",
+            "name": "D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[D]"
+        },
+        {
+            "command-line-flag": "-ses",
+            "description": "Print to stdout the expanded notes.",
+            "id": "SES",
+            "name": "SES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SES]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "Displays this screen.   The default action, with no options, is to display the notes for the dataset.  If there are options, all deletions occur first and essentially simultaneously.  Then, notes are added in the order listed on the command line.  If you do something like -d 10 -d 10, it will delete both notes 10 and 11.  Don't do that.   ++ Compile date = Sep  7 2018 {:}",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

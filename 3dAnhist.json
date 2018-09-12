@@ -1,0 +1,86 @@
+{
+    "command-line": "3dAnhist [Q] [H] [F] [W] [2] [LABEL] [FNAME] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-q",
+            "description": "be quiet (don't print progress reports)",
+            "id": "Q",
+            "name": "Q",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Q]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "dump histogram data to Anhist.1D and plot to Anhist.ps",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-F",
+            "description": "DON'T fit histogram with stupid curves.",
+            "id": "F",
+            "name": "F",
+            "optional": true,
+            "type": "String",
+            "value-key": "[F]"
+        },
+        {
+            "command-line-flag": "-w",
+            "description": "apply a Winsorizing filter prior to histogram scan (or -w7 to Winsorize 7 times, etc.)",
+            "id": "W",
+            "name": "W",
+            "optional": true,
+            "type": "String",
+            "value-key": "[W]"
+        },
+        {
+            "command-line-flag": "-2",
+            "description": "Analyze top 2 peaks only, for overlap etc.",
+            "id": "2",
+            "name": "2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[2]"
+        },
+        {
+            "command-line-flag": "-label",
+            "description": "Use 'xxx' for a label on the Anhist.ps plot file instead of the input dataset filename.",
+            "id": "LABEL",
+            "name": "LABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABEL]"
+        },
+        {
+            "command-line-flag": "-fname",
+            "description": "Use 'fff' for the filename instead of 'Anhist'.  If the '-2' option is used, AND if 2 peaks are detected, AND if the -h option is also given, then stdout will be of the form ( datasetname 2 peak1 peak2 thresh CER CJV count1 count2 count1/count2) where 2      = number of peaks thresh = threshold between peak1 and peak2 for decision-making CER    = classification error rate of thresh CJV    = coefficient of joint variation count1 = area under fitted PDF for peak1 count2 = area under fitted PDF for peak2 count1/count2 = ratio of the above quantities NOTA BENE --------- * If the input is a T1-weighted MRI dataset (the usual case), then peak 1 should be the gray matter (GM) peak and peak 2 the white matter (WM) peak. * For the definitions of CER and CJV, see the paper Method for Bias Field Correction of Brain T1-Weighted Magnetic Resonance Images Minimizing Segmentation Error JD Gispert, S Reig, J Pascau, JJ Vaquero, P Garcia-Barreno, and M Desco, Human Brain Mapping 22:133-144 (2004). * Roughly speaking, CER is the ratio of the overlapping area of the 2 peak fitted PDFs to the total area of the fitted PDFS.  CJV is (sigma_GM+sigma_WM)/(mean_WM-mean_GM), and is a different, ad hoc, measurement of how much the two PDF overlap. * The fitted PDFs are NOT Gaussians.  They are of the form f(x) = b((x-p)/w,a), where p=location of peak, w=width, 'a' is a skewness parameter between -1 and 1; the basic distribution is defined by b(x)=(1-x^2)^2*(1+a*x*abs(x)) for -1 < x < 1.  -- RWCox - November 2004  ++ Compile date = Sep  7 2018 {:}",
+            "id": "FNAME",
+            "name": "FNAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FNAME]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

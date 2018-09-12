@@ -1,0 +1,51 @@
+{
+    "command-line": "3dRegAna [ROWS] [COLS] [XYDATA] [MODEL]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-rows",
+            "description": "-rows n                             number of input datasets",
+            "id": "ROWS",
+            "name": "ROWS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ROWS]"
+        },
+        {
+            "command-line-flag": "-cols",
+            "description": "-cols m                             number of X variables",
+            "id": "COLS",
+            "name": "COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COLS]"
+        },
+        {
+            "command-line-flag": "-xydata",
+            "description": "-xydata X11 X12 ... X1m filename    X variables and Y observations .                                   . .                                   . .                                   .",
+            "id": "XYDATA",
+            "name": "XYDATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[XYDATA]"
+        },
+        {
+            "command-line-flag": "-model",
+            "description": "-model i1 ... iq : j1 ... jr   definition of linear regression model; reduced model: Y = f(Xj1,...,Xjr) full model: Y = f(Xj1,...,Xjr,Xi1,...,Xiq)  [-diskspace]       print out disk space required for program execution [-workmem mega]    number of megabytes of RAM to use for statistical workspace  (default = 750 (was 12)) [-rmsmin r]        r = minimum rms error to reject constant model [-fdisp fval]      display (to screen) results for those voxels whose F-statistic is > fval  [-flof alpha]      alpha = minimum p value for F due to lack of fit   The following commands generate individual AFNI 2 sub-brick datasets:  [-fcoef k prefixname]        estimate of kth regression coefficient along with F-test for the regression is written to AFNI `fift' dataset [-rcoef k prefixname]        estimate of kth regression coefficient along with coef. of mult. deter. R^2 is written to AFNI `fith' dataset [-tcoef k prefixname]        estimate of kth regression coefficient along with t-test for the coefficient is written to AFNI `fitt' dataset   The following commands generate one AFNI 'bucket' type dataset:  [-bucket n prefixname]     create one AFNI 'bucket' dataset having n sub-bricks; n=0 creates default output; output 'bucket' is written to prefixname The mth sub-brick will contain: [-brick m coef k label]    kth parameter regression coefficient [-brick m fstat label]     F-stat for significance of regression [-brick m rstat label]     coefficient of multiple determination R^2 [-brick m tstat k label]   t-stat for kth regression coefficient  [-datum DATUM]     write the output in DATUM format. Choose from short (default) or float.   N.B.: For this program, the user must specify 1 and only 1 sub-brick with each -xydata command. That is, if an input dataset contains more than 1 sub-brick, a sub-brick selector must be used, e.g.:",
+            "id": "MODEL",
+            "name": "MODEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODEL]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

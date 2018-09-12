@@ -1,0 +1,131 @@
+{
+    "command-line": "3dttest [SET1] [BASE1] [BASE1_DSET] [SDN1] [SET2] [PAIRED] [UNPOOLED] [DOF_PREFIX] [VOXEL] [SESSION] [PREFIX] [DATUM] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-set1",
+            "description": "-set1 datasets ... = Specifies the collection of datasets to put into the first set. The mean of set1 will be tested with a 2-sample t-test against the mean of set2. N.B.: -set1 and -base1 are mutually exclusive!",
+            "id": "SET1",
+            "name": "SET1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET1]"
+        },
+        {
+            "command-line-flag": "-base1",
+            "description": "'bval' is a numerical value that the mean of set2 will be tested against with a 1-sample t-test.",
+            "id": "BASE1",
+            "name": "BASE1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASE1]"
+        },
+        {
+            "command-line-flag": "-base1_dset",
+            "description": "Similar to -base1, but input a dataset where bval can vary over voxels.",
+            "id": "BASE1_DSET",
+            "name": "BASE1_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASE1_DSET]"
+        },
+        {
+            "command-line-flag": "-sdn1",
+            "description": "If this option is given along with '-base1', then 'bval' is taken to have standard deviation 'sd' computed from 'n1' samples.  In this case, each voxel in set2 is compared to bval using a pooled-variance unpaired 2-sample t-test. [This is for Tom Johnstone; hope we meet someday.]",
+            "id": "SDN1",
+            "name": "SDN1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SDN1]"
+        },
+        {
+            "command-line-flag": "-set2",
+            "description": "-set2 datasets ... = Specifies the collection of datasets to put into the second set.  There must be at least 2 datasets in each of set1 (if used) and set2.",
+            "id": "SET2",
+            "name": "SET2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET2]"
+        },
+        {
+            "command-line-flag": "-paired",
+            "description": "Specifies the use of a paired-sample t-test to compare set1 and set2.  If this option is used, set1 and set2 must have the same cardinality. N.B.: A paired test is intended for use when the set1 and set2 dataset function values may be pairwise correlated. If they are in fact uncorrelated, this test has less statistical 'power' than the unpaired (default) t-test. This loss of power is the price that is paid for insurance against pairwise correlations.",
+            "id": "PAIRED",
+            "name": "PAIRED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAIRED]"
+        },
+        {
+            "command-line-flag": "-unpooled",
+            "description": "Specifies that the variance estimates for set1 and set2 be computed separately (not pooled together). This only makes sense if -paired is NOT given. N.B.: If this option is used, the number of degrees of freedom per voxel is a variable, rather than a constant.",
+            "id": "UNPOOLED",
+            "name": "UNPOOLED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNPOOLED]"
+        },
+        {
+            "command-line-flag": "-dof_prefix",
+            "description": "If '-unpooled' is also used, then a dataset with prefix 'ddd' will be created that contains the degrees of freedom (DOF) in each voxel. You can convert the t-value in the -prefix dataset to a z-score using the -dof_prefix dataset using commands like so: 3dcalc -a 'pname+orig[1]' -b ddd+orig \\ -datum float -prefix ddd_zz -expr 'fitt_t2z(a,b)' 3drefit -substatpar 0 fizt ddd_zz+orig At present, AFNI is incapable of directly dealing with datasets whose DOF parameter varies between voxels.  Converting to a z-score (with no parameters) is one way of getting around this difficulty.",
+            "id": "DOF_PREFIX",
+            "name": "DOF_PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOF_PREFIX]"
+        },
+        {
+            "command-line-flag": "-voxel",
+            "description": "like 3dANOVA, get screen output for a given voxel. This is 1-based, as with 3dANOVA.  The -base1 or -set1 command line switches must follow all other options (including those described below) except for the -set2 switch.  INPUT EDITING OPTIONS: The same as are available in 3dmerge.  OUTPUT OPTIONS: these options control the output files.",
+            "id": "VOXEL",
+            "name": "VOXEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VOXEL]"
+        },
+        {
+            "command-line-flag": "-session",
+            "description": "Write output into given directory (default=./)",
+            "id": "SESSION",
+            "name": "SESSION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SESSION]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use 'pname' for the output directory prefix (default=tdif)",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-datum",
+            "description": "Use 'type' to store the output difference in the means; 'type' may be short or float. How the default is determined is described in the notes below.  NOTES: ** The input datasets are specified by their .HEAD files, but their .BRIK files must exist also! This program cannot 'warp-on-demand' from other datasets. ** This program cannot deal with time-dependent or complex-valued datasets! ** By default, the output dataset function values will be shorts if the first input dataset is byte- or short-valued; otherwise they will be floats.  This behavior may be overridden using the -datum option. ** In the -set1/-set2 input list, you can specify a collection of sub-bricks from a single dataset using a notation like datasetname+orig'[5-9]' (the single quotes are necessary).  If you want to use ALL the sub-bricks from a multi-volume dataset, you can't just give the dataset filename -- you have to use datasetname+orig'[0-$]' or datasetname'[0..$]' Otherwise, the program will reject the dataset as being too complicated for its pitiful understanding.  [New in July 2007]  INPUT DATASET NAMES ------------------- This program accepts datasets that are modified on input according to the following schemes: 'r1+orig[3..5]'                                    {sub-brick selector} 'r1+orig<100..200>'                                {sub-range selector} 'r1+orig[3..5]<100..200>'                          {both selectors} '3dcalc( -a r1+orig -b r2+orig -expr 0.5*(a+b) )'  {calculation} For the gruesome details, see the output of 'afni -help'.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "DATUM",
+            "name": "DATUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATUM]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

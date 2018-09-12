@@ -1,0 +1,69 @@
+{
+    "command-line": "p2dsetstat [INSET] [BISIDED] [PVAL] [2SIDED] [1SIDED] [QUIET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-inset",
+            "description": "-inset   DDD'[i]'                     \\ -pval    P                            \\",
+            "id": "INSET",
+            "name": "INSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSET]"
+        },
+        {
+            "command-line-flag": "-bisided",
+            "description": "-bisided|-2sided|-1sided              \\ {-quiet}  where:",
+            "id": "BISIDED",
+            "name": "BISIDED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BISIDED]"
+        },
+        {
+            "command-line-flag": "-pval",
+            "description": "nput p-value P, which MUST be in the interval [0,1].",
+            "id": "PVAL",
+            "name": "PVAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PVAL]"
+        },
+        {
+            "command-line-flag": "-2sided",
+            "description": "-2sided or",
+            "id": "2SIDED",
+            "name": "2SIDED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[2SIDED]"
+        },
+        {
+            "command-line-flag": "-1sided",
+            "description": "ne of these two options MUST be chosen, and it is up to the researcher to choose which.",
+            "id": "1SIDED",
+            "name": "1SIDED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1SIDED]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "n optional flag so that output ONLY the final statistic value output to standard output; this can be then be viewed, redirected to a text file or saved as a shell variable.  (Default: display supplementary text.)  -------------------------------------------------------------------------  OUTPUTS:  The types of statistic values that can be calculated are: corr coef, t-stat, F-stat or z-score.  If \"-quiet\" is used, then basically just a single number (the converted statistic value) is output.  See examples for saving this in a file or variable. (A 3dinfo message shown is ignorable and won't affect saving/writing the variable.)  Without the \"-quiet\" option, some descriptive text is also output with the calculation, stating what kind of statistic is being output, etc.  If you want to know more about the cryptic outputs in the non-quiet usage of this program, you may look upon \"BRICK_STATAUX\" on this webpage: https://afni.nimh.nih.gov/pub/dist/doc/program_help/README.attributes.html and tremble.  -------------------------------------------------------------------------  EXAMPLES:  In all cases note the use of the single quotes around the subbrick selector-- these are necessary!  # 1) Do a calculation and display various informations to screen: p2dsetstat  \\",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

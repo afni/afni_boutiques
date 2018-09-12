@@ -1,0 +1,654 @@
+{
+    "command-line": "apsearch [WORD] [W] [FILE] [FILES] [TEXT] [STDIN] [PHELP] [POPT] [RAW_PHELP] [TXT_PHELP] [SPHINX_PHELP] [ASPHINX_PHELP] [DOC_2_TXT] [DOC_2_SPX] [HDOC_2_TXT] [HDOC_2_SPX] [HDOC_2_ASPX] [RACE_CHECK] [DOC_MARKUP_SAMPLE] [ALL_AFNI_HELP] [ALL_POPTS] [HELP] [LIST_POPTS] [POPTS_COMPLETE_COMMAND] [BASH] [CI] [CS] [GLOBAL_HELP] [GOPTS_HELP] [MAX_HITS] [M] [MIN_DIFFERENT_HITS] [UNIQUE_HITS_ONLY] [SHOW_SCORE] [SHOW_SCORE_DETAIL] [LIST_ALL_AFNI_PROGS] [LIST_ALL_AFNI_P_PROGS] [LIST_ALL_AFNI_READMES] [LIST_ALL_AFNI_P_READMES] [LIST_ALL_AFNI_DSETS] [LIST_ALL_AFNI_P_DSETS] [UPDATE_ALL_AFNI_HELP] [RECREATE_ALL_AFNI_HELP] [AFNI_HELP_DIR] [AFNI_DATA_DIR] [AFNI_BIN_DIR] [AFNI_HOME_DIR] [AFNI_RC_FILE] [AFNI_CUSTOM_ATLAS_DIR] [AFNI_CUSTOM_ATLAS_FILE] [AFNI_TEXT_EDITOR] [AFNI_WEB_BROWSER] [AFNI_WEB_DOWNLOADER] [VIEW_TEXT_FILE] [VIEW_README] [APSEARCH_LOG_FILE] [VIEW_PROG_HELP] [WEB_PROG_HELP] [WEB_CLASS_DOCS] [FUNC_TEST] [WILD_FILES] [WILD_FILES_NOAEXT] [WILD_FILES_NOAEXT_NOAVIEW] [WILD_FILES_ORIG_NAME] [WILD_ALL_FILES] [WILD_FILES_DEBUG] [WILD_FILES_CI] [TEST_UNIQUE_STR] [C_ALL_PROG_OPT_ARRAY] [C_ALL_APPEND_PROG_OPT_ARRAY] [C_PROG_OPT_ARRAY]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-word",
+            "description": "WORD being sought",
+            "id": "WORD",
+            "name": "WORD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WORD]"
+        },
+        {
+            "command-line-flag": "-w",
+            "description": "Abbreviated version of -word WORD",
+            "id": "W",
+            "name": "W",
+            "optional": true,
+            "type": "String",
+            "value-key": "[W]"
+        },
+        {
+            "command-line-flag": "-file",
+            "description": "Search for WORD in text file FILE",
+            "id": "FILE",
+            "name": "FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FILE]"
+        },
+        {
+            "command-line-flag": "-files",
+            "description": "-files FILE1 FILE2 ...: Search for WORD in text files FILE1 FILE2 ...",
+            "id": "FILES",
+            "name": "FILES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FILES]"
+        },
+        {
+            "command-line-flag": "-text",
+            "description": "Search for WORD in string TEXT",
+            "id": "TEXT",
+            "name": "TEXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEXT]"
+        },
+        {
+            "command-line-flag": "-stdin",
+            "description": "Search for WORD in text from stdin -: Same as -stdin",
+            "id": "STDIN",
+            "name": "STDIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STDIN]"
+        },
+        {
+            "command-line-flag": "-phelp",
+            "description": "Search for WORD in output of command PROG -help",
+            "id": "PHELP",
+            "name": "PHELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PHELP]"
+        },
+        {
+            "command-line-flag": "-popt",
+            "description": "Search for possible options of PROG that match WORD Make sure you add the '-' to WORD if you are looking for an actual option.",
+            "id": "POPT",
+            "name": "POPT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POPT]"
+        },
+        {
+            "command-line-flag": "-raw_phelp",
+            "description": "Spit out the help string for PROG without modification.",
+            "id": "RAW_PHELP",
+            "name": "RAW_PHELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RAW_PHELP]"
+        },
+        {
+            "command-line-flag": "-txt_phelp",
+            "description": "Format the output of PROG -help for simple text.",
+            "id": "TXT_PHELP",
+            "name": "TXT_PHELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TXT_PHELP]"
+        },
+        {
+            "command-line-flag": "-sphinx_phelp",
+            "description": "Format the output of PROG -help in a sphinxized way.",
+            "id": "SPHINX_PHELP",
+            "name": "SPHINX_PHELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPHINX_PHELP]"
+        },
+        {
+            "command-line-flag": "-asphinx_phelp",
+            "description": "Format the output of PROG -help in an auto sphinxized way.",
+            "id": "ASPHINX_PHELP",
+            "name": "ASPHINX_PHELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ASPHINX_PHELP]"
+        },
+        {
+            "command-line-flag": "-doc_2_txt",
+            "description": "Format AFNI markups from  -file/-files/-stdin content for text output.",
+            "id": "DOC_2_TXT",
+            "name": "DOC_2_TXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOC_2_TXT]"
+        },
+        {
+            "command-line-flag": "-doc_2_spx",
+            "description": "Format AFNI markups from  -file/-files/-stdin content for Sphinx output.",
+            "id": "DOC_2_SPX",
+            "name": "DOC_2_SPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOC_2_SPX]"
+        },
+        {
+            "command-line-flag": "-hdoc_2_txt",
+            "description": "Format program help output in  -file/-files/-stdin content for text output. PNAME is needed wherever the program name is needed in the output.",
+            "id": "HDOC_2_TXT",
+            "name": "HDOC_2_TXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HDOC_2_TXT]"
+        },
+        {
+            "command-line-flag": "-hdoc_2_spx",
+            "description": "Format program help output in  -file/-files/-stdin content for Sphinx output. PNAME is needed wherever the program name is needed in the output.",
+            "id": "HDOC_2_SPX",
+            "name": "HDOC_2_SPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HDOC_2_SPX]"
+        },
+        {
+            "command-line-flag": "-hdoc_2_aspx",
+            "description": "Format program help output in  -file/-files/-stdin content for Sphinx output with autoformatting of options. PNAME is needed wherever the program name is needed in the output. Now, why use such an option as opposed to -asphinx_phelp ? That's because the -help option in some programs cannot handle any special markup within it so we write out that string as is to standard out and pipe it to apsearch with: 3dinfo -h_raw | apsearch -hdoc_2_aspx 3dinfo -",
+            "id": "HDOC_2_ASPX",
+            "name": "HDOC_2_ASPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HDOC_2_ASPX]"
+        },
+        {
+            "command-line-flag": "-race_check",
+            "description": "Debugging option to test for race conditions where apsearch calls a program which for some reason ends up calling it back until you chew up all allowed processes -- not fun --! This program will now check for such recursive craziness using Rick Reynold's afni_util.py program. To see it in action, create the following script and call it @rory: #!/bin/tcsh -f echo \"Called! `date`\" apsearch -DSUMA_CountProcs_Verb=YES -race_check `basename $0`  @rory should be executable and in your path. Now run @rory and watch it go.",
+            "id": "RACE_CHECK",
+            "name": "RACE_CHECK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RACE_CHECK]"
+        },
+        {
+            "command-line-flag": "-doc_markup_sample",
+            "description": "Shown an example of the types of markups available for the documentation.",
+            "id": "DOC_MARKUP_SAMPLE",
+            "name": "DOC_MARKUP_SAMPLE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOC_MARKUP_SAMPLE]"
+        },
+        {
+            "command-line-flag": "-all_afni_help",
+            "description": "Search for WORD in all afni help files. This option is not all that clever at the moment.",
+            "id": "ALL_AFNI_HELP",
+            "name": "ALL_AFNI_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_AFNI_HELP]"
+        },
+        {
+            "command-line-flag": "-all_popts",
+            "description": "TRY to guess at all the options for PROG The list of options is not guaranteed to be full or accurate. It is created by parsing the program's",
+            "id": "ALL_POPTS",
+            "name": "ALL_POPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_POPTS]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "-help output for likely candidates. It is meant to act as an aid in locating certain options.",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-list_popts",
+            "description": "Like -all_popts, but preserve unique set of options only, no chunks of help output are preserved.",
+            "id": "LIST_POPTS",
+            "name": "LIST_POPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIST_POPTS]"
+        },
+        {
+            "command-line-flag": "-popts_complete_command",
+            "description": "Generate a csh command that can be sourced to allow option autocompletion for program PROG. See also option -bash and -update_all_afni_help",
+            "id": "POPTS_COMPLETE_COMMAND",
+            "name": "POPTS_COMPLETE_COMMAND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POPTS_COMPLETE_COMMAND]"
+        },
+        {
+            "command-line-flag": "-bash",
+            "description": "Use bash format for the complete command. Default is csh/tcsh This option MUST PRECEDE option -popts_complete_command",
+            "id": "BASH",
+            "name": "BASH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASH]"
+        },
+        {
+            "command-line-flag": "-ci",
+            "description": "Case insensitive search (default)",
+            "id": "CI",
+            "name": "CI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CI]"
+        },
+        {
+            "command-line-flag": "-cs",
+            "description": "Case sensitive search",
+            "id": "CS",
+            "name": "CS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CS]"
+        },
+        {
+            "command-line-flag": "-global_help",
+            "description": "Show help for global options.",
+            "id": "GLOBAL_HELP",
+            "name": "GLOBAL_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GLOBAL_HELP]"
+        },
+        {
+            "command-line-flag": "-gopts_help",
+            "description": "Show help for global options.",
+            "id": "GOPTS_HELP",
+            "name": "GOPTS_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GOPTS_HELP]"
+        },
+        {
+            "command-line-flag": "-max_hits",
+            "description": "Return best MH hits only. Default MH = 3. Use -1 to get all results back.",
+            "id": "MAX_HITS",
+            "name": "MAX_HITS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX_HITS]"
+        },
+        {
+            "command-line-flag": "-m",
+            "description": "Abbreviated version of -max_hits MH.",
+            "id": "M",
+            "name": "M",
+            "optional": true,
+            "type": "String",
+            "value-key": "[M]"
+        },
+        {
+            "command-line-flag": "-min_different_hits",
+            "description": "Keep outputing hits until you have dDH dissimilar matches. Default is -1 (no minimum).",
+            "id": "MIN_DIFFERENT_HITS",
+            "name": "MIN_DIFFERENT_HITS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN_DIFFERENT_HITS]"
+        },
+        {
+            "command-line-flag": "-unique_hits_only",
+            "description": "Restrict output to novel hits only.",
+            "id": "UNIQUE_HITS_ONLY",
+            "name": "UNIQUE_HITS_ONLY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNIQUE_HITS_ONLY]"
+        },
+        {
+            "command-line-flag": "-show_score",
+            "description": "Show matching word's distance.",
+            "id": "SHOW_SCORE",
+            "name": "SHOW_SCORE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_SCORE]"
+        },
+        {
+            "command-line-flag": "-show_score_detail",
+            "description": "That's right.",
+            "id": "SHOW_SCORE_DETAIL",
+            "name": "SHOW_SCORE_DETAIL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_SCORE_DETAIL]"
+        },
+        {
+            "command-line-flag": "-list_all_afni_progs",
+            "description": "List all executables in AFNI's bin directory",
+            "id": "LIST_ALL_AFNI_PROGS",
+            "name": "LIST_ALL_AFNI_PROGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIST_ALL_AFNI_PROGS]"
+        },
+        {
+            "command-line-flag": "-list_all_afni_P_progs",
+            "description": "Same as -list_all_afni_progs but with path",
+            "id": "LIST_ALL_AFNI_P_PROGS",
+            "name": "LIST_ALL_AFNI_P_PROGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIST_ALL_AFNI_P_PROGS]"
+        },
+        {
+            "command-line-flag": "-list_all_afni_readmes",
+            "description": "List all README files in AFNI's bin directory",
+            "id": "LIST_ALL_AFNI_READMES",
+            "name": "LIST_ALL_AFNI_READMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIST_ALL_AFNI_READMES]"
+        },
+        {
+            "command-line-flag": "-list_all_afni_P_readmes",
+            "description": "Same as -list_all_afni_readmes but with path",
+            "id": "LIST_ALL_AFNI_P_READMES",
+            "name": "LIST_ALL_AFNI_P_READMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIST_ALL_AFNI_P_READMES]"
+        },
+        {
+            "command-line-flag": "-list_all_afni_dsets",
+            "description": "List all datasets in AFNI's bin directory",
+            "id": "LIST_ALL_AFNI_DSETS",
+            "name": "LIST_ALL_AFNI_DSETS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIST_ALL_AFNI_DSETS]"
+        },
+        {
+            "command-line-flag": "-list_all_afni_P_dsets",
+            "description": "Same as -list_all_afni_dsets but with path",
+            "id": "LIST_ALL_AFNI_P_DSETS",
+            "name": "LIST_ALL_AFNI_P_DSETS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIST_ALL_AFNI_P_DSETS]"
+        },
+        {
+            "command-line-flag": "-update_all_afni_help",
+            "description": "Build/update -help output under directory: /root/.afni/help If older help files differ by little they are deleted Little differences would be the compile date or the version number. See @clean_help_dir code for details. This option also creates autocompletion code for csh/tcsh and bash shells.",
+            "id": "UPDATE_ALL_AFNI_HELP",
+            "name": "UPDATE_ALL_AFNI_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UPDATE_ALL_AFNI_HELP]"
+        },
+        {
+            "command-line-flag": "-recreate_all_afni_help",
+            "description": "Like -update_all_afni_help but force receration even if nothing changed in the help",
+            "id": "RECREATE_ALL_AFNI_HELP",
+            "name": "RECREATE_ALL_AFNI_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RECREATE_ALL_AFNI_HELP]"
+        },
+        {
+            "command-line-flag": "-afni_help_dir",
+            "description": "Print afni help directory location and quit.",
+            "id": "AFNI_HELP_DIR",
+            "name": "AFNI_HELP_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFNI_HELP_DIR]"
+        },
+        {
+            "command-line-flag": "-afni_data_dir",
+            "description": "Print afni data directory location and quit.",
+            "id": "AFNI_DATA_DIR",
+            "name": "AFNI_DATA_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFNI_DATA_DIR]"
+        },
+        {
+            "command-line-flag": "-afni_bin_dir",
+            "description": "Print afni's binaries directory location and quit.",
+            "id": "AFNI_BIN_DIR",
+            "name": "AFNI_BIN_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFNI_BIN_DIR]"
+        },
+        {
+            "command-line-flag": "-afni_home_dir",
+            "description": "Print afni's home directory and quit.",
+            "id": "AFNI_HOME_DIR",
+            "name": "AFNI_HOME_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFNI_HOME_DIR]"
+        },
+        {
+            "command-line-flag": "-afni_rc_file",
+            "description": "Pathname to .afnirc. You'll get one even if none exists.",
+            "id": "AFNI_RC_FILE",
+            "name": "AFNI_RC_FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFNI_RC_FILE]"
+        },
+        {
+            "command-line-flag": "-afni_custom_atlas_dir",
+            "description": "Print your afni's custom atlas directory and quit.",
+            "id": "AFNI_CUSTOM_ATLAS_DIR",
+            "name": "AFNI_CUSTOM_ATLAS_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFNI_CUSTOM_ATLAS_DIR]"
+        },
+        {
+            "command-line-flag": "-afni_custom_atlas_file",
+            "description": "Print your afni's custom atlas file (if any) and quit.",
+            "id": "AFNI_CUSTOM_ATLAS_FILE",
+            "name": "AFNI_CUSTOM_ATLAS_FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFNI_CUSTOM_ATLAS_FILE]"
+        },
+        {
+            "command-line-flag": "-afni_text_editor",
+            "description": "Print the name of the GUI editor. Priority goes to env. variable AFNI_GUI_EDITOR, otherwise afni will try to find something suitable.",
+            "id": "AFNI_TEXT_EDITOR",
+            "name": "AFNI_TEXT_EDITOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFNI_TEXT_EDITOR]"
+        },
+        {
+            "command-line-flag": "-afni_web_browser",
+            "description": "Print the name of the browser used by AFNI. Priority goes to env. variable AFNI_WEB_BROWSER, otherwise afni will try to find something suitable.",
+            "id": "AFNI_WEB_BROWSER",
+            "name": "AFNI_WEB_BROWSER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFNI_WEB_BROWSER]"
+        },
+        {
+            "command-line-flag": "-afni_web_downloader",
+            "description": "Print the name of the downloader used by AFNI. Priority goes to env. variable AFNI_WEB_DOWNLOADER, otherwise afni will try to find something suitable.",
+            "id": "AFNI_WEB_DOWNLOADER",
+            "name": "AFNI_WEB_DOWNLOADER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFNI_WEB_DOWNLOADER]"
+        },
+        {
+            "command-line-flag": "-view_text_file",
+            "description": "Open FILE with editor of -afni_text_editor",
+            "id": "VIEW_TEXT_FILE",
+            "name": "VIEW_TEXT_FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEW_TEXT_FILE]"
+        },
+        {
+            "command-line-flag": "-view_readme",
+            "description": "Find a readme.SOMETHINGISH and open it",
+            "id": "VIEW_README",
+            "name": "VIEW_README",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEW_README]"
+        },
+        {
+            "command-line-flag": "-apsearch_log_file",
+            "description": "Print the name of the logfile that is used to save some results of apsearch's functions. This option is for debugging purposes and is only activated if the environment variable AFNI_LOG_BEST_PROG_OPTION is set to YES.",
+            "id": "APSEARCH_LOG_FILE",
+            "name": "APSEARCH_LOG_FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[APSEARCH_LOG_FILE]"
+        },
+        {
+            "command-line-flag": "-view_prog_help",
+            "description": "Open the help file for PROG in a GUI editor. This is like the option -hview in C programs.",
+            "id": "VIEW_PROG_HELP",
+            "name": "VIEW_PROG_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEW_PROG_HELP]"
+        },
+        {
+            "command-line-flag": "-web_prog_help",
+            "description": "Open the help file for PROG in a web brower. This is like the option -hweb in C programs. Use ALL to view the page containing help for all programs.",
+            "id": "WEB_PROG_HELP",
+            "name": "WEB_PROG_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WEB_PROG_HELP]"
+        },
+        {
+            "command-line-flag": "-web_class_docs",
+            "description": "Open the webpage with latest class pdfs.  NOTE: The maximum number of results depends on the combination of -max_hits, -min_different_hits, and -unique_hits_only. Withoug -unique_hits_only, the output will continue while neither -max_hits or -min_different_hits conditions are met.",
+            "id": "WEB_CLASS_DOCS",
+            "name": "WEB_CLASS_DOCS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WEB_CLASS_DOCS]"
+        },
+        {
+            "command-line-flag": "-func_test",
+            "description": "Run sample function testing and quit. Debugging only.  Wildcard expansion tools: =========================",
+            "id": "FUNC_TEST",
+            "name": "FUNC_TEST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FUNC_TEST]"
+        },
+        {
+            "command-line-flag": "-wild_files",
+            "description": "-wild_files 'PAT1 PAT2 ...' : Find files matching PAT1, or PAT2, etc. Should include PAT1, etc. between quotes or the shell will do the expansion for you. Note that in addition to wildcard expansion, the function also sorts the output so the order is alphabetical. It also dumps duplicate names which can happen when you start to remove extensions known to AFNI. See -wild* options below. Example: -wild_files '*.do *.HEAD'",
+            "id": "WILD_FILES",
+            "name": "WILD_FILES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WILD_FILES]"
+        },
+        {
+            "command-line-flag": "-wild_files_noAext",
+            "description": "After compiling list, remove all known AFNI extensions and preserve unique set of resultant names",
+            "id": "WILD_FILES_NOAEXT",
+            "name": "WILD_FILES_NOAEXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WILD_FILES_NOAEXT]"
+        },
+        {
+            "command-line-flag": "-wild_files_noAext_noAview",
+            "description": "After compiling list, remove all known AFNI extensions and any view such as +tlrc, +orig, +acpc, and preserve unique set of resultant names",
+            "id": "WILD_FILES_NOAEXT_NOAVIEW",
+            "name": "WILD_FILES_NOAEXT_NOAVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WILD_FILES_NOAEXT_NOAVIEW]"
+        },
+        {
+            "command-line-flag": "-wild_files_orig_name",
+            "description": "Output unique list using orignal (full) filename, rather than the names after extensions or views were removed. This option makes a difference when using one of -wild_files_noAext* options.",
+            "id": "WILD_FILES_ORIG_NAME",
+            "name": "WILD_FILES_ORIG_NAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WILD_FILES_ORIG_NAME]"
+        },
+        {
+            "command-line-flag": "-wild_all_files",
+            "description": "Show all files from wildcard expansion. Do not sort, do not trim names, etc.",
+            "id": "WILD_ALL_FILES",
+            "name": "WILD_ALL_FILES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WILD_ALL_FILES]"
+        },
+        {
+            "command-line-flag": "-wild_files_debug",
+            "description": "Output results in debugging mode.",
+            "id": "WILD_FILES_DEBUG",
+            "name": "WILD_FILES_DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WILD_FILES_DEBUG]"
+        },
+        {
+            "command-line-flag": "-wild_files_ci",
+            "description": "When searching for unique set, use case insensitive matching",
+            "id": "WILD_FILES_CI",
+            "name": "WILD_FILES_CI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WILD_FILES_CI]"
+        },
+        {
+            "command-line-flag": "-test_unique_str",
+            "description": "Run debugging tests for function unique_str().  For hard coders only: =====================",
+            "id": "TEST_UNIQUE_STR",
+            "name": "TEST_UNIQUE_STR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEST_UNIQUE_STR]"
+        },
+        {
+            "command-line-flag": "-C_all_prog_opt_array",
+            "description": "Output all program options as an array of C structs. Debugging is output to stderr, the beef is in stdout. Executables not found in the afni binaries directory (now /usr/local/bin/) will be ignored.",
+            "id": "C_ALL_PROG_OPT_ARRAY",
+            "name": "C_ALL_PROG_OPT_ARRAY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[C_ALL_PROG_OPT_ARRAY]"
+        },
+        {
+            "command-line-flag": "-C_all_append_prog_opt_array",
+            "description": "Keep programs already in C struct but no longer in the new list of executables.",
+            "id": "C_ALL_APPEND_PROG_OPT_ARRAY",
+            "name": "C_ALL_APPEND_PROG_OPT_ARRAY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[C_ALL_APPEND_PROG_OPT_ARRAY]"
+        },
+        {
+            "command-line-flag": "-C_prog_opt_array",
+            "description": "Insert/update PROG's options in an array of C and output the results to stdout as for option -C_all_prog_opt_array  Example:    apsearch -C_prog_opt_array 3dToyProg > prog_opts.c  Examples: ========= 1- Search help output of program whereami for the word '-atlas' apsearch -ci -phelp whereami -word -atlas 2- Search all atlas area names for some name (mistakes on purpose) whereami -show_atlas_code > all_atlas_area_names.txt apsearch -file all_atlas_area_names.txt -word hepp apsearch -file all_atlas_area_names.txt -word zipp \\ -min_different_hits 5 -unique_hits_only apsearch -file all_atlas_area_names.txt -word hipp \\ -min_different_hits 5 -unique_hits_only 3- Debug stupid string matcher: apsearch -text 'u:Hippocampus' -word hipp -show_score_detail apsearch -text 'u:IPC' -word hipp -show_score_detail 4- Search help of AFNI programs: apsearch -phelp afni -word port apsearch -phelp 3dSkullStrip -word hull apsearch -phelp afni  -word xt 5- Suggest a valid option from a program: apsearch -popt afni -word xt apsearch -popt @ROI_Corr_Mat -word sel apsearch -popt @ROI_Corr_Mat -word -sel 6- Show all(*) options for a program: apsearch -all_popts 3dSkullStrip (*) see -all_popts in help section 7- Look for some area named something or other in some atlas: whereami -show_atlas_code -atlas DKD_Desai_MPM |\\ apsearch -stdin -word insola If you really screw up the spelling, you should help the search program a little as in: whereami -show_atlas_code -atlas DKD_Desai_MPM |\\ sed 's/[-_]/ /g' |\\ apsearch -stdin -word insolent 8- Find 10 afni programs with something like 'Surface' in their names: apsearch -list_all_afni_progs | \\ apsearch -stdin -word surface -max_hits 10 9- Open the readme for driving AFNI: apsearch -view_readme driv 10- Wildcard expansion and sorting: apsearch -wild_files '*.1D*' '*.HEAD *.BRIK*' \\ -wild_all_files apsearch -wild_files '*.1D*' '*.HEAD *.BRIK*' \\",
+            "id": "C_PROG_OPT_ARRAY",
+            "name": "C_PROG_OPT_ARRAY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[C_PROG_OPT_ARRAY]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

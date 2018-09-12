@@ -1,0 +1,186 @@
+{
+    "command-line": "3dmaxima [INPUT] [PREFIX] [SPHERES_1] [SPHERES_1TON] [SPHERES_NTO1] [THRESH] [MIN_DIST] [OUT_RAD] [N_STYLE_SORT] [N_STYLE_WEIGHT_AVE] [NEG_EXT] [TRUE_MAX] [DEBUG] [NO_TEXT] [COORDS_ONLY] [DSET_COORDS] [HELP] [HIST] [VER]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "specify input dataset  e.g. -input func+orig'[7]'  Only one sub-brick may be specified.  So if a dataset has multiple sub-bricks, the [] selector must be used.  -----  Output Dset:  -----",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "prefix for an output mask dataset  e.g. -prefix maskNto1  This dataset may be viewed as a mask.  It will have a value set at the location of any selected extrema.  The -out_rad option can be used to change those points to 'spheres'.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-spheres_1",
+            "description": "[flag] set all output values to 1  This is the default, which sets all values in the output dataset to 1.  This is for the extreme points, and for the spheres centered around them.",
+            "id": "SPHERES_1",
+            "name": "SPHERES_1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPHERES_1]"
+        },
+        {
+            "command-line-flag": "-spheres_1toN",
+            "description": "[flag] output values will range from 1 to N  In this case, the most extreme voxel will be set with a value of 1. The next most extreme voxel will get 2, and so on.",
+            "id": "SPHERES_1TON",
+            "name": "SPHERES_1TON",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPHERES_1TON]"
+        },
+        {
+            "command-line-flag": "-spheres_Nto1",
+            "description": "[flag] output values will range from N to 1  With this option, the highest extrema will be set to a value of N, where N equals the number of reported extrema.  The advantage of this is that the most extreme point will get the highest color in afni.  -----  Threshold:  -----",
+            "id": "SPHERES_NTO1",
+            "name": "SPHERES_NTO1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPHERES_NTO1]"
+        },
+        {
+            "command-line-flag": "-thresh",
+            "description": "provides a cutoff value for extrema  e.g. -thresh 17.4  Extrema not meeting this cutoff will not be considered. Note that if the '-neg_ext' option is applied, the user will generally want a negative threshold.  -----  Separation:  -----",
+            "id": "THRESH",
+            "name": "THRESH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THRESH]"
+        },
+        {
+            "command-line-flag": "-min_dist",
+            "description": "minimum acceptable distance between extrema  e.g. -min_dist 4  Less significant extrema which are close to more significant extrema will be discounted in some way, depending on the 'neighbor style' options.  See '-n_style_sort' and '-n_style_weight_ave' for more information.  Note that the distance is in voxels, not mm.  -----  Output Size:  -----",
+            "id": "MIN_DIST",
+            "name": "MIN_DIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN_DIST]"
+        },
+        {
+            "command-line-flag": "-out_rad",
+            "description": "set the output radius around extrema voxels  e.g. -out_rad 9  If the user wants the output BRIK to consist of 'spheres' centered at extrema points, this option can be used to set the radius for those spheres.  Note again that this is in voxel units.  -----  Neighbor:  -----  If extrema are not as far apart as is specified by the '-min_dist' option, the neighbor style options specify how to handle the points.",
+            "id": "OUT_RAD",
+            "name": "OUT_RAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_RAD]"
+        },
+        {
+            "command-line-flag": "-n_style_sort",
+            "description": "[flag] use 'Sort-n-Remove' style (default)  The extrema are sorted by magnitude.  For each extrema (which has not previously removed), all less significant extrema neighbors within the separation radius (-min_dist) are removed.  See '-min_dist' for more information.",
+            "id": "N_STYLE_SORT",
+            "name": "N_STYLE_SORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N_STYLE_SORT]"
+        },
+        {
+            "command-line-flag": "-n_style_weight_ave",
+            "description": "[flag] use 'Weighted-Average' style  Again, traverse the sorted list of extrema.  Replace the current extrema with the center of mass of all extrema within the Separation radius of the current point, removing all others within this radius.  This should not change the number of extrema, it should only shift the locations.  -----  Params:  -----",
+            "id": "N_STYLE_WEIGHT_AVE",
+            "name": "N_STYLE_WEIGHT_AVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N_STYLE_WEIGHT_AVE]"
+        },
+        {
+            "command-line-flag": "-neg_ext",
+            "description": "[flag] search for negative extrema (minima)  This will search for the minima of the dataset. Note that a negative threshold may be desired.",
+            "id": "NEG_EXT",
+            "name": "NEG_EXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEG_EXT]"
+        },
+        {
+            "command-line-flag": "-true_max",
+            "description": "[flag] extrema may not have equal neighbors  By default, points may be considered extrema even if they have a neighbor with the same value.  This flag option requires extrema to be strictly greater than any of their neighbors.  With this option, extrema locations that have neighbors at the same value are ignored.  -----  Output Text:  -----",
+            "id": "TRUE_MAX",
+            "name": "TRUE_MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TRUE_MAX]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "output extra information to the terminal  e.g. -debug 2",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-no_text",
+            "description": "[flag] do not display the extrma points as text",
+            "id": "NO_TEXT",
+            "name": "NO_TEXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_TEXT]"
+        },
+        {
+            "command-line-flag": "-coords_only",
+            "description": "[flag] only output coordinates (no text or vals)  -----  Output Coords:  -----",
+            "id": "COORDS_ONLY",
+            "name": "COORDS_ONLY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COORDS_ONLY]"
+        },
+        {
+            "command-line-flag": "-dset_coords",
+            "description": "[flag] display output in the dataset orientation  By default, the xyz-coordinates are displayed in DICOM orientation (RAI), i.e. right, anterior and inferior coordinates are negative, and they are printed in that order (RL, then AP, then IS).  If this flag is set, the dataset orientation is used, whichever of the 48 it happens to be.  Note that in either case, the output orientation is printed above the results in the terminal window, to remind the user.  -----  Other :  -----",
+            "id": "DSET_COORDS",
+            "name": "DSET_COORDS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSET_COORDS]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "display this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "display module history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "display version number  Author: R Reynolds",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,660 @@
+{
+    "command-line": "SurfSmooth [MET] [INPUT] [FWHM] [TARGET_FWHM] [BLURMASTER] [DETREND_MASTER] [NO_DETREND_MASTER] [DETPOLY_MASTER] [DETPREFIX_MASTER] [BMALL] [DETREND_IN] [DETPOLY_IN] [DETPREFIX_IN] [NITER] [SIGMA] [CMASK] [KPB] [LM] [SURF_OUT] [IW] [MATCH_SIZE] [MATCH_VOL] [MATCH_AREA] [MATCH_SPHERE] [MATCH_CENTER] [OUTPUT] [OVERWRITE] [ADD_INDEX] [DBG_N] [USE_NEIGHBORS_OUTSIDE_MASK] [I_TYPE] [ONESTATE] [ANATOMICAL] [I] [TN] [TSN] [SV] [SPEC] [SURF_A] [O_TYPE] [O_SF] [N_MASK] [B_MASK] [C_MASK] [TALK_SUMA] [REFRESH_RATE] [SEND_KTH] [SH] [NI_TEXT] [NI_BINARY] [FEED_AFNI] [NP] [NPQ] [NPB] [MAX_PORT_BLOC] [MAX_PORT_BLOC_QUIET] [NUM_ASSIGNED_PORTS] [NUM_ASSIGNED_PORTS_QUIET] [H] [HELP] [H_VIEW] [HVIEW] [H_WEB] [HWEB] [H_FIND] [H_RAW] [H_SPX] [H_ASPX] [ALL_OPTS] [<-SURF_1>] [<-MET] [METHOD>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-met",
+            "description": "name of smoothing method to use. Choose from: HEAT_07: A significant improvement on HEAT_05. This method is used for filtering data on the surface and not for smoothing the surface's geometry per se. This method makes more appropriate parameter choices that take into account: - Numerical precision issues - Mesh resolution - Starting and Target FWHM HEAT_05: The newer method by Chung et al. [Ref. 3&4 below] Consider using HEAT_07 if applicable. LM: The smoothing method proposed by G. Taubin 2000 This method is used for smoothing a surface's geometry. See References below. NN_geom: A simple nearest neighbor coordinate smoothing. This interpolation method causes surface shrinkage that might need to be corrected with the -match_* options below.  Options for HEAT_07 (see @SurfSmooth.HEAT_07.examples for examples):",
+            "id": "MET",
+            "name": "MET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MET]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "file containing data (in 1D or NIML format) Each column in inData is processed separately. The number of rows must equal the number of nodes in the surface. You can select certain columns using the [] notation adopted by AFNI's Note: The program will infer the format of the input file from the extension of inData. programs.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-fwhm",
+            "description": "Blur by a Gaussian filter that has a Full Width at Half Maximum in surface coordinate units (usuallly mm) of F. For Gaussian filters, FWHM, SIGMA (STD-DEV) and RMS FWHM = 2.354820 * SIGMA = 1.359556 * RMS The program first estimates the initial dataset's smoothness and determines the final FWHM (FF) that would result from the added blurring by the filter of width F. The progression of FWHM is estimated with each iteration, and the program stops when the dataset's smoothness reaches FF. or",
+            "id": "FWHM",
+            "name": "FWHM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FWHM]"
+        },
+        {
+            "command-line-flag": "-target_fwhm",
+            "description": "Blur so that the final FWHM of the data is TF mm This option avoids blurring already smooth data. FWHM estimates are obtained from all the data to be processed.",
+            "id": "TARGET_FWHM",
+            "name": "TARGET_FWHM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TARGET_FWHM]"
+        },
+        {
+            "command-line-flag": "-blurmaster",
+            "description": "Blur so that the final FWHM of dataset BLURMASTER is TF mm, then use the same blurring parameters on inData. In most cases, you ought to use the -blurmaster option in conjunction with options -fwhm and target_fwhm. BLURMASTER is preferably the residual timeseries (errts)  from 3dDeconvolve. If using the residual is impractical, you can use the epi time series with detrending option below. The two approaches give similar results for block design data  but we have not checked for randomised event related designs. After detrending (see option -detrend_master), a subset of sub-bricks will be selected for estimating the smoothness. Using all the sub-bricks would slow the program down. The selection is similar to what is done in 3dBlurToFWHM. At most 32 sub-bricks are used and they are selected to be scattered throughout the timeseries. You can use -bmall to force the use of all sub-bricks. N.B.: Blurmaster must be a time series with a continuous time axis. No catenated time series should be used here.",
+            "id": "BLURMASTER",
+            "name": "BLURMASTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLURMASTER]"
+        },
+        {
+            "command-line-flag": "-detrend_master",
+            "description": "-detrend_master [q]: Detrend blurmaster with 2*q+3 basis functions with q > 0. default is -1 where q = NT/30. This option should be used when BLURMASTER is an epi time series. There is no need for detrending when BLURMASTER is the residual from a linear regression analysis.",
+            "id": "DETREND_MASTER",
+            "name": "DETREND_MASTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DETREND_MASTER]"
+        },
+        {
+            "command-line-flag": "-no_detrend_master",
+            "description": "Do not detrend the master. That would be used if you are using residuals for master.",
+            "id": "NO_DETREND_MASTER",
+            "name": "NO_DETREND_MASTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_DETREND_MASTER]"
+        },
+        {
+            "command-line-flag": "-detpoly_master",
+            "description": "Detrend blurmaster with polynomials of order p.",
+            "id": "DETPOLY_MASTER",
+            "name": "DETPOLY_MASTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DETPOLY_MASTER]"
+        },
+        {
+            "command-line-flag": "-detprefix_master",
+            "description": "Save the detrended blurmaster into a dataset with prefix 'd'.",
+            "id": "DETPREFIX_MASTER",
+            "name": "DETPREFIX_MASTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DETPREFIX_MASTER]"
+        },
+        {
+            "command-line-flag": "-bmall",
+            "description": "Use all sub-bricks in master for FWHM estimation.",
+            "id": "BMALL",
+            "name": "BMALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BMALL]"
+        },
+        {
+            "command-line-flag": "-detrend_in",
+            "description": "-detrend_in [q]: Detrend input before blurring it, then retrend it afterwards. Default is no detrending. Detrending mode is similar to detrend_master.",
+            "id": "DETREND_IN",
+            "name": "DETREND_IN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DETREND_IN]"
+        },
+        {
+            "command-line-flag": "-detpoly_in",
+            "description": "Detrend input before blurring then retrend. Detrending mode is similar to detpoly_master.",
+            "id": "DETPOLY_IN",
+            "name": "DETPOLY_IN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DETPOLY_IN]"
+        },
+        {
+            "command-line-flag": "-detprefix_in",
+            "description": "-detprefix_in d Save the detrended input into a dataset with prefix 'd'.  and optionally, one of the following two parameters:",
+            "id": "DETPREFIX_IN",
+            "name": "DETPREFIX_IN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DETPREFIX_IN]"
+        },
+        {
+            "command-line-flag": "-Niter",
+            "description": "Number of iterations (default is -1). You can now set this parameter to -1 and have the program suggest a value based on the surface's mesh density (average distance between nodes), the desired and starting FWHM. Too large or too small a number of iterations can affect smoothing results.",
+            "id": "NITER",
+            "name": "NITER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NITER]"
+        },
+        {
+            "command-line-flag": "-sigma",
+            "description": "Bandwidth of smoothing kernel (for a single iteration). S should be small (< 1) but not too small. If the program is taking forever to run, with final numbers of iteration in the upper hundreds, you can increase the value of -sigma somewhat. -c_mask or -b_mask or -n_mask (see below for details): Restrict smoothing to nodes in mask. You should not include nodes with no data in the smoothing. Note that the mask is also applied to -blurmaster dataset and all estimations of FWHM. For example: If masked nodes have 0 for value in the input dataset's first (0th) sub-brick, use:",
+            "id": "SIGMA",
+            "name": "SIGMA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SIGMA]"
+        },
+        {
+            "command-line-flag": "-cmask",
+            "description": "-cmask '-a inData[0] -expr bool(a)' Notes: 1- For those of you who know what they are doing, you can also skip specifying fwhm options and specify Niter and sigma directly.  Options for HEAT_05  (Consider HEAT_07 method):",
+            "id": "CMASK",
+            "name": "CMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CMASK]"
+        },
+        {
+            "command-line-flag": "-kpb",
+            "description": "Band pass frequency (default is 0.1). values should be in the range 0 < k < 10 -lm and -kpb options are mutually exclusive.",
+            "id": "KPB",
+            "name": "KPB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KPB]"
+        },
+        {
+            "command-line-flag": "-lm",
+            "description": "Lambda and Mu parameters. Sample values are: 0.6307 and -.6732 NOTE: -lm and -kpb options are mutually exclusive.",
+            "id": "LM",
+            "name": "LM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LM]"
+        },
+        {
+            "command-line-flag": "-surf_out",
+            "description": "Writes the surface with smoothed coordinates to disk. For SureFit and 1D formats, only the coord file is written out. NOTE: -surf_out and -output are mutually exclusive. Also, the -o_* options have not effect of the format of the surfaces being written out. Surface file format is inferred from the filename.",
+            "id": "SURF_OUT",
+            "name": "SURF_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURF_OUT]"
+        },
+        {
+            "command-line-flag": "-iw",
+            "description": "Set interpolation weights to wgt. You can choose from: Equal   : Equal weighting, fastest (default), tends to make edges equal. Fujiwara: Weighting based on inverse edge length. Would be a better preserver of geometry when mesh has irregular edge lengths. Desbrun : Weighting based on edge angles (slooow). Removes tangential displacement during smoothing. Might not be too useful for brain surfaces.  Options for NN_geom:",
+            "id": "IW",
+            "name": "IW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IW]"
+        },
+        {
+            "command-line-flag": "-match_size",
+            "description": "Adjust node coordinates of smoothed surface to approximates the original's size. Node i on the filtered surface is repositioned such that |c i| = 1/N sum(|cr j|) where c and cr are the centers of the smoothed and original surfaces, respectively. N is the number of nodes that are within r [surface coordinate units] along the surface (geodesic) from node i. j is one of the nodes neighboring i.",
+            "id": "MATCH_SIZE",
+            "name": "MATCH_SIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATCH_SIZE]"
+        },
+        {
+            "command-line-flag": "-match_vol",
+            "description": "Adjust node coordinates of smoothed surface to approximates the original's volume. Nodes on the filtered surface are repositioned such that the volume of the filtered surface equals, within tolerance tol, that of the original surface. See option -vol in SurfaceMetrics for information about and calculation of the volume of a closed surface.",
+            "id": "MATCH_VOL",
+            "name": "MATCH_VOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATCH_VOL]"
+        },
+        {
+            "command-line-flag": "-match_area",
+            "description": "Adjust node coordinates of smoothed surface to approximates the original's surface. Nodes on the filtered surface are repositioned such that the surface of the filtered surface equals, within tolerance tol, that of the original surface.",
+            "id": "MATCH_AREA",
+            "name": "MATCH_AREA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATCH_AREA]"
+        },
+        {
+            "command-line-flag": "-match_sphere",
+            "description": "Project nodes of smoothed surface to a sphere of radius rad. Projection is carried out along the direction formed by the surface's center and the node.",
+            "id": "MATCH_SPHERE",
+            "name": "MATCH_SPHERE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATCH_SPHERE]"
+        },
+        {
+            "command-line-flag": "-match_center",
+            "description": "Center the smoothed surface to match the original's You can combine -match_center with any of the other -match_* options above.",
+            "id": "MATCH_CENTER",
+            "name": "MATCH_CENTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATCH_CENTER]"
+        },
+        {
+            "command-line-flag": "-output",
+            "description": "Name of output file. The default is inData_sm with LB_FEM and HEAT method and NodeList_sm with LM method. NOTE: For data smoothing methods like HEAT, If a format extension, such as .1D.dset or .niml.dset is present in OUT, then the output will be written in that format. Otherwise, the format is the same as the input's",
+            "id": "OUTPUT",
+            "name": "OUTPUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTPUT]"
+        },
+        {
+            "command-line-flag": "-overwrite",
+            "description": "A flag to allow overwriting OUT",
+            "id": "OVERWRITE",
+            "name": "OVERWRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OVERWRITE]"
+        },
+        {
+            "command-line-flag": "-add_index",
+            "description": "Output the node index in the first column. This is not done by default.",
+            "id": "ADD_INDEX",
+            "name": "ADD_INDEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ADD_INDEX]"
+        },
+        {
+            "command-line-flag": "-dbg_n",
+            "description": "output debug information for node 'node'.",
+            "id": "DBG_N",
+            "name": "DBG_N",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DBG_N]"
+        },
+        {
+            "command-line-flag": "-use_neighbors_outside_mask",
+            "description": "When using -c_mask or -b_mask or -n_mask options, allow value from a node nj neighboring node n to contribute to the value at n even if nj is not in the mask. The default is to ignore all nodes not in the mask.  Specifying input surfaces using -i or -i_TYPE options:",
+            "id": "USE_NEIGHBORS_OUTSIDE_MASK",
+            "name": "USE_NEIGHBORS_OUTSIDE_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USE_NEIGHBORS_OUTSIDE_MASK]"
+        },
+        {
+            "command-line-flag": "-i_TYPE",
+            "description": "-i_TYPE inSurf specifies the input surface, TYPE is one of the following: fs: FreeSurfer surface. If surface name has .asc it is assumed to be in ASCII format. Otherwise it is assumed to be in BINARY_BE (Big Endian) format. Patches in Binary format cannot be read at the moment. sf: SureFit surface. You must specify the .coord followed by the .topo file. vec (or 1D): Simple ascii matrix format. You must specify the coord (NodeList) file followed by the topo (FaceSetList) file. coord contains 3 floats per line, representing X Y Z vertex coordinates. topo contains 3 ints per line, representing v1 v2 v3 triangle vertices. ply: PLY format, ascii or binary. Only vertex and triangulation info is preserved. stl: STL format, ascii or binary. This format of no use for much of the surface-based analyses. Objects are defined as a soup of triangles with no information about which edges they share. STL is only useful for taking surface models to some 3D printing software. mni: MNI .obj format, ascii only. Only vertex, triangulation, and node normals info is preserved. byu: BYU format, ascii. Polygons with more than 3 edges are turned into triangles. bv: BrainVoyager format. Only vertex and triangulation info is preserved. dx: OpenDX ascii mesh format. Only vertex and triangulation info is preserved. Requires presence of 3 objects, the one of class 'field' should contain 2 components 'positions' and 'connections' that point to the two objects containing node coordinates and topology, respectively. gii: GIFTI XML surface format. obj: OBJ file format for triangular meshes only. The following primitives are preserved: v (vertices), (faces, triangles only), and p (points) Note that if the surface filename has the proper extension, it is enough to use the -i option and let the programs guess the type from the extension.  You can also specify multiple surfaces after -i option. This makes it possible to use wildcards on the command line for reading in a bunch of surfaces at once.",
+            "id": "I_TYPE",
+            "name": "I_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I_TYPE]"
+        },
+        {
+            "command-line-flag": "-onestate",
+            "description": "Make all -i_* surfaces have the same state, i.e. they all appear at the same time in the viewer. By default, each -i_* surface has its own state. For -onestate to take effect, it must precede all -i options with on the command line.",
+            "id": "ONESTATE",
+            "name": "ONESTATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ONESTATE]"
+        },
+        {
+            "command-line-flag": "-anatomical",
+            "description": "Label all -i surfaces as anatomically correct. Again, this option should precede the -i_* options.  More variants for option -i: ----------------------------- You can also load standard-mesh spheres that are formed in memory with the following notation",
+            "id": "ANATOMICAL",
+            "name": "ANATOMICAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANATOMICAL]"
+        },
+        {
+            "command-line-flag": "-i",
+            "description": "Where NUM is the parameter controlling the mesh density exactly as the parameter -ld linDepth does in CreateIcosahedron. For example: suma -i ld60 create on the fly a surface that is identical to the one produced by: CreateIcosahedron -ld 60 -tosphere",
+            "id": "I",
+            "name": "I",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I]"
+        },
+        {
+            "command-line-flag": "-tn",
+            "description": "specify surface type and name. See below for help on the parameters.",
+            "id": "TN",
+            "name": "TN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TN]"
+        },
+        {
+            "command-line-flag": "-tsn",
+            "description": "specify surface type state and name. TYPE: Choose from the following (case sensitive): 1D: 1D format FS: FreeSurfer ascii format PLY: ply format MNI: MNI obj ascii format BYU: byu format SF: Caret/SureFit format BV: BrainVoyager format GII: GIFTI format NAME: Name of surface file. For SF and 1D formats, NAME is composed of two names the coord file followed by the topo file STATE: State of the surface. Default is S1, S2.... for each surface. Specifying a Surface Volume:",
+            "id": "TSN",
+            "name": "TSN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TSN]"
+        },
+        {
+            "command-line-flag": "-sv",
+            "description": "-sv SurfaceVolume [VolParam for sf surfaces] If you supply a surface volume, the coordinates of the input surface. are modified to SUMA's convention and aligned with SurfaceVolume. You must also specify a VolParam file for SureFit surfaces. Specifying a surface specification (spec) file:",
+            "id": "SV",
+            "name": "SV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SV]"
+        },
+        {
+            "command-line-flag": "-spec",
+            "description": "specify the name of the SPEC file. As with option -i, you can load template spec files with symbolic notation trickery as in: suma -spec MNI_N27 which will load the all the surfaces from template MNI_N27 at the original FreeSurfer mesh density. The string following -spec is formatted in the following manner: HEMI:TEMPLATE:DENSITY where: HEMI specifies a hemisphere. Choose from 'l', 'r', 'lh', 'rh', 'lr', or 'both' which is the default if you do not specify a hemisphere. TEMPLATE: Specify the template name. For now, choose from MNI_N27 if you want surfaces from the MNI_N27 volume, or TT_N27 for the Talairach version. Those templates must be installed under this directory: /root/.afni/data/ If you have no surface templates there, download one of: https://afni.nimh.nih.gov/pub/dist/tgz/suma_MNI_N27.tgz https://afni.nimh.nih.gov/pub/dist/tgz/suma_TT_N27.tgz https://afni.nimh.nih.gov/pub/dist/tgz/suma_MNI152_2009.tgz and untar them under directory /root/.afni/data/ DENSITY: Use if you want to load standard-mesh versions of the template surfaces. Note that only ld20, ld60, ld120, and ld141 are in the current distributed templates. You can create other densities if you wish with MapIcosahedron, but follow the same naming convention to enable SUMA to find them. This parameter is optional. The order in which you specify HEMI, TEMPLATE, and DENSITY, does not matter. For template surfaces, the -sv option is provided automatically, so you can have SUMA talking to AFNI with something like: suma -spec MNI_N27:ld60 & afni -niml /root/.afni/data/suma_MNI_N27  Specifying a surface using -surf_? method:",
+            "id": "SPEC",
+            "name": "SPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEC]"
+        },
+        {
+            "command-line-flag": "-surf_A",
+            "description": "specify the name of the first surface to load. If the program requires or allows multiple surfaces, use -surf_B ... -surf_Z . You need not use _A if only one surface is expected. SURFACE is the name of the surface as specified in the SPEC file. The use of -surf_ option requires the use of -spec option. Specifying output surfaces using -o or -o_TYPE options:",
+            "id": "SURF_A",
+            "name": "SURF_A",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURF_A]"
+        },
+        {
+            "command-line-flag": "-o_TYPE",
+            "description": "-o_TYPE outSurf specifies the output surface, TYPE is one of the following: fs: FreeSurfer ascii surface. fsp: FeeSurfer ascii patch surface. In addition to outSurf, you need to specify the name of the parent surface for the patch. using the -ipar_TYPE option. This option is only for ConvertSurface sf: SureFit surface. For most programs, you are expected to specify prefix: i.e. -o_sf brain. In some programs, you are allowed to specify both .coord and .topo file names: i.e. -o_sf XYZ.coord TRI.topo The program will determine your choice by examining the first character of the second parameter following",
+            "id": "O_TYPE",
+            "name": "O_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[O_TYPE]"
+        },
+        {
+            "command-line-flag": "-o_sf",
+            "description": "-o_sf. If that character is a '-' then you have supplied a prefix and the program will generate the coord and topo names. vec (or 1D): Simple ascii matrix format. For most programs, you are expected to specify prefix: i.e. -o_1D brain. In some programs, you are allowed to specify both coord and topo file names: i.e. -o_1D brain.1D.coord brain.1D.topo coord contains 3 floats per line, representing X Y Z vertex coordinates. topo contains 3 ints per line, representing v1 v2 v3 triangle vertices. ply: PLY format, ascii or binary. stl: STL format, ascii or binary (see also STL under option -i_TYPE). byu: BYU format, ascii or binary. mni: MNI obj format, ascii only. gii: GIFTI format, ascii. You can also enforce the encoding of data arrays by using gii_asc, gii_b64, or gii_b64gz for ASCII, Base64, or Base64 Gzipped. If AFNI_NIML_TEXT_DATA environment variable is set to YES, the the default encoding is ASCII, otherwise it is Base64. obj: No support for writing OBJ format exists yet. Note that if the surface filename has the proper extension, it is enough to use the -o option and let the programs guess the type from the extension.  SUMA mask options:",
+            "id": "O_SF",
+            "name": "O_SF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[O_SF]"
+        },
+        {
+            "command-line-flag": "-n_mask",
+            "description": "Apply operations to nodes listed in INDEXMASK  only. INDEXMASK is a 1D file.",
+            "id": "N_MASK",
+            "name": "N_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N_MASK]"
+        },
+        {
+            "command-line-flag": "-b_mask",
+            "description": "Similar to -n_mask, except that the BINARYMASK 1D file contains 1 for nodes to filter and 0 for nodes to be ignored. The number of rows in filter_binary_mask must be equal to the number of nodes forming the surface.",
+            "id": "B_MASK",
+            "name": "B_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[B_MASK]"
+        },
+        {
+            "command-line-flag": "-c_mask",
+            "description": "Masking based on the result of EXPR. Use like afni's -cmask options. See explanation in 3dmaskdump -help and examples in output of 3dVol2Surf -help NOTE: Unless stated otherwise, if n_mask, b_mask and c_mask are used simultaneously, the resultant mask is the intersection (AND operation) of all masks.    SUMA communication options:",
+            "id": "C_MASK",
+            "name": "C_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[C_MASK]"
+        },
+        {
+            "command-line-flag": "-talk_suma",
+            "description": "Send progress with each iteration to SUMA.",
+            "id": "TALK_SUMA",
+            "name": "TALK_SUMA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TALK_SUMA]"
+        },
+        {
+            "command-line-flag": "-refresh_rate",
+            "description": "Maximum number of updates to SUMA per second. The default is the maximum speed.",
+            "id": "REFRESH_RATE",
+            "name": "REFRESH_RATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REFRESH_RATE]"
+        },
+        {
+            "command-line-flag": "-send_kth",
+            "description": "Send the kth element to SUMA (default is 1). This allows you to cut down on the number of elements being sent to SUMA.",
+            "id": "SEND_KTH",
+            "name": "SEND_KTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SEND_KTH]"
+        },
+        {
+            "command-line-flag": "-sh",
+            "description": "-sh <SumaHost>: Name (or IP address) of the computer running SUMA. This parameter is optional, the default is 127.0.0.1",
+            "id": "SH",
+            "name": "SH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SH]"
+        },
+        {
+            "command-line-flag": "-ni_text",
+            "description": "Use NI_TEXT_MODE for data transmission.",
+            "id": "NI_TEXT",
+            "name": "NI_TEXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NI_TEXT]"
+        },
+        {
+            "command-line-flag": "-ni_binary",
+            "description": "Use NI_BINARY_MODE for data transmission. (default is ni_binary).",
+            "id": "NI_BINARY",
+            "name": "NI_BINARY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NI_BINARY]"
+        },
+        {
+            "command-line-flag": "-feed_afni",
+            "description": "Send updates to AFNI via SUMA's talk.",
+            "id": "FEED_AFNI",
+            "name": "FEED_AFNI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FEED_AFNI]"
+        },
+        {
+            "command-line-flag": "-np",
+            "description": "Provide a port offset to allow multiple instances of AFNI <--> SUMA, AFNI <--> 3dGroupIncorr, or any other programs that communicate together to operate on the same machine. All ports are assigned numbers relative to PORT_OFFSET. The same PORT_OFFSET value must be used on all programs that are to talk together. PORT_OFFSET is an integer in the inclusive range [1025 to 65500]. When you want to use multiple instances of communicating programs, be sure the PORT_OFFSETS you use differ by about 50 or you may still have port conflicts. A BETTER approach is to use -npb below.",
+            "id": "NP",
+            "name": "NP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NP]"
+        },
+        {
+            "command-line-flag": "-npq",
+            "description": "Like -np, but more quiet in the face of adversity.",
+            "id": "NPQ",
+            "name": "NPQ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NPQ]"
+        },
+        {
+            "command-line-flag": "-npb",
+            "description": "Similar to -np, except it is easier to use. PORT_OFFSET_BLOC is an integer between 0 and MAX_BLOC. MAX_BLOC is around 4000 for now, but it might decrease as we use up more ports in AFNI. You should be safe for the next 10 years if you stay under 2000. Using this function reduces your chances of causing port conflicts.  See also afni and suma options: -list_ports and -port_number for information about port number assignments.  You can also provide a port offset with the environment variable AFNI_PORT_OFFSET. Using -np overrides AFNI_PORT_OFFSET.",
+            "id": "NPB",
+            "name": "NPB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NPB]"
+        },
+        {
+            "command-line-flag": "-max_port_bloc",
+            "description": "Print the current value of MAX_BLOC and exit. Remember this value can get smaller with future releases. Stay under 2000.",
+            "id": "MAX_PORT_BLOC",
+            "name": "MAX_PORT_BLOC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX_PORT_BLOC]"
+        },
+        {
+            "command-line-flag": "-max_port_bloc_quiet",
+            "description": "Spit MAX_BLOC value only and exit.",
+            "id": "MAX_PORT_BLOC_QUIET",
+            "name": "MAX_PORT_BLOC_QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX_PORT_BLOC_QUIET]"
+        },
+        {
+            "command-line-flag": "-num_assigned_ports",
+            "description": "Print the number of assigned ports used by AFNI then quit.",
+            "id": "NUM_ASSIGNED_PORTS",
+            "name": "NUM_ASSIGNED_PORTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUM_ASSIGNED_PORTS]"
+        },
+        {
+            "command-line-flag": "-num_assigned_ports_quiet",
+            "description": "Do it quietly.  Port Handling Examples: ----------------------- Say you want to run three instances of AFNI <--> SUMA. For the first you just do: suma -niml -spec ... -sv ...  & afni -niml & Then for the second instance pick an offset bloc, say 1 and run suma -niml -npb 1 -spec ... -sv ...  & afni -niml -npb 1 & And for yet another instance: suma -niml -npb 2 -spec ... -sv ...  & afni -niml -npb 2 & etc.  Since you can launch many instances of communicating programs now, you need to know wich SUMA window, say, is talking to which AFNI. To sort this out, the titlebars now show the number of the bloc of ports they are using. When the bloc is set either via environment variables AFNI_PORT_OFFSET or AFNI_PORT_BLOC, or with one of the -np* options, window title bars change from [A] to [A#] with # being the resultant bloc number. In the examples above, both AFNI and SUMA windows will show [A2] when -npb is 2.     [-novolreg]: Ignore any Rotate, Volreg, Tagalign, or WarpDrive transformations present in the Surface Volume. [-noxform]: Same as -novolreg [-setenv \"'ENVname=ENVvalue'\"]: Set environment variable ENVname to be ENVvalue. Quotes are necessary. Example: suma -setenv \"'SUMA_BackgroundColor = 1 0 1'\" See also options -update_env, -environment, etc in the output of 'suma -help' Common Debugging Options: [-trace]: Turns on In/Out debug and Memory tracing. For speeding up the tracing log, I recommend you redirect stdout to a file when using this option. For example, if you were running suma you would use: suma -spec lh.spec -sv ... > TraceFile This option replaces the old -iodbg and -memdbg. [-TRACE]: Turns on extreme tracing. [-nomall]: Turn off memory tracing. [-yesmall]: Turn on memory tracing (default). NOTE: For programs that output results to stdout (that is to your shell/screen), the debugging info might get mixed up with your results.   Global Options (available to all AFNI/SUMA programs)",
+            "id": "NUM_ASSIGNED_PORTS_QUIET",
+            "name": "NUM_ASSIGNED_PORTS_QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUM_ASSIGNED_PORTS_QUIET]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "Mini help, at time, same as -help in many cases.",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "The entire help output",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open help in text editor. AFNI will try to find a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open help in web browser. AFNI will try to find a browser.",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Look for lines in this programs's -help output that match (approximately) WORD.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "command-line-flag": "-h_raw",
+            "description": "Help string unedited",
+            "id": "H_RAW",
+            "name": "H_RAW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_RAW]"
+        },
+        {
+            "command-line-flag": "-h_spx",
+            "description": "Help string in sphinx loveliness, but do not try to autoformat",
+            "id": "H_SPX",
+            "name": "H_SPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_SPX]"
+        },
+        {
+            "command-line-flag": "-h_aspx",
+            "description": "Help string in sphinx with autoformatting of options, etc.",
+            "id": "H_ASPX",
+            "name": "H_ASPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_ASPX]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "Try to identify all options for the program from the output of its -help option. Some options might be missed and others misidentified. Use this output for hints only.   -----------------------------------------------------------------------------  Sample commands lines for using SurfSmooth: The surface used in this example had no spec file, so a quick.spec was created using: quickspec -tn 1D NodeList.1D FaceSetList.1D  Sample commands lines for data smoothing:  For HEAT_07 method, see multiple examples with data in script @SurfSmooth.HEAT_07.examples  SurfSmooth  -spec quick.spec -surf_A NodeList.1D -met HEAT_05   \\ -input in.1D -fwhm 8 -add_index         \\ -output in_smh8.1D.dset  You can colorize the input and output data using ScaleToMap: ScaleToMap  -input in.1D 0 1 -cmap BGYR19       \\ -clp MIN MAX > in.1D.col            \\ ScaleToMap  -input in_sm8.1D 0 1 -cmap BGYR19   \\ -clp MIN MAX > in_sm8.1D.col        \\  For help on using ScaleToMap see ScaleToMap -help Note that the MIN MAX represent the minimum and maximum values in in.1D. You should keep them constant in both commands in order to be able to compare the resultant colorfiles. You can import the .col files with the 'c' command in SUMA.  You can send the data to SUMA with each iteration. To do so, start SUMA with these options: suma -spec quick.spec -niml & and add these options to SurfSmooth's command line above: -talk_suma -refresh_rate 5  Sample commands lines for surface smoothing: SurfSmooth  -spec quick.spec -surf_A NodeList.1D -met LM    \\ -output NodeList_sm100.1D -Niter 100 -kpb 0.1 This command smoothes the surface's geometry. The smoothed node coordinates are written out to NodeList_sm100.1D. A similar operation on a surface with a new surface for output: SurfSmooth -i rough_surf.gii -surf_out smooth_surf.gii \\ -met LM -Niter 100 -kpb 0.1  Sample command for considerable surface smoothing and inflation back to original volume: SurfSmooth  -spec quick.spec -surf_A NodeList.1D -met NN_geom \\ -output NodeList_inflated_mvol.1D -Niter 1500 \\ -match_vol 0.01 Sample command for considerable surface smoothing and inflation back to original area: SurfSmooth  -spec quick.spec -surf_A NodeList.1D -met NN_geom \\ -output NodeList_inflated_marea.1D -Niter 1500 \\ -match_area 0.01  References: (1) M.K. Chung et al.   Deformation-based surface morphometry applied to gray matter deformation. Neuroimage 18 (2003) 198-213 M.K. Chung   Statistical morphometry in computational neuroanatomy. Ph.D. thesis, McGill Univ., Montreal, Canada (2) G. Taubin.       Mesh Signal Processing. Eurographics 2000. (3) M.K. Chung et al.  Cortical thickness analysis in autism via heat kernel smoothing. NeuroImage, submitted.(2005) http://www.stat.wisc.edu/~mchung/papers/ni_heatkernel.pdf (4) M.K. Chung,  Heat kernel smoothing and its application to cortical manifolds. Technical Report 1090. Department of Statististics, U.W.Madison http://www.stat.wisc.edu/~mchung/papers/heatkernel_tech.pdf See Also: ScaleToMap to colorize the output, however it is better to load surface datasets directly into SUMA and colorize them interactively.   Compile Date: Sep  7 2018  Ziad S. Saad SSCC/NIMH/NIH saadz@mail.nih.gov",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "description": "NA",
+            "id": "<-SURF_1>",
+            "name": "<-SURF_1>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-SURF_1>]"
+        },
+        {
+            "description": "NA",
+            "id": "<-met",
+            "name": "<-met",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-MET]"
+        },
+        {
+            "description": "NA",
+            "id": "method>",
+            "name": "method>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[METHOD>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

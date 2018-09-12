@@ -1,0 +1,95 @@
+{
+    "command-line": "3dWinsor [IRAD] [CBOT] [CTOP] [NREP] [KEEPZERO] [CLIP] [PREFIX] [MASK] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-irad",
+            "description": "include all points within 'distance' rr in the operation, where distance is defined as sqrt(i*i+j*j+k*k), and (i,j,k) are voxel index offsets [default rr=1.5]",
+            "id": "IRAD",
+            "name": "IRAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IRAD]"
+        },
+        {
+            "command-line-flag": "-cbot",
+            "description": "set bottom clip index to bb [default = 20% of the number of points]",
+            "id": "CBOT",
+            "name": "CBOT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CBOT]"
+        },
+        {
+            "command-line-flag": "-ctop",
+            "description": "set top clip index to tt [default = 80% of the number of points]",
+            "id": "CTOP",
+            "name": "CTOP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CTOP]"
+        },
+        {
+            "command-line-flag": "-nrep",
+            "description": "repeat filter nn times [default nn=1] if nn < 0, means to repeat filter until less than abs(n) voxels change",
+            "id": "NREP",
+            "name": "NREP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NREP]"
+        },
+        {
+            "command-line-flag": "-keepzero",
+            "description": "don't filter voxels that are zero",
+            "id": "KEEPZERO",
+            "name": "KEEPZERO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEPZERO]"
+        },
+        {
+            "command-line-flag": "-clip",
+            "description": "set voxels at or below 'xx' to zero",
+            "id": "CLIP",
+            "name": "CLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLIP]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "use 'pp' as the prefix for the output dataset [default pp='winsor']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "use 'mmm' as a mask dataset - voxels NOT in the mask won't be filtered  ++ Compile date = Sep  7 2018 {:}",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

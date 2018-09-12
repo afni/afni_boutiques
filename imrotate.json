@@ -1,0 +1,73 @@
+{
+    "command-line": "imrotate [LINEAR] [FOURIER] [DX] [DY] [PHI] [INPUT_IMAGE] [OUTPUT_IMAGE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-linear",
+            "description": "-linear means to use bilinear interpolation (default is bicubic)",
+            "id": "LINEAR",
+            "name": "LINEAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LINEAR]"
+        },
+        {
+            "command-line-flag": "-Fourier",
+            "description": "-Fourier means to use Fourier interpolaion Values outside the input_image are taken to be zero.",
+            "id": "FOURIER",
+            "name": "FOURIER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FOURIER]"
+        },
+        {
+            "description": "NA",
+            "id": "dx",
+            "name": "dx",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DX]"
+        },
+        {
+            "description": "NA",
+            "id": "dy",
+            "name": "dy",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DY]"
+        },
+        {
+            "description": "NA",
+            "id": "phi",
+            "name": "phi",
+            "optional": false,
+            "type": "String",
+            "value-key": "[PHI]"
+        },
+        {
+            "description": "NA",
+            "id": "input_image",
+            "name": "input_image",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT_IMAGE]"
+        },
+        {
+            "description": "NA",
+            "id": "output_image",
+            "name": "output_image",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTPUT_IMAGE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

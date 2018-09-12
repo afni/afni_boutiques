@@ -1,0 +1,155 @@
+{
+    "command-line": "@Align_Centers [ECHO] [OVERWRITE] [PREFIX] [1DMAT_ONLY] [1DMAT_ONLY_NODSET] [BASE] [DSET] [CHILD] [NO_CP] [GRID] [CM] [CM_NO_AMASK] [<-BASE] [BASE>] [<-DSET] [DSET>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-echo",
+            "description": "Echo all commands to terminal for debugging",
+            "id": "ECHO",
+            "name": "ECHO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO]"
+        },
+        {
+            "command-line-flag": "-overwrite",
+            "description": "You know what",
+            "id": "OVERWRITE",
+            "name": "OVERWRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OVERWRITE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Result will be named using PREFIX, instead of the current prefix with _shft appended. * Does not work with -child or -no_cp.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-1Dmat_only",
+            "description": "Only output the transfrom needed to align the centers. Do not shift any child volumes. The transform is named DSET_shft.1D",
+            "id": "1DMAT_ONLY",
+            "name": "1DMAT_ONLY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1DMAT_ONLY]"
+        },
+        {
+            "command-line-flag": "-1Dmat_only_nodset",
+            "description": "Like above, but no dsets at all are created or changed.",
+            "id": "1DMAT_ONLY_NODSET",
+            "name": "1DMAT_ONLY_NODSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1DMAT_ONLY_NODSET]"
+        },
+        {
+            "command-line-flag": "-base",
+            "description": "Base volume, typically a template.",
+            "id": "BASE",
+            "name": "BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASE]"
+        },
+        {
+            "command-line-flag": "-dset",
+            "description": "Typically an anatomical dset to be aligned to BASE.",
+            "id": "DSET",
+            "name": "DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSET]"
+        },
+        {
+            "command-line-flag": "-child",
+            "description": "-child CHILD_'*': A bunch of datasets, originally in register with DSET, that should be shifted in the same way.",
+            "id": "CHILD",
+            "name": "CHILD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHILD]"
+        },
+        {
+            "command-line-flag": "-no_cp",
+            "description": "Do not create new data, shift existing ones This is a good option if you know what you are doing. It will save you a lot of space. See NOTE below before using it.  DSET and CHILD_'*' are typically all the datasets from a particular scanning session that you want to eventually align to BASE. Such an operation is needed when DSET and CHILD_'*' overlap very little, if at all with BASE  Note that you can specify *.HEAD for the children even if the wildcard substitution would contain DSET and possibly even BASE. The script will not process a dataset twice in one execution.  Center options:",
+            "id": "NO_CP",
+            "name": "NO_CP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CP]"
+        },
+        {
+            "command-line-flag": "-grid",
+            "description": "(default) Center is that of the volume's grid",
+            "id": "GRID",
+            "name": "GRID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GRID]"
+        },
+        {
+            "command-line-flag": "-cm",
+            "description": "Center is the center of mass of the volume.",
+            "id": "CM",
+            "name": "CM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CM]"
+        },
+        {
+            "command-line-flag": "-cm_no_amask",
+            "description": "Implies -cm, but with no -automask.   See also @Center_Distance  NOTE: Running the script multiple times on the same data will cause a lot of trouble. That is why the default is to create new datasets as opposed to shifting the existing ones. Do not use -no_cp unless you know what you are doing. To undo errors caused by repeated executions look at the history of each dset and undo the excess 3drefit operations.  Requires 3drefit newer than Oct. 02/02.  Ziad Saad (saadz@mail.nih.gov) SSCC/NIMH/ National Institutes of Health, Bethesda Maryland",
+            "id": "CM_NO_AMASK",
+            "name": "CM_NO_AMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CM_NO_AMASK]"
+        },
+        {
+            "description": "NA",
+            "id": "<-base",
+            "name": "<-base",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-BASE]"
+        },
+        {
+            "description": "NA",
+            "id": "BASE>",
+            "name": "BASE>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[BASE>]"
+        },
+        {
+            "description": "NA",
+            "id": "<-dset",
+            "name": "<-dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-DSET]"
+        },
+        {
+            "description": "NA",
+            "id": "DSET>",
+            "name": "DSET>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

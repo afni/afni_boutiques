@@ -1,0 +1,105 @@
+{
+    "command-line": "@ROI_Corr_Mat [TS] [ROI] [PREFIX] [ROISEL] [ZVAL] [MAT] [DIRTY] [KEEP_TMP] [ECHO] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-ts",
+            "description": "Time series volume",
+            "id": "TS",
+            "name": "TS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TS]"
+        },
+        {
+            "command-line-flag": "-roi",
+            "description": "ROI volume This script will resample the ROI volume to match the resolution of the EPI if the number of voxels in each of the three directions is not the same. ROIs are resampled using NN interpolation. If you'd rather interpolate the epi, then do so before you run this script.",
+            "id": "ROI",
+            "name": "ROI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ROI]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use output for a prefix",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-roisel",
+            "description": "Force processing of ROI label (integers) listed in ROISEL 1D file. The default is to process all ROIs in ROIvol. It is important to use this option when processing data accross subjects with differing ROIVol for input. If all ROIVol volumes do not have the same set of ROI labels then the correlation matrices would be of differing sizes. See 3dRank for obtaining a list of ROI labels in a volume. NOTE: ROI labels in ROISEL that do not exist in ROIvol will be replaced with empty vectors.",
+            "id": "ROISEL",
+            "name": "ROISEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ROISEL]"
+        },
+        {
+            "command-line-flag": "-zval",
+            "description": "Output a zscore version of the correlation matrix.",
+            "id": "ZVAL",
+            "name": "ZVAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZVAL]"
+        },
+        {
+            "command-line-flag": "-mat",
+            "description": "Output matrix in different manners depending on OPT: FULL  --> Full matrix TRI   --> Triangular TRI_ND--> Triangular, without diagonal (default)",
+            "id": "MAT",
+            "name": "MAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAT]"
+        },
+        {
+            "command-line-flag": "-dirty",
+            "description": "Keep temporary files",
+            "id": "DIRTY",
+            "name": "DIRTY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIRTY]"
+        },
+        {
+            "command-line-flag": "-keep_tmp",
+            "description": "Keep temporary files",
+            "id": "KEEP_TMP",
+            "name": "KEEP_TMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_TMP]"
+        },
+        {
+            "command-line-flag": "-echo",
+            "description": "set echo (echo all commands to screen)",
+            "id": "ECHO",
+            "name": "ECHO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Verbose flag  Example: @ROI_Corr_Mat     -ts s620_rest_r1+orig \\ -roi SUMA/aparc.a2005s+aseg.nii \\ -prefix s620_matrix_all_ROIs   How to read correlation matrix: The correlation matrix is created in .1D and .BRIK formats  1. Choose undelay master.2droi.row+orig and overlay s620_matrix_my_ROIs_Zval+orig 2. Push Define Datamode Button -> Misc Button -> Voxel Coords 3. Click axial button, and turn + LR Mirror off. (i, j) on afni GUI means that the selected pixel is r- or Z-values presenting correlation between i-th ROI and j-th ROI.  Written by Hang Joon Jo, Modified by Ziad S. Saad.  (05/11/2009)",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

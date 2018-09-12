@@ -1,0 +1,141 @@
+{
+    "command-line": "@GradFlipTest [IN_DWI] [IN_ROW_VEC] [IN_COL_VEC] [IN_COL_MATA] [IN_COL_MATT] [MASK] [IN_BVALS] [ALG_THRESH_FA] [ALG_THRESH_LEN] [PREFIX] [CHECK_ABS_MIN] [SCALE_OUT_1000] [WDIR] [DO_CLEAN]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-in_dwi",
+            "description": "et of DWIs (N total volumes)",
+            "id": "IN_DWI",
+            "name": "IN_DWI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_DWI]"
+        },
+        {
+            "command-line-flag": "-in_row_vec",
+            "description": "et of row-wise gradient vectors",
+            "id": "IN_ROW_VEC",
+            "name": "IN_ROW_VEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_ROW_VEC]"
+        },
+        {
+            "command-line-flag": "-in_col_vec",
+            "description": "et of column-wise gradient vectors",
+            "id": "IN_COL_VEC",
+            "name": "IN_COL_VEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_COL_VEC]"
+        },
+        {
+            "command-line-flag": "-in_col_matA",
+            "description": "et of column-wise g- or b-matrix elements (\"AFNI\"-style format, \"diagonal-first\")",
+            "id": "IN_COL_MATA",
+            "name": "IN_COL_MATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_COL_MATA]"
+        },
+        {
+            "command-line-flag": "-in_col_matT",
+            "description": "et of column-wise g- or b-matrix elements (\"TORTOISE\"-style format, \"row-first\")",
+            "id": "IN_COL_MATT",
+            "name": "IN_COL_MATT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_COL_MATT]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "ption mask (probably whole brain); otherwise, automasking is performed",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-in_bvals",
+            "description": "an input bvals, as in 1dDW_Grad_o_Mat++, if necessary (but shouldn't be necessary?)",
+            "id": "IN_BVALS",
+            "name": "IN_BVALS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_BVALS]"
+        },
+        {
+            "command-line-flag": "-alg_Thresh_FA",
+            "description": "et minimum FA value for tracking (default X=0.2 as for adult, healthy WM parenchyma)",
+            "id": "ALG_THRESH_FA",
+            "name": "ALG_THRESH_FA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALG_THRESH_FA]"
+        },
+        {
+            "command-line-flag": "-alg_Thresh_Len",
+            "description": "et minimum tract length to require to keep a tract when propagating (default L=30mm ; probably want it to be a bit on the longside for clear counting and comparison)",
+            "id": "ALG_THRESH_LEN",
+            "name": "ALG_THRESH_LEN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALG_THRESH_LEN]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput name of text file that stores recommended flip opt (default is ).  This option is now also used to determine the directory for all outputs of this program, via the path of PPP. NB: The previous, separate option for specifying output directory was '-outdir OUT', but this no longer is used;  the path of an output directory is specified by taking the path-part of the '-prefix PPP' input.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-check_abs_min",
+            "description": "riefly, this can help the program push through finding tiny negative values (that miiiight be due to rounding errors or small numerical things) in columns that should only contain numbers >=0. 'VVV' is basically a tolerance for the magnitude of negative values you are willing to allow: anything between [-VVV, 0) gets zeroed for further calcs.  See 1dDW_Grad_o_Mat++'s help for more information on this option (of the same name).",
+            "id": "CHECK_ABS_MIN",
+            "name": "CHECK_ABS_MIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHECK_ABS_MIN]"
+        },
+        {
+            "command-line-flag": "-scale_out_1000",
+            "description": "s in 3dDWItoDT.  Probably not necessary, since we are just checking out trackability",
+            "id": "SCALE_OUT_1000",
+            "name": "SCALE_OUT_1000",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE_OUT_1000]"
+        },
+        {
+            "command-line-flag": "-wdir",
+            "description": "ename working directory output; useful if running multiple iterations.  Default: _tmp_TESTFLIP. NB: WWW should *only* be the name of the directory, not contain path info-- the location of WWW is just determined by the path for output, which comes from the path part of PPP/",
+            "id": "WDIR",
+            "name": "WDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WDIR]"
+        },
+        {
+            "command-line-flag": "-do_clean",
+            "description": "emove temporary directory  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  EXAMPLES  @GradFlipTest  \\ -in_dwi       DWI.nii.gz          \\ -in_col_matA  BMTXT_AFNI.txt  or (perhaps if scanning infants, who have less developed myelin)  @GradFlipTest  \\ -in_dwi        DWI.nii.gz         \\ -in_col_vec    GRADS.txt          \\ -mask          mask_DWI.nii.gz    \\ -alg_Thresh_FA 0.1  # -----------------------------------------------------------------------",
+            "id": "DO_CLEAN",
+            "name": "DO_CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_CLEAN]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

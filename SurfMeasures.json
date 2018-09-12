@@ -1,0 +1,195 @@
+{
+    "command-line": "SurfMeasures [OUT_1D] [NODES_1D] [SPEC] [SURF_A] [SURF_B] [OUT] [CMASK] [DEBUG] [DNODE] [FUNC] [HELP] [HIST] [INFO_ALL] [INFO_AREA] [INFO_NORMS] [INFO_THICK] [INFO_VOL] [INFO_VOLG] [SV] [VER]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-out_1D",
+            "description": "-out_1D     fred1_areas.1D  2. For each node of the surface pair smoothwm and pial, display the: o  node index o  node's area from the first surface o  node's area from the second surface o  node's resulting volume o  thickness at that node (segment distance) o  coordinates of the first segment node o  coordinates of the second segment node  Additionally, display total surface areas, minimum and maximum thicknesses, and total volume for the cortical ribbon (the sum of node volumes).  SurfMeasures                                   \\ -spec       fred2.spec                     \\ -sv         fred_anat+orig                 \\ -surf_A     smoothwm                       \\ -surf_B     pial                           \\ -func       n_area_A                       \\ -func       n_area_B                       \\ -func       node_volg                      \\ -func       thick                          \\ -func       coord_A                        \\ -func       coord_B                        \\ -info_area                                 \\ -info_thick                                \\ -info_vol                                  \\ -out        fred2_vol.niml.dset  3. For each node of the surface pair, display the: o  node index o  angular diff between the first and second norms o  angular diff between the segment and first norm o  angular diff between the segment and second norm o  the normal vectors for the first surface nodes o  the normal vectors for the second surface nodes o  angular diff between the segment and second norm  SurfMeasures                                   \\ -spec       fred2.spec                     \\ -surf_A     smoothwm                       \\ -surf_B     pial                           \\ -func       ang_norms                      \\ -func       ang_ns_A                       \\ -func       ang_ns_B                       \\ -func       norm_A                         \\ -func       norm_B                         \\ -out        fred2_norm_angles  4. Similar to #3, but output extra debug info, and in particular, info regarding node 5000.  SurfMeasures                                   \\ -spec       fred2.spec                     \\ -sv         fred_anat+orig                 \\ -surf_A     smoothwm                       \\ -surf_B     pial                           \\ -func       ang_norms                      \\ -func       ang_ns_A                       \\ -func       ang_ns_B                       \\ -debug      2                              \\ -dnode      5000                           \\ -out        fred2_norm_angles.1D  5. For each node, output the  volume, thickness and areas, but restrict the nodes to the list contained in column 0 of file sdata.1D.  Furthermore, restrict those nodes to the mask inferred by the given '-cmask' option.  SurfMeasures                                                   \\ -spec       fred2.spec                           \\ -sv         fred_anat+orig                       \\ -surf_A     smoothwm                             \\ -surf_B     pial                                 \\ -func       node_volg                            \\ -func       thick                                \\ -func       n_area_A                             \\ -func       n_area_B                             \\",
+            "id": "OUT_1D",
+            "name": "OUT_1D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_1D]"
+        },
+        {
+            "command-line-flag": "-nodes_1D",
+            "description": "-nodes_1D   'sdata.1D[0]'                        \\ -cmask      '-a sdata.1D[2] -expr step(a-1000)'  \\ -out        fred2_masked.1D  ------------------------------------------------------------  REQUIRED COMMAND ARGUMENTS:",
+            "id": "NODES_1D",
+            "name": "NODES_1D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NODES_1D]"
+        },
+        {
+            "command-line-flag": "-spec",
+            "description": "SUMA spec file  e.g. -spec fred2.spec  The surface specification file contains a list of related surfaces.  In order for a surface to be processed by this program, it must exist in the spec file.",
+            "id": "SPEC",
+            "name": "SPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEC]"
+        },
+        {
+            "command-line-flag": "-surf_A",
+            "description": "surface name (in spec file)",
+            "id": "SURF_A",
+            "name": "SURF_A",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURF_A]"
+        },
+        {
+            "command-line-flag": "-surf_B",
+            "description": "surface name (in spec file)  e.g. -surf_A smoothwm e.g. -surf_A lh.smoothwm e.g. -surf_B lh.pial  This is used to specify which surface(s) will be used by the program.  The 'A' and 'B' correspond to other program options (e.g. the 'A' in n_area_A).  The '-surf_B' parameter is required only when the user wishes to input two surfaces.  Any surface name provided must be unique in the spec file, and must match the name of the surface data file (e.g. lh.smoothwm.asc).",
+            "id": "SURF_B",
+            "name": "SURF_B",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURF_B]"
+        },
+        {
+            "command-line-flag": "-out",
+            "description": "Output into surface dataset OUT_DSET  e.g. -out pickle_norm_info.niml.dset  The dset format is determined from the extension of OUT_DSET. Default is NIML format. You are better off using -out and non-1D format datasets because non-1D datasets are better handled by 3dcalc  You can use both -out and -out_1D, but why would you do this?  ------------------------------------------------------------  ALPHABETICAL LISTING OF OPTIONS:",
+            "id": "OUT",
+            "name": "OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT]"
+        },
+        {
+            "command-line-flag": "-cmask",
+            "description": "restrict nodes with a mask  e.g.     -cmask '-a sdata.1D[2] -expr step(a-1000)'  This option will produce a mask to be applied to the list of surface nodes.  The total mask size, including zero entries, must match the number of nodes.  If a specific node list is provided via the '-nodes_1D' option, then the mask size should match the length of the provided node list.  Consider the provided example using the file sdata.1D. If a surface has 100000 nodes (and no '-nodes_1D' option is used), then there must be 100000 values in column 2 of the file sdata.1D.  Alternately, if the '-nodes_1D' option is used, giving a list of 42 nodes, then the mask length should also be 42 (regardless of 0 entries).  See '-nodes_1D' for more information.",
+            "id": "CMASK",
+            "name": "CMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CMASK]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "display extra run-time info  e.g.     -debug 2 default: -debug 0  Valid debug levels are from 0 to 5.",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-dnode",
+            "description": "display extra info for node NODE  e.g. -dnode 5000  This option can be used to display extra information about node NODE during surface evaluation.",
+            "id": "DNODE",
+            "name": "DNODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DNODE]"
+        },
+        {
+            "command-line-flag": "-func",
+            "description": "request output for FUNCTION  e.g. -func thick  This option is used to request output for the given FUNCTION (measure).  Some measures produce one column of output (e.g. thick or ang_norms), and some produce three (e.g. coord_A).  These options, in the order they are given, determine the structure of the output file.  Current functions include:  ang_norms    : angular difference between normals ang_ns_A     : angular diff between segment and first norm ang_ns_B     : angular diff between segment and second norm coord_A      : xyz coordinates of node on first surface coord_B      : xyz coordinates of node on second surface n_area_A     : associated node area on first surface n_area_B     : associated node area on second surface n_avearea_A  : for each node, average area of triangles (surf A) n_avearea_B  : for each node, average area of triangles (surf B) n_ntri       : for each node, number of associated triangles node_vol     : associated node volume between surfaces node_volg    : associated node volume between surfaces via Gauss' theorem nodes        : node number norm_A       : vector of normal at node on first surface norm_B       : vector of normal at node on second surface thick        : distance between surfaces along segment  Note that with node_vol, the node volumes can be a little biased. It is recommended you use -node_volg instead.  You can also use -func ALL to get everything output. You should not use other -func options with -func ALL",
+            "id": "FUNC",
+            "name": "FUNC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FUNC]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "show this help menu",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "display program revision history  This option is used to provide a history of changes to the program, along with version numbers.  NOTE: the following '-info_XXXX' options are used to display pieces of 'aggregate' information about the surface(s).",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-info_all",
+            "description": "display all final info  This is a short-cut to get all '-info_XXXX' options.",
+            "id": "INFO_ALL",
+            "name": "INFO_ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFO_ALL]"
+        },
+        {
+            "command-line-flag": "-info_area",
+            "description": "display info on surface area(s)  Display the total area of each triangulated surface.",
+            "id": "INFO_AREA",
+            "name": "INFO_AREA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFO_AREA]"
+        },
+        {
+            "command-line-flag": "-info_norms",
+            "description": "display info about the normals  For 1 or 2 surfaces, this will give (if possible) the average angular difference between:  o the normals of the surfaces o the connecting segment and the first normal o the connecting segment and the second normal",
+            "id": "INFO_NORMS",
+            "name": "INFO_NORMS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFO_NORMS]"
+        },
+        {
+            "command-line-flag": "-info_thick",
+            "description": "display min and max thickness  For 2 surfaces, this is used to display the minimum and maximum distances between the surfaces, along each of the connecting segments.",
+            "id": "INFO_THICK",
+            "name": "INFO_THICK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFO_THICK]"
+        },
+        {
+            "command-line-flag": "-info_vol",
+            "description": "display info about the volume  For 2 surfaces, display the total computed volume. Note that this node-wise volume computation is an approximation, and tends to run ~10 % high.  ** for more accuracy, use -info_volg **",
+            "id": "INFO_VOL",
+            "name": "INFO_VOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFO_VOL]"
+        },
+        {
+            "command-line-flag": "-info_volg",
+            "description": "display info about the volume which is estimated with Gauss' theorem.",
+            "id": "INFO_VOLG",
+            "name": "INFO_VOLG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFO_VOLG]"
+        },
+        {
+            "command-line-flag": "-sv",
+            "description": "specify an associated AFNI volume  e.g. -sv fred_anat+orig  If there is any need to know the orientation of the surface, a surface volume dataset may be provided.",
+            "id": "SV",
+            "name": "SV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SV]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show version information  Show version and compile date.  ------------------------------------------------------------  Author: R. Reynolds  - version 1.11 (October 6, 2004)",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

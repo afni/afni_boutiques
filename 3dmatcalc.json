@@ -1,0 +1,51 @@
+{
+    "command-line": "3dmatcalc [INPUT] [MATRIX] [PREFIX] [MASK]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "read in dataset 'ddd'  [required option]",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-matrix",
+            "description": "specify matrix, which can be done as a .1D file or as an expression in the syntax of 1dmatcalc [required option]",
+            "id": "MATRIX",
+            "name": "MATRIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATRIX]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "write to dataset with prefix 'ppp'",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "only apply to voxels in the mask; other voxels will be set to all zeroes  EXAMPLE: ------- Assume dataset 'v+orig' has 50 sub-bricks: 3dmatcalc -input v+orig -matrix '&read(1D:50@1,\\,50@0.02) &transp' -prefix w The -matrix option computes a 2x50 matrix, whose first row is all 1's and whose second row is all 0.02's.  Thus, the output dataset w+orig has 2 sub-bricks, the first of which is the voxel-wise sum of all 50 inputs, and the second is the voxel-wise average (since 0.02=1/50).  -- Zhark, Emperor -- April 2006  ++ Compile date = Sep  7 2018 {:}",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

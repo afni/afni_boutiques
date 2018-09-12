@@ -1,0 +1,68 @@
+{
+    "command-line": "3dLocalACF [PREFIX] [INPUT] [NBHD] [MASK] [AUTOMASK] [INPUTDATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix   ppp",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "-input    inputdataset",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-nbhd",
+            "description": "-nbhd     nnn",
+            "id": "NBHD",
+            "name": "NBHD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NBHD]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "-mask     maskdataset",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "-automask  Notes: ------ * This program estimates the spatial AutoCorrelation Function (ACF) locally in a neighborhood around each voxel, unlike '3FWHMx -acf', which produces an average over the whole volume.  * The input dataset must be a time series dataset, and must have been detrended, despiked, etc. already.  The 'errts' output from afni_proc.py is recommended!  * A brain mask is highly recommended as well.  * I typically use 'SPHERE(25)' for the neighborhood.  YMMV.  * This program is very slow. This copy of it uses multiple threads (OpenMP), so it is somewhat tolerable to use.  ***** This program is experimental *****   ++ Compile date = Sep  7 2018 {:}",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "description": "NA",
+            "id": "inputdataset",
+            "name": "inputdataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUTDATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,150 @@
+{
+    "command-line": "afni_system_check.py [HELP] [HELP_DOT_FILES] [HELP_RC_FILES] [HIST] [SHOW_VALID_OPTS] [TODO] [VER] [CHECK_ALL] [DOT_FILE_LIST] [DOT_FILE_SHOW] [DOT_FILE_PACK] [FIND_PROG] [CASEMATCH] [DATA_ROOT] [EXACT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-help_dot_files",
+            "description": "show help on shell setup files",
+            "id": "HELP_DOT_FILES",
+            "name": "HELP_DOT_FILES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_DOT_FILES]"
+        },
+        {
+            "command-line-flag": "-help_rc_files",
+            "description": "SAME",
+            "id": "HELP_RC_FILES",
+            "name": "HELP_RC_FILES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_RC_FILES]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show program history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-show_valid_opts",
+            "description": "show valid options for program",
+            "id": "SHOW_VALID_OPTS",
+            "name": "SHOW_VALID_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_VALID_OPTS]"
+        },
+        {
+            "command-line-flag": "-todo",
+            "description": "show current todo list",
+            "id": "TODO",
+            "name": "TODO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TODO]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show current version  NOTE: either a terminal or an action option is required  action options:",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-check_all",
+            "description": "perform all system checks - see section, \"details displayed via -check_all\"",
+            "id": "CHECK_ALL",
+            "name": "CHECK_ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHECK_ALL]"
+        },
+        {
+            "command-line-flag": "-dot_file_list",
+            "description": "list all found dot files (startup files)",
+            "id": "DOT_FILE_LIST",
+            "name": "DOT_FILE_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOT_FILE_LIST]"
+        },
+        {
+            "command-line-flag": "-dot_file_show",
+            "description": "display contents of all found dot files",
+            "id": "DOT_FILE_SHOW",
+            "name": "DOT_FILE_SHOW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOT_FILE_SHOW]"
+        },
+        {
+            "command-line-flag": "-dot_file_pack",
+            "description": "create a NAME.tgz packge containing dot files",
+            "id": "DOT_FILE_PACK",
+            "name": "DOT_FILE_PACK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOT_FILE_PACK]"
+        },
+        {
+            "command-line-flag": "-find_prog",
+            "description": "search PATH for PROG - default is *PROG*, case-insensitive - see also -casematch, -exact  other options:",
+            "id": "FIND_PROG",
+            "name": "FIND_PROG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIND_PROG]"
+        },
+        {
+            "command-line-flag": "-casematch",
+            "description": "-casematch yes/no    : match case in -find_prog",
+            "id": "CASEMATCH",
+            "name": "CASEMATCH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CASEMATCH]"
+        },
+        {
+            "command-line-flag": "-data_root",
+            "description": "search for class data under DDIR",
+            "id": "DATA_ROOT",
+            "name": "DATA_ROOT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATA_ROOT]"
+        },
+        {
+            "command-line-flag": "-exact",
+            "description": "-exact yes/no        : search for PROG without wildcards in -find_prog  ----------------------------------------------------------------------------- details displayed via -check_all (just run to see):  general information: - CPU, operating system and version, # CPUs, login shell  AFNI and related tests: - which afni, python, R and tcsh, along with versions - check for multiple afni packages in PATH - check that various AFNI programs run  python libs: - check that various python libraries are found and loaded  path vars: - show some environment variables related to the PATH  ----------------------------------------------------------------------------- R Reynolds    July, 2013 =============================================================================",
+            "id": "EXACT",
+            "name": "EXACT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXACT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

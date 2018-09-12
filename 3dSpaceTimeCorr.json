@@ -1,0 +1,60 @@
+{
+    "command-line": "3dSpaceTimeCorr [INSETA] [INSETB] [MASK] [PREFIX] [OUT_ZCORR]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-insetA",
+            "description": "ne 4D data set.",
+            "id": "INSETA",
+            "name": "INSETA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSETA]"
+        },
+        {
+            "command-line-flag": "-insetB",
+            "description": "nother 4D data set; must have same spatial dimesions as FILEA, as well as same number of time points.",
+            "id": "INSETB",
+            "name": "INSETB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSETB]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "ptional mask.  Highly recommended to use for speed of calcs (and probably for interpretability, too).",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput filename/base.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-out_Zcorr",
+            "description": "witch to output Fisher Z transform of spatial map correlation (default is Pearson r values).  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  + OUTPUT: A data set with one value at each voxel, representing the space-time correlation of the two input data sets within the input mask.  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  + EXAMPLE: 3dSpaceTimeCorr                       \\ -insetA SUB_01.nii.gz             \\ -insetB SUB_02.nii.gz             \\ -mask   mask_GM.nii.gz            \\ -prefix stcorr_01_02              \\  ____________________________________________________________________________",
+            "id": "OUT_ZCORR",
+            "name": "OUT_ZCORR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_ZCORR]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,94 @@
+{
+    "command-line": "1ddot [ONE] [DEM] [COV] [INN] [RANK] [TERSE] [OKZERO] [1DFILE] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-one",
+            "description": "Make 1st vector be all 1's.",
+            "id": "ONE",
+            "name": "ONE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ONE]"
+        },
+        {
+            "command-line-flag": "-dem",
+            "description": "Remove mean from all vectors (conflicts with '-one')",
+            "id": "DEM",
+            "name": "DEM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEM]"
+        },
+        {
+            "command-line-flag": "-cov",
+            "description": "Compute with covariance matrix instead of correlation",
+            "id": "COV",
+            "name": "COV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COV]"
+        },
+        {
+            "command-line-flag": "-inn",
+            "description": "Computed with inner product matrix instead",
+            "id": "INN",
+            "name": "INN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INN]"
+        },
+        {
+            "command-line-flag": "-rank",
+            "description": "Compute Spearman rank correlation instead (also implies '-terse')",
+            "id": "RANK",
+            "name": "RANK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANK]"
+        },
+        {
+            "command-line-flag": "-terse",
+            "description": "Output only the correlation or covariance matrix and without any of the garnish.",
+            "id": "TERSE",
+            "name": "TERSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TERSE]"
+        },
+        {
+            "command-line-flag": "-okzero",
+            "description": "Do not quit if a vector is all zeros. The correlation matrix will have 0 where NaNs ought to go. Expect rubbish in the inverse matrices if all zero vectors exist.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "OKZERO",
+            "name": "OKZERO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OKZERO]"
+        },
+        {
+            "description": "NA",
+            "id": "1Dfile",
+            "name": "1Dfile",
+            "optional": false,
+            "type": "String",
+            "value-key": "[1DFILE]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

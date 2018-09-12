@@ -1,0 +1,150 @@
+{
+    "command-line": "RestSym [SETA] [SETB] [LABELA] [LABELB] [POOLED] [UNPOOLED] [PAIRED] [COVARIATES] [SEEDRAD] [AH] [NP] [NOSHM] [QUIET] [VERB] [DEBUG]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-setA",
+            "description": "-setA AAA.grpincorr.niml = Give the setup file (from 3dSetupGroupInCorr) that describes the first dataset collection: ++ This 'option' is MANDATORY (you have to input SOMETHING). ++ Of course, 'AAA' should be replaced with the correct name of your input dataset collection file! ++ RestSym can use byte-valued or short-valued data as produced by the '-byte' or '-short' options to 3dSetupGroupInCorr. ++ You can also put the '.data' filename here, or leave off the '.niml'; the program will look for these cases and patch the filename as needed.",
+            "id": "SETA",
+            "name": "SETA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SETA]"
+        },
+        {
+            "command-line-flag": "-setB",
+            "description": "-setB BBB.grpincorr.niml = Give the setup file that describes the second dataset collection: ++ This option IS optional. ++ If you use only -setA, then the program computes a one-sample t-test. ++ If you use also -setB, then the program computes a two-sample t-test. -- The exact form of the 2-sample t-test used is controlled by one of the three options described below (which are mutually exclusive). ++ The sign of a two sample t-test is 'A-B'; that is, a positive result means that the A set of correlations average larger than the B set. ++ The output t-statistics are converted to Z-scores for transmission to AFNI, using the same code as the 'fitt_t2z(t,d)' function in 3dcalc: -- e.g, the output of the command ccalc 'fitt_t2z(4,15)' is 3.248705, showing that a t-statistic of 4 with 15 degrees-of-freedom (DOF) has the same p-value as a Z-score [N(0,1) deviate] of 3.248705. -- One reason for using Z-scores is that the DOF parameter varies between voxels when you choose the -unpooled option for a 2-sample t-test.",
+            "id": "SETB",
+            "name": "SETB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SETB]"
+        },
+        {
+            "command-line-flag": "-labelA",
+            "description": "Label to attach (in AFNI) to sub-bricks corresponding to setA. If you don't give this option, the label used will be the prefix from the -setA filename.",
+            "id": "LABELA",
+            "name": "LABELA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABELA]"
+        },
+        {
+            "command-line-flag": "-labelB",
+            "description": "Label to attach (in AFNI) to sub-bricks corresponding to setB. ++ At most the first 11 characters of each label will be used!  *** Two-Sample Options ***",
+            "id": "LABELB",
+            "name": "LABELB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABELB]"
+        },
+        {
+            "command-line-flag": "-pooled",
+            "description": "For a two-sample un-paired t-test, use a pooled variance estimator ++ This is the default, but it can be changed from the AFNI GUI.",
+            "id": "POOLED",
+            "name": "POOLED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POOLED]"
+        },
+        {
+            "command-line-flag": "-unpooled",
+            "description": "For a two-sample un-paired t-test, use an unpooled variance estimator ++ Statistical power declines a little, and in return, the test becomes a little more robust.",
+            "id": "UNPOOLED",
+            "name": "UNPOOLED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNPOOLED]"
+        },
+        {
+            "command-line-flag": "-paired",
+            "description": "Use a two-sample paired t-test ++ Which is the same as subtracting the two sets of 3D correlation maps, then doing a one-sample t-test. ++ To use '-paired', the number of datasets in each collection must be the same, and the datasets must have been input to 3dSetupGroupInCorr in the same relative order when each collection was created. (Duh.) ++ None of these options means anything for a 1-sample t-test (i.e., where you don't use -setB).  *** Dataset-Level Covariates [26 May 2010] ***",
+            "id": "PAIRED",
+            "name": "PAIRED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAIRED]"
+        },
+        {
+            "command-line-flag": "-covariates",
+            "description": "Read file 'cf' that contains covariates values for each dataset input (in both -setA and -setB; there can only at most one -covariates option).  Format of the file FIRST LINE -->   subject IQ   age LATER LINES -->  Elvis   143   42 Fred     85   59 Ethel   109   49 Lucy    133   32 This file format should be compatible with 3dMEMA. ++ The first column contains the labels that must match the dataset labels stored in the input *.grpincorr.niml files, which are either the dataset prefixes or whatever you supplied in the 3dSetupGroupInCorr program via '-labels'. -- If you ran 3dSetupGroupInCorr before this update, its output .grpincorr.niml file will NOT have dataset labels included. Such a file cannot be used with -covariates -- Sorry. ++ The later columns contain numbers. ++ The first line contains column headers.  The header label for the first column isn't used for anything.  The later header labels are used in the sub-brick labels sent to AFNI. ++ At this time, only the -paired and -pooled options can be used with covariates.  If you use -unpooled, it will be changed to -pooled. -unpooled still works with a pure t-test (no -covariates option). -- This restriction may be lifted in the future. ++ If you use -paired, then the covariates for -setB will be the same as those for -setA, even if the dataset labels are different! -- This restriction may be lifted in the future. ++ Each covariate column in the regression matrix will have its mean removed (centered). If there are 2 sets of subjects, each set's matrix will be centered separately. ++ For each covariate, 2 sub-bricks are produced: -- The estimated slope of arctanh(correlation) vs covariate -- The Z-score of the t-statistic of this slope ++ If there are 2 sets of subjects, then each pair of sub-bricks is produced for the setA-setB, setA, and setB cases, so that you'll get 6 sub-bricks per covariate (plus 6 more for the mean, which is treated as a special covariate whose values are all 1). -- At present, there is no way to tell RestSym not to send all this information back to AFNI/SUMA. ++ A maximum of 31 covariates are allowed.  If you have more, then seriously consider the possibility that you are completely deranged.  *** Other Options ***",
+            "id": "COVARIATES",
+            "name": "COVARIATES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COVARIATES]"
+        },
+        {
+            "command-line-flag": "-seedrad",
+            "description": "Before performing the correlations, average the seed voxel time series for a radius of 'r' millimeters.  This is in addition to any blurring done prior to 3dSetupGroupInCorr.  The default radius is 0, but the AFNI user can change this interactively.",
+            "id": "SEEDRAD",
+            "name": "SEEDRAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SEEDRAD]"
+        },
+        {
+            "command-line-flag": "-ah",
+            "description": "Connect to AFNI/SUMA on the computer named 'host', rather than on the current computer system 'localhost'. ++ This allows RestSym to run on a separate system than the AFNI GUI. -- e.g., If your desktop is weak and pitiful, but you have access to a strong and muscular multi-CPU server (and the network connection is fast). ++ Note that AFNI must be setup with the appropriate 'AFNI_TRUSTHOST_xx' environment variable, so that it will allow the external socket connection (for the sake of security): -- Example: AFNI running on computer 137.168.0.3 and RestSym running on computer 137.168.0.7 -- Start AFNI with a command like afni -DAFNI_TRUSTHOST_01=137.168.0.7 -niml ... -- Start RestSym with a command like RestSym -ah 137.168.0.3 ... -- You may use hostnames in place of IP addresses, but numerical IP addresses may work more reliably. -- If you are very trusting, you can set NIML_COMPLETE_TRUST to YES to allow NIML socket connections from anybody. (This only affects AFNI programs, not any other software on your computer.) -- You might also need to adjust your firewall settings to allow the reception of TCP/IP socket connections from outside computers. Firewalls are a separate issue from setting up AFNI host 'trusting', and the mechanics of how you can setup your firewall permissions is not something about which we can give you advice.",
+            "id": "AH",
+            "name": "AH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AH]"
+        },
+        {
+            "command-line-flag": "-np",
+            "description": "Connect to AFNI/SUMA using the TCP/IP port number given here, rather than the default port number [53212 for AFNI, 53224 for SUMA].  You must give the corresponding option to AFNI to get proper communication going.  Using '-np' properly is the only way to have multiple copies of RestSym and AFNI talking to each other!",
+            "id": "NP",
+            "name": "NP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NP]"
+        },
+        {
+            "command-line-flag": "-NOshm",
+            "description": "Do NOT reconnect to AFNI using shared memory, rather than TCP/IP, when using 'localhost' (i.e., AFNI and RestSym are running on the same system). ++ The default is to use shared memory for communication when possible, since this method of transferring large amounts of data between programs on the same computer is much faster. ++ If you have a problem with the shared memory communication, use '-NOshm' to use TCP/IP for all communications. ++ If you use '-VERB', you will get a very detailed progress report from RestSym as it computes, including elapsed times for each stage of the process.",
+            "id": "NOSHM",
+            "name": "NOSHM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOSHM]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "Turn off the 'fun fun fun in the sun sun sun' informational messages",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Print out extra informational messages for more fun",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "Do some internal testing (slows things down a little)  -------============= Talairach (+trlc) vs. Original (+orig) =============-------  Normally, AFNI assigns the dataset sent by RestSym to the +tlrc view. However, you can tell AFNI to assign it to the +orig view instead. To do this, set environment variable AFNI_GROUPINCORR_ORIG to YES when starting AFNI; for example:  afni -DAFNI_GROUPINCORR_ORIG=YES -niml  ========================================================================= * This binary version of RestSym is compiled using OpenMP, a semi- automatic parallelizer software toolkit, which splits the work across multiple CPUs/cores on the same shared memory computer. * OpenMP is NOT like MPI -- it does not work with CPUs connected only by a network (e.g., OpenMP doesn't work with 'cluster' setups). * For implementation and compilation details, please see https://afni.nimh.nih.gov/pub/dist/doc/misc/OpenMP.html * The number of CPU threads used will default to the maximum number on your system. You can control this value by setting environment variable OMP_NUM_THREADS to some smaller value (including 1). * Un-setting OMP_NUM_THREADS resets OpenMP back to its default state of using all CPUs available. ++ However, on some systems, it seems to be necessary to set variable OMP_NUM_THREADS explicitly, or you only get one CPU. ++ On other systems with many CPUS, you probably want to limit the CPU count, since using more than (say) 16 threads is probably useless. * You must set OMP_NUM_THREADS in the shell BEFORE running the program, since OpenMP queries this variable BEFORE the program actually starts. ++ You can't usefully set this variable in your ~/.afnirc file or on the command line with the '-D' option. * How many threads are useful? That varies with the program, and how well it was coded. You'll have to experiment on your own systems! * The number of CPUs on this particular computer system is ...... 4. * The maximum number of CPUs that will be used is now set to .... 4. =========================================================================  ++ Compile date = Sep  7 2018 {:}",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

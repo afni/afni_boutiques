@@ -1,0 +1,186 @@
+{
+    "command-line": "3dSeg [CLASSES] [ANAT] [MASK] [BLUR_METH] [BIAS_FWHM] [BMRF] [BIAS_CLASSES] [PREFIX] [OVERWRITE] [DEBUG] [MIXFRAC] [MIXFLOOR] [GOLD] [GOLD_BIAS] [MAIN_N] [CSET] [LABELTABLE] [VOX_DEBUG] [VOX_DEBUG_FILE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-classes",
+            "description": "-classes 'CSF ; GM ; WM' -bias_classes 'GM ; WM' \\ -bias_fwhm 25 -mixfrac UNI -main_N 5 \\ -blur_meth BFT Options:",
+            "id": "CLASSES",
+            "name": "CLASSES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLASSES]"
+        },
+        {
+            "command-line-flag": "-anat",
+            "description": "ANAT is the volume to segment",
+            "id": "ANAT",
+            "name": "ANAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANAT]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "MASK only non-zero voxels in MASK are analyzed. MASK is useful when no voxelwise priors are available. MASK can either be a dataset or the string 'AUTO' which would use AFNI's automask function to create the mask.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-blur_meth",
+            "description": "Set the blurring method for bias field estimation.",
+            "id": "BLUR_METH",
+            "name": "BLUR_METH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLUR_METH]"
+        },
+        {
+            "command-line-flag": "-bias_fwhm",
+            "description": "The amount of blurring used when estimating the field bias with the Wells method. [Wells et. al. IEEE TMI 15, 4, 1997]. Use 0.0 to turn off bias field estimation.  default: 25.0",
+            "id": "BIAS_FWHM",
+            "name": "BIAS_FWHM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BIAS_FWHM]"
+        },
+        {
+            "command-line-flag": "-Bmrf",
+            "description": "Weighting factor controlling spatial homogeneity of the classifications. The larger BMRF, the more homogenious the classifications will be. See Berthod et al. Image and Vision Computing 14 (1996), MRFs are also used in FSL's FAST program. BMRF = 0.0 means no MRF, 1.0 is a start. Use this option if you have noisy data and no good voxelwise priors. default: 0.0",
+            "id": "BMRF",
+            "name": "BMRF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BMRF]"
+        },
+        {
+            "command-line-flag": "-bias_classes",
+            "description": "-bias_classes 'BIAS_CLASS_STRING': A semcolon demlimited string of classes that contribute to the estimation of the bias field. default: 'GM; WM'",
+            "id": "BIAS_CLASSES",
+            "name": "BIAS_CLASSES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BIAS_CLASSES]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "PREF is the prefix for all output volume that are not debugging related. default: Segsy",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-overwrite",
+            "description": "An option common to almost all AFNI programs. It is automatically turned on if you provide no PREF.",
+            "id": "OVERWRITE",
+            "name": "OVERWRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OVERWRITE]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "Set debug level to 0(default), 1, or 2",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-mixfrac",
+            "description": "-mixfrac 'MIXFRAC': MIXFRAC sets up the volume-wide (within mask) tissue fractions while initializing the segmentation (see IGNORE for exception). You can specify the mixing fractions directly such as with '0.1 0.45 0.45', or with the following special flags: 'UNI': Equal mixing fractions 'AVG152_BRAIN_MASK': Mixing fractions reflecting AVG152 template. 'IGNORE': Ignore mixing fraction while computing posterior probabilities for all the iterations, not just at the initialization as for the preceding variants default: UNI",
+            "id": "MIXFRAC",
+            "name": "MIXFRAC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIXFRAC]"
+        },
+        {
+            "command-line-flag": "-mixfloor",
+            "description": "-mixfloor 'FLOOR': Set the minimum value for any class's mixing fraction. The value should be between 0 and 1 and not to exceed 1/(number of classes). This parameter should be kept to a small value. default: 0.0001",
+            "id": "MIXFLOOR",
+            "name": "MIXFLOOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIXFLOOR]"
+        },
+        {
+            "command-line-flag": "-gold",
+            "description": "A goldstandard segmentation volume should you wish to compare 3dSeg's results to it.",
+            "id": "GOLD",
+            "name": "GOLD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GOLD]"
+        },
+        {
+            "command-line-flag": "-gold_bias",
+            "description": "A goldstandard bias volume should you wish to compare 3dSeg's bias estimate to it.",
+            "id": "GOLD_BIAS",
+            "name": "GOLD_BIAS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GOLD_BIAS]"
+        },
+        {
+            "command-line-flag": "-main_N",
+            "description": "Number of iterations to perform. default: 5",
+            "id": "MAIN_N",
+            "name": "MAIN_N",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAIN_N]"
+        },
+        {
+            "command-line-flag": "-cset",
+            "description": "Initial classfication. If CSET is not given, initialization is carried out with 3dkmean's engine.",
+            "id": "CSET",
+            "name": "CSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CSET]"
+        },
+        {
+            "command-line-flag": "-labeltable",
+            "description": "Label table containing integer keys and corresponding labels.",
+            "id": "LABELTABLE",
+            "name": "LABELTABLE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABELTABLE]"
+        },
+        {
+            "command-line-flag": "-vox_debug",
+            "description": "1D index of voxel to debug. OR",
+            "id": "VOX_DEBUG",
+            "name": "VOX_DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VOX_DEBUG]"
+        },
+        {
+            "command-line-flag": "-vox_debug_file",
+            "description": "File in which debug information is output use '-' for stdout, '+' for stderr.",
+            "id": "VOX_DEBUG_FILE",
+            "name": "VOX_DEBUG_FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VOX_DEBUG_FILE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

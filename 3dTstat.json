@@ -1,0 +1,491 @@
+{
+    "command-line": "3dTstat [MEAN] [SUM] [ABSSUM] [SLOPE] [SOS] [STDEV] [L2NORM] [CVAR] [CVARINV] [STDEVNOD] [TSNR] [MAD] [DW] [MEDIAN] [NZMEDIAN] [NZSTDEV] [BMV] [MSSD] [MSSDSQRT] [MASDX] [MIN] [MAX] [ABSMAX] [SIGNED_ABSMAX] [PERCENTILE] [ARGMIN] [ARGMIN1] [ARGMAX] [ARGMAX1] [ARGABSMAX] [ARGABSMAX1] [DURATION] [ONSET] [OFFSET] [CENTROID] [CENTDURATION] [NZMEAN] [ZCOUNT] [NZCOUNT] [AUTOCORR] [AUTOREG] [ACCUMULATE] [CENTROMEAN] [FIRSTVALUE] [TDIFF] [PREFIX] [DATUM] [NSCALE] [BASEPERCENT] [MASK] [MRANGE] [CMASK] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-mean",
+            "description": "compute mean of input voxels",
+            "id": "MEAN",
+            "name": "MEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MEAN]"
+        },
+        {
+            "command-line-flag": "-sum",
+            "description": "compute sum of input voxels",
+            "id": "SUM",
+            "name": "SUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUM]"
+        },
+        {
+            "command-line-flag": "-abssum",
+            "description": "compute absolute sum of input voxels",
+            "id": "ABSSUM",
+            "name": "ABSSUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ABSSUM]"
+        },
+        {
+            "command-line-flag": "-slope",
+            "description": "compute the slope of input voxels vs. time",
+            "id": "SLOPE",
+            "name": "SLOPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SLOPE]"
+        },
+        {
+            "command-line-flag": "-sos",
+            "description": "compute sum of squares",
+            "id": "SOS",
+            "name": "SOS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SOS]"
+        },
+        {
+            "command-line-flag": "-stdev",
+            "description": "compute standard deviation of input voxels [N.B.: this is computed after    ] [      the slope has been removed]",
+            "id": "STDEV",
+            "name": "STDEV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STDEV]"
+        },
+        {
+            "command-line-flag": "-l2norm",
+            "description": "compute L2 norm (sqrt(sum squares))",
+            "id": "L2NORM",
+            "name": "L2NORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[L2NORM]"
+        },
+        {
+            "command-line-flag": "-cvar",
+            "description": "compute coefficient of variation of input voxels = stdev/fabs(mean)",
+            "id": "CVAR",
+            "name": "CVAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CVAR]"
+        },
+        {
+            "command-line-flag": "-cvarinv",
+            "description": "1.0/cvar = 'signal to noise ratio' [for Vinai] **N.B.: You can add NOD to the end of the above 3 options only, to turn off detrending, as in",
+            "id": "CVARINV",
+            "name": "CVARINV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CVARINV]"
+        },
+        {
+            "command-line-flag": "-stdevNOD",
+            "description": "-stdevNOD  and/or  -cvarNOD  and/or  -cvarinvNOD",
+            "id": "STDEVNOD",
+            "name": "STDEVNOD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STDEVNOD]"
+        },
+        {
+            "command-line-flag": "-tsnr",
+            "description": "compute temporal signal to noise ratio fabs(mean)/stdev NOT DETRENDED (same as -cvarinvNOD)",
+            "id": "TSNR",
+            "name": "TSNR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TSNR]"
+        },
+        {
+            "command-line-flag": "-MAD",
+            "description": "compute MAD (median absolute deviation) of input voxels = median(|voxel-median(voxel)|) [N.B.: the trend is NOT removed for this]",
+            "id": "MAD",
+            "name": "MAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAD]"
+        },
+        {
+            "command-line-flag": "-DW",
+            "description": "compute Durbin-Watson Statistic of input voxels [N.B.: the trend IS removed for this]",
+            "id": "DW",
+            "name": "DW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DW]"
+        },
+        {
+            "command-line-flag": "-median",
+            "description": "compute median of input voxels  [undetrended]",
+            "id": "MEDIAN",
+            "name": "MEDIAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MEDIAN]"
+        },
+        {
+            "command-line-flag": "-nzmedian",
+            "description": "compute median of non-zero input voxels [undetrended]",
+            "id": "NZMEDIAN",
+            "name": "NZMEDIAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZMEDIAN]"
+        },
+        {
+            "command-line-flag": "-nzstdev",
+            "description": "standard deviation of non-zero input voxel [undetrended]",
+            "id": "NZSTDEV",
+            "name": "NZSTDEV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZSTDEV]"
+        },
+        {
+            "command-line-flag": "-bmv",
+            "description": "compute biweight midvariance of input voxels [undetrended] [actually is 0.989*sqrt(biweight midvariance), to make] [the value comparable to the standard deviation output]",
+            "id": "BMV",
+            "name": "BMV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BMV]"
+        },
+        {
+            "command-line-flag": "-MSSD",
+            "description": "Von Neumann's Mean of Successive Squared Differences = average of sum of squares of first time difference",
+            "id": "MSSD",
+            "name": "MSSD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MSSD]"
+        },
+        {
+            "command-line-flag": "-MSSDsqrt",
+            "description": "Sqrt(MSSD)",
+            "id": "MSSDSQRT",
+            "name": "MSSDSQRT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MSSDSQRT]"
+        },
+        {
+            "command-line-flag": "-MASDx",
+            "description": "Median of absolute values of first time differences times 1.4826 (to scale it like standard deviation) = a robust alternative to MSSDsqrt",
+            "id": "MASDX",
+            "name": "MASDX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASDX]"
+        },
+        {
+            "command-line-flag": "-min",
+            "description": "compute minimum of input voxels [undetrended]",
+            "id": "MIN",
+            "name": "MIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN]"
+        },
+        {
+            "command-line-flag": "-max",
+            "description": "compute maximum of input voxels [undetrended]",
+            "id": "MAX",
+            "name": "MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX]"
+        },
+        {
+            "command-line-flag": "-absmax",
+            "description": "compute absolute maximum of input voxels [undetrended]",
+            "id": "ABSMAX",
+            "name": "ABSMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ABSMAX]"
+        },
+        {
+            "command-line-flag": "-signed_absmax",
+            "description": "(signed) value with absolute maximum [undetrended]",
+            "id": "SIGNED_ABSMAX",
+            "name": "SIGNED_ABSMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SIGNED_ABSMAX]"
+        },
+        {
+            "command-line-flag": "-percentile",
+            "description": "the P-th percentile point (0=min, 50=median, 100=max) of the data in each voxel time series. [this option can only be used once!]",
+            "id": "PERCENTILE",
+            "name": "PERCENTILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERCENTILE]"
+        },
+        {
+            "command-line-flag": "-argmin",
+            "description": "index of minimum of input voxels [undetrended]",
+            "id": "ARGMIN",
+            "name": "ARGMIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ARGMIN]"
+        },
+        {
+            "command-line-flag": "-argmin1",
+            "description": "index + 1 of minimum of input voxels [undetrended]",
+            "id": "ARGMIN1",
+            "name": "ARGMIN1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ARGMIN1]"
+        },
+        {
+            "command-line-flag": "-argmax",
+            "description": "index of maximum of input voxels [undetrended]",
+            "id": "ARGMAX",
+            "name": "ARGMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ARGMAX]"
+        },
+        {
+            "command-line-flag": "-argmax1",
+            "description": "index + 1 of maximum of input voxels [undetrended]",
+            "id": "ARGMAX1",
+            "name": "ARGMAX1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ARGMAX1]"
+        },
+        {
+            "command-line-flag": "-argabsmax",
+            "description": "index of absolute maximum of input voxels [undetrended]",
+            "id": "ARGABSMAX",
+            "name": "ARGABSMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ARGABSMAX]"
+        },
+        {
+            "command-line-flag": "-argabsmax1",
+            "description": "index +1 of absolute maximum of input voxels [undetrended]",
+            "id": "ARGABSMAX1",
+            "name": "ARGABSMAX1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ARGABSMAX1]"
+        },
+        {
+            "command-line-flag": "-duration",
+            "description": "compute number of points around max above a threshold Use basepercent option to set limits",
+            "id": "DURATION",
+            "name": "DURATION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DURATION]"
+        },
+        {
+            "command-line-flag": "-onset",
+            "description": "beginning of duration around max where value exceeds basepercent",
+            "id": "ONSET",
+            "name": "ONSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ONSET]"
+        },
+        {
+            "command-line-flag": "-offset",
+            "description": "end of duration around max where value exceeds basepercent",
+            "id": "OFFSET",
+            "name": "OFFSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OFFSET]"
+        },
+        {
+            "command-line-flag": "-centroid",
+            "description": "compute centroid of data time curves (sum(i*f(i)) / sum(f(i)))",
+            "id": "CENTROID",
+            "name": "CENTROID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENTROID]"
+        },
+        {
+            "command-line-flag": "-centduration",
+            "description": "compute duration using centroid's index as center",
+            "id": "CENTDURATION",
+            "name": "CENTDURATION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENTDURATION]"
+        },
+        {
+            "command-line-flag": "-nzmean",
+            "description": "compute mean of non-zero voxels",
+            "id": "NZMEAN",
+            "name": "NZMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZMEAN]"
+        },
+        {
+            "command-line-flag": "-zcount",
+            "description": "count number of zero values at each voxel",
+            "id": "ZCOUNT",
+            "name": "ZCOUNT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZCOUNT]"
+        },
+        {
+            "command-line-flag": "-nzcount",
+            "description": "count number of non zero values at each voxel",
+            "id": "NZCOUNT",
+            "name": "NZCOUNT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NZCOUNT]"
+        },
+        {
+            "command-line-flag": "-autocorr",
+            "description": "compute autocorrelation function and return first n coefficients",
+            "id": "AUTOCORR",
+            "name": "AUTOCORR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOCORR]"
+        },
+        {
+            "command-line-flag": "-autoreg",
+            "description": "compute autoregression coefficients and return first n coefficients [N.B.: -autocorr 0 and/or -autoreg 0 will return number coefficients equal to the length of the input data]",
+            "id": "AUTOREG",
+            "name": "AUTOREG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOREG]"
+        },
+        {
+            "command-line-flag": "-accumulate",
+            "description": "accumulate time series values (partial sums) val[i] = sum old_val[t] over t = 0..i (output length = input length)",
+            "id": "ACCUMULATE",
+            "name": "ACCUMULATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ACCUMULATE]"
+        },
+        {
+            "command-line-flag": "-centromean",
+            "description": "compute mean of middle 50% of voxel values [undetrended]",
+            "id": "CENTROMEAN",
+            "name": "CENTROMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENTROMEAN]"
+        },
+        {
+            "command-line-flag": "-firstvalue",
+            "description": "first value in dataset - typically just placeholder  ** If no statistic option is given, then '-mean' is assumed **  Other Options:",
+            "id": "FIRSTVALUE",
+            "name": "FIRSTVALUE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIRSTVALUE]"
+        },
+        {
+            "command-line-flag": "-tdiff",
+            "description": "Means to take the first difference of each time series before further processing.",
+            "id": "TDIFF",
+            "name": "TDIFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TDIFF]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use string 'p' for the prefix of the output dataset [DEFAULT = 'stat']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-datum",
+            "description": "use data type 'd' for the type of storage of the output, where 'd' is one of 'byte', 'short', or 'float' [DEFAULT=float]",
+            "id": "DATUM",
+            "name": "DATUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATUM]"
+        },
+        {
+            "command-line-flag": "-nscale",
+            "description": "Do not scale output values when datum is byte or short. Scaling is done by default.",
+            "id": "NSCALE",
+            "name": "NSCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NSCALE]"
+        },
+        {
+            "command-line-flag": "-basepercent",
+            "description": "Percentage of maximum for duration calculation",
+            "id": "BASEPERCENT",
+            "name": "BASEPERCENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASEPERCENT]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "-mask mset   Means to use the dataset 'mset' as a mask: Only voxels with nonzero values in 'mset' will be printed from 'dataset'.  Note that the mask dataset and the input dataset must have the same number of voxels.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-mrange",
+            "description": "-mrange a b  Means to further restrict the voxels from 'mset' so that only those mask values between 'a' and 'b' (inclusive) will be used.  If this option is not given, all nonzero values from 'mset' are used. Note that if a voxel is zero in 'mset', then it won't be included, even if a < 0 < b.",
+            "id": "MRANGE",
+            "name": "MRANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MRANGE]"
+        },
+        {
+            "command-line-flag": "-cmask",
+            "description": "-cmask 'opts' Means to execute the options enclosed in single quotes as a 3dcalc-like program, and produce produce a mask from the resulting 3D brick. Examples:",
+            "id": "CMASK",
+            "name": "CMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CMASK]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

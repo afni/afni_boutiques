@@ -1,0 +1,69 @@
+{
+    "command-line": "prompt_popup [MESSAGE] [PAUSE] [BUTTON] [B] [TIMEOUT] [TO]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-message",
+            "description": "Pops a window prompting the user with MESSAGE. Program does not return until user responds. note: if MESSAGE is '-', it is read from stdin",
+            "id": "MESSAGE",
+            "name": "MESSAGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MESSAGE]"
+        },
+        {
+            "command-line-flag": "-pause",
+            "description": "Same as -message to match the old prompt_user",
+            "id": "PAUSE",
+            "name": "PAUSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAUSE]"
+        },
+        {
+            "command-line-flag": "-button",
+            "description": "What do you want the buttons to say? You can give up to three -button for three buttons. Returns integer 1, 2, or 3. If there is no -button, there will be one button 'Ok'",
+            "id": "BUTTON",
+            "name": "BUTTON",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BUTTON]"
+        },
+        {
+            "command-line-flag": "-b",
+            "description": "Same as -button.",
+            "id": "B",
+            "name": "B",
+            "optional": true,
+            "type": "String",
+            "value-key": "[B]"
+        },
+        {
+            "command-line-flag": "-timeout",
+            "description": "Timeout in seconds of prompt message. Default answer is returned if TT seconds elapse without user input.",
+            "id": "TIMEOUT",
+            "name": "TIMEOUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TIMEOUT]"
+        },
+        {
+            "command-line-flag": "-to",
+            "description": "Same as -timeout TT  example: prompt_popup -message 'Best disco ever?' -b Earth -b Wind -b Fire  Justin Rajendra March 2017 (stolen mostly from Ziad S. Saad)",
+            "id": "TO",
+            "name": "TO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TO]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

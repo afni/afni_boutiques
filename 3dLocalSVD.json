@@ -1,0 +1,95 @@
+{
+    "command-line": "3dLocalSVD [MASK] [AUTOMASK] [PREFIX] [INPUT] [NBHD] [POLORT] [VNORM] [VPROJ] [INPUTDATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-mask",
+            "description": "restrict operations to this mask",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "create a mask from time series dataset",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "save SVD vector result into this new dataset",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "input time series dataset",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-nbhd",
+            "description": "e.g., 'SPHERE(5)' 'TOHD(7)' etc.",
+            "id": "NBHD",
+            "name": "NBHD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NBHD]"
+        },
+        {
+            "command-line-flag": "-polort",
+            "description": "-polort p [+]        = detrending ['+' means to add trend back]",
+            "id": "POLORT",
+            "name": "POLORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POLORT]"
+        },
+        {
+            "command-line-flag": "-vnorm",
+            "description": "normalize data vectors [strongly recommended]",
+            "id": "VNORM",
+            "name": "VNORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VNORM]"
+        },
+        {
+            "command-line-flag": "-vproj",
+            "description": "-vproj [ndim]        = project central data time series onto local SVD subspace of dimension 'ndim' [default: just output principal singular vector] [for 'smoothing' purposes, '-vnorm -vproj 2' is a good idea]  ++ Compile date = Sep  7 2018 {:}",
+            "id": "VPROJ",
+            "name": "VPROJ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VPROJ]"
+        },
+        {
+            "description": "NA",
+            "id": "inputdataset",
+            "name": "inputdataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUTDATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

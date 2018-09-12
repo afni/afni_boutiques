@@ -1,0 +1,114 @@
+{
+    "command-line": "3dMultiThresh [MTHRESH] [INPUT] [1TINDEX] [SIGNED] [POS] [NEG] [PREFIX] [MASKONLY] [ALLMASK] [NOZERO] [QUIET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-mthresh",
+            "description": "Multi-threshold dataset from 3dXClustSim (usually via running '3dttest++ -ETAC').",
+            "id": "MTHRESH",
+            "name": "MTHRESH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MTHRESH]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "Dataset to threshold.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-1tindex",
+            "description": "Index (sub-brick) on which to threshold.",
+            "id": "1TINDEX",
+            "name": "1TINDEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1TINDEX]"
+        },
+        {
+            "command-line-flag": "-signed",
+            "description": "-signed  +/-    = If the .mthresh.nii file from 3dXClustSim was created using 1-sided thresholding, this option tells which sign to choose when doing voxel-wise thresholding: + or -. ++ If the .mthresh.nii file was created using 2-sided thresholding, this option is ignored.",
+            "id": "SIGNED",
+            "name": "SIGNED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SIGNED]"
+        },
+        {
+            "command-line-flag": "-pos",
+            "description": "Same as '-signed +'",
+            "id": "POS",
+            "name": "POS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POS]"
+        },
+        {
+            "command-line-flag": "-neg",
+            "description": "Same as '-signed -'",
+            "id": "NEG",
+            "name": "NEG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEG]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "prefix for output dataset ++ Can be 'NULL' to get no output dataset",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-maskonly",
+            "description": "Instead of outputing a thresholded version of the input dataset, just output a 0/1 mask dataset of voxels that survive the process.",
+            "id": "MASKONLY",
+            "name": "MASKONLY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASKONLY]"
+        },
+        {
+            "command-line-flag": "-allmask",
+            "description": "Write out a multi-volume dataset with prefix 'qqq' where each volume is the binary mask of voxels that pass ONE of the tests. This dataset can be used to see which tests mattered where in the brain. ++ To be more clear, there will be one sub-brick for each p-value threshold coded in the '-mthresh' dataset (e.g., p=0.0100 and p=0.0001). ++ In each sub-brick, the value will be between 0 and 7, and is the sum of these: 1 == hpow=0 was declared 'active' 2 == hpow=1 was declared 'active' 4 == hpow=2 was declared 'active' Of course, an hpow value will only be tested if it is so encoded in the '-mthresh' dataset.",
+            "id": "ALLMASK",
+            "name": "ALLMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALLMASK]"
+        },
+        {
+            "command-line-flag": "-nozero",
+            "description": "This option prevents the output of a dataset if it would be all zero",
+            "id": "NOZERO",
+            "name": "NOZERO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOZERO]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "Turn off progress report messages  The number of surviving voxels will be written to stdout. It can be captured in a csh script by a command such as set nhits = `3dMultiThresh OPTIONS`  Meant to be used in conjunction with program 3dXClustSim, which is in turn meant to be used with program 3dttest++ -- RWCox",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

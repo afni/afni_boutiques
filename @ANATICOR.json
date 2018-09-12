@@ -1,0 +1,141 @@
+{
+    "command-line": "@ANATICOR [TS] [POLORT] [MOTION] [ASEG] [PREFIX] [RADIUS] [VIEW] [NUISANCE] [NO_VENTRICLES] [RSQ_WME] [COVERAGE] [DIRTY] [VERB] [ECHO]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-ts",
+            "description": "Time series volume The time series should have had the following done already: Despiking (if necessary) RetroIcor, and RVT correction Time shifting, and volume registration We strongly recommend you do the preprocessing with afni_proc.py, for example: afni_proc.py  -subj_id ID  -dsets EPI+orig.HEAD \\ -blocks despike ricor tshift volreg regress \\ -tcat_remove_first_trs 4 \\ -ricor_regs_nfirst 0 \\ -ricor_regs oba.slibase.1D \\ -ricor_regress_method per-run \\ -regress_no_motion This is an example for preprocessing, and you should carefully look into your study design and the script made by afni_proc.py. See the RETROICOR examples in the help text of afni_proc.py.",
+            "id": "TS",
+            "name": "TS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TS]"
+        },
+        {
+            "command-line-flag": "-polort",
+            "description": "Polynomial for linear trend removal. Use the same order as for afni_proc.py",
+            "id": "POLORT",
+            "name": "POLORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POLORT]"
+        },
+        {
+            "command-line-flag": "-motion",
+            "description": "-motion motion.1D: head motion parameters from 3dvolreg Also created by afni_proc.py",
+            "id": "MOTION",
+            "name": "MOTION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOTION]"
+        },
+        {
+            "command-line-flag": "-aseg",
+            "description": "-aseg aseg.nii: aseg file from FreeSurfer's segmentation. This aseg volume must be in register with the EPI time series. Otherwise you're wasting your time. This script will automatically make tissue masks from this file. Do not replace aseg with aparc volumes for example. If you want other methods for providing tissue masks, complain to HJJ, Email address below.",
+            "id": "ASEG",
+            "name": "ASEG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ASEG]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use output (residual time series) for a prefix",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-radius",
+            "description": "The radius of a local sphere mask, r mm default = 15 mm, which what was used in HJJ et al. 2010 for high resolution 1.7x1.7x3mm data. For typical, about 3x3x5 resolution, a radius of 30 mm seems to do fine. You should check out the coverage of WMeLocal regressor using -coverage option.",
+            "id": "RADIUS",
+            "name": "RADIUS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RADIUS]"
+        },
+        {
+            "command-line-flag": "-view",
+            "description": "Set the view of the output data. Default is +orig Choose from +orig, +acpc, or +tlrc.",
+            "id": "VIEW",
+            "name": "VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEW]"
+        },
+        {
+            "command-line-flag": "-nuisance",
+            "description": "-nuisance nuisance.1D: Other nuisance regressors. Each regressor is a column in .1D file",
+            "id": "NUISANCE",
+            "name": "NUISANCE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUISANCE]"
+        },
+        {
+            "command-line-flag": "-no_ventricles",
+            "description": "not include LVe regressor",
+            "id": "NO_VENTRICLES",
+            "name": "NO_VENTRICLES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_VENTRICLES]"
+        },
+        {
+            "command-line-flag": "-Rsq_WMe",
+            "description": "produce an explained variance map for WMeLOCAL regressor. This may help measuring the sptial pattern of local artifact like the paper of Jo et al. (2010, Neuroimage).",
+            "id": "RSQ_WME",
+            "name": "RSQ_WME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RSQ_WME]"
+        },
+        {
+            "command-line-flag": "-coverage",
+            "description": "produce a spatial coverage map of WMeLOCAL regressor",
+            "id": "COVERAGE",
+            "name": "COVERAGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COVERAGE]"
+        },
+        {
+            "command-line-flag": "-dirty",
+            "description": "Keep temporary files",
+            "id": "DIRTY",
+            "name": "DIRTY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIRTY]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Verbose flag",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-echo",
+            "description": "Echo each script command for debugging  Please reference the following paper if you publish results from this script. 'Mapping sources of correlation in resting state FMRI, with artifact detection and removal' Jo, et al., Neuroimage, Vol 52 (2), 571-582, 2010. [http://dx.doi.org/10.1016/j.neuroimage.2010.04.246]  Written by Hang Joon Jo. hangjoon.jo@nih.gov (Last Update on 12/15/2010)",
+            "id": "ECHO",
+            "name": "ECHO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

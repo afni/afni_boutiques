@@ -1,0 +1,103 @@
+{
+    "command-line": "3dSetupGroupInCorr [MASK] [PREFIX] [SHORT] [BYTE] [LABELS] [DELETE] [PREP] [LRPAIRS] [DATASET] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-mask",
+            "description": "Mask dataset [highly recommended for volumetric e data!]",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Set prefix name of output dataset",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-short",
+            "description": "Store data as 16-bit shorts [used to be the default] ++ This will double the amount of disk space and RAM needed. ++ For most GroupInCorr purposes, you don't need this option, since there is so much averaging going on that truncation noise is washed away.",
+            "id": "SHORT",
+            "name": "SHORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHORT]"
+        },
+        {
+            "command-line-flag": "-byte",
+            "description": "Store data as 8-bit bytes rather than 16-bit shorts. ++ This will save memory in 3dGroupInCorr (and disk space), which can be important when using large collections of datasets.  Results will be very slightly less accurate than with '-short', but you'll have a hard time finding any place where this matters. ++ This option is now the default [08 Feb 2010]. ++ The amount of data stored is (# of voxels in the mask) * (# of time points per subject) * (# of subjects) For a 3x3x3 mm^3 grid in MNI space, there are typically about 70,000 voxels in the brain.  If you have an average of 200 time points per scan, then one subject's scan will take up 7e4*2e2 = 14 MB of space; 100 subjects would thus require about 1.4 GB of space.",
+            "id": "BYTE",
+            "name": "BYTE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BYTE]"
+        },
+        {
+            "command-line-flag": "-labels",
+            "description": "File 'fff' should be a list of labels, a unique one for each dataset input.  These labels can be used in 3dGroupInCorr to select a subset of datasets to be processed therein. ++ If you don't use this option, then the list of labels will comprise the list of prefixes from the input datasets. ++ Labels cannot contain a space character, a comma, or a semicolon. ++ When using the -LRpairs option, you should specify only one label for eah pair. If you don't use the -labels option with -LRpairs the labels are taken from the 'L' only dataset names, that would be the first name of each LRpair.",
+            "id": "LABELS",
+            "name": "LABELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABELS]"
+        },
+        {
+            "command-line-flag": "-DELETE",
+            "description": "Delete input datasets from disk after processing them one at a time into the output data file -- this very highly destructive option is intended to let you save disk space, if absolutely necessary.  *** BE CAREFUL OUT THERE! *** ++ If you are setting up for 3dGroupInCorr in a script that first uses 3dBandpass to filter the datasets, and then uses this program to finish the setup, then you COULD use '-DELETE' to remove the temporary 3dBandpass outputs as soon as they are no longer needed.",
+            "id": "DELETE",
+            "name": "DELETE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DELETE]"
+        },
+        {
+            "command-line-flag": "-prep",
+            "description": "Prepare (or preprocess) each data time series in some fashion before L2 normalization and storing, where 'XXX' is one of these: ++ SPEARMAN ==> convert data to ranks, so that the resulting individual subject correlations in 3dGroupInCorr are Spearman correlations. ++ DEMEAN   ==> remove the mean  Variations for surface-based data: ---------------------------------- If you are working with one surface, no special options are needed. However, it is often the case that you want to perform correlations on both hemispheres. So in that case, you'll want to provide volume pairs (Left Hemi data, Right Hemi data). To help reduce the risk of user errors (the only kind we know of), you should also provide the domain parents for each of the hemispheres.",
+            "id": "PREP",
+            "name": "PREP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREP]"
+        },
+        {
+            "command-line-flag": "-LRpairs",
+            "description": "This option sets the domains for the left and right hemisphere surfaces, and indicates that the datasets to follow are arranged in (Left, Right) pairs. ------------- SAMPLE SCRIPT  (tcsh syntax) ------------- * Assume datasets are named in the following scheme (sub01, sub02, ...) ++ T1-weighted anatomical  = sub01_anat+orig ++ Resting state EPI       = sub01_rest+orig ++ Standard space template = ~/abin/MNI_avg152T1+tlrc  #!/bin/tcsh  # MNI-ize each subject's anat, then EPIs (at 2 mm resolution)  cp -f ~/abin/MNI_avg152T1+tlrc.* . foreach fred ( sub*_anat+orig.HEAD ) set sub = `basename $fred _anat+orig.HEAD` @auto_tlrc -base MNI_avg152T1+tlrc.HEAD -input $fred adwarp -apar ${sub}_anat+tlrc.HEAD -dpar ${sub}_rest+orig.HEAD \\ -resam Cu -dxyz 2.0 3dAutomask -dilate 1 -prefix ${sub}_amask ${sub}_rest+tlrc.HEAD end  # Combine individual EPI automasks into a group mask  3dMean -datum float -prefix ALL_amaskFULL *_amask+tlrc.HEAD 3dcalc -datum byte -prefix ALL_amask5050 -a ALL_amaskFULL+tlrc -expr 'step(a-0.499)' /bin/rm -f *_amask+tlrc.*  # Bandpass and blur each dataset inside the group mask #  * Skip first 4 time points. #  * If you want to remove the global mean signal, you would use the '-ort' #    option for 3dBandpass -- but we recommend that you do NOT do this: #    http://dx.doi.org/10.1089/brain.2012.0080  foreach fred ( sub*_rest+tlrc.HEAD ) set sub = `basename $fred _rest+tlrc.HEAD` 3dBandpass -mask ALL_amask5050+tlrc -blur 6.0 -band 0.01 0.10 -prefix ${sub}_BP\\ -input $fred'[4..$]' end  # Extract data for 3dGroupInCorr  3dSetupGroupInCorr -mask ALL_amask5050 -prefix ALLshort -short *_BP+tlrc.HEAD  # OR  3dSetupGroupInCorr -mask ALL_amask5050 -prefix ALLbyte -byte *_BP+tlrc.HEAD  /bin/rm -f *_BP+tlrc.*  ### At this point you could run (in 2 separate terminal windows) ###   afni -niml MNI_avg152T1+tlrc ###   3dGroupInCorr -setA ALLbyte.grpincorr.niml -verb ### And away we go ....  ------------------ CREDITS (or blame) ------------------ * Written by RWCox, 31 December 2009. * With a little help from my friends: Alex Martin, Steve Gotts, Ziad Saad. * With encouragement from MMK.   ++ Compile date = Sep  7 2018 {:}",
+            "id": "LRPAIRS",
+            "name": "LRPAIRS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LRPAIRS]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,31 @@
+{
+    "command-line": "images_equal [FILEA] [FILEB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "fileA",
+            "name": "fileA",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FILEA]"
+        },
+        {
+            "description": "NA",
+            "id": "fileB",
+            "name": "fileB",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FILEB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

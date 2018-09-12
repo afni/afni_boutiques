@@ -1,0 +1,762 @@
+{
+    "command-line": "1d_tool.py [LABEL_PREFIX_KEEP] [LABEL_PREFIX_DROP] [SET_RUN_LENGTHS] [WEIGHT_VEC] [CENSOR] [INFILE] [HELP] [HIST] [SHOW_VALID_OPTS] [VER] [ADD_COLS] [BACKWARD_DIFF] [COLLAPSE_COLS] [CENSOR_MOTION] [CENSOR_FILL] [CENSOR_FILL_PARENT] [CENSOR_INFILE] [CENSOR_FIRST_TRS] [CENSOR_NEXT_TR] [CENSOR_PREV_TR] [CORMAT_CUTOFF] [CSIM_SHOW_CLUSTSIZE] [CSIM_PTHR] [CSIM_ALPHA] [DEMEAN] [DERIVATIVE] [EXTREME_MASK] [FORWARD_DIFF] [INDEX_TO_RUN_TR] [MODERATE_MASK] [LOOKS_LIKE_1D] [LOOKS_LIKE_AM] [LOOKS_LIKE_LOCAL_TIMES] [LOOKS_LIKE_GLOBAL_TIMES] [LOOKS_LIKE_TEST_ALL] [OVERWRITE] [PAD_INTO_MANY_RUNS] [QUICK_CENSOR_COUNT] [RANK] [RANK_STYLE] [REVERSE_RANK] [REVERSE] [RANDOMIZE_TRS] [SEED] [SELECT_GROUPS] [1] [SELECT_COLS] [SELECT_ROWS] [SELECT_RUNS] [SET_NRUNS] [SET_TR] [SHOW_ARGMIN] [SHOW_CENSOR_COUNT] [SHOW_CORMAT] [SHOW_CORMAT_WARNINGS] [SHOW_GCOR] [SHOW_GCOR_ALL] [SHOW_GCOR_DOC] [SHOW_GROUP_LABELS] [SHOW_INDICES_BASELINE] [SHOW_INDICES_MOTION] [SHOW_INDICES_INTEREST] [SHOW_LABEL_ORDERING] [SHOW_LABELS] [SHOW_MAX_DISPLACE] [SHOW_MMMS] [SHOW_NUM_RUNS] [SHOW_ROWS_COLS] [SHOW_TR_RUN_COUNTS] [SHOW_TRS_CENSORED] [SHOW_TRS_UNCENSORED] [SHOW_TRS_RUN] [SHOW_TRS_TO_ZERO] [SLICE_ORDER_TO_TIMES] [SORT] [SPLIT_INTO_PAD_RUNS] [TRANSPOSE] [TRANSPOSE_WRITE] [VOLREG2ALLINEATE] [WRITE] [WRITE_CENSOR] [WRITE_CENSORTR] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-label_prefix_keep",
+            "description": "-label_prefix_keep bandpass  Remove only bandpass columns (maybe for 3dRFSC):  1d_tool.py -infile X.xmat.1D -write X.no.bandpass.1D \\",
+            "id": "LABEL_PREFIX_KEEP",
+            "name": "LABEL_PREFIX_KEEP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABEL_PREFIX_KEEP]"
+        },
+        {
+            "command-line-flag": "-label_prefix_drop",
+            "description": "-label_prefix_drop bandpass  Keep polort columns (start with 'Run') motion shifts ('d') and labels starting with 'a' and 'b'.  But drop 'bandpass' columns:  1d_tool.py -infile X.xmat.1D -write X.weird.1D   \\",
+            "id": "LABEL_PREFIX_DROP",
+            "name": "LABEL_PREFIX_DROP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABEL_PREFIX_DROP]"
+        },
+        {
+            "command-line-flag": "-set_run_lengths",
+            "description": "-set_run_lengths 64 61 67 61 67 61 67        \\ -write ricor_r02_all.1D  Example 5.  Display small details about a 1D dataset: ~2~  a. Display number of rows and columns for a 1D dataset.  1d_tool.py -infile ricor_r02.1D -show_rows_cols  b. Display indices of regressors of interest.  1d_tool.py -infile X.xmat.1D -show_indices_interest  c. Display labels by group.  1d_tool.py -infile X.xmat.1D -show_group_labels  Example 6a.  Show correlation matrix warnings for this matrix. ~2~  1d_tool.py -infile X.xmat.1D -show_cormat_warnings  Example 6b.  Show entire correlation matrix. ~2~  1d_tool.py -infile X.xmat.1D -show_cormat  Example 7a. Output temporal derivative of motion regressors. ~2~  There are 9 runs in dfile_rall.1D, and derivatives are applied per run.  1d_tool.py -infile dfile_rall.1D -set_nruns 9 \\ -derivative -write motion.deriv.1D  Example 7b. Similar to 7a, but let the run lengths vary. ~2~  The sum of run lengths should equal the number of time points.  1d_tool.py -infile dfile_rall.1D                       \\",
+            "id": "SET_RUN_LENGTHS",
+            "name": "SET_RUN_LENGTHS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET_RUN_LENGTHS]"
+        },
+        {
+            "command-line-flag": "-weight_vec",
+            "description": "-weight_vec .9 .9 .9 1 1 1                  \\ -write e.norm.weighted.1D  Example 10.  Given motion.1D, create censor files to use in 3dDeconvolve. ~2~  Here a TR is censored if the derivative values have a Euclidean Norm above 1.2.  It is common to also censor each previous TR, as motion may span both (previous because \"derivative\" is actually a backward difference).  The file created by -write_censor can be used with 3dD's -censor option. The file created by -write_CENSORTR can be used with -CENSORTR.  They should have the same effect in 3dDeconvolve.  The CENSORTR file is more readable, but the censor file is better for plotting against the data.  a. general example ~3~  1d_tool.py -infile motion.1D -set_nruns 9     \\ -derivative -censor_prev_TR        \\ -collapse_cols euclidean_norm      \\ -moderate_mask -1.2 1.2            \\ -show_censor_count                 \\ -write_censor subjA_censor.1D      \\ -write_CENSORTR subjA_CENSORTR.txt  b. using -censor_motion ~3~  The -censor_motion option is available, which implies '-derivative', '-collapse_cols euclidean_norm', 'moderate_mask -LIMIT LIMIT', and the prefix for '-write_censor' and '-write_CENSORTR' output files.  This option will also result in subjA_enorm.1D being written, which is the euclidean norm of the derivative, before the extreme mask is applied.  1d_tool.py -infile motion.1D -set_nruns 9     \\ -show_censor_count                 \\",
+            "id": "WEIGHT_VEC",
+            "name": "WEIGHT_VEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WEIGHT_VEC]"
+        },
+        {
+            "command-line-flag": "-censor",
+            "description": "-censor_motion 1.2 subjA           \\",
+            "id": "CENSOR",
+            "name": "CENSOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSOR]"
+        },
+        {
+            "command-line-flag": "-infile",
+            "description": "-infile cdata.1D -write cdata.zeropad.1D  Example 13. Show whether the input file is valid as a numeric data file. ~2~  a. as any generic 1D file  1d_tool.py -infile data.txt -looks_like_1D  b. as a 1D stim_file, of 3 runs of 64 TRs (TR is irrelevant)  1d_tool.py -infile data.txt -looks_like_1D \\",
+            "id": "INFILE",
+            "name": "INFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFILE]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show the module history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-show_valid_opts",
+            "description": "show all valid options",
+            "id": "SHOW_VALID_OPTS",
+            "name": "SHOW_VALID_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_VALID_OPTS]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show the version number  ---------------------------------------- required input: ~2~",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-add_cols",
+            "description": "-add_cols NEW_DSET.1D        : extend dset to include these columns",
+            "id": "ADD_COLS",
+            "name": "ADD_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ADD_COLS]"
+        },
+        {
+            "command-line-flag": "-backward_diff",
+            "description": "take derivative as first backward difference  Take the backward differences at each time point.  For each index > 0, value[index] = value[index] - value[index-1], and value[0] = 0.  This option is identical to -derivative.  See also -forward_diff, -derivative, -set_nruns, -set_run_lens.",
+            "id": "BACKWARD_DIFF",
+            "name": "BACKWARD_DIFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BACKWARD_DIFF]"
+        },
+        {
+            "command-line-flag": "-collapse_cols",
+            "description": "collapse multiple columns into one, where  METHOD is one of: min, max, minabs, maxabs, euclidean_norm, weighted_enorm.  Consideration of the euclidean_norm method:  For censoring, the euclidean_norm method is used (sqrt(sum squares)). This combines rotations (in degrees) with shifts (in mm) as if they had the same weight.  Note that assuming rotations are about the center of mass (which should produce a minimum average distance), then the average arc length (averaged over the brain mask) of a voxel rotated by 1 degree (about the CM) is the following (for the given datasets):  TT_N27+tlrc:        0.967 mm (average radius = 55.43 mm) MNIa_caez_N27+tlrc: 1.042 mm (average radius = 59.69 mm) MNI_avg152T1+tlrc:  1.088 mm (average radius = 62.32 mm)  The point of these numbers is to suggest that equating degrees and mm should be fine.  The average distance caused by a 1 degree rotation is very close to 1 mm (in an adult human).  * 'enorm' is short for 'euclidean_norm'.  * Use of weighted_enorm requires the -weight_vec option.  e.g. -collapse_cols weighted_enorm -weight_vec .9 .9 .9 1 1 1",
+            "id": "COLLAPSE_COLS",
+            "name": "COLLAPSE_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COLLAPSE_COLS]"
+        },
+        {
+            "command-line-flag": "-censor_motion",
+            "description": "create censor files  This option implies '-derivative', '-collapse_cols euclidean_norm', 'moderate_mask -LIMIT LIMIT' and applies PREFIX for '-write_censor' and '-write_CENSORTR' output files.  It also outputs the derivative of the euclidean norm, before the limit it applied.  The temporal derivative is taken with run breaks applied (derivative of the first run of a TR is 0), then the columns are collapsed into one via each TR's vector length (Euclidean Norm: sqrt(sum of squares)). After that, a mask time series is made from TRs with values outside (-LIMIT,LIMIT), i.e. if >= LIMIT or <= LIMIT, result is 1.  This binary time series is then written out in -CENSORTR format, with the moderate TRs written in -censor format (either can be applied in 3dDeconvolve).  The output files will be named PREFIX_censor.1D, PREFIX_CENSORTR.txt and PREFIX_enorm.1D (e.g. subj123_censor.1D, subj123_CENSORTR.txt and subj123_enorm.1D).  Besides an input motion file (-infile), the number of runs is needed (-set_nruns or -set_run_lengths).  Consider also '-censor_prev_TR' and '-censor_first_trs'. See example 10.",
+            "id": "CENSOR_MOTION",
+            "name": "CENSOR_MOTION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSOR_MOTION]"
+        },
+        {
+            "command-line-flag": "-censor_fill",
+            "description": "expand data, filling censored TRs with zeros",
+            "id": "CENSOR_FILL",
+            "name": "CENSOR_FILL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSOR_FILL]"
+        },
+        {
+            "command-line-flag": "-censor_fill_parent",
+            "description": "similar, but get censor info from a parent  The output of these operation is a longer dataset.  Each TR that had previously been censored is re-inserted as a zero.  The purpose of this is to make 1D time series data properly align with the all_runs dataset, for example.  Otherwise, the ideal 1D data might have missing TRs, and so will align worse with responses over the duration of all runs (it might start aligned, but drift earlier and earlier as more TRs are censored).  See example 12.",
+            "id": "CENSOR_FILL_PARENT",
+            "name": "CENSOR_FILL_PARENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSOR_FILL_PARENT]"
+        },
+        {
+            "command-line-flag": "-censor_infile",
+            "description": "apply censoring to -infile dataset  This removes TRs from the -infile dataset where the CENSOR_FILE is 0. The censor file is akin to what is used with \"3dDeconvolve -censor\", where TRs with 1 are kept and those with 0 are excluded from analysis.  See example 15b.",
+            "id": "CENSOR_INFILE",
+            "name": "CENSOR_INFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSOR_INFILE]"
+        },
+        {
+            "command-line-flag": "-censor_first_trs",
+            "description": "when censoring motion, also censor the first N TRs of each run",
+            "id": "CENSOR_FIRST_TRS",
+            "name": "CENSOR_FIRST_TRS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSOR_FIRST_TRS]"
+        },
+        {
+            "command-line-flag": "-censor_next_TR",
+            "description": "for each censored TR, also censor next one (probably for use with -forward_diff)",
+            "id": "CENSOR_NEXT_TR",
+            "name": "CENSOR_NEXT_TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSOR_NEXT_TR]"
+        },
+        {
+            "command-line-flag": "-censor_prev_TR",
+            "description": "for each censored TR, also censor previous",
+            "id": "CENSOR_PREV_TR",
+            "name": "CENSOR_PREV_TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSOR_PREV_TR]"
+        },
+        {
+            "command-line-flag": "-cormat_cutoff",
+            "description": "set cutoff for cormat warnings (in [0,1])",
+            "id": "CORMAT_CUTOFF",
+            "name": "CORMAT_CUTOFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CORMAT_CUTOFF]"
+        },
+        {
+            "command-line-flag": "-csim_show_clustsize",
+            "description": "for 3dClustSim input, show min clust size  Given a 3dClustSim table output (e.g. ClustSim.ACF.NN1_1sided.1D), along with uncorrected (pthr) and corrected (alpha) p-values, show the minimum cluster size to achieve significance.  The pthr and alpha values can be controlled via the options -csim_pthr and -csim_alpha (with defaults of 0.001 and 0.05, respectively).  The -verb option can be used to provide additional or no details about the clustering method.  See Example 29, along with options -csim_pthr, -csim_alpha and -verb.",
+            "id": "CSIM_SHOW_CLUSTSIZE",
+            "name": "CSIM_SHOW_CLUSTSIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CSIM_SHOW_CLUSTSIZE]"
+        },
+        {
+            "command-line-flag": "-csim_pthr",
+            "description": "specify uncorrected threshold for csim output  e.g. -csim_pthr 0.0001  This option implies -csim_show_clustsize, and is used to specify the uncorrected p-value of the 3dClustSim output.  See also -csim_show_clustsize.",
+            "id": "CSIM_PTHR",
+            "name": "CSIM_PTHR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CSIM_PTHR]"
+        },
+        {
+            "command-line-flag": "-csim_alpha",
+            "description": "specify corrected threshold for csim output  e.g. -csim_alpha 0.01  This option implies -csim_show_clustsize, and is used to specify the corrected, cluster-wise p-value of the 3dClustSim output.  See also -csim_show_clustsize.",
+            "id": "CSIM_ALPHA",
+            "name": "CSIM_ALPHA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CSIM_ALPHA]"
+        },
+        {
+            "command-line-flag": "-demean",
+            "description": "demean each run (new mean of each run = 0.0)",
+            "id": "DEMEAN",
+            "name": "DEMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEMEAN]"
+        },
+        {
+            "command-line-flag": "-derivative",
+            "description": "take the temporal derivative of each vector (done as first backward difference)  Take the backward differences at each time point.  For each index > 0, value[index] = value[index] - value[index-1], and value[0] = 0.  This option is identical to -backward_diff.  See also -backward_diff, -forward_diff, -set_nruns, -set_run_lens.",
+            "id": "DERIVATIVE",
+            "name": "DERIVATIVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DERIVATIVE]"
+        },
+        {
+            "command-line-flag": "-extreme_mask",
+            "description": "make mask of extreme values  Convert to a 0/1 mask, where 1 means the given value is extreme (outside the (MIN, MAX) range), and 0 means otherwise.  This is the opposite of -moderate_mask (not exactly, both are inclusive).  Note: values = MIN or MAX will be in both extreme and moderate masks.  Note: this was originally described incorrectly in the help.",
+            "id": "EXTREME_MASK",
+            "name": "EXTREME_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXTREME_MASK]"
+        },
+        {
+            "command-line-flag": "-forward_diff",
+            "description": "take first forward difference of each vector  Take the first forward differences at each time point.  For index<last, value[index] = value[index+1] - value[index], and value[last] = 0.  The difference between -forward_diff and -backward_diff is a time shift by one index.  See also -backward_diff, -derivative, -set_nruns, -set_run_lens.",
+            "id": "FORWARD_DIFF",
+            "name": "FORWARD_DIFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FORWARD_DIFF]"
+        },
+        {
+            "command-line-flag": "-index_to_run_tr",
+            "description": "convert global INDEX to run and TR indices  Given a list of run lengths, convert INDEX to a run and TR index pair.  This option requires -set_run_lens or maybe an Xmat.  See also -set_run_lens example 26.",
+            "id": "INDEX_TO_RUN_TR",
+            "name": "INDEX_TO_RUN_TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INDEX_TO_RUN_TR]"
+        },
+        {
+            "command-line-flag": "-moderate_mask",
+            "description": "make mask of moderate values  Convert to a 0/1 mask, where 1 means the given value is moderate (within [MIN, MAX]), and 0 means otherwise.  This is useful for censoring motion (in the -censor case, not -CENSORTR), where the",
+            "id": "MODERATE_MASK",
+            "name": "MODERATE_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODERATE_MASK]"
+        },
+        {
+            "command-line-flag": "-looks_like_1D",
+            "description": "is the file in 1D format  Does the input data file seem to be in 1D format?  - must be rectangular (same number of columns per row) - duration must match number of rows (if run lengths are given)",
+            "id": "LOOKS_LIKE_1D",
+            "name": "LOOKS_LIKE_1D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOOKS_LIKE_1D]"
+        },
+        {
+            "command-line-flag": "-looks_like_AM",
+            "description": "does the file have modulators?  Does the file seem to be in local or global times format, and do the times have modulators?  - amplitude modulators should use '*' format (e.g. 127.3*5.1) - duration modulators should use trailing ':' format (12*5.1:3.4) - number of amplitude modulators should be constant",
+            "id": "LOOKS_LIKE_AM",
+            "name": "LOOKS_LIKE_AM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOOKS_LIKE_AM]"
+        },
+        {
+            "command-line-flag": "-looks_like_local_times",
+            "description": "is the file in local stim_times format  Does the input data file seem to be in the -stim_times format used by 3dDeconvolve (and timing_tool.py)?  More specifically, is it the local format, with one scanning run per row.  - number of rows must match number of runs - times cannot be negative - times must be unique per run (per row) - times cannot exceed the current run time",
+            "id": "LOOKS_LIKE_LOCAL_TIMES",
+            "name": "LOOKS_LIKE_LOCAL_TIMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOOKS_LIKE_LOCAL_TIMES]"
+        },
+        {
+            "command-line-flag": "-looks_like_global_times",
+            "description": "is the file in global stim_times format  Does the input data file seem to be in the -stim_times format used by 3dDeconvolve (and timing_tool.py)?  More specifically, is it the global format, either as one long row or one long line?  - must be one dimensional (either a single row or column) - times cannot be negative - times must be unique - times cannot exceed total duration of all runs",
+            "id": "LOOKS_LIKE_GLOBAL_TIMES",
+            "name": "LOOKS_LIKE_GLOBAL_TIMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOOKS_LIKE_GLOBAL_TIMES]"
+        },
+        {
+            "command-line-flag": "-looks_like_test_all",
+            "description": "run all -looks_like tests  Applies all \"looks like\" test options: -looks_like_1D, -looks_like_AM, -looks_like_local_times and -looks_like_global_times.",
+            "id": "LOOKS_LIKE_TEST_ALL",
+            "name": "LOOKS_LIKE_TEST_ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOOKS_LIKE_TEST_ALL]"
+        },
+        {
+            "command-line-flag": "-overwrite",
+            "description": "allow overwriting of any output dataset",
+            "id": "OVERWRITE",
+            "name": "OVERWRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OVERWRITE]"
+        },
+        {
+            "command-line-flag": "-pad_into_many_runs",
+            "description": "pad as current run of num_runs  e.g. -pad_into_many_runs 2 7  This option is used to create a longer time series dataset where the input is consider one particular run out of many.  The output is padded with zero for all run TRs before and after this run.  Given the example, there would be 1 run of zeros, then the input would be treated as run 2, and there would be 5 more runs of zeros.",
+            "id": "PAD_INTO_MANY_RUNS",
+            "name": "PAD_INTO_MANY_RUNS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAD_INTO_MANY_RUNS]"
+        },
+        {
+            "command-line-flag": "-quick_censor_count",
+            "description": "output # TRs that would be censored  e.g. -quick_censor_count 0.3  This is akin to -censor_motion, but it only outputs the number of TRs that would be censored.  It does not actually create a censor file.  This option essentially replaces these:  -derivative -demean -collapse_cols euclidean_norm",
+            "id": "QUICK_CENSOR_COUNT",
+            "name": "QUICK_CENSOR_COUNT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUICK_CENSOR_COUNT]"
+        },
+        {
+            "command-line-flag": "-rank",
+            "description": "convert data to rank order 0-based index order of small to large values The default rank STYLE is 'dense'.  See also -rank_style.",
+            "id": "RANK",
+            "name": "RANK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANK]"
+        },
+        {
+            "command-line-flag": "-rank_style",
+            "description": "convert to rank using the given style  The STYLE refers to what to do in the case of repeated values. Assuming inputs 4 5 5 9...  dense      - repeats get same rank, no gaps in rank - same a \"3dmerge -1rank\" - result: 0 1 1 2  competition - repeats get same rank, leading to gaps in rank - same a \"3dmerge -1rank\" - result: 0 1 1 3 (case '2' is counted, though no such rank occurs)  Option '-rank' uses style 'dense'.  See also -rank.",
+            "id": "RANK_STYLE",
+            "name": "RANK_STYLE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANK_STYLE]"
+        },
+        {
+            "command-line-flag": "-reverse_rank",
+            "description": "convert data to reverse rank order (large values come first)",
+            "id": "REVERSE_RANK",
+            "name": "REVERSE_RANK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REVERSE_RANK]"
+        },
+        {
+            "command-line-flag": "-reverse",
+            "description": "reverse data over time",
+            "id": "REVERSE",
+            "name": "REVERSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REVERSE]"
+        },
+        {
+            "command-line-flag": "-randomize_trs",
+            "description": "randomize the data over time",
+            "id": "RANDOMIZE_TRS",
+            "name": "RANDOMIZE_TRS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANDOMIZE_TRS]"
+        },
+        {
+            "command-line-flag": "-seed",
+            "description": "set random number seed (integer)",
+            "id": "SEED",
+            "name": "SEED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SEED]"
+        },
+        {
+            "command-line-flag": "-select_groups",
+            "description": "-select_groups g0 g1 ...     : select columns by group numbers  e.g. -select groups 0 e.g. -select groups POS 0  An X-matrix dataset (e.g. X.xmat.1D) often has columns partitioned by groups, such as:",
+            "id": "SELECT_GROUPS",
+            "name": "SELECT_GROUPS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SELECT_GROUPS]"
+        },
+        {
+            "command-line-flag": "-1",
+            "description": "polort regressors 0  : motion regressors and other (non-polort) baseline terms N>0: regressors of interest  This option can be used to select columns by integer groups, with special cases of POS (regs of interest), NEG (probably polort). Note that NONNEG is unneeded as it is the pair POS 0.  See also -show_group_labels.",
+            "id": "1",
+            "name": "1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1]"
+        },
+        {
+            "command-line-flag": "-select_cols",
+            "description": "apply AFNI column selectors, [] is optional e.g. '[5,0,7..21(2)]'",
+            "id": "SELECT_COLS",
+            "name": "SELECT_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SELECT_COLS]"
+        },
+        {
+            "command-line-flag": "-select_rows",
+            "description": "apply AFNI row selectors, {} is optional e.g. '{5,0,7..21(2)}'",
+            "id": "SELECT_ROWS",
+            "name": "SELECT_ROWS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SELECT_ROWS]"
+        },
+        {
+            "command-line-flag": "-select_runs",
+            "description": "-select_runs r1 r2 ...       : extract the given runs from the dataset (these are 1-based run indices) e.g. 2 e.g. 2 3 1 1 1 1 1 4",
+            "id": "SELECT_RUNS",
+            "name": "SELECT_RUNS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SELECT_RUNS]"
+        },
+        {
+            "command-line-flag": "-set_nruns",
+            "description": "treat the input data as if it has nruns (e.g. applies to -derivative and -demean)  See examples 7a, 10a and b, and 14.",
+            "id": "SET_NRUNS",
+            "name": "SET_NRUNS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET_NRUNS]"
+        },
+        {
+            "command-line-flag": "-set_tr",
+            "description": "set the TR (in seconds) for the data",
+            "id": "SET_TR",
+            "name": "SET_TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET_TR]"
+        },
+        {
+            "command-line-flag": "-show_argmin",
+            "description": "display the index of min arg (of first column)",
+            "id": "SHOW_ARGMIN",
+            "name": "SHOW_ARGMIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_ARGMIN]"
+        },
+        {
+            "command-line-flag": "-show_censor_count",
+            "description": "display the total number of censored TRs Note : if input is a valid xmat.1D dataset, then the count will come from the header.  Otherwise the input is assumed to be a binary censor file, and zeros are simply counted.",
+            "id": "SHOW_CENSOR_COUNT",
+            "name": "SHOW_CENSOR_COUNT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_CENSOR_COUNT]"
+        },
+        {
+            "command-line-flag": "-show_cormat",
+            "description": "display correlation matrix",
+            "id": "SHOW_CORMAT",
+            "name": "SHOW_CORMAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_CORMAT]"
+        },
+        {
+            "command-line-flag": "-show_cormat_warnings",
+            "description": "display correlation matrix warnings",
+            "id": "SHOW_CORMAT_WARNINGS",
+            "name": "SHOW_CORMAT_WARNINGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_CORMAT_WARNINGS]"
+        },
+        {
+            "command-line-flag": "-show_gcor",
+            "description": "display GCOR: the average correlation",
+            "id": "SHOW_GCOR",
+            "name": "SHOW_GCOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_GCOR]"
+        },
+        {
+            "command-line-flag": "-show_gcor_all",
+            "description": "display many ways of computing (a) GCOR",
+            "id": "SHOW_GCOR_ALL",
+            "name": "SHOW_GCOR_ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_GCOR_ALL]"
+        },
+        {
+            "command-line-flag": "-show_gcor_doc",
+            "description": "display descriptions of those ways",
+            "id": "SHOW_GCOR_DOC",
+            "name": "SHOW_GCOR_DOC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_GCOR_DOC]"
+        },
+        {
+            "command-line-flag": "-show_group_labels",
+            "description": "display group and label, per column",
+            "id": "SHOW_GROUP_LABELS",
+            "name": "SHOW_GROUP_LABELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_GROUP_LABELS]"
+        },
+        {
+            "command-line-flag": "-show_indices_baseline",
+            "description": "display column indices for baseline",
+            "id": "SHOW_INDICES_BASELINE",
+            "name": "SHOW_INDICES_BASELINE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_INDICES_BASELINE]"
+        },
+        {
+            "command-line-flag": "-show_indices_motion",
+            "description": "display column indices for motion regressors",
+            "id": "SHOW_INDICES_MOTION",
+            "name": "SHOW_INDICES_MOTION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_INDICES_MOTION]"
+        },
+        {
+            "command-line-flag": "-show_indices_interest",
+            "description": "display column indices for regs of interest",
+            "id": "SHOW_INDICES_INTEREST",
+            "name": "SHOW_INDICES_INTEREST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_INDICES_INTEREST]"
+        },
+        {
+            "command-line-flag": "-show_label_ordering",
+            "description": "display the labels",
+            "id": "SHOW_LABEL_ORDERING",
+            "name": "SHOW_LABEL_ORDERING",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_LABEL_ORDERING]"
+        },
+        {
+            "command-line-flag": "-show_labels",
+            "description": "display the labels",
+            "id": "SHOW_LABELS",
+            "name": "SHOW_LABELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_LABELS]"
+        },
+        {
+            "command-line-flag": "-show_max_displace",
+            "description": "display max displacement (from motion params) - the maximum pairwise distance (enorm)",
+            "id": "SHOW_MAX_DISPLACE",
+            "name": "SHOW_MAX_DISPLACE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_MAX_DISPLACE]"
+        },
+        {
+            "command-line-flag": "-show_mmms",
+            "description": "display min, mean, max, stdev of columns",
+            "id": "SHOW_MMMS",
+            "name": "SHOW_MMMS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_MMMS]"
+        },
+        {
+            "command-line-flag": "-show_num_runs",
+            "description": "display number of runs found",
+            "id": "SHOW_NUM_RUNS",
+            "name": "SHOW_NUM_RUNS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_NUM_RUNS]"
+        },
+        {
+            "command-line-flag": "-show_rows_cols",
+            "description": "display the number of rows and columns",
+            "id": "SHOW_ROWS_COLS",
+            "name": "SHOW_ROWS_COLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_ROWS_COLS]"
+        },
+        {
+            "command-line-flag": "-show_tr_run_counts",
+            "description": "display TR counts per run, according to STYLE STYLE can be one of: trs        : TR counts trs_cen    : censored TR counts trs_no_cen : TR counts, as if no censoring frac_cen   : fractions of TRs censored See example 24.",
+            "id": "SHOW_TR_RUN_COUNTS",
+            "name": "SHOW_TR_RUN_COUNTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_TR_RUN_COUNTS]"
+        },
+        {
+            "command-line-flag": "-show_trs_censored",
+            "description": "display a list of TRs which were censored",
+            "id": "SHOW_TRS_CENSORED",
+            "name": "SHOW_TRS_CENSORED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_TRS_CENSORED]"
+        },
+        {
+            "command-line-flag": "-show_trs_uncensored",
+            "description": "display a list of TRs which were not censored STYLE can be one of: comma      : comma delimited space      : space delimited encoded    : succinct selector list verbose    : chatty See example 20.",
+            "id": "SHOW_TRS_UNCENSORED",
+            "name": "SHOW_TRS_UNCENSORED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_TRS_UNCENSORED]"
+        },
+        {
+            "command-line-flag": "-show_trs_run",
+            "description": "restrict -show_trs_[un]censored to the given 1-based run",
+            "id": "SHOW_TRS_RUN",
+            "name": "SHOW_TRS_RUN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_TRS_RUN]"
+        },
+        {
+            "command-line-flag": "-show_trs_to_zero",
+            "description": "display number of TRs before final zero value (e.g. length of response curve)",
+            "id": "SHOW_TRS_TO_ZERO",
+            "name": "SHOW_TRS_TO_ZERO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_TRS_TO_ZERO]"
+        },
+        {
+            "command-line-flag": "-slice_order_to_times",
+            "description": "convert a list of slice indices to times  Programs like to3d, 3drefit, 3dTcat and 3dTshift expect slice timing to be a list of slice times over the sequential slices.  But in some cases, people have an ordered list of slices.  So the sorting needs to change.  If TR=2 and the slice order is:  0  2  4  6  8  1  3  5  7  9  Then the slices/times ordered by time (as input) are:  slices: 0    2    4    6    8    1    3    5    7    9 times:  0.0  0.2  0.4  0.6  0.8  1.0  1.2  1.4  1.6  1.8  And the slices/times ordered instead by slice index are:  slices: 0    1    2    3    4    5    6    7    8    9 times:  0.0  1.0  0.2  1.2  0.4  1.4  0.6  1.6  0.8  1.8  It is this final list of times that is output.  See example 28.",
+            "id": "SLICE_ORDER_TO_TIMES",
+            "name": "SLICE_ORDER_TO_TIMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SLICE_ORDER_TO_TIMES]"
+        },
+        {
+            "command-line-flag": "-sort",
+            "description": "sort data over time (smallest to largest) - sorts EVERY vector - consider the -reverse option",
+            "id": "SORT",
+            "name": "SORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SORT]"
+        },
+        {
+            "command-line-flag": "-split_into_pad_runs",
+            "description": "split input into one padded file per run  e.g. -split_into_pad_runs motion.pad  This option is used for breaking a set of regressors up by run.  The output would be one file per run, where each file is the same as the input for the run it corresponds to, and is padded with 0 across all other runs.  Assuming the 300 row input dataset spans 3 100-TR runs, then there would be 3 output datasets created, each still be 300 rows:  motion.pad.r01.1D   : 100 rows as input, 200 rows of 0 motion.pad.r02.1D   : 100 rows of 0, 100 rows as input, 100 of 0 motion.pad.r03.1D   : 200 rows of 0, 100 rows as input  This option requires either -set_nruns or -set_run_lengths.  See example 14.",
+            "id": "SPLIT_INTO_PAD_RUNS",
+            "name": "SPLIT_INTO_PAD_RUNS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPLIT_INTO_PAD_RUNS]"
+        },
+        {
+            "command-line-flag": "-transpose",
+            "description": "transpose the input matrix (rows for columns)",
+            "id": "TRANSPOSE",
+            "name": "TRANSPOSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TRANSPOSE]"
+        },
+        {
+            "command-line-flag": "-transpose_write",
+            "description": "transpose the output matrix before writing",
+            "id": "TRANSPOSE_WRITE",
+            "name": "TRANSPOSE_WRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TRANSPOSE_WRITE]"
+        },
+        {
+            "command-line-flag": "-volreg2allineate",
+            "description": "convert 3dvolreg parameters to 3dAllineate  This option should be used when the -infile file is a 6 column file of motion parameters (roll, pitch, yaw, dS, dL, dP).  The output would be converted to a 12 parameter file, suitable for input to 3dAllineate via the -1Dparam_apply option.  volreg:     roll, pitch, yaw,   dS,    dL,     dP 3dAllinate: -dL,  -dP,   -dS,   roll,  pitch,  yaw,  0,0,0,  0,0,0  These parameters would be to correct the motion, akin to what 3dvolreg did (i.e. they are the negative estimates of how the subject moved).  See example 23.",
+            "id": "VOLREG2ALLINEATE",
+            "name": "VOLREG2ALLINEATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VOLREG2ALLINEATE]"
+        },
+        {
+            "command-line-flag": "-write",
+            "description": "write the current 1D data to FILE",
+            "id": "WRITE",
+            "name": "WRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE]"
+        },
+        {
+            "command-line-flag": "-write_censor",
+            "description": "write as boolean censor.1D  e.g. -write_censor subjA_censor.1D  This file can be given to 3dDeconvolve to censor TRs with excessive motion, applied with the -censor option.  e.g. 3dDeconvolve -censor subjA_censor.1D  This file works well for plotting against the data, where the 0 entries are removed from the regression of 3dDeconvolve.  Alternatively, the file created with -write_CENSORTR is probably more human readable.",
+            "id": "WRITE_CENSOR",
+            "name": "WRITE_CENSOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_CENSOR]"
+        },
+        {
+            "command-line-flag": "-write_CENSORTR",
+            "description": "write censor times as CENSORTR string  e.g. -write_CENSORTR subjA_CENSORTR.txt  This file can be given to 3dDeconvolve to censor TRs with excessive motion, applied with the -CENSORTR option.  e.g. 3dDeconvolve -CENSORTR `cat subjA_CENSORTR.txt`  Which might expand to:  3dDeconvolve -CENSORTR '1:16..19,44 3:28 4:19,37..39'  Note that the -CENSORTR option requires the text on the command line.  This file is in the easily readable format applied with -CENSORTR. It has the same effect on 3dDeconvolve as the sister file from -write_censor, above.",
+            "id": "WRITE_CENSORTR",
+            "name": "WRITE_CENSORTR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_CENSORTR]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set the verbosity level  ----------------------------------------------------------------------------- R Reynolds    March 2009 =============================================================================",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,231 @@
+{
+    "command-line": "xmat_tool.py [HELP] [HELP_GUI] [HIST] [SHOW_VALID_OPTS] [TEST] [TEST_LIBS] [VER] [CHRONO] [CORMAT_CUTOFF] [COSMAT_CUTOFF] [COSMAT_MOTION] [NO_GUI] [VERB] [SHOW_COL_TYPES] [SHOW_CONDS] [SHOW_CORMAT] [SHOW_CORMAT_WARNINGS] [SHOW_COSMAT] [SHOW_COSMAT_WARNINGS] [SHOW_FIT_BETAS] [SHOW_FIT_TS] [SHOW_XMAT] [SHOW_1D] [GUI_PLOT_XMAT_AS_ONE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-help_gui",
+            "description": "show the GUI help",
+            "id": "HELP_GUI",
+            "name": "HELP_GUI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_GUI]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show the module history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-show_valid_opts",
+            "description": "show all valid options",
+            "id": "SHOW_VALID_OPTS",
+            "name": "SHOW_VALID_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_VALID_OPTS]"
+        },
+        {
+            "command-line-flag": "-test",
+            "description": "run a basic test (requires X.xmat.1D and norm.022_043_012.1D)",
+            "id": "TEST",
+            "name": "TEST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEST]"
+        },
+        {
+            "command-line-flag": "-test_libs",
+            "description": "test for required python libraries",
+            "id": "TEST_LIBS",
+            "name": "TEST_LIBS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEST_LIBS]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show the version number  ------------------------------------------ general options:  -choose_cols 'COLUMN LIST'      : select columns to fit against  e.g. -choose_cols '0..$' e.g. -choose_cols '1..19(3),26,29,40..$'  These columns will be used as the basis for the top condition number, as well as the regressor columns for fit computations.  The column selection string should not contain spaces, and should be in the format of AFNI sub-brick selection.  Consider these examples  2..13           : 2,3,4,5,6,7,8,9,10,11,12,13 2..13(3)        : 2,5,8,11 3,7,11          : 3,7,11 20..$(4)        : 20,24,28,32 (assuming 33 columns, say)",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-chrono",
+            "description": "apply options chronologically  By default, the general options are applied before the show options, with the show options being in order.  When the -chrono option is applied, all options are chronological, allowing the options to be applied as in a script.  For example, a matrix could be loaded, and then a series of fit betas could be displayed by alternating a sequence of -choose_cols and -show_fit_betas options.  Consider example 6.",
+            "id": "CHRONO",
+            "name": "CHRONO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHRONO]"
+        },
+        {
+            "command-line-flag": "-cormat_cutoff",
+            "description": "set min cutoff for cormat warnings  e.g. -cormat_cutoff 0.5  By default, any value in the correlation matrix that is greater than or equal to 0.4 generates a warning.  This option can be used to override that minumum cutoff.",
+            "id": "CORMAT_CUTOFF",
+            "name": "CORMAT_CUTOFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CORMAT_CUTOFF]"
+        },
+        {
+            "command-line-flag": "-cosmat_cutoff",
+            "description": "set min cutoff for cosmat warnings  e.g. -cosmat_cutoff 0.5  By default, any value in the cosine matrix that is greater than or equal to 0.3827 generates a warning.  This option can be used to override that minumum cutoff.  Note a few cosine values, relative to 90 degrees (PI/2):  cos(.50 *PI/2) = .707 cos(.75 *PI/2) = .3827 cos(.875*PI/2) = .195",
+            "id": "COSMAT_CUTOFF",
+            "name": "COSMAT_CUTOFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COSMAT_CUTOFF]"
+        },
+        {
+            "command-line-flag": "-cosmat_motion",
+            "description": "include motion in cosmat warnings  In the cosine matrix, motion regressors are often pointing in a direction close to that of either baseline or other motion regressors.  By default, such warnings are not displayed.  Use this option to include all such warnings.  -load_xmat XMAT.xmat.1D         : load the AFNI X-matrix  e.g. -load_xmat X.xmat.1D  Load the X-matrix, as the basis for most computations.  -load_1D DATA.1D                : load the 1D time series  e.g. -load_1D norm_ts.1D  Load the 1D time series, for which fit betas and a fit time series can be generated.",
+            "id": "COSMAT_MOTION",
+            "name": "COSMAT_MOTION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COSMAT_MOTION]"
+        },
+        {
+            "command-line-flag": "-no_gui",
+            "description": "do not start the GUI  By default, this program runs a graphical interface.  If the user wishes to perform some actions and terminate without starting the GUI, this option can be applied.",
+            "id": "NO_GUI",
+            "name": "NO_GUI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_GUI]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set the verbose level  Specify how much extra text should be displayed regarding the internal operations.  Valid levels are currently 0..5, with 0 meaning 'quiet', 1 being the default, and 5 being the most verbose.  ------------------------------------------ show options:",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-show_col_types",
+            "description": "display columns by regressor types  Show which columns are considered 'main', 'chosen', 'baseline' and 'motion'.  This would correspond to condition numbers.",
+            "id": "SHOW_COL_TYPES",
+            "name": "SHOW_COL_TYPES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_COL_TYPES]"
+        },
+        {
+            "command-line-flag": "-show_conds",
+            "description": "display a list of condition numbers  The condition number is the ratio of the largest eigen value to the smallest.  It provides an indication of how sensitive results of linear regression are to small changes in the data.  Condition numbers will tend to be larger with regressors that are more highly correlated.  This option requests to display condition numbers for the X-matrix, restricted to the given sets of columns (regressors):  - all regressors - chosen regressors (if there are any) - main regressors (non-baseline, non-motion) - main + baseline (non-motion) - main + motion   (non-baseline)  - motion + baseline - baseline - motion",
+            "id": "SHOW_CONDS",
+            "name": "SHOW_CONDS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_CONDS]"
+        },
+        {
+            "command-line-flag": "-show_cormat",
+            "description": "show the correlation matrix  Display the entire correlation matrix as text.  For an N-regressor (N columns) matrix, the NxN correlation matrix has as its i,j entry the Pearson correlation between regressors i and j.  It is computed as the de-meaned, normalized XtX.  Values near +/-1.0 are highly correlated (go up and down together, or in reverse).  A value of 0.0 would mean they are orthogonal.",
+            "id": "SHOW_CORMAT",
+            "name": "SHOW_CORMAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_CORMAT]"
+        },
+        {
+            "command-line-flag": "-show_cormat_warnings",
+            "description": "show correlation matrix warnings  Correlations for regressor pairs that are highly correlated (abs(r) >= 0.4, say) are displayed, unless it is for a motion regressor with either another motion regressor or a baseline regressor.",
+            "id": "SHOW_CORMAT_WARNINGS",
+            "name": "SHOW_CORMAT_WARNINGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_CORMAT_WARNINGS]"
+        },
+        {
+            "command-line-flag": "-show_cosmat",
+            "description": "show the cosine matrix  Display the entire cosine matrix as text.  This is similar to the correlation matrix, but the values show the cosines of the angles between pairs of regressor vectors.  Values near 1 mean the regressors are \"pointed in the same direction\" (in M-dimensional space).  A value of 0 means they are at right angles, which is to say orthogonal.",
+            "id": "SHOW_COSMAT",
+            "name": "SHOW_COSMAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_COSMAT]"
+        },
+        {
+            "command-line-flag": "-show_cosmat_warnings",
+            "description": "show cosine matrix warnings  Cosines for regressor pairs that are pointed similar directions (abs(cos) >= 0.3827, say) are displayed.",
+            "id": "SHOW_COSMAT_WARNINGS",
+            "name": "SHOW_COSMAT_WARNINGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_COSMAT_WARNINGS]"
+        },
+        {
+            "command-line-flag": "-show_fit_betas",
+            "description": "show fit betas  If a 1D time series is specified, beta weights will be displayed as best fit parameters of the model (X-matrix) to the data (1D time series).  These values are the scalars by which the corresponding regressors are multiplied, in order to fit the data as closely as possibly (minimizing the sum of squared errors).  Only chosen columns are fit to the data.  see -choose_cols",
+            "id": "SHOW_FIT_BETAS",
+            "name": "SHOW_FIT_BETAS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_FIT_BETAS]"
+        },
+        {
+            "command-line-flag": "-show_fit_ts",
+            "description": "show fit time series  Similar to showing beta weights, the actual fit time series can be displayed with this option.  The fit time series is the sum of each regressor multiplied by its corresponding beta weight.  Only chosen columns are fit to the data.  see -choose_cols",
+            "id": "SHOW_FIT_TS",
+            "name": "SHOW_FIT_TS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_FIT_TS]"
+        },
+        {
+            "command-line-flag": "-show_xmat",
+            "description": "display general X-matrix information  This will display some general information that is stored in the .xmat.1D file.",
+            "id": "SHOW_XMAT",
+            "name": "SHOW_XMAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_XMAT]"
+        },
+        {
+            "command-line-flag": "-show_1D",
+            "description": "display general 1D information  This will display some general information from the 1D time series file.  ------------------------------------------ GUI (graphical user interface) options:",
+            "id": "SHOW_1D",
+            "name": "SHOW_1D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_1D]"
+        },
+        {
+            "command-line-flag": "-gui_plot_xmat_as_one",
+            "description": "plot Xmat columns on single axis  ----------------------------------------------------------------------------- R Reynolds    October 2008 =============================================================================",
+            "id": "GUI_PLOT_XMAT_AS_ONE",
+            "name": "GUI_PLOT_XMAT_AS_ONE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GUI_PLOT_XMAT_AS_ONE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

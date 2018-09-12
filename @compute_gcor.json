@@ -1,0 +1,105 @@
+{
+    "command-line": "@compute_gcor [HELP] [HIST] [VER] [INPUT] [MASK] [CORR_VOL] [NFIRST] [NO_DEMEAN] [SAVETMP] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show modification history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show version number  important processing options:",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "specify input dataset to compute the GCOR over",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "specify mask dataset, for restricting the computation  other processing options:",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-corr_vol",
+            "description": "specify input dataset to compute the GCOR over",
+            "id": "CORR_VOL",
+            "name": "CORR_VOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CORR_VOL]"
+        },
+        {
+            "command-line-flag": "-nfirst",
+            "description": "specify number of initial TRs to ignore",
+            "id": "NFIRST",
+            "name": "NFIRST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NFIRST]"
+        },
+        {
+            "command-line-flag": "-no_demean",
+            "description": "do not (need to) demean as first step",
+            "id": "NO_DEMEAN",
+            "name": "NO_DEMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_DEMEAN]"
+        },
+        {
+            "command-line-flag": "-savetmp",
+            "description": "save temporary files (do not remove at end)",
+            "id": "SAVETMP",
+            "name": "SAVETMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVETMP]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set verbose level (0=quiet, 3=max)  ---------------------------------------------  R Reynolds, Jan, 2013 ------------------------------------------------------------",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

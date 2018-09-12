@@ -1,0 +1,42 @@
+{
+    "command-line": "@ClustExp_CatLab [PREFIX] [INPUT] [HELP]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "output file name",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "name of file containing the labels and data sets table",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "show this help  ----------------------------------------------------------------------------- examples:  @ClustExp_CatLab -prefix disco -input subjects.csv  ----------------------------------------------------------------------------- Justin Rajendra 07/20/2017",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

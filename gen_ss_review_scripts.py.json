@@ -1,0 +1,258 @@
+{
+    "command-line": "gen_ss_review_scripts.py [CVAR] [HELP] [HELP_FIELDS] [HELP_FIELDS_BRIEF] [HIST] [SHOW_COMPUTED_UVARS] [SHOW_UVAR_DICT] [SHOW_UVAR_EG] [SHOW_VALID_OPTS] [VER] [EXIT0] [PREFIX] [VERB] [SUBJ] [RM_TRS] [NUM_STIM] [MOTION_DSET] [OUTLIER_DSET] [ENORM_DSET] [MOT_LIMIT] [OUT_LIMIT] [XMAT_REGRESS] [XMAT_UNCENSORED] [STATS_DSET] [FINAL_ANAT] [FINAL_VIEW] [UVAR]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-cvar",
+            "description": "-cvar scr_basic ~/tmp/s.basic \\",
+            "id": "CVAR",
+            "name": "CVAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CVAR]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-help_fields",
+            "description": "show help describing fields from review_basic",
+            "id": "HELP_FIELDS",
+            "name": "HELP_FIELDS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_FIELDS]"
+        },
+        {
+            "command-line-flag": "-help_fields_brief",
+            "description": "show only the brief field help",
+            "id": "HELP_FIELDS_BRIEF",
+            "name": "HELP_FIELDS_BRIEF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_FIELDS_BRIEF]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show module history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-show_computed_uvars",
+            "description": "show user variables after computing",
+            "id": "SHOW_COMPUTED_UVARS",
+            "name": "SHOW_COMPUTED_UVARS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_COMPUTED_UVARS]"
+        },
+        {
+            "command-line-flag": "-show_uvar_dict",
+            "description": "show all user variables",
+            "id": "SHOW_UVAR_DICT",
+            "name": "SHOW_UVAR_DICT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_UVAR_DICT]"
+        },
+        {
+            "command-line-flag": "-show_uvar_eg",
+            "description": "show example of user variables",
+            "id": "SHOW_UVAR_EG",
+            "name": "SHOW_UVAR_EG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_UVAR_EG]"
+        },
+        {
+            "command-line-flag": "-show_valid_opts",
+            "description": "list valid options",
+            "id": "SHOW_VALID_OPTS",
+            "name": "SHOW_VALID_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_VALID_OPTS]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show current version  other options",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-exit0",
+            "description": "regardless of errors, exit with status 0",
+            "id": "EXIT0",
+            "name": "EXIT0",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXIT0]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "set prefix for script names",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set the verbosity level  options for setting main variables",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-subj",
+            "description": "subject ID",
+            "id": "SUBJ",
+            "name": "SUBJ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUBJ]"
+        },
+        {
+            "command-line-flag": "-rm_trs",
+            "description": "number of TRs removed per run",
+            "id": "RM_TRS",
+            "name": "RM_TRS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RM_TRS]"
+        },
+        {
+            "command-line-flag": "-num_stim",
+            "description": "number of main stimulus classes",
+            "id": "NUM_STIM",
+            "name": "NUM_STIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUM_STIM]"
+        },
+        {
+            "command-line-flag": "-motion_dset",
+            "description": "motion parameters",
+            "id": "MOTION_DSET",
+            "name": "MOTION_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOTION_DSET]"
+        },
+        {
+            "command-line-flag": "-outlier_dset",
+            "description": "outlier fraction time series",
+            "id": "OUTLIER_DSET",
+            "name": "OUTLIER_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTLIER_DSET]"
+        },
+        {
+            "command-line-flag": "-enorm_dset",
+            "description": "euclidean norm of motion params",
+            "id": "ENORM_DSET",
+            "name": "ENORM_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ENORM_DSET]"
+        },
+        {
+            "command-line-flag": "-mot_limit",
+            "description": "(optional) motion limit - maybe for censoring",
+            "id": "MOT_LIMIT",
+            "name": "MOT_LIMIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOT_LIMIT]"
+        },
+        {
+            "command-line-flag": "-out_limit",
+            "description": "(optional) outlier fraction limit",
+            "id": "OUT_LIMIT",
+            "name": "OUT_LIMIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_LIMIT]"
+        },
+        {
+            "command-line-flag": "-xmat_regress",
+            "description": "X-matrix file used in regression (X.xmat.1D)",
+            "id": "XMAT_REGRESS",
+            "name": "XMAT_REGRESS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[XMAT_REGRESS]"
+        },
+        {
+            "command-line-flag": "-xmat_uncensored",
+            "description": "if censoring, un-censored X-matrix file",
+            "id": "XMAT_UNCENSORED",
+            "name": "XMAT_UNCENSORED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[XMAT_UNCENSORED]"
+        },
+        {
+            "command-line-flag": "-stats_dset",
+            "description": "output from 3dDeconvolve",
+            "id": "STATS_DSET",
+            "name": "STATS_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STATS_DSET]"
+        },
+        {
+            "command-line-flag": "-final_anat",
+            "description": "final anatomical dataset",
+            "id": "FINAL_ANAT",
+            "name": "FINAL_ANAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FINAL_ANAT]"
+        },
+        {
+            "command-line-flag": "-final_view",
+            "description": "final view of data (e.g. 'orig' or 'tlrc')",
+            "id": "FINAL_VIEW",
+            "name": "FINAL_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FINAL_VIEW]"
+        },
+        {
+            "command-line-flag": "-uvar",
+            "description": "-uvar VAR PARAMS ...      : generic option form for user variables   -----------------------------------------------------------------------------  Here are some potential artifacts to ponder (just so they are saved somewhere), as noted by many of us, including D Glen and J Gonzalez. We can try to add to this list, and maybe even do something to take them off <gasp!>.  1. Striping - across slices - EPI, anatomical 2. Artifacts - checkerboard, ringing - EPI, anatomical 3. Spiking (regional or global) - global would be caught in the outlier fractions 4. Shifts in baseline (regional or global) - maybe @ANATICOR can help to deal with it, but how to notice? 5. \"PURE\" on or off / acquisition protocol changes 6. Poor contrast between CSF and WM/GM in EPI 7. Low resolution anatomical data 8. Noisy anatomical data 9. Left-right flipping between anatomical and EPI - run align_epi_anat.py between flipped versions (as was done by _____ on the fcon_1000 data) 10. Poor alignment between anatomical and EPI - currently users can view as part of @ss_review_driver - can use some large limit test on value from out.mask_overlap.txt 11. Excessive motion - currently report average motion and censor details 12. \"Reshimming-like\" shears between EPI volumes 13. Non-uniformity because of surface coils 14. Incorrect DICOM data 15. Inconsistent data types within a study 16. TR not properly set 17. Missing data 18. Inconsistent number of TRs within multiple EPI datasets 19. Missing pre-steady state in EPI data  -----------------------------------------------------------------------------  Thanks to J Jarcho and C Deveney for suggestions, feedback and testing.  R Reynolds    July 2011 =============================================================================",
+            "id": "UVAR",
+            "name": "UVAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UVAR]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

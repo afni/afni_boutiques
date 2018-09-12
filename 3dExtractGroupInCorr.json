@@ -1,0 +1,32 @@
+{
+    "command-line": "3dExtractGroupInCorr [PREFIX] [AAA.GRPINCORR.NIML]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix PPP The actual dataset prefix with be the internal dataset label with the string 'PPP_' pre-prended. ++ Use NULL to skip the use of the prefix.  Author -- RWCox -- May 2012  ++ Compile date = Sep  7 2018 {:}",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "description": "NA",
+            "id": "AAA.grpincorr.niml",
+            "name": "AAA.grpincorr.niml",
+            "optional": false,
+            "type": "String",
+            "value-key": "[AAA.GRPINCORR.NIML]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

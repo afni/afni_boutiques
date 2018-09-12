@@ -1,0 +1,77 @@
+{
+    "command-line": "niml_feedme [HOST] [DT] [VERB] [ACCUM] [TARGET] [DRIVE] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-host",
+            "description": "Send data, via TCP/IP, to AFNI running on the computer system 'sname'.  By default, uses the current system (localhost), if you don't use this option.",
+            "id": "HOST",
+            "name": "HOST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HOST]"
+        },
+        {
+            "command-line-flag": "-dt",
+            "description": "Tries to maintain an inter-transmit interval of 'ms' milliseconds.  The default is 1000 msec per volume.",
+            "id": "DT",
+            "name": "DT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DT]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Be (very) talkative about actions.",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-accum",
+            "description": "Send sub-bricks so that they accumulate in AFNI. The default is to create only a 1 volume dataset inside AFNI, and each sub-brick just replaces that one volume when it is received.",
+            "id": "ACCUM",
+            "name": "ACCUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ACCUM]"
+        },
+        {
+            "command-line-flag": "-target",
+            "description": "Change the dataset name transmitted to AFNI from 'niml_feedme' to 'nam'.",
+            "id": "TARGET",
+            "name": "TARGET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TARGET]"
+        },
+        {
+            "command-line-flag": "-drive",
+            "description": "Send 'cmd' as a DRIVE_AFNI command. * If cmd contains blanks, it must be in 'quotes'. * Multiple -drive options may be used. * These commands will be sent to AFNI just after the first volume is transmitted. * See file README.driver for a list of commands.  EXAMPLE: Send volumes from a 3D+time dataset to AFNI:  niml_feedme -dt 1000 -verb -accum -target Elvis \\ -drive 'OPEN_WINDOW axialimage'     \\ -drive 'OPEN_WINDOW axialgraph'     \\ -drive 'SWITCH_UNDERLAY Elvis'      \\ timeseries+orig  Author: RW Cox -- July 2009  ++ Compile date = Sep  7 2018 {:}",
+            "id": "DRIVE",
+            "name": "DRIVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DRIVE]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,103 @@
+{
+    "command-line": "cat_matvec [I] [1] [P] [IP] [S] [MATRIX] [ONELINE] [4X4] [MATVEC_SPEC] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-I",
+            "description": "invert the transformation:",
+            "id": "I",
+            "name": "I",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I]"
+        },
+        {
+            "command-line-flag": "-1",
+            "description": "-1              -1 [xold] = [uij]  [xnew] - [uij]  [vi]",
+            "id": "1",
+            "name": "1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1]"
+        },
+        {
+            "command-line-flag": "-P",
+            "description": "Do a polar decomposition on the 3x3 matrix part of the mfile. This would result in an orthogonal matrix (rotation only, no scaling) Q that is closest, in the Frobenius distance sense, to the input matrix A. Note: if A = R * S * E, where R, S and E are the Rotation, Scale, and shEar matrices, respctively, Q does not necessarily equal R because of interaction; Each of R, S and E affects most of the columns in matrix A.",
+            "id": "P",
+            "name": "P",
+            "optional": true,
+            "type": "String",
+            "value-key": "[P]"
+        },
+        {
+            "command-line-flag": "-IP",
+            "description": "-I followed by -P",
+            "id": "IP",
+            "name": "IP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IP]"
+        },
+        {
+            "command-line-flag": "-S",
+            "description": "square root of the matrix Note: Not all matrices have square roots! The square root of a matrix will do 'half' the transformation. One application: 3dLRflip + 3dAllineate to register a volume to its mirror image, then apply half the transformation to bring it into vertical alignment.  The transformation resulting by catenating the transformations is written to stdout in the same 3x4 ASCII file format.  This can be used as input to '3drotate -matvec_dicom' (provided [uij] is a proper orthogonal matrix), or to '3dWarp -matvec_xxx'.",
+            "id": "S",
+            "name": "S",
+            "optional": true,
+            "type": "String",
+            "value-key": "[S]"
+        },
+        {
+            "command-line-flag": "-MATRIX",
+            "description": "indicates that the resulting matrix will be written to stdout in the 'MATRIX(...)' format (FORM 3). This feature could be used, with clever scripting, to input a matrix directly on the command line to program 3dWarp.",
+            "id": "MATRIX",
+            "name": "MATRIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATRIX]"
+        },
+        {
+            "command-line-flag": "-ONELINE",
+            "description": "option indicates that the resulting matrix will simply be written as 12 numbers on one line.",
+            "id": "ONELINE",
+            "name": "ONELINE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ONELINE]"
+        },
+        {
+            "command-line-flag": "-4x4",
+            "description": "Output matrix in augmented form (last row is 0 0 0 1) This option does not work with -MATRIX or -ONELINE N.B.: If only 9 numbers can be read from an mfile, then those values form the [uij] matrix, and the vector is set to zero. N.B.: If form 1a (.aff12.1D) is used to compute multiple matrices, then the output matrices are written to stdout, one matrix per line.",
+            "id": "4X4",
+            "name": "4X4",
+            "optional": true,
+            "type": "String",
+            "value-key": "[4X4]"
+        },
+        {
+            "description": "NA",
+            "id": "matvec_spec",
+            "name": "matvec_spec",
+            "optional": false,
+            "type": "String",
+            "value-key": "[MATVEC_SPEC]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

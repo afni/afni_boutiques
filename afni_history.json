@@ -1,0 +1,186 @@
+{
+    "command-line": "afni_history [HELP] [HIST] [LIST_AUTHORS] [LIST_TYPES] [VER] [AUTHOR] [LEVEL] [MIN_LEVEL] [PROGRAM] [PAST_ENTRIES] [PAST_DAYS] [PAST_MONTHS] [PAST_YEARS] [TYPE] [CHECK_DATE] [HTML] [DLINE] [REVERSE] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show this program's history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-list_authors",
+            "description": "show the list of valid authors",
+            "id": "LIST_AUTHORS",
+            "name": "LIST_AUTHORS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIST_AUTHORS]"
+        },
+        {
+            "command-line-flag": "-list_types",
+            "description": "show the list of valid change types",
+            "id": "LIST_TYPES",
+            "name": "LIST_TYPES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIST_TYPES]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show this program's version  ------------------ output restriction options: ------------------",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-author",
+            "description": "restrict output to the given AUTHOR",
+            "id": "AUTHOR",
+            "name": "AUTHOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTHOR]"
+        },
+        {
+            "command-line-flag": "-level",
+            "description": "restrict output to the given LEVEL",
+            "id": "LEVEL",
+            "name": "LEVEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LEVEL]"
+        },
+        {
+            "command-line-flag": "-min_level",
+            "description": "restrict output to at least level LEVEL",
+            "id": "MIN_LEVEL",
+            "name": "MIN_LEVEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN_LEVEL]"
+        },
+        {
+            "command-line-flag": "-program",
+            "description": "restrict output to the given PROGRAM",
+            "id": "PROGRAM",
+            "name": "PROGRAM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PROGRAM]"
+        },
+        {
+            "command-line-flag": "-past_entries",
+            "description": "restrict output to final ENTRIES entries",
+            "id": "PAST_ENTRIES",
+            "name": "PAST_ENTRIES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAST_ENTRIES]"
+        },
+        {
+            "command-line-flag": "-past_days",
+            "description": "restrict output to the past DAYS days",
+            "id": "PAST_DAYS",
+            "name": "PAST_DAYS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAST_DAYS]"
+        },
+        {
+            "command-line-flag": "-past_months",
+            "description": "restrict output to the past MONTHS months",
+            "id": "PAST_MONTHS",
+            "name": "PAST_MONTHS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAST_MONTHS]"
+        },
+        {
+            "command-line-flag": "-past_years",
+            "description": "restrict output to the past YEARS years",
+            "id": "PAST_YEARS",
+            "name": "PAST_YEARS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAST_YEARS]"
+        },
+        {
+            "command-line-flag": "-type",
+            "description": "restrict output to the given TYPE (TYPE = 0..5, or strings 'NEW_PROG', etc.) e.g.  -type NEW_ENV e.g.  -type BUG_FIX  ------------------ verification options: ------------------------",
+            "id": "TYPE",
+            "name": "TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TYPE]"
+        },
+        {
+            "command-line-flag": "-check_date",
+            "description": "check history against given date  If most recent afni_history is older than the passed date, the distribution version might be considered out of date.  Otherwise, it might be considered current.  If the version seems okay, afni_history returns 0, else 1. That way a script can check the status.  ------------------ general options: -----------------------------",
+            "id": "CHECK_DATE",
+            "name": "CHECK_DATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHECK_DATE]"
+        },
+        {
+            "command-line-flag": "-html",
+            "description": "add html formatting",
+            "id": "HTML",
+            "name": "HTML",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HTML]"
+        },
+        {
+            "command-line-flag": "-dline",
+            "description": "put a divider line between dates",
+            "id": "DLINE",
+            "name": "DLINE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DLINE]"
+        },
+        {
+            "command-line-flag": "-reverse",
+            "description": "reverse the sorting order (sort is by date, author, level, program)",
+            "id": "REVERSE",
+            "name": "REVERSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REVERSE]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "request verbose output (LEVEL is from 0-6)   Author: Rick Reynolds Thanks to: Ziad, Bob",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

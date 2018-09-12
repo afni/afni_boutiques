@@ -1,0 +1,69 @@
+{
+    "command-line": "3dAmpToRSFC [IN_AMP] [IN_POW] [BAND] [PREFIX] [MASK] [NIFTI]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-in_amp",
+            "description": "nput file of one-sided spectral amplitudes, such as output by 3dLombScargle.  It is also assumed that the the frequencies are uniformly spaced with a single DF ('delta f'), and that the zeroth brick is at 1*DF (i.e. that the zeroth/baseline frequency is not present in the or         spectrum.",
+            "id": "IN_AMP",
+            "name": "IN_AMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_AMP]"
+        },
+        {
+            "command-line-flag": "-in_pow",
+            "description": "nput file of a one-sided power spectrum, such as output by 3dLombScargle.  Similar freq assumptions as in '-in_amp ...'.",
+            "id": "IN_POW",
+            "name": "IN_POW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_POW]"
+        },
+        {
+            "command-line-flag": "-band",
+            "description": "ower and upper boundaries, respectively, of the low frequency fluctuations (LFFs), which will be in the inclusive interval [FBOT, FTOP], within the provided input file's frequency range.",
+            "id": "BAND",
+            "name": "BAND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BAND]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput file prefix; file names will be: PREFIX_ALFF*, PREFIX_FALFF*, etc.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "olume mask of voxels to include for calculations; if no mask is included, values are calculated for voxels whose values are not identically zero across time.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-nifti",
+            "description": "utput files as *.nii.gz (default is BRIK/HEAD).  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * + OUTPUT: Currently, 6 volumes of common RSFC parameters, briefly: PREFIX_ALFF+orig    :amplitude of low freq fluctuations (L1 sum). PREFIX_MALFF+orig   :ALFF divided by the mean value within the input/estimated whole brain mask (a.k.a. 'mean-scaled ALFF'). PREFIX_FALFF+orig   :ALFF divided by sum of full amplitude spectrum (-> 'fractional ALFF'). PREFIX_RSFA+orig    :square-root of summed square of low freq fluctuations (L2 sum). PREFIX_MRSFA+orig   :RSFA divided by the mean value within the input/estimated whole brain mask (a.k.a. 'mean-scaled RSFA'). PREFIX_FRSFA+orig   :ALFF divided by sum of full amplitude spectrum (a.k.a. 'fractional RSFA').  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  + EXAMPLE: 3dAmpToRSFC                         \\ -in_amp SUBJ_01_amp.nii.gz     \\ -prefix  SUBJ_01                \\ -mask    mask_WB.nii.gz         \\ -band    0.01  0.1              \\ -nifti  ___________________________________________________________________________",
+            "id": "NIFTI",
+            "name": "NIFTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NIFTI]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

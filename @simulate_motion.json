@@ -1,0 +1,159 @@
+{
+    "command-line": "@simulate_motion [HELP] [HIST] [TODO] [VER] [EPI] [MOTION_FILE] [EPI_TIMING] [PREFIX] [SAVE_WORKDIR] [TEST] [VERB] [VR_BASE] [WARP_METHOD] [WARP_1D] [WARP_MASTER] [WSINC5]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show program modification history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-todo",
+            "description": "show current todo list",
+            "id": "TODO",
+            "name": "TODO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TODO]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show program version  required parameters:",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-epi",
+            "description": "provide input volume or time series (only a volreg base is needed, though more is okay)  If slice timing is to be used, the number of slices must match that of the -epi_timing dataset.  So it should not be the case where one view is +orig and the other +tlrc, for example.",
+            "id": "EPI",
+            "name": "EPI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EPI]"
+        },
+        {
+            "command-line-flag": "-motion_file",
+            "description": "specify motion parameter file (as output by 3dvolreg)  options:",
+            "id": "MOTION_FILE",
+            "name": "MOTION_FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOTION_FILE]"
+        },
+        {
+            "command-line-flag": "-epi_timing",
+            "description": "provide EPI dataset with slice timing (maybe -epi no longer has slice times)",
+            "id": "EPI_TIMING",
+            "name": "EPI_TIMING",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EPI_TIMING]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "prefix for data results (default = motion_sim.NUM_TRS)",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-save_workdir",
+            "description": "do not remove 'work' directory",
+            "id": "SAVE_WORKDIR",
+            "name": "SAVE_WORKDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_WORKDIR]"
+        },
+        {
+            "command-line-flag": "-test",
+            "description": "only test running the program, do not actually create a simulated motion dataset (not so useful anymore)",
+            "id": "TEST",
+            "name": "TEST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEST]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "specify a verbose level (default = 1)",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-vr_base",
+            "description": "0-based index of volreg base in EPI dataset",
+            "id": "VR_BASE",
+            "name": "VR_BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VR_BASE]"
+        },
+        {
+            "command-line-flag": "-warp_method",
+            "description": "specify a METHOD for forward alignment/transform  e.g. -warp_method WARP default: NONE  NONE:            do nothing after inverse motion VOLREG:          run 3dvolreg on result VR_PARAMS:       re-apply the motion parameters on the result VOLREG_AND_WARP: apply both VOLREG and WARP methods Run 3dvolreg on result, then combine the registration transformations with those of anat alignment and standard space transformation. * requires -warp_1D and -warp_master VR_PARAMS_AND_WARP: catenate volreg params with affine transformation (such as aligning to anat and going to standard space) WARP:            re-apply the complete motion param/anat align/standard space transformations * requires -warp_1D and -warp_master",
+            "id": "WARP_METHOD",
+            "name": "WARP_METHOD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WARP_METHOD]"
+        },
+        {
+            "command-line-flag": "-warp_1D",
+            "description": "specify a 12 parameter affine transformation, presumably to go from orig space to standard space, or including a volreg transformation  e.g. -warp_1D mat_rall.warp.aff12.1D  This command must be paired with -warp_master, and requires -warp_method WARP or VOLREG_AND_WARP.",
+            "id": "WARP_1D",
+            "name": "WARP_1D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WARP_1D]"
+        },
+        {
+            "command-line-flag": "-warp_master",
+            "description": "specify a grid master dataset for the -warp_1D xform  e.g. -warp_master pb02.FT.r01.volreg+tlrc  This DSET should probably be one of the volreg+tlrc results from an afni_proc.py script.",
+            "id": "WARP_MASTER",
+            "name": "WARP_MASTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WARP_MASTER]"
+        },
+        {
+            "command-line-flag": "-wsinc5",
+            "description": "use wsinc5 interpolation in 3dAllineate  ------------------------------------------------------- R Reynolds  May, 2013 ---------------------------------------------------------------------------",
+            "id": "WSINC5",
+            "name": "WSINC5",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WSINC5]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

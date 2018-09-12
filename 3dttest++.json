@@ -1,0 +1,348 @@
+{
+    "command-line": "3dttest++ [COVARIATES] [SETA] [SETB] [LABELA] [SINGLETONA] [SINGLETON_VARIANCE_RATIO] [CENTER] [CMETH] [PAIRED] [UNPOOLED] [TOZ] [ZSKIP] [RANKIZE] [NO1SAM] [NOMEANS] [NOTESTS] [NOCOV] [MASK] [EXBLUR] [BRICKWISE] [PREFIX] [RESID] [ACF] [DUPE_OK] [DEBUG] [CLUSTSIM] [PREFIX_CLUSTSIM] [NO5PERCENT] [TEMPDIR] [SEED] [RANDOMSIGN] [PERMUTE] [NOPERMUTE] [ETAC] [ETAC_MEM] [ETAC_OPT] [ETAC_ARG]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-covariates",
+            "description": "-covariates Cfile  * Please note that in the second ('LONG') form of the '-setA' option, the first value after '-setA' is a label for the set (here, 'Green'). ++ After that, pairs of values are given; in each pair, the first entry is a label for the dataset that is the second entry. ++ This dataset label is used as a key into the covariates file. ++ If you want to have a label for the set, but do not wish (or need) to have a label for each dataset in the set, then you can use the SHORT form (first example above), and then provide the overall label for the set with the '-labelA' option. ++ The set label is used to create sub-brick labels in the output dataset, to make it simpler for a user to select volumes for display in the AFNI GUI. Example: -labelA Nor -label Pat then the difference between the setA and setB means will get the label 'Nor-Pat_mean', and the corresponding t-statistic will get the label 'Nor-Pat_Tstat'. ++ See the section 'STRUCTURE OF THE OUTPUT DATASET' (far below) for more infomation on how the results are formatted.  * You can input 1 or 2 sets of data (labeled 'A' and 'B' by default).  * With 1 set ('-setA'), the mean across input datasets (usually subjects) is tested against 0.  * With 2 sets, the difference in means across each set is tested against 0.  The 1 sample results for each set are also provided, since these are often of interest to the investigator (e.g., YOU). ++ With 2 sets, the default is to produce the difference as setA - setB. ++ You can use the option '-BminusA' to get the signs reversed.  * Covariates can be per-dataset (input=1 number) and/or per-voxel/per-dataset (input=1 dataset sub-brick). ++ Note that voxel-level covariates will slow the program down, since the regression matrix for the covariates must be re-inverted for each voxel separately.  For most purposes, the program is so fast that this slower operation won't be important.  * The new-ish options '-Clustsim' and '-ETAC' will use randomization and permutation simulation to produce cluster-level threshold values that can be used to control the false positive rate (FPR) globally. These options are slow, since they will run 1000s of simulated 3D t-tests in order to get cluster-level statistics about the 1 actual test.  * You can input plain text files of numbers, provided their filenames end in the AFNI standard '.1D'. If you have two columns of numbers in files AA.1D and BB.1D, you could test their means for equality with a command like 3dttest++ -prefix stdout: -no1sam setA AA.1D\\' -setB BB.1D\\' Here, the \\' at the end of the filename tells the program to transpose the column files to row files, since AFNI treats a single row of numbers as the multiple values for a single 'voxel'. The output (on stdout) from such a command will be one row of numbers: the first value is the difference in the means between the 2 samples, and the second value is the t-statistic for this difference. (There will also be a bunch of text on stderr, with various messages.)  * This program is meant (for most uses) to replace the original 3dttest, which was written in 1994, \"When grass was green and grain was yellow\". ++ And when the program's author still had hair on the top of his head /:(  ------------------ SET INPUT OPTIONS ------------------  * At least the '-setA' option must be given.  * '-setB' is optional, and if it isn't used, then the mean of the dataset values from '-setA' is t-tested against 0 (1 sample t-test).  * Two forms for the '-setX' (X='A' or 'B') options are allowed.  The first (short) form is similar to the original 3dttest program, where the option is just followed by a list of datasets to use.  * The second (long) form is similar to the 3dMEMA program, where you specify a label for each input dataset sub-brick (a difference between this option and the version in 3dMEMA is only that you do not give a second dataset ('T_DSET') with each sample in this program).  ***** SHORT FORM *****",
+            "id": "COVARIATES",
+            "name": "COVARIATES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COVARIATES]"
+        },
+        {
+            "command-line-flag": "-setA",
+            "description": "-setA BETA_DSET BETA_DSET ... [-setB]  * In this form of input, you specify the datasets for each set directly following the '-setX' option. ++ Unlike 3dttest, you can specify multiple sub-bricks in a dataset:",
+            "id": "SETA",
+            "name": "SETA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SETA]"
+        },
+        {
+            "command-line-flag": "-setB",
+            "description": "-setB '*.beta+tlrc.HEAD[Arel#0_Coef]' -prefix VAtest -paired will do a paired 2-sample test between the symbolically selected sub-bricks from a collection of single-subject datasets (here, 2 different tasks).  ***** LONG FORM *****",
+            "id": "SETB",
+            "name": "SETB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SETB]"
+        },
+        {
+            "command-line-flag": "-labelA",
+            "description": "for the short form of '-setX', this option allows you [-labelB]          to attach a label to the set, which will be used in the sub-brick labels in the output dataset.  If you don't give a SETNAME, then '-setA' will be named 'SetA', etc.  ***** NOTE WELL: The sign of a two sample test is A - B.          ***** ***              Thus, '-setB' corresponds to '-set1' in 3dttest,   *** ***                and '-setA' corresponds to '-set2' in 3dttest.   *** *****            This ordering of A and B matches 3dGroupInCorr.  ***** *****-------------------------------------------------------------***** ***** ALSO NOTE: You can reverse this sign by using the option    ***** ***              '-BminusA', in which case the test is B - A.       *** ***              The option '-AminusB' can be used to explicitly    *** *****            specify the standard subtraction order.          *****  --------------------------------------------------------------- TESTING A SINGLE DATASET VERSUS THE MEAN OF A GROUP OF DATASETS ---------------------------------------------------------------  This new [Mar 2015] option allows you to test a single value versus a group of datasets.  To do this, replace the '-setA' option with the '-singletonA' option described below, and input '-setB' normally (that is, '-setB' must have more than 1 dataset).  The '-singletonA' option comes in 3 different forms:",
+            "id": "LABELA",
+            "name": "LABELA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABELA]"
+        },
+        {
+            "command-line-flag": "-singletonA",
+            "description": "-singletonA dataset_A *OR*",
+            "id": "SINGLETONA",
+            "name": "SINGLETONA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SINGLETONA]"
+        },
+        {
+            "command-line-flag": "-singleton_variance_ratio",
+            "description": "-singleton_variance_ratio RRR to set the (assumed) variance of dataset_A to be RRR times the variance of set B. Here, 'RRR' must be a positive number -- it cannot be zero, so if you really want to test against a voxel-wise constant, use something like 0.000001 for RRR (this is the setting automatically made when 'dataset_A' is replaced by a fixed number, in the third form above).  * Statistical inference on a single sample (dataset_A values) isn't really possible.  The purpose of '-singletonA' is to give you some guidance when a voxel value in dataset_A is markedly different from the distribution of values in setB. ++ However, a statistician would caution you that when an elephant walks into the room, it might be a 500,000 standard deviation mouse, so you can't validly conclude it is a different species until you get some more data.  * At present, '-singletonA' cannot be used with '-brickwise'. ++ Various other options don't make sense with '-singletonA', including '-paired' and '-center SAME'.  * Note that there is no '-singletonB' option -- the only reason this is labeled as '-singletonA' is to remind the user (you) that this option replaces the '-setA' option.  -------------------------------------- COVARIATES - per dataset and per voxel --------------------------------------",
+            "id": "SINGLETON_VARIANCE_RATIO",
+            "name": "SINGLETON_VARIANCE_RATIO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SINGLETON_VARIANCE_RATIO]"
+        },
+        {
+            "command-line-flag": "-center",
+            "description": "Do not remove the mean of any covariate.",
+            "id": "CENTER",
+            "name": "CENTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENTER]"
+        },
+        {
+            "command-line-flag": "-cmeth",
+            "description": "When centering, subtract the mean.",
+            "id": "CMETH",
+            "name": "CMETH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CMETH]"
+        },
+        {
+            "command-line-flag": "-paired",
+            "description": "Specifies the use of a paired-sample t-test to compare setA and setB.  If this option is used, setA and setB must have the same cardinality (duh). ++ Recall that if '-paired' is used with '-covariates', the covariates for setB will be the same as for setA. ++ If you don't understand the difference between a paired and unpaired t-test, I'm not going to teach you in this help file. But please consult someone or you will undoubtedly come to grief.",
+            "id": "PAIRED",
+            "name": "PAIRED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAIRED]"
+        },
+        {
+            "command-line-flag": "-unpooled",
+            "description": "Specifies that the variance estimates for setA and setB be computed separately (not pooled together). ++ This only makes sense if -paired is NOT given. ++ '-unpooled' cannot be used with '-covariates'. ++ Unpooled variance estimates are supposed to provide some protection against heteroscedasticty (significantly different inter-subject variance between the two different collections of datasets). ++  Our experience is that for most FMRI data, using '-unpooled' is not needed; the option is here for those who like to experiment or who are very cautious.",
+            "id": "UNPOOLED",
+            "name": "UNPOOLED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNPOOLED]"
+        },
+        {
+            "command-line-flag": "-toz",
+            "description": "Convert output t-statistics to z-scores ++ -unpooled implies -toz, since t-statistics won't be comparable between voxels as the number of degrees of freedom will vary between voxels. -->>++ -toz is automatically turned on with the -Clustsim option. The reason for this is that -Clustsim (and -ETAC) work by specifying voxel-wise thresholds via p-values -- z-statistics are simpler to compute in the external clustering programs (3dClustSim and 3dXClustSim) than t-statistics, since converting a z=N(0,1) value to a p-value doesn't require knowing any extra parameters (such as the t DOF). -- In other words, I did this to make my life simpler. ++ If for some bizarre reason you want to convert a z-statistic to a t-statistic, you can use 3dcalc with a clumsy expression of the form 'cdf2stat(stat2cdf(x,5,0,0,0),3,DOF,0,0)' where 'DOF' is replaced with the number of degrees of freedom. The following command will show the effect of such a conversion: 1deval -xzero -4 -del 0.01 -num 801                         \\ -expr 'cdf2stat(stat2cdf(x,5,0,0,0),3,10,0,0)' |     \\ 1dplot -xzero -4 -del 0.01 -stdin -xlabel z -ylabel 't(10)'",
+            "id": "TOZ",
+            "name": "TOZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TOZ]"
+        },
+        {
+            "command-line-flag": "-zskip",
+            "description": "-zskip [n]= Do not include voxel values that are zero in the analysis. ++ This option can be used when not all subjects' datasets overlap perfectly. ++ -zskip implies -toz, since the number of samples per voxel will now vary, so the number of degrees of freedom will be spatially variable. ++ If you follow '-zskip' with a positive integer (> 1), then that is the minimum number of nonzero values (in each of setA and setB, separately) that must be present before the t-test is carried out.  If you don't give this value, but DO use '-zskip', then its default is 5 (for no good reason). ++ At this time, you can't use -zskip with -covariates, because that would require more extensive re-thinking and then re-programming. ++ You can't use -zskip with -paired, for obvious reasons. ++ You can also put a decimal fraction between 0 and 1 in place of 'n' (e.g., '0.9', or '90%').  Such a value indicates that at least 90% (e.g.) of the values in each set must be nonzero for the t-test to proceed. [08 Nov 2010] -- In no case will the number of values tested fall below 2! -- You can use '100%' for 'n', to indicate that all data values must be nonzero for the test to proceed.",
+            "id": "ZSKIP",
+            "name": "ZSKIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZSKIP]"
+        },
+        {
+            "command-line-flag": "-rankize",
+            "description": "Convert the data (and covariates, if any) into ranks before doing the 2-sample analyses.  This option is intended to make the statistics more 'robust', and is inspired by the paper WJ Conover and RL Iman. Analysis of Covariance Using the Rank Transformation, Biometrics 38: 715-724 (1982). http://www.jstor.org/stable/2530051 Also see http://www.jstor.org/stable/2683975 ++ Using '-rankize' also implies '-no1sam' (infra), since it doesn't make sense to do 1-sample t-tests on ranks. ++ Don't use this option unless you understand what it does! The use of ranks herein should be considered very experimental or speculative!!",
+            "id": "RANKIZE",
+            "name": "RANKIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANKIZE]"
+        },
+        {
+            "command-line-flag": "-no1sam",
+            "description": "When you input two samples (setA and setB), normally the program outputs the 1-sample test results for each set (comparing to zero), as well as the 2-sample test results for differences between the sets.  With '-no1sam', these 1-sample test results will NOT be calculated or saved.",
+            "id": "NO1SAM",
+            "name": "NO1SAM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO1SAM]"
+        },
+        {
+            "command-line-flag": "-nomeans",
+            "description": "You can also turn off output of the 'mean' sub-bricks, OR",
+            "id": "NOMEANS",
+            "name": "NOMEANS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOMEANS]"
+        },
+        {
+            "command-line-flag": "-notests",
+            "description": "of the 'test' sub-bricks if you want, to reduce the size of the output dataset.  For example, '-nomeans -no1sam' will result in only getting the t-statistics for the 2-sample tests.  These options are intended for use with '-brickwise', where the amount of output sub-bricks can become overwhelming. ++ You CANNOT use both '-nomeans' and '-notests', because then you would be asking for no outputs at all!",
+            "id": "NOTESTS",
+            "name": "NOTESTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOTESTS]"
+        },
+        {
+            "command-line-flag": "-nocov",
+            "description": "Do not output the '-covariates' results.  This option is intended only for internal testing, and it's hard to see why the ordinary user would want it.",
+            "id": "NOCOV",
+            "name": "NOCOV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOCOV]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Only compute results for voxels in the specified mask. ++ Voxels not in the mask will be set to 0 in the output. ++ If '-mask' is not used, all voxels will be tested. -->>++ It is VERY important to use '-mask' when you use '-ClustSim' or '-ETAC' to computed cluster-level thresholds. ++ NOTE: voxels whose input data is constant (in either set) will NOT be processed and will get all zero outputs.  This inaction happens because the variance of a constant set of data is zero, and division by zero is forbidden by the Deities of Mathematics -- cf., http://www.math.ucla.edu/~tao/",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-exblur",
+            "description": "Before doing the t-test, apply some extra blurring to the input datasets; parameter 'b' is the Gaussian FWHM of the smoothing kernel (in mm). ++ This option is how '-ETAC_blur' is implemented, so it isn't usually needed by itself. ++ The blurring is done inside the mask; that is, voxels outside the mask won't be used in the blurring process. Such blurring is done the same way as in program 3dBlurInMask (using a finite difference evolution with Neumann boundary conditions). ++ Gaussian blurring is NOT additive in the FWHM parameter. If the inputs to 3dttest++ were blurred by FWHM=4 mm (e.g., via afni_proc.py), then giving an extra blur of FWHM=6 mm is more-or-less equivalent to applying a single blur of sqrt(4*4+6*6)=7.2 mm, NOT to 4+6=10 mm! ++ '-exblur' does not work with '-brickwise'. ++ '-exblur' only works with 3D datasets. ++ If any covariates are datasets, you should be aware that the covariate datasets are NOT blurred by the '-exblur' process.",
+            "id": "EXBLUR",
+            "name": "EXBLUR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXBLUR]"
+        },
+        {
+            "command-line-flag": "-brickwise",
+            "description": "This option alters the way this program works with input datasets that have multiple sub-bricks (cf. the SHORT FORM). ++ If you use this option, it must appear BEFORE either '-set' option (so the program knows how to do the bookkeeping for the input datasets). ++ WITHOUT '-brickwise', all the input sub-bricks from all datasets in '-setA' are gathered together to form the setA sample (similarly for setB, of course).  In this case, there is no requirement that all input datasets have the same number of sub-bricks. ++ WITH '-brickwise', all input datasets (in both sets) MUST have the same number of sub-bricks.  The t-tests are then carried out sub-brick by sub-brick; that is, if you input a collection of datasets with 10 sub-bricks in each dataset, then you will get 10 t-test results. ++ Each t-test result will be made up of more than 1 sub-brick in the output dataset.  If you are doing a 2-sample test, you might want to use '-no1sam' to reduce the number of volumes in the output dataset.  In addition, if you are only interested in the statistical tests and not the means (or slopes for covariates), then the option '-nomeans' will reduce the dataset to just the t (or z) statistics -- e.g., the combination '-no1sam -nomeans' will give you one statistical sub-brick per input sub-brick. ++ If you input a LOT of sub-bricks, you might want to set environment variable AFNI_AUTOMATIC_FDR to NO, in order to suppress the automatic calculation of FDR curves for each t-statistic sub-brick -- this FDR calculation can be time consuming when done en masse. -->>++ The intended application of this option is to make it easy to take a collection of time-dependent datasets (e.g., from MEG or from moving-window RS-FMRI analyses), and get time-dependent t-test results.  It is possible to do the same thing with a scripted loop, but that way is painful. ++ You CAN use '-covariates' with '-brickwise'. You should note that each t-test will re-use the same covariates -- that is, there is no provision for time-dependent covariate values -- for that, you'd have to use scripting to run 3dttest++ multiple times. ++ EXAMPLE: Each input dataset (meg*.nii) has 100 time points; the 'X' datasets are for one test condition and the 'Y' datasets are for another. In this example, the subjects are the same in both conditions, so the '-paired' option makes sense. 3dttest++ -brickwise -prefix megXY.nii -no1sam -paired\\",
+            "id": "BRICKWISE",
+            "name": "BRICKWISE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BRICKWISE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Gives the name of the output dataset file. ++ For surface-based datasets, use something like: -prefix p.niml.dset or -prefix p.gii.dset Otherwise you may end up files containing numbers but not a full set of header information.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-resid",
+            "description": "Output the residuals into a dataset with prefix 'q'. ++ The residuals are the difference between the data values and their prediction from the set mean (and set covariates). ++ For use in further analysis of the results (e.g., 3dFWHMx). ++ Cannot be used with '-brickwise' (sorry). ++ If used with '-zskip', values which were skipped in the analysis will get residuals set to zero.",
+            "id": "RESID",
+            "name": "RESID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RESID]"
+        },
+        {
+            "command-line-flag": "-ACF",
+            "description": "If residuals are saved, also compute the ACF parameters from them using program 3dFHWMx -- for further use in 3dClustSim (which must be run separately). ++ HOWEVER, the '-Clustsim' option below provides a resampling alternative to using the parameteric '-ACF' method in program 3dClustSim.",
+            "id": "ACF",
+            "name": "ACF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ACF]"
+        },
+        {
+            "command-line-flag": "-dupe_ok",
+            "description": "Duplicate dataset labels are OK.  Do not generate warnings for dataset pairs. ** This option must preceed the corresponding -setX options. ** Such warnings are issued only when '-covariates' is used -- when the labels are used to extract covariate values from the covariate table.",
+            "id": "DUPE_OK",
+            "name": "DUPE_OK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DUPE_OK]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "Prints out information about the analysis, which can be VERY lengthy -- not for general usage (or even for colonels). ++ Two copies of '-debug' will give even MORE output!  ----------------------------------------------------------------------------- ClustSim Options -- for global cluster-level thresholding and FPR control -----------------------------------------------------------------------------  The following options are for using randomization/permutation to simulate noise-only generated t-tests, and then run those results through the cluster-size threshold simulation program 3dClustSim. The goal is to compute cluster-size thresholds that are not based on a fixed model for the spatial autocorrelation function (ACF) of the noise.  ETAC (infra) and ClustSim are parallelized. The randomized t-test steps are done by spawning multiple 3dttest++ jobs using the residuals as input. Then the 3dClustSim program (for -Clustsim) and 3dXClustSim program (for -ETAC) use multi-threaded processing to carry out their clusterization statistics. If your computer does NOT have multiple CPU cores, then these options will run very slowly.  You can use both -ETAC and -Clustsim in the same run. The main reason for doing this is to compare the results of the two methods. Using both methods in one 3dttest++ run will be very slow. ++ In such a dual-use case, and if '-ETAC_blur' is also given, note that 3dClustSim will be run once for each blur level, giving a set of cluster- size threshold tables for each blur case. This process is necessary since 3dClustSim does not have a multi-blur thresholding capability, unlike ETAC (via program 3dXClustSim). ++ The resulting 3dClustSim tables are to be applied to each of the auxiliary t-test files produced, one for each blur case. Unless one of those blur cases is '0.0', the 3dClustSim tables do NOT apply to the main output dataset produced by this program. ++ These auxiliary blur case t-test results get names of the form PREFIX.B8.0.nii where PREFIX was given in the '-prefix' option, and in this example, the amount of extra blurring was 8.0 mm. These files are the result of re-running the commanded t-tests using blurred input datasets.",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-Clustsim",
+            "description": "With this option, after the commanded t-tests are done, then: (a) the residuals from '-resid' are used with '-randomsign' to simulate about 10000 null 3D results, and then (b) 3dClustSim is run with those to generate cluster-threshold tables, and then (c) 3drefit is used to pack those tables into the main output dataset, and then (d) the temporary files created in this process are deleted. The goal is to provide a method for cluster-level statistical inference in the output dataset, to be used with the AFNI GUI Clusterize controls. ++ If you want to keep ALL the temporary files, use '-CLUSTSIM'. ++ Since the simulations are done with '-toz' active, the program also turns on the '-toz' option for your output dataset. This means that the output statistics will be z-scores, not t-values. ++ If you have less than 14 datasets total (setA & setB combined), this option will not work! (There aren't enough random subsets.) ** And it will not work with '-singletonA'. -->>++ '-Clustsim' runs step (a) in multiple jobs, for speed.  By default, it tries to auto-detect the number of CPUs on the system and uses that many separate jobs.  If you put a positive integer immediately following the option, as in '-Clustsim 12', it will instead use that many jobs (e.g., 12).  This capability is to be used when the CPU count is not auto-detected correctly. ** You can also set the number of CPUs to be used via the Unix environment variable OMP_NUM_THREADS. -->>++ It is important to use a proper '-mask' option with '-Clustsim'. Otherwise, the statistics of the clustering will be skewed. -->>++ You can change the number of simulations from the default 10000 by setting Unix environment variable AFNI_TTEST_NUMCSIM to a different value (in the range 1000..1000000). Note that the 3dClustSim tables go down to a cluster-corrected false positive rate of 0.01, so that reducing the number of simulations below 10000 will produce notably less accurate results for such small FPR (alpha) values. **-->>++ The primary reason for reducing AFNI_TTEST_NUMCSIM below its default value is testing '-Clustsim' and/or '-ETAC' more quickly -->>++ The clever scripter can pick out a particular value from a particular 3dClustSim output .1D file using the '{row}[col]' syntax of AFNI, as in the tcsh command set csize = `1dcat Fred.NN1_1sided.1D\"{10}[6]\"` to pick out the number in the #10 row, #6 column (counting from #0), which is the p=0.010 FPR=0.05 entry in the table. -->++  Or even *better* now for extracting a table value: a clever person added command line options to 1d_tool.py to extract a value from the table having a voxelwise p-value ('-csim_pthr ..') and an FDR alpha level ('-csim_alpha ..'). Be sure to check out those options in 1d_tool.py's help!  ---==>>> PLEASE NOTE: This option has been tested for 1- and 2-sample ---==>>> unpaired and paired tests vs. resting state data -- to see if the ---==>>> false positive rate (FPR) was near the nominal 5% level (it was). ---==>>> The FPR for the covariate effects (as opposed to the main effect) ---==>>> is still somewhat biased away from the 5% level /:(  ****** The following options affect both '-Clustsim' and '-ETAC' ******",
+            "id": "CLUSTSIM",
+            "name": "CLUSTSIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLUSTSIM]"
+        },
+        {
+            "command-line-flag": "-prefix_clustsim",
+            "description": "Use 'cc' for the prefix for the '-Clustsim' temporary files, rather than a randomly generated prefix. You might find this useful if scripting. ++ By default, the Clustsim (and ETAC) prefix will be the same as that given by '-prefix'. -->>++ If you use option '-Clustsim', then the simulations keep track of the maximum (in mask) voxelwise z-statistic, compute the threshold for 5% global FPR, and write those values (for 1-sided and 2-sided thresholding) to a file named 'cc'.5percent.txt -- where 'cc' is the prefix given here. Using such a threshold in the AFNI GUI will (presumably) give you a map with a 5% chance of false positive WITHOUT clustering. Of course, these thresholds generally come with a VERY stringent per-voxel p-value. ** In one analysis, the 5% 2-sided test FPR p-value was about 7e-6 for a mask of 43000 voxels, which is bigger (less strict) than the 1.2e-6 one would get from the Bonferroni correction, but is still very stringent for many purposes. This threshold value was also close to the threshold at which the FDR q=1/43000, which may not be a coincidence. -->>++ This file has been updated to give the voxel-wise statistic threshold for global FPRs from 1% to 9%. However, the name is still '.5percent.txt' for the sake of nostalgia.",
+            "id": "PREFIX_CLUSTSIM",
+            "name": "PREFIX_CLUSTSIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX_CLUSTSIM]"
+        },
+        {
+            "command-line-flag": "-no5percent",
+            "description": "Don't output the 'cc'.5percent.txt file that comes for free with '-Clustsim' and/or '-ETAC'. ++ But whyyy? Don't you like free things?",
+            "id": "NO5PERCENT",
+            "name": "NO5PERCENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO5PERCENT]"
+        },
+        {
+            "command-line-flag": "-tempdir",
+            "description": "Store temporary files for '-Clustsim' in this directory, rather than in the current working directory. -->>++ This option is for use when you have access to a fast local disk (e.g., SSD) compared to general storage on a rotating disk, RAID, or network storage. ++ Using '-tempdir' can make a significant difference in '-Clustsim' and '-ETAC' runtime, if you have a local solid state drive available! [NOTE: with '-CLUSTSIM', these files aren't deleted!]",
+            "id": "TEMPDIR",
+            "name": "TEMPDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEMPDIR]"
+        },
+        {
+            "command-line-flag": "-seed",
+            "description": "-seed X [Y] = This option is used to set the random number seed for '-randomsign' to the positive integer 'X'. If a second integer 'Y' follows, then that value is used for the random number seed for '-permute'. ++ The purpose of setting seeds (rather than letting the program pick them) is for reproducibility. It is not usually needed by the ordinary user. ++ Option '-seed' is used by the multi-blur analysis possible with '-ETAC', so that the different blur levels use the same randomizations, to make their results compatible for multi- threshold combination. ++ Example:  -seed 3217343 1830201  ***** These options (below) are not often directly used, but ***** ***** are described here for completeness and for reference. ***** ***** They are invoked by options '-Clustsim' and '-ETAC'.   *****",
+            "id": "SEED",
+            "name": "SEED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SEED]"
+        },
+        {
+            "command-line-flag": "-randomsign",
+            "description": "Randomize the signs of the datasets.  Intended to be used with the output of '-resid' to generate null hypothesis statistics in a second run of the program (probably using '-nomeans' and '-toz').  Cannot be used with '-singletonA' or with '-brickwise'. ++ You will never get an 'all positive' or 'all negative' sign flipping case -- each sign will be present at least 15% of the time. ++ There must be at least 4 samples in each input set to use this option, and at least a total of 14 samples in setA and setB combined. ++ If you following '-randomsign' with a number (e.g., '-randomsign 1000'), then you will get 1000 iterations of random sign flipping, so you will get 1000 times the as many output sub-bricks as usual. This is intended for for use with simulations such as '3dClustSim -inset'. -->>++ This option is usually not used directly, but will be invoked by the use of '-Clustsim'.  It is documented here for the sake of telling the Galaxy how the program works.",
+            "id": "RANDOMSIGN",
+            "name": "RANDOMSIGN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANDOMSIGN]"
+        },
+        {
+            "command-line-flag": "-permute",
+            "description": "With '-randomsign', and when both '-setA' and '-setB' are used, this option will add inter-set permutation to the randomization. ++ If only '-setA' is used (1-sample test), there is no permutation. ++ If '-randomsign' is NOT given, but '-Clustsim' is used, then '-permute' will be passed for use with the '-Clustsim' tests (again, only if '-setA' and '-setB' are both used). ++ If '-randomsign' is given and if the following conditions are ALL true, then '-permute' is assumed: (a) You have a 2-sample test. [Permutation is meaningless without 2 samples!] (b) You are not using '-unpooled'. (c) You are not using '-paired'. (c) You are not using '-covariates'. -->>++ You only NEED to use '-permute' if you want inter-set permutation used AND you give at least one of '-unpooled' or '-paired' or '-covariates'. Normally, you don't need '-permute'. ++ There is no option to do permutation WITHOUT sign randomization. -->>++ This option is also not usually used directly by the user; it will be invoked by the '-Clustsim' or '-ETAC' operations.",
+            "id": "PERMUTE",
+            "name": "PERMUTE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERMUTE]"
+        },
+        {
+            "command-line-flag": "-nopermute",
+            "description": "This option is present if you want to turn OFF the automatic use of inter-set permutation with '-randomsign'. ++ I'm not sure WHY you would want this option, but it is here for completeness of the Galactic Chronosynclastic Infundibulum.  ------------ ETAC Options -- [promulgated May 2017 == still experimental!] ------------  The following options use the ETAC (Equitable Thresholding And Clustering) method to provide a method for thresholding the results of 3dttest++.",
+            "id": "NOPERMUTE",
+            "name": "NOPERMUTE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOPERMUTE]"
+        },
+        {
+            "command-line-flag": "-ETAC",
+            "description": "-ETAC uses randomization/permutation to generate null distributions, as does -Clustsim. The main difference is that ETAC also allows: * use of multiple per-voxel p-value thresholds simultaneously * use of cluster-size and/or cluster-square-sum as threshold parameters * use of multiple amounts of blurring simultaneously * use of spatially variable cluster sizes.  'Equitable' means that each combination of the above choices is treated to contribute approximately the same to the False Positive Rate (FPR). The FPR is also balanced across voxels, so that the cluster-FOM thresholds are depend on location -- that is, brain regions that have less intrinsic smoothness will tend to get smaller thresholds (unlike the global -Clustsim). In FMRI, this seems to mean that the base (ventral part) of the brain gets the smallest thresholds and the top (superior occipital and retrosplenial) parts of the brain get the largest thresholds. (YMMV :)  Major differences between '-Clustsim' and '-ETAC': * -Clustsim produces a number: the cluster-size threshold to be used everywhere. * -ETAC produces a map: the cluster figure of merit (FOM) threshold to be used as a function of location. * -ETAC allows use of a FOM that is more general than the cluster-size. * -ETAC allows the use of multiple per-voxel p-value thresholds simultaneously. * -ETAC allows the use of multiple blur levels simultaneously.  *** ALSO see the description of the '-prefix_clustsim', '-tempdir', and  *** *** '-seed' options above, since these also affect the operation of ETAC ***  *** The 'goal' of ETAC is a set of thresholds that give a 5% FPR. You   *** *** can modify this goal by setting the 'fpr=' parameter via '-ETAC_opt' ***  * ETAC can use a lot of memory; about 100000 * Ncase * Nmask bytes, where Ncase = number of blur cases in option '-ETAC_blur' and Nmask = number of voxels in the mask. For example, 50000 voxels in the mask and 4 blur cases might use about 50000 * 100000 * 4 = 20 billion bytes of memory. * Run time depends a lot on the parameters and the computer hardware, but will typically be 10-100 minutes. Get another cup of tea (or coffee).  *** You should use ETAC only on a computer with *** ***     multiple CPU cores and lots of RAM!     ***  ***    If 3dXClustSim fails with the message    *** ***   'Killed', this means that the operating   *** ***   system stopped the program for trying to  *** ***           use too much memory.              ***",
+            "id": "ETAC",
+            "name": "ETAC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ETAC]"
+        },
+        {
+            "command-line-flag": "-ETAC_mem",
+            "description": "This option tells the program to print out the estimate of how much memory is required by the ETAC run ordered, and then stop. ++ No data analysis of any kind will be performed. ++ You have to give all the options (-setA, -ETAC, etc.) that you would use to run the analysis. ++ The purpose of this option is to help you choose the computer setup for your run.",
+            "id": "ETAC_MEM",
+            "name": "ETAC_MEM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ETAC_MEM]"
+        },
+        {
+            "command-line-flag": "-ETAC_opt",
+            "description": "This option lets you choose the non-blurring parameters for ETAC. You can use this option more than once, to have different thresholding cases computed. The 'params' string is one argument, with different parts separated by colon ':' characters. The parts are NN=1 or NN=2 or NN=3 } spatial connectivity for clustering sid=1 or sid=2       } 1-sided or 2-sided t-tests pthr=p1,p2,...       } list of p-values to use hpow=h1,h2,...       } list of H powers (0, 1, and/or 2) fpr=value            } FPR goal, between 2 and 9 (percent) } - must be an integer } - or the word 'ALL' to output }   results for 2, 3, 4, ..., 9. name=Something       } a label to distinguish this case For example:",
+            "id": "ETAC_OPT",
+            "name": "ETAC_OPT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ETAC_OPT]"
+        },
+        {
+            "command-line-flag": "-ETAC_arg",
+            "description": "This option is used to pass extra options to the 3dXClustSim program (which is what implements ETAC). There is almost no reason to use this option that I can think of, except perhaps this example:",
+            "id": "ETAC_ARG",
+            "name": "ETAC_ARG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ETAC_ARG]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

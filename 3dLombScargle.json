@@ -1,0 +1,87 @@
+{
+    "command-line": "3dLombScargle [PREFIX] [INSET] [CENSOR_1D] [CENSOR_STR] [MASK] [OUT_POW_SPEC] [NYQ_MULT] [NIFTI]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput prefix name for data volume, time point 1D file and frequency 1D file.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-inset",
+            "description": "ime series of volumes, a 4D volumetric data set.",
+            "id": "INSET",
+            "name": "INSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSET]"
+        },
+        {
+            "command-line-flag": "-censor_1D",
+            "description": "ingle row or column of 1s (keep) and 0s (censored) describing which volumes of FILE are kept in the sampling and which are censored out, respectively. The length of the list of numbers must be of the same length as the number of volumes in FILE. If not entered, then the program will look for subbricks of all-zeros and assume those are censored out.",
+            "id": "CENSOR_1D",
+            "name": "CENSOR_1D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSOR_1D]"
+        },
+        {
+            "command-line-flag": "-censor_str",
+            "description": "FNI-style selector string of volumes to *keep* in the analysis.  Such as: '[0..4,7,10..$]' Why we refer to it as a 'censor string' when it is really the list of volumes to keep... well, it made sense at the time.  Future historians can duel with ink about it.",
+            "id": "CENSOR_STR",
+            "name": "CENSOR_STR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSOR_STR]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "ptional, mask of volume to analyze; additionally, any voxel with uniformly zero values across time will produce a zero-spectrum.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-out_pow_spec",
+            "description": "witch to output the amplitude spectrum of the freqs instead of the periodogram.  In the formulation used here, for a time series of length N, the power spectral value S is related to the amplitude value X as: S = (X)**2. (Without this opt, default output is amplitude spectrum.)",
+            "id": "OUT_POW_SPEC",
+            "name": "OUT_POW_SPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_POW_SPEC]"
+        },
+        {
+            "command-line-flag": "-nyq_mult",
+            "description": "-S periodograms can include frequencies above what would typically be considered Nyquist (here defined as: f_N = 0.5*(number of samples)/(total time interval) By default, the maximum frequency will be what f_N *would* have been if no censoring of points had occured. (This makes it easier to compare L-S spectra across a group with the same scan protocol, even if there are slight differences in censoring, per subject.) Acceptable values are >0. (For those reading the algorithm papers, this sets the 'hifac' parameter.) If you don't have a good reason for changing this, dooon't change it!",
+            "id": "NYQ_MULT",
+            "name": "NYQ_MULT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NYQ_MULT]"
+        },
+        {
+            "command-line-flag": "-nifti",
+            "description": "witch to output *.nii.gz volume file (default format is BRIK/HEAD).  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  + EXAMPLE: 3dLombScargle -prefix LSout -inset TimeSeries.nii.gz \\ -mask mask.nii.gz -censor_1D censor_list.txt  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   ____________________________________________________________________________",
+            "id": "NIFTI",
+            "name": "NIFTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NIFTI]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

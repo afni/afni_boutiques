@@ -1,0 +1,248 @@
+{
+    "command-line": "3dmaskave [MASK] [MINDEX] [MRANGE] [XBOX] [DBOX] [NBOX] [IBOX] [XBALL] [DBALL] [NBALL] [DINDEX] [DRANGE] [SLICES] [SIGMA] [SUM] [SUMSQ] [ENORM] [MEDIAN] [MAX] [MIN] [PERC] [DUMP] [UDUMP] [INDUMP] [Q] [INPUTDATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-mask",
+            "description": "-mask mset   Means to use the dataset 'mset' as a mask: Only voxels with nonzero values in 'mset' will be averaged from 'dataset'.  Note that the mask dataset and the input dataset must have the same number of voxels. SPECIAL CASE: If 'mset' is the string 'SELF', then the input dataset will be used to mask itself.  That is, only nonzero voxels from the #miv sub-brick will be used.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-mindex",
+            "description": "-mindex miv  Means to use sub-brick #'miv' from the mask dataset.  If not given, miv=0.",
+            "id": "MINDEX",
+            "name": "MINDEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MINDEX]"
+        },
+        {
+            "command-line-flag": "-mrange",
+            "description": "-mrange a b  Means to further restrict the voxels from 'mset' so that only those mask values between 'a' and 'b' (inclusive) will be used.  If this option is not given, all nonzero values from 'mset' are used. Note that if a voxel is zero in 'mset', then it won't be included, even if a < 0 < b. [-mindex and -mrange are old options that predate] [the introduction of the sub-brick selector '[]' ] [and the sub-range value selector '<>' to AFNI.  ]",
+            "id": "MRANGE",
+            "name": "MRANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MRANGE]"
+        },
+        {
+            "command-line-flag": "-xbox",
+            "description": "These options are the same as in",
+            "id": "XBOX",
+            "name": "XBOX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[XBOX]"
+        },
+        {
+            "command-line-flag": "-dbox",
+            "description": "program 3dmaskdump:",
+            "id": "DBOX",
+            "name": "DBOX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DBOX]"
+        },
+        {
+            "command-line-flag": "-nbox",
+            "description": "They create a mask by putting down boxes",
+            "id": "NBOX",
+            "name": "NBOX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NBOX]"
+        },
+        {
+            "command-line-flag": "-ibox",
+            "description": "or balls (filled spheres) at the specified",
+            "id": "IBOX",
+            "name": "IBOX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IBOX]"
+        },
+        {
+            "command-line-flag": "-xball",
+            "description": "locations.  See the output of",
+            "id": "XBALL",
+            "name": "XBALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[XBALL]"
+        },
+        {
+            "command-line-flag": "-dball",
+            "description": "3dmaskdump -help",
+            "id": "DBALL",
+            "name": "DBALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DBALL]"
+        },
+        {
+            "command-line-flag": "-nball",
+            "description": "for the gruesome and tedious details. https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dmaskdump.html",
+            "id": "NBALL",
+            "name": "NBALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NBALL]"
+        },
+        {
+            "command-line-flag": "-dindex",
+            "description": "-dindex div  Means to use sub-brick #'div' from the inputdataset. If not given, all sub-bricks will be processed.",
+            "id": "DINDEX",
+            "name": "DINDEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DINDEX]"
+        },
+        {
+            "command-line-flag": "-drange",
+            "description": "-drange a b  Means to only include voxels from the inputdataset whose values fall in the range 'a' to 'b' (inclusive). Otherwise, all voxel values are included. [-dindex and -drange are old options that predate] [the introduction of the sub-brick selector '[]' ] [and the sub-range value selector '<>' to AFNI.  ]",
+            "id": "DRANGE",
+            "name": "DRANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DRANGE]"
+        },
+        {
+            "command-line-flag": "-slices",
+            "description": "-slices p q  Means to only included voxels from the inputdataset whose slice numbers are in the range 'p' to 'q' (inclusive).  Slice numbers range from 0 to NZ-1, where NZ can be determined from the output of program 3dinfo.  The default is to include data from all slices. [There is no provision for geometrical voxel] [selection except in the slice (z) direction]",
+            "id": "SLICES",
+            "name": "SLICES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SLICES]"
+        },
+        {
+            "command-line-flag": "-sigma",
+            "description": "-sigma       Means to compute the standard deviation in addition to the mean.",
+            "id": "SIGMA",
+            "name": "SIGMA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SIGMA]"
+        },
+        {
+            "command-line-flag": "-sum",
+            "description": "-sum         Means to compute the sum instead of the mean.",
+            "id": "SUM",
+            "name": "SUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUM]"
+        },
+        {
+            "command-line-flag": "-sumsq",
+            "description": "-sumsq       Means to compute the sum of squares instead of the mean.",
+            "id": "SUMSQ",
+            "name": "SUMSQ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUMSQ]"
+        },
+        {
+            "command-line-flag": "-enorm",
+            "description": "-enorm       Means to compute the Euclidean norm instead of the mean. This is the sqrt() of the sumsq result.",
+            "id": "ENORM",
+            "name": "ENORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ENORM]"
+        },
+        {
+            "command-line-flag": "-median",
+            "description": "-median      Means to compute the median instead of the mean.",
+            "id": "MEDIAN",
+            "name": "MEDIAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MEDIAN]"
+        },
+        {
+            "command-line-flag": "-max",
+            "description": "-max         Means to compute the max instead of the mean.",
+            "id": "MAX",
+            "name": "MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX]"
+        },
+        {
+            "command-line-flag": "-min",
+            "description": "-min         Means to compute the min instead of the mean. [-sigma is ignored with -sum, -median, -max, or -min.] [the last given of -sum, -median, -max, or -min wins.]",
+            "id": "MIN",
+            "name": "MIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN]"
+        },
+        {
+            "command-line-flag": "-perc",
+            "description": "-perc XX     Means to compute the XX-th percentile value (min=0 max=100). XX should be an integer from 0 to 100.",
+            "id": "PERC",
+            "name": "PERC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERC]"
+        },
+        {
+            "command-line-flag": "-dump",
+            "description": "-dump        Means to print out all the voxel values that go into the result.",
+            "id": "DUMP",
+            "name": "DUMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DUMP]"
+        },
+        {
+            "command-line-flag": "-udump",
+            "description": "-udump       Means to print out all the voxel values that go into the average, UNSCALED by any internal factors. N.B.: the scale factors for a sub-brick can be found using program 3dinfo.",
+            "id": "UDUMP",
+            "name": "UDUMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UDUMP]"
+        },
+        {
+            "command-line-flag": "-indump",
+            "description": "-indump      Means to print out the voxel indexes (i,j,k) for each dumped voxel.  Has no effect if -dump or -udump is not also used. N.B.: if nx,ny,nz are the number of voxels in each direction, then the array offset in the brick corresponding to (i,j,k) is i+j*nx+k*nx*ny.",
+            "id": "INDUMP",
+            "name": "INDUMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INDUMP]"
+        },
+        {
+            "command-line-flag": "-q",
+            "description": "-q     or",
+            "id": "Q",
+            "name": "Q",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Q]"
+        },
+        {
+            "description": "NA",
+            "id": "inputdataset",
+            "name": "inputdataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUTDATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,141 @@
+{
+    "command-line": "fat_proc_filter_dwis [SELECT] [IN_COL_VEC] [IN_DWI] [IN_COL_MATA] [IN_COL_MATT] [IN_ROW_VEC] [IN_BVALS] [SELECT_FILE] [PREFIX] [UNIT_MAG_OUT] [QC_PREFIX] [NO_QC_VIEW] [NO_CMD_OUT] [DO_MOVIE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-select",
+            "description": "-select   'SSS'                    \\ {-select_file SF}                  \\ -prefix   PPP                      \\ {-in_col_matA|-in_col_matT|        \\",
+            "id": "SELECT",
+            "name": "SELECT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SELECT]"
+        },
+        {
+            "command-line-flag": "-in_col_vec",
+            "description": "-in_col_vec|-in_row_vec} FFF      \\ {-in_bvals BBB}                    \\ {-unit_mag_out}                    \\ {-qc_prefix  QCPREF}               \\ {-no_cmd_out}                      \\ {-no_qc_view}                      \\ {-do_movie AGIF|MPEG}  where:",
+            "id": "IN_COL_VEC",
+            "name": "IN_COL_VEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_COL_VEC]"
+        },
+        {
+            "command-line-flag": "-in_dwi",
+            "description": "ame of a 4D file of DWIs (required).",
+            "id": "IN_DWI",
+            "name": "IN_DWI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_DWI]"
+        },
+        {
+            "command-line-flag": "-in_col_matA",
+            "description": "-in_col_matA |",
+            "id": "IN_COL_MATA",
+            "name": "IN_COL_MATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_COL_MATA]"
+        },
+        {
+            "command-line-flag": "-in_col_matT",
+            "description": "-in_col_matT |",
+            "id": "IN_COL_MATT",
+            "name": "IN_COL_MATT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_COL_MATT]"
+        },
+        {
+            "command-line-flag": "-in_row_vec",
+            "description": "ne of these options must be used to input a bvec/bmat file from the gradients. Required. Same type of output file is returned.",
+            "id": "IN_ROW_VEC",
+            "name": "IN_ROW_VEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_ROW_VEC]"
+        },
+        {
+            "command-line-flag": "-in_bvals",
+            "description": "f the bvec/bmat is a file of unit-magnitude values, then the bvalues can be input, as well (optional).",
+            "id": "IN_BVALS",
+            "name": "IN_BVALS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_BVALS]"
+        },
+        {
+            "command-line-flag": "-select_file",
+            "description": "here SF is a file name whose only contents are a nice string of indices and index ranges for selecting which volumes/grads/bvals to *keep*.  Like, literally just 0..3,5,7..$ sitting alone in a file-- no apostrophes needed/wanted. User can enter more than one file here, to be joined by intersection.",
+            "id": "SELECT_FILE",
+            "name": "SELECT_FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SELECT_FILE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput prefix for all the volumes and text files. Required.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-unit_mag_out",
+            "description": "f one wants to prevent an input bvalue file being applied to unit-magnitude gradients|vecs|matrices, or if one just wants to ensure that the output grad information is unit magnitude, use this option.  If this is used with just a vec/matrix file input, then a b-value file will also be output (so b-value info wouldn't be lost at this moment).  Optional.",
+            "id": "UNIT_MAG_OUT",
+            "name": "UNIT_MAG_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNIT_MAG_OUT]"
+        },
+        {
+            "command-line-flag": "-qc_prefix",
+            "description": "an set the prefix of the QC image files separately (default is '').",
+            "id": "QC_PREFIX",
+            "name": "QC_PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QC_PREFIX]"
+        },
+        {
+            "command-line-flag": "-no_qc_view",
+            "description": "an turn off generating QC image files (why?)",
+            "id": "NO_QC_VIEW",
+            "name": "NO_QC_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_QC_VIEW]"
+        },
+        {
+            "command-line-flag": "-no_cmd_out",
+            "description": "on't save the command line call of this program and the location where it was run (otherwise, it is saved by default in the ODIR/).",
+            "id": "NO_CMD_OUT",
+            "name": "NO_CMD_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CMD_OUT]"
+        },
+        {
+            "command-line-flag": "-do_movie",
+            "description": "-do_movie AGIF | MPEG :one can use this option with either of the given arguments to output a movie of the newly created dset.  Only those arguments can be used at present.  # -----------------------------------------------------------------------  EXAMPLES:  1) ... with selector via the command line (again, note the single apostrophes around the selector!):  fat_proc_filter_dwis  \\ -in_dwi       UNFILT_AP/AP.nii.gz       \\",
+            "id": "DO_MOVIE",
+            "name": "DO_MOVIE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_MOVIE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,60 @@
+{
+    "command-line": "@suma_reprefixize_spec [INPUT] [PREPREFIX] [ODIR] [WORKDIR] [NO_CLEAN]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "-input      III",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-preprefix",
+            "description": "-preprefix  PPP",
+            "id": "PREPREFIX",
+            "name": "PREPREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREPREFIX]"
+        },
+        {
+            "command-line-flag": "-odir",
+            "description": "-odir       OOO",
+            "id": "ODIR",
+            "name": "ODIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ODIR]"
+        },
+        {
+            "command-line-flag": "-workdir",
+            "description": "-workdir    WWW",
+            "id": "WORKDIR",
+            "name": "WORKDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WORKDIR]"
+        },
+        {
+            "command-line-flag": "-no_clean",
+            "description": "-no_clean  # -----------------------------------------------------------------------",
+            "id": "NO_CLEAN",
+            "name": "NO_CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CLEAN]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

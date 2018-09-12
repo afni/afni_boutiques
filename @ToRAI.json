@@ -1,0 +1,63 @@
+{
+    "command-line": "@ToRAI [<-XYZ] [X] [Y] [Z>] [<-OR] [ORIENT>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "<-xyz",
+            "name": "<-xyz",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-XYZ]"
+        },
+        {
+            "description": "NA",
+            "id": "X",
+            "name": "X",
+            "optional": false,
+            "type": "String",
+            "value-key": "[X]"
+        },
+        {
+            "description": "NA",
+            "id": "Y",
+            "name": "Y",
+            "optional": false,
+            "type": "String",
+            "value-key": "[Y]"
+        },
+        {
+            "description": "NA",
+            "id": "Z>",
+            "name": "Z>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[Z>]"
+        },
+        {
+            "description": "NA",
+            "id": "<-or",
+            "name": "<-or",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-OR]"
+        },
+        {
+            "description": "NA",
+            "id": "ORIENT>",
+            "name": "ORIENT>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[ORIENT>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

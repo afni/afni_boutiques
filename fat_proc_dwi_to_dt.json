@@ -1,0 +1,303 @@
+{
+    "command-line": "fat_proc_dwi_to_dt [IN_COL_VEC] [IN_DWI] [IN_COL_MATA] [IN_COL_MATT] [IN_ROW_VEC] [PREFIX] [IN_BVALS] [FLIP_X] [FLIP_Y] [FLIP_Z] [NO_FLIP] [CHECK_ABS_MIN] [MASK] [MASK_FROM_STRUC] [IN_REF_ORIG] [IN_STRUC_RES] [PREFIX_DTI] [NO_SCALE_OUT_1000] [NO_REWEIGHT] [NO_CUMULATIVE_WTS] [QC_FA_THR] [QC_FA_MAX] [QC_FA_UNC_MAX] [QC_V12_UNC_MAX] [QC_PREFIX] [NO_QC_VIEW] [NO_CMD_OUT] [NO_CLEAN] [WORKDIR] [UNCERT_OFF] [UNCERT_ITERS] [UNCERT_EXTRA_CMDS]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-in_col_vec",
+            "description": "-in_col_vec | -in_row_vec} GRADMAT            \\ -prefix        PPP                             \\ {-in_bvals     BVAL}                           \\ {-mask         MASK}                           \\ {-mask_from_struc}                             \\ {-in_struc_res STRUC}                          \\ {-in_ref_orig  REF}                            \\ {-prefix_dti   PREFIX_D}                       \\ {-flip_x | -flip_y | -flip_z | -no_flip}       \\ {-no_scale_out_1000}                           \\ {-no_reweight}                                 \\ {-no_cumulative_wts}                           \\ {-qc_prefix    QCPREF}                         \\ {-qc_fa_thr    TTT}                            \\ {-qc_fa_max    MMM}                            \\ {-qc_fa_unc_max UM}                            \\ {-qc_v12_unc_max V}                            \\ {-no_qc_view}                                  \\ {-no_cmd_out}                                  \\ {-workdir WWW}                                 \\ {-no_clean}                                    \\ {-uncert_off}                                  \\ {-uncert_iters NN}                             \\ {-uncert_extra_cmds STR}  where:",
+            "id": "IN_COL_VEC",
+            "name": "IN_COL_VEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_COL_VEC]"
+        },
+        {
+            "command-line-flag": "-in_dwi",
+            "description": "D volume of N DWIs. Required.",
+            "id": "IN_DWI",
+            "name": "IN_DWI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_DWI]"
+        },
+        {
+            "command-line-flag": "-in_col_matA",
+            "description": "-in_col_matA |",
+            "id": "IN_COL_MATA",
+            "name": "IN_COL_MATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_COL_MATA]"
+        },
+        {
+            "command-line-flag": "-in_col_matT",
+            "description": "-in_col_matT |",
+            "id": "IN_COL_MATT",
+            "name": "IN_COL_MATT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_COL_MATT]"
+        },
+        {
+            "command-line-flag": "-in_row_vec",
+            "description": "-in_row_vec  GRADMAT :input text file of N gradient vectors or bmatrices. By default, it is assumed that these still have physical units in them (or that there is an accompanying BVAL file input), so scaling physical values by 1000 is on by default; see turning this scaling off, if unnecessary, by using '-no_scale_out_1000', below.",
+            "id": "IN_ROW_VEC",
+            "name": "IN_ROW_VEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_ROW_VEC]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "et prefix for output DWI data; required.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-in_bvals",
+            "description": "ptional, if bvalue information is in a separate file from the b-vectors or matrices; should have same number N as volumes and vectors/matrices.",
+            "id": "IN_BVALS",
+            "name": "IN_BVALS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_BVALS]"
+        },
+        {
+            "command-line-flag": "-flip_x",
+            "description": "-flip_x |",
+            "id": "FLIP_X",
+            "name": "FLIP_X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_X]"
+        },
+        {
+            "command-line-flag": "-flip_y",
+            "description": "-flip_y |",
+            "id": "FLIP_Y",
+            "name": "FLIP_Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_Y]"
+        },
+        {
+            "command-line-flag": "-flip_z",
+            "description": "-flip_z |",
+            "id": "FLIP_Z",
+            "name": "FLIP_Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_Z]"
+        },
+        {
+            "command-line-flag": "-no_flip",
+            "description": "an flip the DW grads, if needed; for example, based on the recommendation of @GradFlipTest.",
+            "id": "NO_FLIP",
+            "name": "NO_FLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_FLIP]"
+        },
+        {
+            "command-line-flag": "-check_abs_min",
+            "description": "riefly, this can help the program push through finding tiny negative values (that miiiight be due to rounding errors or small numerical things) in columns that should only contain numbers >=0. 'VVV' is basically a tolerance for the magnitude of negative values you are willing to allow: anything between [-VVV, 0) gets zeroed for further calcs.  See 1dDW_Grad_o_Mat++'s help for more information on this option (of the same name).",
+            "id": "CHECK_ABS_MIN",
+            "name": "CHECK_ABS_MIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHECK_ABS_MIN]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "ptional whole brain mask can be input; otherwise, automasking is performed for the region to be tensor and parameter fit.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-mask_from_struc",
+            "description": "lag to make a mask using 3dSkullStrip+3dmask_tool from the STRUC file. NB ---> If no \"-mask*\" option is given, then 3dAutomask is run on the DWI set.  This often ain't great, so if TORTOISE isn't producing a mask, 1) email Okan and ask him about that, and 2) try '-mask_from_struc'. ALSO, if you want the whole volume to be estimated tensorially for some reason, then make a volume fully filled with 1s and pass that in as the MASK, et voila (but then calcs will likely be slooow).",
+            "id": "MASK_FROM_STRUC",
+            "name": "MASK_FROM_STRUC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK_FROM_STRUC]"
+        },
+        {
+            "command-line-flag": "-in_ref_orig",
+            "description": "se another data set to adjust the DWI (and subsequent parameter) dsets' orientation and origin; for example, TORTOISE has default orientation and origin for all output DWIs-- it would be very advisable to use the anatomical volume that you had input into TORTOISE as REF, so that the DWIs should be viewable overlaying it afterwards; if an ANAT (below) that has been merely resampled is *not* used, then you really, really want REF to have the same contrast as the b=0 DWI volume. *Highly recommended to include!*",
+            "id": "IN_REF_ORIG",
+            "name": "IN_REF_ORIG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_REF_ORIG]"
+        },
+        {
+            "command-line-flag": "-in_struc_res",
+            "description": "ccomplish the alignment of the output DWI to the REF data set via ANAT: a version of the anatomical that has been resampled to match the DWI set (in both orientation and origin);  for example, in TORTOISE there is a 'structural.nii' file that should match this description.  Both ANAT and DWI should then be well aligned to the original REF (and to each other). *Highly recommended to include!*",
+            "id": "IN_STRUC_RES",
+            "name": "IN_STRUC_RES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_STRUC_RES]"
+        },
+        {
+            "command-line-flag": "-prefix_dti",
+            "description": "et prefix for output DTI data; optional, default is 'dt'. Do *not* include path information here-- that is only supplied using '-prefix ..'.",
+            "id": "PREFIX_DTI",
+            "name": "PREFIX_DTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX_DTI]"
+        },
+        {
+            "command-line-flag": "-no_scale_out_1000",
+            "description": "y default, for tensor fitting it is assumed that 1) the DW b-value information is included in the gradient vectors or grads, and 2) you are happy to have tiny numbers of physical diffusion, which in standard units are like MD~0.001 \"mm^2/s\", scaled by 1000 so that they are returned as MD~1 \"10^{-3} mm^2/s\".  Isn't that nicer?  I thought you'd agree-- therefore, such a kind of scaling is *on* by default.  To turn that *off*, use this option flag. See the 3dDWItoDT help file for what this entails.  Basically, you will likely have nicer numeric values (from scaling physical length units by 1000); otherwise, you might have small numerical values leading to issues with statistical modeling.",
+            "id": "NO_SCALE_OUT_1000",
+            "name": "NO_SCALE_OUT_1000",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_SCALE_OUT_1000]"
+        },
+        {
+            "command-line-flag": "-no_reweight",
+            "description": "y default, we *do* reweight+refit tensors during estimation; should improve fit.  But what do I know?  This option turns that functionality *off*.",
+            "id": "NO_REWEIGHT",
+            "name": "NO_REWEIGHT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_REWEIGHT]"
+        },
+        {
+            "command-line-flag": "-no_cumulative_wts",
+            "description": "y default, show  overall weight factors for each gradient; may be useful as a quality control, but this option will turn that functionality *off*.",
+            "id": "NO_CUMULATIVE_WTS",
+            "name": "NO_CUMULATIVE_WTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CUMULATIVE_WTS]"
+        },
+        {
+            "command-line-flag": "-qc_fa_thr",
+            "description": "et threshold for overlay FA volume in QC image (default:  TTT=0.2, as for healthy adult human parenchyma).",
+            "id": "QC_FA_THR",
+            "name": "QC_FA_THR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QC_FA_THR]"
+        },
+        {
+            "command-line-flag": "-qc_fa_max",
+            "description": "et cbar max for overlay FA volume in QC image (default:  MMM=0.9, a very large value even for healthy adult human parenchyma).",
+            "id": "QC_FA_MAX",
+            "name": "QC_FA_MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QC_FA_MAX]"
+        },
+        {
+            "command-line-flag": "-qc_fa_unc_max",
+            "description": "et cbar max for overlay uncert (stdev) of FA in QC image (default:  UM=0.05).",
+            "id": "QC_FA_UNC_MAX",
+            "name": "QC_FA_UNC_MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QC_FA_UNC_MAX]"
+        },
+        {
+            "command-line-flag": "-qc_v12_unc_max",
+            "description": "et cbar max for overlay uncert (stdev) of V1 towards the V2 direction for DTs, in QC image (default:  UM=0.349 rads, which corresponds to 20 deg).",
+            "id": "QC_V12_UNC_MAX",
+            "name": "QC_V12_UNC_MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QC_V12_UNC_MAX]"
+        },
+        {
+            "command-line-flag": "-qc_prefix",
+            "description": "an set the prefix of the QC image files separately (default is '').",
+            "id": "QC_PREFIX",
+            "name": "QC_PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QC_PREFIX]"
+        },
+        {
+            "command-line-flag": "-no_qc_view",
+            "description": "an turn off generating QC image files (why?)",
+            "id": "NO_QC_VIEW",
+            "name": "NO_QC_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_QC_VIEW]"
+        },
+        {
+            "command-line-flag": "-no_cmd_out",
+            "description": "on't save the command line call of this program and the location where it was run (otherwise, it is saved by default in the ODIR/).",
+            "id": "NO_CMD_OUT",
+            "name": "NO_CMD_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CMD_OUT]"
+        },
+        {
+            "command-line-flag": "-no_clean",
+            "description": "s an optional switch to NOT remove working directory: '__WORKING_dwi_to_dt' (default: remove working dir).",
+            "id": "NO_CLEAN",
+            "name": "NO_CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CLEAN]"
+        },
+        {
+            "command-line-flag": "-workdir",
+            "description": "pecify a working directory, which can be removed; (default name = '__WORKING_dwi_to_dt').",
+            "id": "WORKDIR",
+            "name": "WORKDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WORKDIR]"
+        },
+        {
+            "command-line-flag": "-uncert_off",
+            "description": "on't do uncertainty calc (default is to do so); perhaps if it is slow or you want *very* different options.",
+            "id": "UNCERT_OFF",
+            "name": "UNCERT_OFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNCERT_OFF]"
+        },
+        {
+            "command-line-flag": "-uncert_iters",
+            "description": "et the number of Monte Carlo iterations for the uncertainty calc (default NN=300).",
+            "id": "UNCERT_ITERS",
+            "name": "UNCERT_ITERS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNCERT_ITERS]"
+        },
+        {
+            "command-line-flag": "-uncert_extra_cmds",
+            "description": "ut in extra commands for the uncertainty calcs (see the 3dDWUncert helpfile for more opts).  # -----------------------------------------------------------------------  EXAMPLE  fat_proc_dwi_to_dt \\ -in_dwi       DWI.nii                \\",
+            "id": "UNCERT_EXTRA_CMDS",
+            "name": "UNCERT_EXTRA_CMDS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNCERT_EXTRA_CMDS]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,84 @@
+{
+    "command-line": "strblast [HELP] [NEW_CHAR] [NEW_STRING] [UNESCAPE] [QUIET] [TARGETSTRING] [FILENAME] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-new_char",
+            "description": "replace TARGETSTRING with CHAR (repeated)  This option is used to specify what TARGETSTRING is replaced with.  In this case, replace it with repeated copies of the character CHAR.",
+            "id": "NEW_CHAR",
+            "name": "NEW_CHAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEW_CHAR]"
+        },
+        {
+            "command-line-flag": "-new_string",
+            "description": "replace TARGETSTRING with STRING  This option is used to specify what TARGETSTRING is replaced with.  In this case, replace it with the string STRING.  If STRING is not long enough, then CHAR from the -new_char option will be used to complete the overwrite (or the character 'x', by default).",
+            "id": "NEW_STRING",
+            "name": "NEW_STRING",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEW_STRING]"
+        },
+        {
+            "command-line-flag": "-unescape",
+            "description": "parse TARGETSTRING for escaped characters (includes '\\t', '\\n', '\\r')  If this option is given, strblast will parse TARGETSTRING replacing any escaped characters with their encoded ASCII values.",
+            "id": "UNESCAPE",
+            "name": "UNESCAPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNESCAPE]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "Do not report files with no strings found. use -quiet -quiet to avoid any reporting.  Examples: strings I.001 | more # see if Subject Name is present strblast 'Subject Name' I.*  strblast -unescape \"END OF LINE\\n\"       infile.txt strblast -new_char \" \" \"BAD STRING\"      infile.txt strblast -new_string \"GOOD\" \"BAD STRING\" infile.txt  Notes and Warnings: * strblast will modify the input files irreversibly! You might want to test if they are still usable. * strblast reads files into memory to operate on them. If the file is too big to fit in memory, strblast will fail. * strblast  will do internal wildcard expansion, so if there are too many input files for your shell to handle, you can do something like strblast 'Subject Name' 'I.*' and strblast will expand the 'I.*' wildcard for you.",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "description": "NA",
+            "id": "TARGETSTRING",
+            "name": "TARGETSTRING",
+            "optional": false,
+            "type": "String",
+            "value-key": "[TARGETSTRING]"
+        },
+        {
+            "description": "NA",
+            "id": "filename",
+            "name": "filename",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FILENAME]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

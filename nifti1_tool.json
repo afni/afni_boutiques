@@ -1,0 +1,429 @@
+{
+    "command-line": "nifti1_tool [INFILES] [NEW_DIM] [MOD_FIELD] [CHECK_HDR] [CHECK_NIM] [MAKE_IM] [NEW_DATATYPE] [COPY_BRICK_LIST] [CBL] [COPY_IM] [COPY_COLLAPSED_IMAGE] [CCI] [DISP_HDR] [DISP_NIM] [DISP_ANA] [DISP_EXTS] [DISP_TS] [DISP_COLLAPSED_IMAGE] [DISP_CI] [MOD_HDR] [MOD_NIM] [STRIP_EXTRAS] [SWAP_AS_NIFTI] [SWAP_AS_ANALYZE] [SWAP_AS_OLD] [ADD_AFNI_EXT] [ADD_COMMENT_EXT] [RM_EXT] [DIFF_HDR] [DIFF_NIM] [DEBUG] [FIELD] [KEEP_HIST] [OVERWRITE] [PREFIX] [QUIET] [HELP] [HELP_HDR] [HELP_NIM] [HELP_ANA] [HELP_DATATYPES] [VER] [HIST] [NIFTI_VER] [NIFTI_HIST] [WITH_ZLIB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-infiles",
+            "description": "-infiles dset0.nii dset1.nii 2. nifti_tool -diff_hdr -new_dims 3 10 20 30 0 0 0 0   \\",
+            "id": "INFILES",
+            "name": "INFILES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFILES]"
+        },
+        {
+            "command-line-flag": "-new_dim",
+            "description": "-new_dims 3 10 20 30 0 0 0 0  -new_datatype 16 3. nifti_tool -mod_hdr -mod_field descrip 'dataset with mods'  \\",
+            "id": "NEW_DIM",
+            "name": "NEW_DIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEW_DIM]"
+        },
+        {
+            "command-line-flag": "-mod_field",
+            "description": "-mod_field dim '4 64 64 20 30 1 1 1 1' 2. nifti_tool -mod_hdr -prefix dnew -infiles dset0.nii  \\",
+            "id": "MOD_FIELD",
+            "name": "MOD_FIELD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_FIELD]"
+        },
+        {
+            "command-line-flag": "-check_hdr",
+            "description": "check for a valid nifti_1_header struct  This action is used to check the nifti_1_header structure for problems.  The nifti_hdr_looks_good() function is used for the test, and currently checks:  dim[], sizeof_hdr, magic, datatype  More tests can be requested of the author.  e.g. perform checks on the headers of some datasets nifti_tool -check_hdr -infiles dset0.nii dset1.nii nifti_tool -check_hdr -infiles *.nii *.hdr  e.g. add the -quiet option, so that only errros are reported nifti_tool -check_hdr -quiet -infiles *.nii *.hdr",
+            "id": "CHECK_HDR",
+            "name": "CHECK_HDR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHECK_HDR]"
+        },
+        {
+            "command-line-flag": "-check_nim",
+            "description": "check for a valid nifti_image struct  This action is used to check the nifti_image structure for problems.  This is tested via both nifti_convert_nhdr2nim() and nifti_nim_is_valid(), though other functions are called below them, of course.  Current checks are:  dim[], sizeof_hdr, datatype, fname, iname, nifti_type  Note that creation of a nifti_image structure depends on good header fields.  So errors are terminal, meaning this check would probably report at most one error, even if more exist.  The -check_hdr action is more complete.  More tests can be requested of the author.  e.g. nifti_tool -check_nim -infiles dset0.nii dset1.nii e.g. nifti_tool -check_nim -infiles *.nii *.hdr  ------------------------------  options for create action:",
+            "id": "CHECK_NIM",
+            "name": "CHECK_NIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHECK_NIM]"
+        },
+        {
+            "command-line-flag": "-make_im",
+            "description": "create a new dataset from nothing  With this the user can create a new dataset of a basic style, which can then be modified with other options.  This will create zero-filled data of the appropriate size.  The default is a 1x1x1 image of shorts.  These settings can be modified with the -new_dim option, to set the 8 dimension values, and the -new_datatype, to provide the integral type for the data.  See -new_dim, -new_datatype and -infiles for more information.  Note that any -infiles dataset of the name MAKE_IM will also be created on the fly.",
+            "id": "MAKE_IM",
+            "name": "MAKE_IM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAKE_IM]"
+        },
+        {
+            "command-line-flag": "-new_datatype",
+            "description": "specify the dim array for the a new dataset.  e.g. -new_datatype 16 default: -new_datatype 4   (short)  This dimension list will apply to any dataset created via MAKE_IM or -make_im.  TYPE should be one of the NIFTI_TYPE_* numbers, from nifti1.h.  ------------------------------  options for copy actions:",
+            "id": "NEW_DATATYPE",
+            "name": "NEW_DATATYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEW_DATATYPE]"
+        },
+        {
+            "command-line-flag": "-copy_brick_list",
+            "description": "copy a list of volumes to a new dataset",
+            "id": "COPY_BRICK_LIST",
+            "name": "COPY_BRICK_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COPY_BRICK_LIST]"
+        },
+        {
+            "command-line-flag": "-cbl",
+            "description": "(a shorter, alternative form)",
+            "id": "CBL",
+            "name": "CBL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CBL]"
+        },
+        {
+            "command-line-flag": "-copy_im",
+            "description": "(a shorter, alternative form)  This action allows the user to copy a list of volumes (over time) from one dataset to another.  The listed volumes can be in any order and contain repeats, but are of course restricted to the set of values {1, 2, ..., nt-1}, from dimension 4.  This option is a flag.  The index list is specified with the input dataset, contained in square brackets.  Note that square brackets are special to most UNIX shells, so they should be contained within single quotes.  Syntax of an index list:  notes:  - indices start at zero - indices end at nt-1, which has the special symbol '$' - single indices should be separated with commas, ',' e.g. -infiles dset0.nii'[0,3,8,5,2,2,2]' - ranges may be specified using '..' or '-' e.g. -infiles dset0.nii'[2..95]' e.g. -infiles dset0.nii'[2..$]' - ranges may have step values, specified in () example: 2 through 95 with a step of 3, i.e. {2,5,8,11,...,95} e.g. -infiles dset0.nii'[2..95(3)]'  This functionality applies only to 3 or 4-dimensional datasets.  e.g. to copy a dataset: nifti_tool -copy_im -prefix new.nii -infiles dset0.nii  e.g. to copy sub-bricks 0 and 7: nifti_tool -cbl -prefix new_07.nii -infiles dset0.nii'[0,7]'  e.g. to copy an entire dataset: nifti_tool -cbl -prefix new_all.nii -infiles dset0.nii'[0..$]'  e.g. to copy every other time point, skipping the first three: nifti_tool -cbl -prefix new_partial.nii \\",
+            "id": "COPY_IM",
+            "name": "COPY_IM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COPY_IM]"
+        },
+        {
+            "command-line-flag": "-copy_collapsed_image",
+            "description": "-copy_collapsed_image ... : copy a list of volumes to a new dataset",
+            "id": "COPY_COLLAPSED_IMAGE",
+            "name": "COPY_COLLAPSED_IMAGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COPY_COLLAPSED_IMAGE]"
+        },
+        {
+            "command-line-flag": "-cci",
+            "description": "(a shorter, alternative form)  This action allows the user to copy a collapsed dataset, where some dimensions are collapsed to a given index.  For instance, the X dimension could be collapsed to i=42, and the time dimensions could be collapsed to t=17.  To collapse a dimension, set Di to the desired index, where i is in {0..ni-1}.  Any dimension that should not be collapsed must be listed as -1.  Any number (of valid) dimensions can be collapsed, even down to a a single value, by specifying enough valid indices.  The resulting dataset will then have a reduced number of non-trivial dimensions.  Assume dset0.nii has nim->dim[8] = { 4, 64, 64, 21, 80, 1, 1, 1 }. Note that this is a 4-dimensional dataset.  e.g. copy the time series for voxel i,j,k = 5,4,17 nifti_tool -cci 5 4 17 -1 -1 -1 -1 -prefix new_5_4_17.nii  e.g. read the single volume at time point 26 nifti_tool -cci -1 -1 -1 26 -1 -1 -1 -prefix new_t26.nii  Assume dset1.nii has nim->dim[8] = { 6, 64, 64, 21, 80, 4, 3, 1 }. Note that this is a 6-dimensional dataset.  e.g. copy all time series for voxel i,j,k = 5,0,17, with v=2 (and add the command to the history) nifti_tool -cci 5 0 17 -1 -1 2 -1  -keep_hist \\ -prefix new_5_0_17_2.nii  e.g. copy all data where i=3, j=19 and v=2 (I do not claim to know a good reason to do this) nifti_tool -cci 3 19 -1 -1 -1 2 -1 -prefix new_mess.nii  See '-disp_ci' for more information (which displays/prints the data, instead of copying it to a new dataset).  ------------------------------  options for display actions:",
+            "id": "CCI",
+            "name": "CCI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CCI]"
+        },
+        {
+            "command-line-flag": "-disp_hdr",
+            "description": "display nifti_1_header fields for datasets  This flag means the user wishes to see some of the nifti_1_header fields in one or more nifti datasets. The user may want to specify multiple '-field' options along with this.  This option requires one or more files input, via '-infiles'.  If no '-field' option is present, all fields will be displayed.  e.g. to display the contents of all fields: nifti_tool -disp_hdr -infiles dset0.nii nifti_tool -disp_hdr -infiles dset0.nii dset1.nii dset2.nii  e.g. to display the contents of select fields: nifti_tool -disp_hdr -field dim -infiles dset0.nii nifti_tool -disp_hdr -field dim -field descrip -infiles dset0.nii",
+            "id": "DISP_HDR",
+            "name": "DISP_HDR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_HDR]"
+        },
+        {
+            "command-line-flag": "-disp_nim",
+            "description": "display nifti_image fields for datasets  This flag option works the same way as the '-disp_hdr' option, except that the fields in question are from the nifti_image structure.",
+            "id": "DISP_NIM",
+            "name": "DISP_NIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_NIM]"
+        },
+        {
+            "command-line-flag": "-disp_ana",
+            "description": "display nifti_analyze75 fields for datasets  This flag option works the same way as the '-disp_hdr' option, except that the fields in question are from the nifti_analyze75 structure.",
+            "id": "DISP_ANA",
+            "name": "DISP_ANA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_ANA]"
+        },
+        {
+            "command-line-flag": "-disp_exts",
+            "description": "display all AFNI-type extensions  This flag option is used to display all nifti_1_extension data, for only those extensions of type AFNI (code = 4).  The only other option used will be '-infiles'.  e.g. to display the extensions in datasets: nifti_tool -disp_exts -infiles dset0.nii nifti_tool -disp_exts -infiles dset0.nii dset1.nii dset2.nii",
+            "id": "DISP_EXTS",
+            "name": "DISP_EXTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_EXTS]"
+        },
+        {
+            "command-line-flag": "-disp_ts",
+            "description": "display ASCII time series at i,j,k = I,J,K  This option is used to display the time series data for the voxel at i,j,k indices I,J,K.  The data is displayed in text, either all on one line (the default), or as one number per line (via the '-dci_lines' option).  Notes:  o This function applies only to 4-dimensional datasets. o The '-quiet' option can be used to suppress the text header, leaving only the data. o This option is short for using '-disp_ci' (display collapsed image), restricted to 4-dimensional datasets.  i.e. : -disp_ci I J K -1 -1 -1 -1  e.g. to display the time series at voxel 23, 0, 172: nifti_tool -disp_ts 23 0 172            -infiles dset1_time.nii nifti_tool -disp_ts 23 0 172 -dci_lines -infiles dset1_time.nii nifti_tool -disp_ts 23 0 172 -quiet     -infiles dset1_time.nii",
+            "id": "DISP_TS",
+            "name": "DISP_TS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_TS]"
+        },
+        {
+            "command-line-flag": "-disp_collapsed_image",
+            "description": "display ASCII values for collapsed dataset",
+            "id": "DISP_COLLAPSED_IMAGE",
+            "name": "DISP_COLLAPSED_IMAGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_COLLAPSED_IMAGE]"
+        },
+        {
+            "command-line-flag": "-disp_ci",
+            "description": "(a shorter, alternative form)  This option is used to display all of the data from a collapsed image, given the dimension list.  The data is displayed in text, either all on one line (the default), or as one number per line (by using the '-dci_lines' flag).  The '-quiet' option can be used to suppress the text header.  e.g. to display the time series at voxel 23, 0, 172: nifti_tool -disp_ci 23 0 172 -1 0 0 0 -infiles dset1_time.nii  e.g. to display z-slice 14, at time t=68: nifti_tool -disp_ci -1 -1 14 68 0 0 0 -infiles dset1_time.nii  See '-ccd' for more information, which copies such data to a new dataset, instead of printing it to the terminal window.  ------------------------------  options for modification actions:",
+            "id": "DISP_CI",
+            "name": "DISP_CI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_CI]"
+        },
+        {
+            "command-line-flag": "-mod_hdr",
+            "description": "modify nifti_1_header fields for datasets  This action is used to modify some of the nifti_1_header fields in one or more datasets.  The user must specify a list of fields to modify via one or more '-mod_field' options, which include field names, along with the new (set of) values.  The user can modify a dataset in place, or use '-prefix' to produce a new dataset, to which the changes have been applied. It is recommended to normally use the '-prefix' option, so as not to ruin a dataset.  Note that some fields have a length greater than 1, meaning that the field is an array of numbers, or a string of characters.  In order to modify an array of numbers, the user must provide the correct number of values, and contain those values in quotes, so that they are seen as a single option.  To modify a string field, put the string in quotes.  The '-mod_field' option takes a field_name and a list of values.  e.g. to modify the contents of various fields:  nifti_tool -mod_hdr -prefix dnew -infiles dset0.nii  \\",
+            "id": "MOD_HDR",
+            "name": "MOD_HDR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_HDR]"
+        },
+        {
+            "command-line-flag": "-mod_nim",
+            "description": "modify nifti_image fields for datasets  This action option is used the same way that '-mod_hdr' is used, except that the fields in question are from the nifti_image structure.",
+            "id": "MOD_NIM",
+            "name": "MOD_NIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOD_NIM]"
+        },
+        {
+            "command-line-flag": "-strip_extras",
+            "description": "remove extensions and descriptions from datasets  This action is used to attempt to 'clean' a dataset of general text, in order to make it more anonymous.  Extensions and the nifti_image descrip field are cleared by this action.  e.g. to strip all *.nii datasets in this directory: nifti_tool -strip -overwrite -infiles *.nii",
+            "id": "STRIP_EXTRAS",
+            "name": "STRIP_EXTRAS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STRIP_EXTRAS]"
+        },
+        {
+            "command-line-flag": "-swap_as_nifti",
+            "description": "swap the header according to nifti_1_header  Perhaps a NIfTI header is mal-formed, and the user explicitly wants to swap it before performing other operations.  This action will swap the field bytes under the assumption that the header is in the NIfTI format.  ** The recommended course of action is to make a copy of the dataset and overwrite the header via -overwrite.  If the header needs such an operation, it is likely that the data would not otherwise be read in correctly.",
+            "id": "SWAP_AS_NIFTI",
+            "name": "SWAP_AS_NIFTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SWAP_AS_NIFTI]"
+        },
+        {
+            "command-line-flag": "-swap_as_analyze",
+            "description": "swap the header according to nifti_analyze75  Perhaps an ANALYZE header is mal-formed, and the user explicitly wants to swap it before performing other operations.  This action will swap the field bytes under the assumption that the header is in the ANALYZE 7.5 format.  ** The recommended course of action is to make a copy of the dataset and overwrite the header via -overwrite.  If the header needs such an operation, it is likely that the data would not otherwise be read in correctly.",
+            "id": "SWAP_AS_ANALYZE",
+            "name": "SWAP_AS_ANALYZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SWAP_AS_ANALYZE]"
+        },
+        {
+            "command-line-flag": "-swap_as_old",
+            "description": "swap the header using the old method  As of library version 1.35 (3 Aug, 2008), nifticlib now swaps all fields of a NIfTI dataset (including UNUSED ones), and it swaps ANALYZE datasets according to the nifti_analyze75 structure. This is a significant different in the case of ANALYZE datasets.  The -swap_as_old option was added to compare the results of the swapping methods, or to undo one swapping method and replace it with another (such as to undo the old method and apply the new).  ------------------------------  options for adding/removing extensions:",
+            "id": "SWAP_AS_OLD",
+            "name": "SWAP_AS_OLD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SWAP_AS_OLD]"
+        },
+        {
+            "command-line-flag": "-add_afni_ext",
+            "description": "add an AFNI extension to the dataset  This option is used to add AFNI-type extensions to one or more datasets.  This option may be used more than once to add more than one extension.  If EXT is of the form 'file:FILENAME', then the extension will be read from the file, FILENAME.  The '-prefix' option is recommended, to create a new dataset. In such a case, only a single file may be taken as input.  Using '-overwrite' allows the user to overwrite the current file, or to add the extension(s) to multiple files, overwriting them.  e.g. to add a generic AFNI extension: nifti_tool -add_afni_ext 'wow, my first extension' -prefix dnew \\",
+            "id": "ADD_AFNI_EXT",
+            "name": "ADD_AFNI_EXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ADD_AFNI_EXT]"
+        },
+        {
+            "command-line-flag": "-add_comment_ext",
+            "description": "add a COMMENT extension to the dataset  This option is used to add COMMENT-type extensions to one or more datasets.  This option may be used more than once to add more than one extension.  This option may also be used with '-add_afni_ext'.  If EXT is of the form 'file:FILENAME', then the extension will be read from the file, FILENAME.  The '-prefix' option is recommended, to create a new dataset. In such a case, only a single file may be taken as input.  Using '-overwrite' allows the user to overwrite the current file, or to add the extension(s) to multiple files, overwriting them.  e.g. to add a comment about the dataset: nifti_tool -add_comment 'converted from MY_AFNI_DSET+orig' \\ -prefix dnew                                    \\",
+            "id": "ADD_COMMENT_EXT",
+            "name": "ADD_COMMENT_EXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ADD_COMMENT_EXT]"
+        },
+        {
+            "command-line-flag": "-rm_ext",
+            "description": "remove the extension given by INDEX  This option is used to remove any single extension from the dataset.  Multiple extensions require multiple options.  notes  - extension indices begin with 0 (zero) - to view the current extensions, see '-disp_exts' - all extensions can be removed using ALL or -1 for INDEX  e.g. to remove the extension #0: nifti_tool -rm_ext 0 -overwrite -infiles dset0.nii  e.g. to remove ALL extensions: nifti_tool -rm_ext ALL -prefix dset1 -infiles dset0.nii nifti_tool -rm_ext -1  -prefix dset1 -infiles dset0.nii  e.g. to remove the extensions #2, #3 and #5: nifti_tool -rm_ext 2 -rm_ext 3 -rm_ext 5 -overwrite \\",
+            "id": "RM_EXT",
+            "name": "RM_EXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RM_EXT]"
+        },
+        {
+            "command-line-flag": "-diff_hdr",
+            "description": "display header field diffs between two datasets  This option is used to find differences between two datasets. If any fields are different, the contents of those fields is displayed (unless the '-quiet' option is used).  A list of fields can be specified by using multiple '-field' options.  If no '-field' option is given, all fields will be checked.  Exactly two dataset names must be provided via '-infiles'.  e.g. to display all nifti_1_header field differences: nifti_tool -diff_hdr -infiles dset0.nii dset1.nii  e.g. to display selected nifti_1_header field differences: nifti_tool -diff_hdr -field dim -field intent_code  \\",
+            "id": "DIFF_HDR",
+            "name": "DIFF_HDR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIFF_HDR]"
+        },
+        {
+            "command-line-flag": "-diff_nim",
+            "description": "display nifti_image field diffs between datasets  This option works the same as '-diff_hdr', except that the fields in question are from the nifti_image structure.  ------------------------------  miscellaneous options:",
+            "id": "DIFF_NIM",
+            "name": "DIFF_NIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIFF_NIM]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "set the debugging level  Level 0 will attempt to operate with no screen output, but errors. Level 1 is the default. Levels 2 and 3 give progressively more information.  e.g. -debug 2",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-field",
+            "description": "provide a field to work with  This option is used to provide a field to display, modify or compare.  This option can be used along with one of the action options presented above.  See '-disp_hdr', above, for complete examples.  e.g. nifti_tool -field descrip e.g. nifti_tool -field descrip -field dim",
+            "id": "FIELD",
+            "name": "FIELD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIELD]"
+        },
+        {
+            "command-line-flag": "-keep_hist",
+            "description": "add the command as COMMENT (to the 'history')  When this option is used, the current command will be added as a NIFTI_ECODE_COMMENT type extension.  This provides the ability to keep a history of commands affecting a dataset.  e.g. -keep_hist",
+            "id": "KEEP_HIST",
+            "name": "KEEP_HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_HIST]"
+        },
+        {
+            "command-line-flag": "-overwrite",
+            "description": "any modifications will be made to input files  This option is used so that all field modifications, including extension additions or deletions, will be made to the files that are input.  In general, the user is recommended to use the '-prefix' option to create new files.  But if overwriting the contents of the input files is preferred, this is how to do it.  See '-mod_hdr' or '-add_afni_ext', above, for complete examples.  e.g. -overwrite",
+            "id": "OVERWRITE",
+            "name": "OVERWRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OVERWRITE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "specify an output file to write change into  This option is used to specify an output file to write, after modifications have been made.  If modifications are being made, then either '-prefix' or '-overwrite' is required.  If no extension is given, the output extension will be '.nii'.  e.g. -prefix new_dset e.g. -prefix new_dset.nii e.g. -prefix new_dset.hdr",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "report only errors or requested information  This option is equivalent to '-debug 0'.  ------------------------------  basic help options:",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "show this help  e.g.  nifti_tool -help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-help_hdr",
+            "description": "show nifti_1_header field info  e.g.  nifti_tool -help_hdr",
+            "id": "HELP_HDR",
+            "name": "HELP_HDR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_HDR]"
+        },
+        {
+            "command-line-flag": "-help_nim",
+            "description": "show nifti_image field info  e.g.  nifti_tool -help_nim",
+            "id": "HELP_NIM",
+            "name": "HELP_NIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_NIM]"
+        },
+        {
+            "command-line-flag": "-help_ana",
+            "description": "show nifti_analyze75 field info  e.g.  nifti_tool -help_ana",
+            "id": "HELP_ANA",
+            "name": "HELP_ANA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_ANA]"
+        },
+        {
+            "command-line-flag": "-help_datatypes",
+            "description": "-help_datatypes [TYPE] : display datatype table  e.g.  nifti_tool -help_datatypes e.g.  nifti_tool -help_datatypes N  This displays the contents of the nifti_type_list table. An additional 'D' or 'N' parameter will restrict the type name to 'DT_' or 'NIFTI_TYPE_' names, 'T' will test.",
+            "id": "HELP_DATATYPES",
+            "name": "HELP_DATATYPES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_DATATYPES]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show the program version number  e.g.  nifti_tool -ver",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show the program modification history  e.g.  nifti_tool -hist",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-nifti_ver",
+            "description": "show the nifti library version number  e.g.  nifti_tool -nifti_ver",
+            "id": "NIFTI_VER",
+            "name": "NIFTI_VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NIFTI_VER]"
+        },
+        {
+            "command-line-flag": "-nifti_hist",
+            "description": "show the nifti library modification history  e.g.  nifti_tool -nifti_hist",
+            "id": "NIFTI_HIST",
+            "name": "NIFTI_HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NIFTI_HIST]"
+        },
+        {
+            "command-line-flag": "-with_zlib",
+            "description": "print whether library was compiled with zlib  e.g.  nifti_tool -with_zlib  ------------------------------  R. Reynolds compiled: Aug 20 2018 version 1.24 (September 26, 2012)",
+            "id": "WITH_ZLIB",
+            "name": "WITH_ZLIB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WITH_ZLIB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

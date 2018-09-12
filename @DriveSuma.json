@@ -1,0 +1,96 @@
+{
+    "command-line": "@DriveSuma [H_WEB] [HWEB] [H_VIEW] [HVIEW] [ALL_OPTS] [H_FIND] [H_RAW] [H_TXT] [H_SPX]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open webpage with help for this program",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "Same as -h_web",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open -help output in a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "Same as -hview",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "List all of the options for this script",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Search for lines containing WORD in -help output. Seach is approximate.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "command-line-flag": "-h_raw",
+            "description": "Raw help string",
+            "id": "H_RAW",
+            "name": "H_RAW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_RAW]"
+        },
+        {
+            "command-line-flag": "-h_txt",
+            "description": "Text formatted help string",
+            "id": "H_TXT",
+            "name": "H_TXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_TXT]"
+        },
+        {
+            "command-line-flag": "-h_spx",
+            "description": "Sphinx formatted hel",
+            "id": "H_SPX",
+            "name": "H_SPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_SPX]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

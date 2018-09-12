@@ -1,0 +1,69 @@
+{
+    "command-line": "@djunct_4d_imager [HELP] [VER] [INSET] [PREFIX] [DO_MOVIE] [NO_CLEAN]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "-help, -h          :see helpfile (here!)",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "ee version number",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-inset",
+            "description": "lay dset (required).  Probably 4D (hence the name of this program...).",
+            "id": "INSET",
+            "name": "INSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSET]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "refix for output files (required).",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-do_movie",
+            "description": "pecify type of movie file.  Basically, one of two options: MPEG   AGIF This is optional; by default, a montage of PNG images is created: the same slice across the 4D set.",
+            "id": "DO_MOVIE",
+            "name": "DO_MOVIE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_MOVIE]"
+        },
+        {
+            "command-line-flag": "-no_clean",
+            "description": "y default, the temporary directory made by this program is deleted when finishing.  Use this option to keep the final intermediate files.  # ========================================================================  EXAMPLE:  # 1) Um, just view all the volumes in a DWI acquisition, both as a #    montage saved as a PNG file and as an mpeg file.  @djunct_4d_imager                 \\ -inset  MY_DWIs.nii.gz        \\ -prefix PRETTY_DWIS           \\ -do_movie AGIF  # ------------------------------------------------------------------------",
+            "id": "NO_CLEAN",
+            "name": "NO_CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CLEAN]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,56 @@
+{
+    "command-line": "3dNwarpXYZ [IWARP] [SPECIFICATION'] [XYZFILE.1D] [>] [OUTPUT.1D]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-iwarp",
+            "description": "Compute the inverse warp for each input (x,y,z) triple. ++ As mentioned above, this program does NOT compute the inverse warp over the full grid (unlike the 'INV()' method and the '-iwarp' options to other 3dNwarp* programs), but uses a different method that is designed to be fast when applied to a relatively few input points. ++ The upshot is that using '-iwarp' here will give slightly different results than using 'INV()', but for any practical application the differences should be negligible.  July 2014 - Zhark the Coordinated  ++ Compile date = Sep  7 2018 {:}",
+            "id": "IWARP",
+            "name": "IWARP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IWARP]"
+        },
+        {
+            "description": "NA",
+            "id": "specification'",
+            "name": "specification'",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SPECIFICATION']"
+        },
+        {
+            "description": "NA",
+            "id": "XYZfile.1D",
+            "name": "XYZfile.1D",
+            "optional": false,
+            "type": "String",
+            "value-key": "[XYZFILE.1D]"
+        },
+        {
+            "description": "NA",
+            "id": ">",
+            "name": ">",
+            "optional": false,
+            "type": "String",
+            "value-key": "[>]"
+        },
+        {
+            "description": "NA",
+            "id": "Output.1D",
+            "name": "Output.1D",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTPUT.1D]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

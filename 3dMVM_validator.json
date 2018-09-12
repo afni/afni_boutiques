@@ -1,0 +1,42 @@
+{
+    "command-line": "3dMVM_validator [DATATABLE] [SHINYFOLDER] [HELP]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-dataTable",
+            "description": "A file containing a data table formatted like the 3dMVM \"-dataTable\".",
+            "id": "DATATABLE",
+            "name": "DATATABLE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATATABLE]"
+        },
+        {
+            "command-line-flag": "-ShinyFolder",
+            "description": "Use a custom shiny folder (for testing purposes).",
+            "id": "SHINYFOLDER",
+            "name": "SHINYFOLDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHINYFOLDER]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "show this help  ----------------------------------------------------------------------------- examples: 3dMVM_validator -dataTable ~/my_dataTable.csv  ----------------------------------------------------------------------------- Justin Rajendra 11/2017",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

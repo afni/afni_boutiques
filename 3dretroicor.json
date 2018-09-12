@@ -1,0 +1,104 @@
+{
+    "command-line": "3dretroicor [IGNORE] [PREFIX] [CARD] [CARDPHASE] [THRESHOLD] [RESP] [RESPPHASE] [ORDER] [HELP] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-ignore",
+            "description": "The number of initial timepoints to ignore in the input (These points will be passed through uncorrected) [0]",
+            "id": "IGNORE",
+            "name": "IGNORE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Prefix for new, corrected dataset [retroicor]",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-card",
+            "description": "1D cardiac data file for cardiac correction",
+            "id": "CARD",
+            "name": "CARD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CARD]"
+        },
+        {
+            "command-line-flag": "-cardphase",
+            "description": "Filename for 1D cardiac phase output",
+            "id": "CARDPHASE",
+            "name": "CARDPHASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CARDPHASE]"
+        },
+        {
+            "command-line-flag": "-threshold",
+            "description": "Threshold for detection of R-wave peaks in input (Make sure it's above the background noise level; Try 3/4 or 4/5 times range plus minimum) [1]",
+            "id": "THRESHOLD",
+            "name": "THRESHOLD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THRESHOLD]"
+        },
+        {
+            "command-line-flag": "-resp",
+            "description": "1D respiratory waveform data for correction",
+            "id": "RESP",
+            "name": "RESP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RESP]"
+        },
+        {
+            "command-line-flag": "-respphase",
+            "description": "Filename for 1D resp phase output",
+            "id": "RESPPHASE",
+            "name": "RESPPHASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RESPPHASE]"
+        },
+        {
+            "command-line-flag": "-order",
+            "description": "The order of the correction (2 is typical; higher-order terms yield little improvement according to Glover et al.) [2]",
+            "id": "ORDER",
+            "name": "ORDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ORDER]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "Display this message and stop (must be first arg)  Dataset: 3D+time dataset to process  ** The input dataset and at least one of -card and -resp are required.  NOTES -----  The durations of the physiological inputs are assumed to equal the duration of the dataset. Any constant sampling rate may be used, but 40 Hz seems to be acceptable. This program's cardiac peak detection algorithm is rather simplistic, so you might try using the scanner's cardiac gating output (transform it to a spike wave if necessary).  This program uses slice timing information embedded in the dataset to estimate the proper cardiac/respiratory phase for each slice. It makes sense to run this program before any program that may destroy the slice timings (e.g. 3dvolreg for motion correction).  Author -- Fred Tam, August 2002  INPUT DATASET NAMES ------------------- This program accepts datasets that are modified on input according to the following schemes: 'r1+orig[3..5]'                                    {sub-brick selector} 'r1+orig<100..200>'                                {sub-range selector} 'r1+orig[3..5]<100..200>'                          {both selectors} '3dcalc( -a r1+orig -b r2+orig -expr 0.5*(a+b) )'  {calculation} For the gruesome details, see the output of 'afni -help'.",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

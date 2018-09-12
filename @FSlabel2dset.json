@@ -1,0 +1,60 @@
+{
+    "command-line": "@FSlabel2dset [FS] [VAL] [HELP] [ECHO] [KEEP_TMP]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-fs",
+            "description": "Specify the ascii label file from FreeSurfer",
+            "id": "FS",
+            "name": "FS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FS]"
+        },
+        {
+            "command-line-flag": "-val",
+            "description": "Assign integer VAL to the nodes in FS_LABEL_FILE Default is 1",
+            "id": "VAL",
+            "name": "VAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VAL]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "This message",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-echo",
+            "description": "Turn echo for debugging",
+            "id": "ECHO",
+            "name": "ECHO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO]"
+        },
+        {
+            "command-line-flag": "-keep_tmp",
+            "description": "Don't cleanup temp files  Example: @FSlabel2dset -fs lh.FSFILE",
+            "id": "KEEP_TMP",
+            "name": "KEEP_TMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_TMP]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,123 @@
+{
+    "command-line": "serial_helper [SERIAL_PORT] [HELP] [HIST] [DEBUG] [NO_SERIAL] [VERSION] [MP_MAX] [MP_MIN] [SHOW_TIMES] [SOCK_NUM] [NUM_EXTRA] [DISP_ALL]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-serial_port",
+            "description": "specify output serial port : -serial_port /dev/ttyS0  If the user is not using any of the 'special' options, below, then this parameter is required.  The FILENAME is the device file for the serial port which will be used for output. ------------------------------ special options (for information or testing):",
+            "id": "SERIAL_PORT",
+            "name": "SERIAL_PORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SERIAL_PORT]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "show this help information",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show the module history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "set the debugging level to LEVEL : e.g. -debug 2 : default is 0, max is 3",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-no_serial",
+            "description": "turn of serial port output  This option is used for testing the incoming data, when output to a serial port is not desired.  The program will otherwise operate normally.",
+            "id": "NO_SERIAL",
+            "name": "NO_SERIAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_SERIAL]"
+        },
+        {
+            "command-line-flag": "-version",
+            "description": "show the current version number ------------------------------ 'normal' options:",
+            "id": "VERSION",
+            "name": "VERSION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERSION]"
+        },
+        {
+            "command-line-flag": "-mp_max",
+            "description": "limit the maximum value of the MP data : e.g. -mp_max 12.7 : default is 12.7  If any incoming data is greater than this value, it will be set to this value.  The default of 12.7 is used to scale incoming floats to signed bytes.",
+            "id": "MP_MAX",
+            "name": "MP_MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MP_MAX]"
+        },
+        {
+            "command-line-flag": "-mp_min",
+            "description": "limit the minimum value of the MP data : e.g. -mp_min -12.7 : default is -12.7  If any incoming data is less than this value, it will be set to this value.  The default of -12.7 is used to scale incoming floats to signed bytes.",
+            "id": "MP_MIN",
+            "name": "MP_MIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MP_MIN]"
+        },
+        {
+            "command-line-flag": "-show_times",
+            "description": "show communication times : e.g. -show_times  Each time data is recived, display the current time. Time is at millisecond resolution, and wraps per hour.",
+            "id": "SHOW_TIMES",
+            "name": "SHOW_TIMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_TIMES]"
+        },
+        {
+            "command-line-flag": "-sock_num",
+            "description": "specify socket number to serve : e.g. -sock_num 53214 : default is 53214  This is the socket the program will use to listen for new connections.  This is the socket number that should be provided to the realtime plugin via the environment variable, AFNI_REALTIME_MP_HOST_PORT.  On the machine the user run afni from, that environment variable should have the form HOST:PORT, where a basic example might be localhost:53214.",
+            "id": "SOCK_NUM",
+            "name": "SOCK_NUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SOCK_NUM]"
+        },
+        {
+            "command-line-flag": "-num_extra",
+            "description": "will receive NVALS extra floats per TR : e.g. -num_extra 5 : default is 0  Extra floats may arrive if, for instance, afni's RT plugin has a mask with 3 ROIs in it (numbered 1,2,3). The plugin would compute averages over each ROI per TR, and send that data after the MP vals.  In such a case, specify '-num_extra 3', so the program knows 3 floats will be received after the MP data.  Note that -disp_all cannot be used with -num_extra.",
+            "id": "NUM_EXTRA",
+            "name": "NUM_EXTRA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUM_EXTRA]"
+        },
+        {
+            "command-line-flag": "-disp_all",
+            "description": "will receive NVOX*8 extra floats per TR : e.g. -disp_all 5 : default is 0  Similar to -num_extra, here the program expect data on a per voxel basis, not averaged over ROIs.  Here the users specifies the number of voxels for which ALL_DATA will be sent (to serial_helper).  The 8 values per voxel are (still in float):  index  i  j  k  x  y  z data_value  Currently, serial_helper will output this inforamtion simply as 1 row per voxel.  Note that -disp_all cannot be used with -num_extra.  ------------------------------------------------------------ Authors: R. Reynolds, T. Ross  (March, 2004) ------------------------------------------------------------",
+            "id": "DISP_ALL",
+            "name": "DISP_ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DISP_ALL]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

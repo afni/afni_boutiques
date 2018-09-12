@@ -1,0 +1,24 @@
+{
+    "command-line": "@DO.examples [AUTO_TEST]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-auto_test",
+            "description": "Run this script in test mode where user prompts are timed out at 2 seconds, and the command output log is preserved in a file called __testlog.txt  Ziad S. Saad, saadz@mail.nih.gov",
+            "id": "AUTO_TEST",
+            "name": "AUTO_TEST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTO_TEST]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

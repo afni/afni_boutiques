@@ -1,0 +1,231 @@
+{
+    "command-line": "fat_proc_axialize_anat [INSET] [REFSET] [PREFIX] [OUT_MATCH_REF] [MODE_T2W] [MODE_T1W] [DO_CEIL_OUT] [EXTRA_AL_WTMASK] [EXTRA_AL_COST] [EXTRA_AL_INPS] [EXTRA_AL_OPTS] [FOCUS_BY_SS] [FOCUS_MASK] [REMOVE_INF_SLI] [PRE_ALIGN_CENTER_MASS] [PRE_CENTER_MASS] [NO_PRE_LR_SYMM] [POST_LR_SYMM] [WORKDIR] [NO_CLEAN] [NO_CMD_OUT] [QC1_ULAY_RANGE] [NO_QC_VIEW] [QC_PREFIX]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-inset",
+            "description": "s the full name of the input anatomical volume.",
+            "id": "INSET",
+            "name": "INSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSET]"
+        },
+        {
+            "command-line-flag": "-refset",
+            "description": "s the full name of the reference volume, such as TT or MNI or something (probably you want to match the contrast of your anatomical INFILE, whether there is a skull or not, etc.).",
+            "id": "REFSET",
+            "name": "REFSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REFSET]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput prefix for files and snapshots (required).",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-out_match_ref",
+            "description": "witch to have the final output volume be in the same 'space' (FOV, spatial resolution) as the REF_FILE. Might be useful for standardizing the reference output across a group, or at least centering the brain in the FOV. (This applies a '-master REF_FILE' to the final 3dAllineate in the script.)",
+            "id": "OUT_MATCH_REF",
+            "name": "OUT_MATCH_REF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_MATCH_REF]"
+        },
+        {
+            "command-line-flag": "-mode_t2w",
+            "description": "witch to alter some intermediate steps (turn off unifizing and raise voxel ceiling threshold). This is particularly useful (= essential, probably) when dealing with a (adult) T2w image, which tends to be bright in the CSF and darker in other tissues; default options are for dealing with (adult) T1w brains, where the opposite is the case.",
+            "id": "MODE_T2W",
+            "name": "MODE_T2W",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODE_T2W]"
+        },
+        {
+            "command-line-flag": "-mode_t1w",
+            "description": "imilar to the preceding option, but specifying an image with (human, adult) t1w-like contrast has been input. NB ---> one of these 'mode_*' setting MUST be picked.",
+            "id": "MODE_T1W",
+            "name": "MODE_T1W",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODE_T1W]"
+        },
+        {
+            "command-line-flag": "-do_ceil_out",
+            "description": "or the final output volume, apply a ceiling based on the 98%ile value from within an automasked volume of the dset.  This reduces the influence of (sometimes very) large spiky voxels.  Seems like it might be useful for later alignments.",
+            "id": "DO_CEIL_OUT",
+            "name": "DO_CEIL_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_CEIL_OUT]"
+        },
+        {
+            "command-line-flag": "-extra_al_wtmask",
+            "description": "-extra_al_wtmask WT: Axialization is generally based on an overall whole brain alignment.  If you want, however, you can add extra emphasis to part of the weight mask WT for deciding what is good alignment.  For example, you might make a WB mask of values ~1 and a make a subcortical volume have larger values ~5 or so, so that that part of the brain's alignment carries more weight (in this example, behaving more like AC-PC alignment, potentially).",
+            "id": "EXTRA_AL_WTMASK",
+            "name": "EXTRA_AL_WTMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXTRA_AL_WTMASK]"
+        },
+        {
+            "command-line-flag": "-extra_al_cost",
+            "description": "pecify a cost function for 3dAllineate to work with (default is 'lpa'; one might investigate 'lpc', esp. if contrasts differ between the IN_FILE and REF_FILE, or 'nmi').",
+            "id": "EXTRA_AL_COST",
+            "name": "EXTRA_AL_COST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXTRA_AL_COST]"
+        },
+        {
+            "command-line-flag": "-extra_al_inps",
+            "description": "pecify extra options when *calculating* the warp with 3dAllineate.  These could be any option+argument combination from the 3dAllineate helpfile (except the cost function would be done with \"-extra_al_cost CC\").",
+            "id": "EXTRA_AL_INPS",
+            "name": "EXTRA_AL_INPS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXTRA_AL_INPS]"
+        },
+        {
+            "command-line-flag": "-extra_al_opts",
+            "description": "pecify extra output options when *applying* the warp with 3dAllineate at the end.  One I could see being useful would be having \"-newgrid X\", where X is desired final resolution of the data.",
+            "id": "EXTRA_AL_OPTS",
+            "name": "EXTRA_AL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXTRA_AL_OPTS]"
+        },
+        {
+            "command-line-flag": "-focus_by_ss",
+            "description": "ake a mask by simply skullstripping input data set, which gets applied early on to focus the processing+alignment; the final, axialized volume will not have the mask applied, it's just used to help get rid of non-brain garbage.  Might be very useful if the input volume has lots of non-brain material!",
+            "id": "FOCUS_BY_SS",
+            "name": "FOCUS_BY_SS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FOCUS_BY_SS]"
+        },
+        {
+            "command-line-flag": "-focus_mask",
+            "description": "nput a mask of the inset that gets applied early on to focus the processing+alignment; the final, axialized volume will not have the mask applied, it's just used to help get rid of non-brain garbage.  Note: before application, MMM gets binarized to 1 where MMM>0 and 0 elsewhere.",
+            "id": "FOCUS_MASK",
+            "name": "FOCUS_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FOCUS_MASK]"
+        },
+        {
+            "command-line-flag": "-remove_inf_sli",
+            "description": "ometimes data is acquired with lots of nonbrain volume in the FOV, particularly neck and things like that.  While necks are important, they also might move the center of mass estimate of the brain far lower than it should be.  You can get rid of this by applying this option, to remove 'II' number of slices from the inferior part of the FOV.",
+            "id": "REMOVE_INF_SLI",
+            "name": "REMOVE_INF_SLI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REMOVE_INF_SLI]"
+        },
+        {
+            "command-line-flag": "-pre_align_center_mass",
+            "description": "-pre_align_center_mass : pre-align the centers of mass of the volumes; might help in conjunction with '-remove_inf_sli ...' above, when there is a large amount of non-brain material",
+            "id": "PRE_ALIGN_CENTER_MASS",
+            "name": "PRE_ALIGN_CENTER_MASS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PRE_ALIGN_CENTER_MASS]"
+        },
+        {
+            "command-line-flag": "-pre_center_mass",
+            "description": "re-recenter input center of mass to (0, 0, 0); probably the '-pre_align_center_mass' would be more useful, but this can be used similarly.",
+            "id": "PRE_CENTER_MASS",
+            "name": "PRE_CENTER_MASS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PRE_CENTER_MASS]"
+        },
+        {
+            "command-line-flag": "-no_pre_lr_symm",
+            "description": "pre-alignment left-right symmetrization is performed by default, but you can turn it off if you desire (probably wouldn't want to in most cases, unless *weird* stuff were happening).",
+            "id": "NO_PRE_LR_SYMM",
+            "name": "NO_PRE_LR_SYMM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_PRE_LR_SYMM]"
+        },
+        {
+            "command-line-flag": "-post_lr_symm",
+            "description": "post-alignment left-right symmetrization can be added, if desired.",
+            "id": "POST_LR_SYMM",
+            "name": "POST_LR_SYMM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POST_LR_SYMM]"
+        },
+        {
+            "command-line-flag": "-workdir",
+            "description": "he name of the working subdirectory in the output directory can be specified (default: __WORKING_axialize_anat).",
+            "id": "WORKDIR",
+            "name": "WORKDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WORKDIR]"
+        },
+        {
+            "command-line-flag": "-no_clean",
+            "description": "s an optional switch to NOT remove working directory '__WORKING_axialize_anat'; (default: remove working dir).",
+            "id": "NO_CLEAN",
+            "name": "NO_CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CLEAN]"
+        },
+        {
+            "command-line-flag": "-no_cmd_out",
+            "description": "y default, a copy of the command and file location from which it is run is dumped into the WORKDIR (file name: 'PREFIX*_cmd.txt'). If you don't want this to happen, then use this switch.",
+            "id": "NO_CMD_OUT",
+            "name": "NO_CMD_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CMD_OUT]"
+        },
+        {
+            "command-line-flag": "-qc1_ulay_range",
+            "description": "-qc1_ulay_range UMIN UMAX :provide a min (UMIN) and max (UMAX) range for underlay grayscale bar (black=UMIN; white=UMAX). For QC visualization only-- does not affect the actual MRI data files.",
+            "id": "QC1_ULAY_RANGE",
+            "name": "QC1_ULAY_RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QC1_ULAY_RANGE]"
+        },
+        {
+            "command-line-flag": "-no_qc_view",
+            "description": "urn off default+automatic QC image saving/viewing (whyyy would you do this?).",
+            "id": "NO_QC_VIEW",
+            "name": "NO_QC_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_QC_VIEW]"
+        },
+        {
+            "command-line-flag": "-qc_prefix",
+            "description": "rovide a prefix for the QC stuff, separate from the PREFIX above.  ------------------------------------------------------------------------  OUTPUTS:  PREFIX.nii.gz   :an anatomical data set that is *hopefully* regularly situated within its FOV volume.  Thus, the axial slices would sit nicely within a given view window, etc.  WORKDIR         :the working directory with intermediate files, so you can follow along with the process and possibly troubleshoot a bit if things go awry (what are the odds of *that* happening?).  -------------------------------------------------------------------------  EXAMPLE:  fat_proc_axialize_anat  \\ -inset  SUB001/ANATOM/T1.nii.gz                            \\ -refset /somewhere/mni_icbm152_t1_tal_nlin_sym_09a_MSKD.nii.gz \\ -mode_t1w                                                  \\ -extra_al_opts \"-newgrid 1.0\"                              \\ -focus_by_ss                                               \\ -prefix t2w_axlz  or  fat_proc_axialize_anat  \\ -inset  SUB001/ANATOM/T2.nii.gz                            \\ -refset /somewhere/mni_icbm152_t2_tal_nlin_sym_09a.nii.gz  \\",
+            "id": "QC_PREFIX",
+            "name": "QC_PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QC_PREFIX]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

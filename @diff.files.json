@@ -1,0 +1,119 @@
+{
+    "command-line": "@diff.files [DIFF_OPTS] [DIFF_PROG] [IGNORE_MISSING] [LONGLIST] [SAVE] [SHOW] [XXDIFF] [X] [FILE1] [FILE2] [...] [OLD_DIR]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-diff_opts",
+            "description": "-diff_opts 'OPTS'  : add options to diff command e.g. -diff_opts -w",
+            "id": "DIFF_OPTS",
+            "name": "DIFF_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIFF_OPTS]"
+        },
+        {
+            "command-line-flag": "-diff_prog",
+            "description": "display diffs using DPROG (probably graphical) e.g. -diff_opts meld e.g. -diff_opts xxdiff    [same as -xxdiff] Consider also: kdiff3, tkdiff.",
+            "id": "DIFF_PROG",
+            "name": "DIFF_PROG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIFF_PROG]"
+        },
+        {
+            "command-line-flag": "-ignore_missing",
+            "description": "continue even if files are missing alt: -im",
+            "id": "IGNORE_MISSING",
+            "name": "IGNORE_MISSING",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE_MISSING]"
+        },
+        {
+            "command-line-flag": "-longlist",
+            "description": "instead of listing file, run 'ls -l' on both alt: -ll",
+            "id": "LONGLIST",
+            "name": "LONGLIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LONGLIST]"
+        },
+        {
+            "command-line-flag": "-save",
+            "description": "create pdfs of diffs",
+            "id": "SAVE",
+            "name": "SAVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE]"
+        },
+        {
+            "command-line-flag": "-show",
+            "description": "show diffs using 'diff'",
+            "id": "SHOW",
+            "name": "SHOW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW]"
+        },
+        {
+            "command-line-flag": "-xxdiff",
+            "description": "show diffs using 'xxdiff'",
+            "id": "XXDIFF",
+            "name": "XXDIFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[XXDIFF]"
+        },
+        {
+            "command-line-flag": "-X",
+            "description": "implies -xxdiff and -ignore_missing'  ---------------------------------------------------------------------- examples:  @diff.files file1             some/other/directory @diff.files file1 file2 file3 some/other/directory @diff.files *                 some/other/directory  @diff.files -im *             some/other/directory @diff.files -X  *             some/other/directory  ---------------------------------------------------------------------- R Reynolds    written ages ago, but added 10 Jun, 2015 ----------------------------------------",
+            "id": "X",
+            "name": "X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[X]"
+        },
+        {
+            "description": "NA",
+            "id": "file1",
+            "name": "file1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FILE1]"
+        },
+        {
+            "description": "NA",
+            "id": "file2",
+            "name": "file2",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FILE2]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        },
+        {
+            "description": "NA",
+            "id": "old_dir",
+            "name": "old_dir",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OLD_DIR]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

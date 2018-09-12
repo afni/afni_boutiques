@@ -1,0 +1,23 @@
+{
+    "command-line": "@SurfSmooth.HEAT_07.examples [<PATH_TO_SUMA_DEMO>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "<path_to_suma_demo>",
+            "name": "<path_to_suma_demo>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<PATH_TO_SUMA_DEMO>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

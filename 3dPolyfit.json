@@ -1,0 +1,131 @@
+{
+    "command-line": "3dPolyfit [NORD] [BLUR] [MRAD] [PREFIX] [RESID] [AUTOMASK] [MASK] [MONE] [MCLIP] [METH] [BASE] [VERB] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-nord",
+            "description": "Maximum polynomial order (0..9) [default order=3]",
+            "id": "NORD",
+            "name": "NORD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORD]"
+        },
+        {
+            "command-line-flag": "-blur",
+            "description": "Gaussian blur (inside mask) with FWHM='f' (mm)",
+            "id": "BLUR",
+            "name": "BLUR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLUR]"
+        },
+        {
+            "command-line-flag": "-mrad",
+            "description": "Radius (voxels) of preliminary median filter [default is no blurring of either type; you can] [do both types (Gaussian and median), but why??] [N.B.: median blur is much slower than Gaussian]",
+            "id": "MRAD",
+            "name": "MRAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MRAD]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use 'pp' for prefix of output dataset (the fit).",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-resid",
+            "description": "Use 'rr' for the prefix of the residual dataset.",
+            "id": "RESID",
+            "name": "RESID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RESID]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "Create a mask (a la 3dAutomask)",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Create a mask from nonzero voxels in 'mset'.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-mone",
+            "description": "Scale the mean value of the fit (inside the mask) to 1.",
+            "id": "MONE",
+            "name": "MONE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MONE]"
+        },
+        {
+            "command-line-flag": "-mclip",
+            "description": "Clip values outside the box containing the mask to the edge of the box, to avoid weird artifacts.",
+            "id": "MCLIP",
+            "name": "MCLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MCLIP]"
+        },
+        {
+            "command-line-flag": "-meth",
+            "description": "Set 'mm' to 2 for least squares fit; set it to 1 for L1 fit [default method=2] [Note that L1 fitting is much slower than L2 fitting!]",
+            "id": "METH",
+            "name": "METH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[METH]"
+        },
+        {
+            "command-line-flag": "-base",
+            "description": "In addition to the polynomial fit, also use the volumes in dataset 'bb' as extra basis functions. [If you use a base dataset, then you can set] [nord to -1, to skip using a polynomial fit.]",
+            "id": "BASE",
+            "name": "BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASE]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Print fun and useful progress reports :-)  * Output dataset is always stored in float format. * If the input dataset has more than 1 sub-brick, only sub-brick #0 is processed. * If the -base dataset has multiple sub-bricks, all of them are used.  -- Dec 2010 - RWCox - beats workin' for a living  ++ Compile date = Sep  7 2018 {:}",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

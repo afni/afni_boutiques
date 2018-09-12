@@ -1,0 +1,167 @@
+{
+    "command-line": "3dNeocon [INPUT] [MASK] [AUTOMASK] [TR] [CENSORTR] [CONCAT] [TPATTERN] [POLORT] [BASELINE] [STIMTIME] [THRESHTYPE] [FITTS] [ERRTS] [CBUCKET] [VERB] [QUIET] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "read 3D+time dataset 'dname'",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "read dataset 'mname' as a mask",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "compute a mask from the 3D+time dataset",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-TR",
+            "description": "use 'tt' as the TR (in seconds)",
+            "id": "TR",
+            "name": "TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR]"
+        },
+        {
+            "command-line-flag": "-CENSORTR",
+            "description": "like in 3dDeconvolve",
+            "id": "CENSORTR",
+            "name": "CENSORTR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENSORTR]"
+        },
+        {
+            "command-line-flag": "-concat",
+            "description": "like in 3dDeconvolve",
+            "id": "CONCAT",
+            "name": "CONCAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CONCAT]"
+        },
+        {
+            "command-line-flag": "-tpattern",
+            "description": "set the slice timing pattern to 'ppp', as in 3dTshift, to override whatever slice timing information is in the '-input' dataset header; in particular, use 'zero' or 'equal' to specify that all slices are to be treated as acquired simultaneously (e.g., 3D imaging or 2D imaging with slice timing correction already performed)  Baseline Model Arguments ------------------------ These arguments set up the baseline model, which is linear and estimated separately in each voxel (much as in 3dDeconvolve).",
+            "id": "TPATTERN",
+            "name": "TPATTERN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TPATTERN]"
+        },
+        {
+            "command-line-flag": "-polort",
+            "description": "like in 3dDeconvolve [default is 'pnum' == 'A']",
+            "id": "POLORT",
+            "name": "POLORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POLORT]"
+        },
+        {
+            "command-line-flag": "-baseline",
+            "description": "read 'bb' (a 1D file) for the baseline model; this file can have 1 or more columns: * if 1 column, then it is used in all slices * if more than 1 column, then 'bb' must have the same number of columns that the '-input' dataset has slices, and each column in 'bb' becomes part of the baseline model for only the corresponding slice  Response Model Arguments ------------------------ These arguments specify the response model.  The Hemodynamic Response Function (HRF) model is nonlinear.  Given the HRF, the response to each stimulus is modeled additively.  Important notes: * Each slice might have a different time offset, in which case the HRF will be applied slightly differently in each slice. * At least one '-stimtime' option must be given (or what would the program be doing?). * The same HRF applies to all voxels -- this is one distinction between 3dNeocon and 3dDeconvolve, where the HRF is different in each voxel.  Only the amplitudes of the HRF fit vary between voxels. * The HRF itself has amplitude 1 (maximum absolute value).  It is the fit coefficients in each voxel that make the response model vary in magnitude. * Each time in the '-stimtime' inputs gets a separate amplitude estimate. These need to be combined and/or contrasted in some other program, such as 3dttest, to get a statistical map.",
+            "id": "BASELINE",
+            "name": "BASELINE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASELINE]"
+        },
+        {
+            "command-line-flag": "-stimtime",
+            "description": "-stimtime tname label HRFmodel  'tname' is the same format as 3dDeconvolve's '-stim_times' option 'label' is a character string to identify the output coefficients 'HRFmodel' specifies the form of the nonlinear response model; the possibilities are * 'GAMVAR' == the HRF has two parameters: 'tpeak' and 'fwhm'; HRF(t) = (t/bc)^b exp(b-t/c) * Heaviside(t) b      = (2.3*tpeak/fwhm)^2 c      = tpeak/b tpeak is allowed to range from 5 to 8 s; fwhm is allowed to range from 4 to 8 s. This HRF choice is appropriate for brief (under 2 s) activations in response to each stimulus. * 'IGAMVAR(d)' == similar to 'GAMVAR' but integrated over a duration of 'd' seconds.  This HRF choice is designed for block-design FMRI experiments. * 'CSPLIN(b,t,n)' == same as in 3dDeconvolve, with the caveat that the maximum amplitude of the HRF will be one. * 'DITTO' or 'ditto' == use the same model AND the same parameter set as the previous '-stimtime' argument.  In this way, the nonlinear parameters for the HRFs for the two sets of time will be collapsed into one set (e.g., both use the same value of 'tpeak' and 'fwhm'). Of course, the linear amplitudes for the two sets of times will be separated.",
+            "id": "STIMTIME",
+            "name": "STIMTIME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STIMTIME]"
+        },
+        {
+            "command-line-flag": "-threshtype",
+            "description": "-threshtype hhh  'hhh' specifies the thresholding model used in the HRF analysis. Given a set of HRF parameters, linear regression is used to fit the baseline model and the baseline+response model in all voxels. Those voxels that pass the threshold model (i.e., their response fit is 'significant' in some sense) are used to judge the quality of the overall fit.  The choices for 'hhh' are * 'RCLU(p,c)' == the nominal R^2-statistic (assuming white noise) is computed in each voxel, and those voxels with a p-value at or below 'p' are kept, if they are in a cluster of at least 'c' such contiguous voxels.  Subsequent to this thresholding, voxels that fit better (have a larger R^2) are weighted more highly in the HRF fitting objective function. * At this time, there is no other thresholding model available. * The default is currently 'RCLU(0.01,5)' which was just picked out of thin air with no justification.  This default is subject to change!  Output Arguments ----------------",
+            "id": "THRESHTYPE",
+            "name": "THRESHTYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THRESHTYPE]"
+        },
+        {
+            "command-line-flag": "-fitts",
+            "description": "Output a fitted time series model dataset.",
+            "id": "FITTS",
+            "name": "FITTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FITTS]"
+        },
+        {
+            "command-line-flag": "-errts",
+            "description": "Output the residuals into a dataset.",
+            "id": "ERRTS",
+            "name": "ERRTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ERRTS]"
+        },
+        {
+            "command-line-flag": "-cbucket",
+            "description": "Output the fit coefficients into a dataset.",
+            "id": "CBUCKET",
+            "name": "CBUCKET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CBUCKET]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Increase the verbosity of the messages as the program runs.",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "Turn off informational progress messages.  *** AUTHOR = Zhark the Experimental, October 2007 ***",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

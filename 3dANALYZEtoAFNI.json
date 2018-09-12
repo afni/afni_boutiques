@@ -1,0 +1,111 @@
+{
+    "command-line": "3dANALYZEtoAFNI [PREFIX] [VIEW] [TR] [FBUC] [ABUC] [GEOMPARENT] [ORIENT] [ZORIGIN] [FILE1.HDR] [FILE2.HDR] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "Save the dataset with the prefix name 'ppp'. [default='a2a']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-view",
+            "description": "Save the dataset in the 'vvv' view, where 'vvv' is one of 'orig', 'acpc', or 'tlrc'. [default='orig']",
+            "id": "VIEW",
+            "name": "VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEW]"
+        },
+        {
+            "command-line-flag": "-TR",
+            "description": "For multi-volume datasets, create it as a 3D+time dataset with TR set to 'ttt'.",
+            "id": "TR",
+            "name": "TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR]"
+        },
+        {
+            "command-line-flag": "-fbuc",
+            "description": "For multi-volume datasets, create it as a functional bucket dataset.",
+            "id": "FBUC",
+            "name": "FBUC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FBUC]"
+        },
+        {
+            "command-line-flag": "-abuc",
+            "description": "For multi-volume datasets, create it as an anatomical bucket dataset. ** If more than one ANALYZE file is input, and none of the above options is given, the default is as if '-TR 1s' was used. ** For single volume datasets (1 ANALYZE file input), the default is '-abuc'.",
+            "id": "ABUC",
+            "name": "ABUC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ABUC]"
+        },
+        {
+            "command-line-flag": "-geomparent",
+            "description": "Use the .HEAD file from dataset 'g' to set the geometry of this dataset. ** If you don't use -geomparent, then the following options can be used to specify the geometry of this dataset:",
+            "id": "GEOMPARENT",
+            "name": "GEOMPARENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GEOMPARENT]"
+        },
+        {
+            "command-line-flag": "-orient",
+            "description": "Tells the orientation of the 3D volumes.  The code must be 3 letters, one each from the pairs {R,L} {A,P} {I,S}.  The first letter gives the orientation of the x-axis, the second the orientation of the y-axis, the third the z-axis: R = right-to-left         L = left-to-right A = anterior-to-posterior P = posterior-to-anterior I = inferior-to-superior  S = superior-to-inferior",
+            "id": "ORIENT",
+            "name": "ORIENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ORIENT]"
+        },
+        {
+            "command-line-flag": "-zorigin",
+            "description": "Puts the center of the 1st slice off at the given distance ('dz' in mm).  This distance is in the direction given by the corresponding letter in the -orient code.  For example, -orient RAI -zorigin 30 would set the center of the first slice at 30 mm Inferior. ** If the above options are NOT used to specify the geometry of the dataset, then the default is '-orient RAI', and the z origin is set to center the slices about z=0.  It is likely that you will want to patch up the .HEAD file using program 3drefit.  -- RWCox - June 2002.   ** DON'T USE THIS PROGRAM!  REALLY! USE 3dcopy OR to3d INSTEAD.  IF YOU CHOOSE TO USE IT ANYWAY, PERHAPS BECAUSE IT WORKS BETTER ON YOUR 12th CENTURY PLANTAGENET ANALYZE FILES, ADD THE OPTION -OK TO YOUR COMMAND LINE.-- KRH - April 2005.",
+            "id": "ZORIGIN",
+            "name": "ZORIGIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZORIGIN]"
+        },
+        {
+            "description": "NA",
+            "id": "file1.hdr",
+            "name": "file1.hdr",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FILE1.HDR]"
+        },
+        {
+            "description": "NA",
+            "id": "file2.hdr",
+            "name": "file2.hdr",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FILE2.HDR]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

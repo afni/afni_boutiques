@@ -1,0 +1,103 @@
+{
+    "command-line": "3dedge3 [INPUT] [VERBOSE] [PREFIX] [DATUM] [FSCALE] [GSCALE] [NSCALE] [SCALE_FLOATS] [DSET] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "Input dataset",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-verbose",
+            "description": "Print out some information along the way.",
+            "id": "VERBOSE",
+            "name": "VERBOSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERBOSE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Sets the prefix of the output dataset.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-datum",
+            "description": "Sets the datum of the output dataset.",
+            "id": "DATUM",
+            "name": "DATUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATUM]"
+        },
+        {
+            "command-line-flag": "-fscale",
+            "description": "Force scaling of the output to the maximum integer range.",
+            "id": "FSCALE",
+            "name": "FSCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FSCALE]"
+        },
+        {
+            "command-line-flag": "-gscale",
+            "description": "Same as '-fscale', but also forces each output sub-brick to to get the same scaling factor.",
+            "id": "GSCALE",
+            "name": "GSCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GSCALE]"
+        },
+        {
+            "command-line-flag": "-nscale",
+            "description": "Don't do any scaling on output to byte or short datasets.",
+            "id": "NSCALE",
+            "name": "NSCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NSCALE]"
+        },
+        {
+            "command-line-flag": "-scale_floats",
+            "description": "Multiply input by VAL, but only if the input datum is float. This is needed when the input dataset has a small range, like 0 to 2.0 for instance. With such a range, very few edges are detected due to what I suspect to be truncation problems. Multiplying such a dataset by 10000 fixes the problem and the scaling is undone at the output.  References for the algorithms: -  Optimal edge detection using recursive filtering R. Deriche, International Journal of Computer Vision, pp 167-187, 1987. -  Recursive filtering and edge tracking: two primary tools for 3-D edge detection, O. Monga, R. Deriche, G. Malandain and J.-P. Cocquerez, Image and Vision Computing 4:9, pp 203-214, August 1991.   ++ Compile date = Sep  7 2018 {:}",
+            "id": "SCALE_FLOATS",
+            "name": "SCALE_FLOATS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE_FLOATS]"
+        },
+        {
+            "description": "NA",
+            "id": "dset",
+            "name": "dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

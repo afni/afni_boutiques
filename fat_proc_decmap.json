@@ -1,0 +1,114 @@
+{
+    "command-line": "fat_proc_decmap [IN_FA] [IN_V1] [MASK] [PREFIX] [FA_THR] [FA_SCA] [NO_QC_VIEW] [QC_PREFIX] [WORKDIR] [NO_CLEAN] [NO_CMD_OUT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-in_fa",
+            "description": "nput FA (scalar) map.",
+            "id": "IN_FA",
+            "name": "IN_FA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_FA]"
+        },
+        {
+            "command-line-flag": "-in_v1",
+            "description": "nput first eigenvector (3-vector) map.",
+            "id": "IN_V1",
+            "name": "IN_V1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_V1]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "ptional mask for pickout out a region; otherwise, only places with FA>0 are given coloration (which just makese sense, anyways, since FA>=0?).",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "et prefix (and path) for output DWI data; required.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-fa_thr",
+            "description": "or QC1 type of DEC images, use FFF to threshold where DEC values are calculated (def: FFF = 0.2).",
+            "id": "FA_THR",
+            "name": "FA_THR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FA_THR]"
+        },
+        {
+            "command-line-flag": "-fa_sca",
+            "description": "or QC2 type of DEC images, use SSS to scale the FA weighting of what would otherwise be a 'classical' DEC map (where |V1|*FA);  this is added because sometimes the DEC map can be kind of dim when weighting by FA only; instead, in this map, RGB values are given by '|V1|*FA/SSS' (def:  SSS = 0.7).",
+            "id": "FA_SCA",
+            "name": "FA_SCA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FA_SCA]"
+        },
+        {
+            "command-line-flag": "-no_qc_view",
+            "description": "y default, a set of QC snapshots are made and output.  To turn these off (why?), use this switch",
+            "id": "NO_QC_VIEW",
+            "name": "NO_QC_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_QC_VIEW]"
+        },
+        {
+            "command-line-flag": "-qc_prefix",
+            "description": "y default, the QC snapshots carry the same output name as the final output: PREFIX_*. You can change this to be QCP_*, if you want.",
+            "id": "QC_PREFIX",
+            "name": "QC_PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QC_PREFIX]"
+        },
+        {
+            "command-line-flag": "-workdir",
+            "description": "pecify a working directory, which can be removed; (default name = '__WORKING_decmap').",
+            "id": "WORKDIR",
+            "name": "WORKDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WORKDIR]"
+        },
+        {
+            "command-line-flag": "-no_clean",
+            "description": "couple temporary files are created whilst making the DEC map.  This switch tells the program to *not* delete them when finishing (default is to do so).  The default prefix of working dir is '__WORKING_decmap'.",
+            "id": "NO_CLEAN",
+            "name": "NO_CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CLEAN]"
+        },
+        {
+            "command-line-flag": "-no_cmd_out",
+            "description": "on't save the command line call of this program and the location where it was run (otherwise, it is saved by default in the ODIR/).  ------------------------------------------------------------------------  OUTPUTS:  PREFIX_dec.nii.gz a single file of type 'rgb' that AFNI knows how to display with RGB coloration when viewed as underlay: made by using V1 as RGB and weighting by FA values  PREFIX_dec_unwt_thr.nii.gz a single file of type 'rgb' that AFNI knows how to display with RGB coloration when viewed as underlay: made by using V1 as RGB, *not* weighting by FA, but using FA to threshold where DEC values are calculated (def: FA>0.2).  PREFIX_dec_sca*.nii.gz A similar file to PREFIX_dec.nii.gz, but additionally scaled by a value (such as 0.7; see \"-sca_fa SSS\" option above); this can 'brighten' the DEC map for clarity.  PREFIX_qc_dec*.png a set cor, axi and sag images (each a 5x3 montage) of the PREFIX_dec.nii.gz data set.  PREFIX_qc_dec_unwt_thrx*.png a set cor, axi and sag images (each a 5x3 montage) of the PREFIX_dec_unwt_thr.nii.gz data set.  PREFIX_qc_dec_sca*.png a set cor, axi and sag images (each a 5x3 montage) of the PREFIX_dec_sca.nii.gz data set.  (working directory of temp files: these can be deleted, as desired.)  -------------------------------------------------------------------------  EXAMPLE:  fat_proc_decmap  \\ -in_fa DTI/DT_FA+orig.                    \\ -in_v1 DTI/DT_V1+orig.                    \\ -mask  mask_DWI+orig                      \\ -prefix DEC  -------------------------------------------------------------------------",
+            "id": "NO_CMD_OUT",
+            "name": "NO_CMD_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CMD_OUT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

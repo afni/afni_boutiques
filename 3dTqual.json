@@ -1,0 +1,86 @@
+{
+    "command-line": "3dTqual [SPEARMAN] [QUADRANT] [AUTOCLIP] [AUTOMASK] [CLIP] [MASK] [RANGE] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-spearman",
+            "description": "Quality index is 1 minus the Spearman (rank) correlation coefficient of each sub-brick with the median sub-brick. [This is the default method.]",
+            "id": "SPEARMAN",
+            "name": "SPEARMAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEARMAN]"
+        },
+        {
+            "command-line-flag": "-quadrant",
+            "description": "Similar to -spearman, but using 1 minus the quadrant correlation coefficient as the quality index.",
+            "id": "QUADRANT",
+            "name": "QUADRANT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUADRANT]"
+        },
+        {
+            "command-line-flag": "-autoclip",
+            "description": "Clip off low-intensity regions in the median sub-brick,",
+            "id": "AUTOCLIP",
+            "name": "AUTOCLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOCLIP]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "so that the correlation is only computed between high-intensity (presumably brain) voxels.  The intensity level is determined the same way that 3dClipLevel works.  This prevents the vast number of nearly 0 voxels outside the brain from biasing the correlation coefficient calculations.",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-clip",
+            "description": "Clip off values below 'val' in the median sub-brick.",
+            "id": "CLIP",
+            "name": "CLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLIP]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Compute correlation only across masked voxels.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-range",
+            "description": "Print the median-3.5*MAD and median+3.5*MAD values out with EACH quality index, so that they can be plotted (cf. Example, infra). Notes: * These values are printed to stderr in any case. * This is only useful for plotting with 1dplot. * The lower value median-3.5*MAD is never allowed to go below 0.  EXAMPLE: 3dTqual -range -automask fred+orig | 1dplot -one -stdin will calculate the time series of quality indexes and plot them to an X11 window, along with the median+/-3.5*MAD bands.  NOTE: cf. program 3dToutcount for a somewhat different quality check.  -- RWCox - Aug 2001  ++ Compile date = Sep  7 2018 {:}",
+            "id": "RANGE",
+            "name": "RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANGE]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

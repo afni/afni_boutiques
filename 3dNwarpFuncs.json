@@ -1,0 +1,60 @@
+{
+    "command-line": "3dNwarpFuncs [NWARP] [PREFIX] [BULK] [SHEAR] [VORTICITY]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-nwarp",
+            "description": "'www' is the name of the 3D warp dataset (this is a mandatory option!) ++ This can be computed on the fly, as in 3dNwarpApply.",
+            "id": "NWARP",
+            "name": "NWARP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NWARP]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "'ppp' is the name of the new output dataset",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-bulk",
+            "description": "Compute the (fractional) bulk volume change. ++ e.g., Jacobian determinant minus 1.",
+            "id": "BULK",
+            "name": "BULK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BULK]"
+        },
+        {
+            "command-line-flag": "-shear",
+            "description": "Compute the shear energy.",
+            "id": "SHEAR",
+            "name": "SHEAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHEAR]"
+        },
+        {
+            "command-line-flag": "-vorticity",
+            "description": "Compute the vorticity enerty.  If none of '-bulk', '-shear', or '-vorticity' are given, then '-bulk' will be assumed.  NOTES: ------ Denote the displacement vector field (warp) by [ p(x,y,z) , q(x,y,z) , r(x,y,z) ] Define the Jacobian matrix by  [ 1+dp/dx   dp/dy    dp/dz  ]   [ Jxx Jxy Jxz ] J = [  dq/dx   1+dq/dy   dq/dz  ] = [ Jyx Jyy Jyz ] [  dr/dx    dr/dy   1+dr/dz ]   [ Jzx Jzy Jzz ]  * The '-bulk' output is the determinant of this matrix (det[J]), minus 1. * It measures the amount of volume distortion.  * The '-shear' output is the sum of squares of the J matrix elements -- which equals the sum of squares of its eigenvalues -- divided by det[J]^(2/3), then minus 3. * It measures the amount of shearing distortion (normalized by the amount of volume distortion).  * The '-vorticity' output is the sum of squares of the skew part of the J matrix = [ Jxy-Jyx , Jxz-Jzx , Jyz-Jzy ], divided by det[J]^(2/3). * It measures the amount of twisting distortion (also normalized).  * All 3 of these functions are dimensionless.  * The penalty used in 3dQwarp is a combination of the bulk, shear, and vorticity functions.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "VORTICITY",
+            "name": "VORTICITY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VORTICITY]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

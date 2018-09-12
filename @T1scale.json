@@ -1,0 +1,191 @@
+{
+    "command-line": "@T1scale [T1] [PD] [ODIR] [ALIGN] [MASK] [HEAD_MASK] [UNMASKED_UNI] [MASKED_UNI] [ECHO] [HELP] [H_WEB] [HWEB] [H_VIEW] [HVIEW] [ALL_OPTS] [H_FIND] [<-T1] [T1VOL>] [<-PD] [PDVOL>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-T1",
+            "description": "The T1 volume",
+            "id": "T1",
+            "name": "T1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T1]"
+        },
+        {
+            "command-line-flag": "-PD",
+            "description": "The PD volume (aligned to T1)",
+            "id": "PD",
+            "name": "PD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PD]"
+        },
+        {
+            "command-line-flag": "-odir",
+            "description": "Directory where output gets dumped. Default is T1scale/ ODIR will contain multiple volumes with the one of most interest being T1.uni+orig  Script will reuse existing  volumes",
+            "id": "ODIR",
+            "name": "ODIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ODIR]"
+        },
+        {
+            "command-line-flag": "-align",
+            "description": "Align PD volume to T1. Script assumes volumes are in close alignment. With this option, output PD+orig volume will be in alignment with T1+orig. Without this option, PDvol is assumed in alignment with T1vol",
+            "id": "ALIGN",
+            "name": "ALIGN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALIGN]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Create mask for the output If not specified, the script will generate one with 3dAutomask on fattened PDvol.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-head_mask",
+            "description": "Create mask using 3dSkullStrip's -head option.",
+            "id": "HEAD_MASK",
+            "name": "HEAD_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HEAD_MASK]"
+        },
+        {
+            "command-line-flag": "-unmasked_uni",
+            "description": "Do not apply masking to uniformized volume (default) You can mask the output after you decide which mask is best. Here is an example with smask:  3dcalc -a T1.uni+orig. -b smask+orig. \\ -expr 'step(b)*a' -prefix T1.uni.m",
+            "id": "UNMASKED_UNI",
+            "name": "UNMASKED_UNI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNMASKED_UNI]"
+        },
+        {
+            "command-line-flag": "-masked_uni",
+            "description": "Apply masking to uniformized volume",
+            "id": "MASKED_UNI",
+            "name": "MASKED_UNI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASKED_UNI]"
+        },
+        {
+            "command-line-flag": "-echo",
+            "description": "Set echo",
+            "id": "ECHO",
+            "name": "ECHO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "this message  Global Help Options: --------------------",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open webpage with help for this program",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "Same as -h_web",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open -help output in a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "Same as -hview",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "List all of the options for this script",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Search for lines containing WORD in -help output. Seach is approximate.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "description": "NA",
+            "id": "<-T1",
+            "name": "<-T1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-T1]"
+        },
+        {
+            "description": "NA",
+            "id": "T1vol>",
+            "name": "T1vol>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[T1VOL>]"
+        },
+        {
+            "description": "NA",
+            "id": "<-PD",
+            "name": "<-PD",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-PD]"
+        },
+        {
+            "description": "NA",
+            "id": "PDvol>",
+            "name": "PDvol>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[PDVOL>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

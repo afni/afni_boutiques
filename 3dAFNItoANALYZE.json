@@ -1,0 +1,76 @@
+{
+    "command-line": "3dAFNItoANALYZE [4D] [ORIENT] [X] [Y] [Z] [ANAME] [DSET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-4D",
+            "description": "-4D [30 Sep 2002]: If you use this option, then all the data will be written to one big ANALYZE file pair named aname.hdr/aname.img, rather than a series of 3D files.  Even if you only have 1 sub-brick, you may prefer this option, since the filenames won't have the '_0000' appended to 'aname'.",
+            "id": "4D",
+            "name": "4D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[4D]"
+        },
+        {
+            "command-line-flag": "-orient",
+            "description": "-orient code [19 Mar 2003]: This option lets you flip the dataset to a different orientation when it is written to the ANALYZE files.  The orientation code is formed as follows: The code must be 3 letters, one each from the pairs {R,L} {A,P} {I,S}.  The first letter gives the orientation of the x-axis, the second the orientation of the y-axis, the third the z-axis: R = Right-to-Left          L = Left-to-Right A = Anterior-to-Posterior  P = Posterior-to-Anterior I = Inferior-to-Superior   S = Superior-to-Inferior For example, 'LPI' means",
+            "id": "ORIENT",
+            "name": "ORIENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ORIENT]"
+        },
+        {
+            "command-line-flag": "-x",
+            "description": "Left       +x = Right",
+            "id": "X",
+            "name": "X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[X]"
+        },
+        {
+            "command-line-flag": "-y",
+            "description": "Posterior  +y = Anterior",
+            "id": "Y",
+            "name": "Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Y]"
+        },
+        {
+            "command-line-flag": "-z",
+            "description": "Inferior   +z = Superior * For display in SPM, 'LPI' or 'RPI' seem to work OK. Be careful with this: you don't want to confuse L and R in the SPM display! * If you DON'T use this option, the dataset will be written out in the orientation in which it is stored in AFNI (e.g., the output of '3dinfo dset' will tell you this.) * The dataset orientation is NOT stored in the .hdr file. * AFNI and ANALYZE data are stored in files with the x-axis varying most rapidly and the z-axis most slowly. * Note that if you read an ANALYZE dataset into AFNI for display, AFNI assumes the LPI orientation, unless you set environment variable AFNI_ANALYZE_ORIENT.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "Z",
+            "name": "Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Z]"
+        },
+        {
+            "description": "NA",
+            "id": "aname",
+            "name": "aname",
+            "optional": false,
+            "type": "String",
+            "value-key": "[ANAME]"
+        },
+        {
+            "description": "NA",
+            "id": "dset",
+            "name": "dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

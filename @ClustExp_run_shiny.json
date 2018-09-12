@@ -1,0 +1,24 @@
+{
+    "command-line": "@ClustExp_run_shiny [HELP]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help ----------------------------------------------------------------------------- examples: @ClustExp_run_shiny ~/discoMVM_ClustExp_shiny ----------------------------------------------------------------------------- Justin Rajendra 08/2017",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

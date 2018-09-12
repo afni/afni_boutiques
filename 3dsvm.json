@@ -1,0 +1,330 @@
+{
+    "command-line": "3dsvm [T] [M] [TRAINVOL] [B] [C] [A] [K] [E] [P] [TESTVOL] [TYPE] [N] [TRAINLABELS] [KERNEL] [D] [G] [S] [R] [WOUT] [MODEL] [PREDICTIONS] [TESTLABELS] [HELP] [V] [Z] [W] [J] [I] [X] [O] [U] [Q] [H] [F] [L]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-t",
+            "description": "-trainlabels run1_categories.1D \\",
+            "id": "T",
+            "name": "T",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T]"
+        },
+        {
+            "command-line-flag": "-m",
+            "description": "-mask mask+orig \\",
+            "id": "M",
+            "name": "M",
+            "optional": true,
+            "type": "String",
+            "value-key": "[M]"
+        },
+        {
+            "command-line-flag": "-trainvol",
+            "description": "-trainvol run1+orig \\",
+            "id": "TRAINVOL",
+            "name": "TRAINVOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TRAINVOL]"
+        },
+        {
+            "command-line-flag": "-b",
+            "description": "-bucket run1_fim  3. Training: exclude some time points using a censor file  3dsvm -alpha a_run1 \\",
+            "id": "B",
+            "name": "B",
+            "optional": true,
+            "type": "String",
+            "value-key": "[B]"
+        },
+        {
+            "command-line-flag": "-c",
+            "description": "-censor censor.1D \\",
+            "id": "C",
+            "name": "C",
+            "optional": true,
+            "type": "String",
+            "value-key": "[C]"
+        },
+        {
+            "command-line-flag": "-a",
+            "description": "-alpha a_run1 \\",
+            "id": "A",
+            "name": "A",
+            "optional": true,
+            "type": "String",
+            "value-key": "[A]"
+        },
+        {
+            "command-line-flag": "-k",
+            "description": "-kernel polynomial -d 2 \\",
+            "id": "K",
+            "name": "K",
+            "optional": true,
+            "type": "String",
+            "value-key": "[K]"
+        },
+        {
+            "command-line-flag": "-e",
+            "description": "-e 0.001 \\",
+            "id": "E",
+            "name": "E",
+            "optional": true,
+            "type": "String",
+            "value-key": "[E]"
+        },
+        {
+            "command-line-flag": "-p",
+            "description": "-predictions pred2_model1  8. Testing: compare predictions with 'truth'  3dsvm -testvol run2+orig \\",
+            "id": "P",
+            "name": "P",
+            "optional": true,
+            "type": "String",
+            "value-key": "[P]"
+        },
+        {
+            "command-line-flag": "-testvol",
+            "description": "-testvol run2+orig \\",
+            "id": "TESTVOL",
+            "name": "TESTVOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TESTVOL]"
+        },
+        {
+            "command-line-flag": "-type",
+            "description": "-type tname            Specify tname:  classification [default] regression  to select between classification or regression.",
+            "id": "TYPE",
+            "name": "TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TYPE]"
+        },
+        {
+            "command-line-flag": "-n",
+            "description": "-nomodelmask           Flag to enable the omission of a mask file. This is required if '-mask' is not used.",
+            "id": "N",
+            "name": "N",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N]"
+        },
+        {
+            "command-line-flag": "-trainlabels",
+            "description": "filename of class category .1D labels corresponding to the stimulus paradigm for the training data set. The number of labels in the selected file must be equal to the number of time points in the training dataset. The labels must be arranged in a single column, and they can be any of the following values:  0    - class 0 1    - class 1 n    - class n (where n is a positive integer) 9999 - censor this point  See also -censor.",
+            "id": "TRAINLABELS",
+            "name": "TRAINLABELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TRAINLABELS]"
+        },
+        {
+            "command-line-flag": "-kernel",
+            "description": "string specifying type of kernel function:  linear     : <u,v>  [default] polynomial : (s<u,v> + r)^d rbf        : radial basis function exp(-gamma ||u-v||^2) sigmoid    : tanh(s <u,v> + r))  note: kernel parameters use SVM-light syntax:",
+            "id": "KERNEL",
+            "name": "KERNEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KERNEL]"
+        },
+        {
+            "command-line-flag": "-d",
+            "description": "d parameter in polyniomial kernel 3 [default]",
+            "id": "D",
+            "name": "D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[D]"
+        },
+        {
+            "command-line-flag": "-g",
+            "description": "gamma parameter in rbf kernel 1.0 [default]",
+            "id": "G",
+            "name": "G",
+            "optional": true,
+            "type": "String",
+            "value-key": "[G]"
+        },
+        {
+            "command-line-flag": "-s",
+            "description": "s parameter in sigmoid/poly kernel 1.0 [default]",
+            "id": "S",
+            "name": "S",
+            "optional": true,
+            "type": "String",
+            "value-key": "[S]"
+        },
+        {
+            "command-line-flag": "-r",
+            "description": "r parameter in sigmoid/poly kernel 1.0 [default]",
+            "id": "R",
+            "name": "R",
+            "optional": true,
+            "type": "String",
+            "value-key": "[R]"
+        },
+        {
+            "command-line-flag": "-wout",
+            "description": "-wout                  Flag to output sum of weighted linear support vectors to the bucket file. This is one means of generating an \"activation map\" from linear kernel SVMs see (LaConte et al., 2005). NOTE: this is currently not required since it is the only output option.",
+            "id": "WOUT",
+            "name": "WOUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WOUT]"
+        },
+        {
+            "command-line-flag": "-model",
+            "description": "basename for the model brik.  Training: modname is the basename for the output brik containing the SVM model  3dsvm -trainvol run1+orig \\",
+            "id": "MODEL",
+            "name": "MODEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODEL]"
+        },
+        {
+            "command-line-flag": "-predictions",
+            "description": "basename for .1D prediction file(s). Prediction files contain a single column, where each line holds the predicted value for the corresponding volume in the test dataset. By default, the predicted values take on a continuous range; to output integer-valued class decision values use the -classout flag. For classification: Values bellow 0.5 correspond to (class A) and values above 0.5 to (class B), where A < B. For more than two classes a separate prediction file for each possible pair of training classes and one additional \"overall\" file containing the predicted (integer-valued) class membership is generated. For regression: Each value is the predicted parametric rate for the corresponding volume in the test dataset.",
+            "id": "PREDICTIONS",
+            "name": "PREDICTIONS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREDICTIONS]"
+        },
+        {
+            "command-line-flag": "-testlabels",
+            "description": "filename of 'true' class category .1D labels for the test dataset. It is used to calculate the prediction accuracy performance of SVM classification. If this option is not specified, then performance calculations are not made. Format is the same as lname specified for -trainlabels.",
+            "id": "TESTLABELS",
+            "name": "TESTLABELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TESTLABELS]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "-help                  this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-v",
+            "description": "-version               print version history including rough description of changes     -------------------- SVM-light learn help -----------------------------  SVM-light V5.00: Support Vector Machine, learning module     30.06.02stim  Copyright: Thorsten Joachims, thorsten@ls8.cs.uni-dortmund.de  This software is available for non-commercial use only. It must not be modified and distributed without prior permission of the author. The author is not responsible for implications from the use of this software.  usage: svm_learn [options] example_file model_file  Arguments: example_file-> file with training data model_file  -> file to store learned decision rule in General options: -?          -> this help",
+            "id": "V",
+            "name": "V",
+            "optional": true,
+            "type": "String",
+            "value-key": "[V]"
+        },
+        {
+            "command-line-flag": "-z",
+            "description": "-z {c,r,p}  -> select between classification (c), regression (r), and preference ranking (p) (default classification)",
+            "id": "Z",
+            "name": "Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Z]"
+        },
+        {
+            "command-line-flag": "-w",
+            "description": "-w [0..]    -> epsilon width of tube for regression (default 0.1)",
+            "id": "W",
+            "name": "W",
+            "optional": true,
+            "type": "String",
+            "value-key": "[W]"
+        },
+        {
+            "command-line-flag": "-j",
+            "description": "-j float    -> Cost: cost-factor, by which training errors on positive examples outweight errors on negative examples (default 1) (see [4])",
+            "id": "J",
+            "name": "J",
+            "optional": true,
+            "type": "String",
+            "value-key": "[J]"
+        },
+        {
+            "command-line-flag": "-i",
+            "description": "-i [0,1]    -> remove inconsistent training examples and retrain (default 0) Performance estimation options:",
+            "id": "I",
+            "name": "I",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I]"
+        },
+        {
+            "command-line-flag": "-x",
+            "description": "-x [0,1]    -> compute leave-one-out estimates (default 0) (see [5])",
+            "id": "X",
+            "name": "X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[X]"
+        },
+        {
+            "command-line-flag": "-o",
+            "description": "-o ]0..2]   -> value of rho for XiAlpha-estimator and for pruning leave-one-out computation (default 1.0) (see [2])",
+            "id": "O",
+            "name": "O",
+            "optional": true,
+            "type": "String",
+            "value-key": "[O]"
+        },
+        {
+            "command-line-flag": "-u",
+            "description": "-u string   -> parameter of user defined kernel Optimization options (see [1]):",
+            "id": "U",
+            "name": "U",
+            "optional": true,
+            "type": "String",
+            "value-key": "[U]"
+        },
+        {
+            "command-line-flag": "-q",
+            "description": "-q [2..]    -> maximum size of QP-subproblems (default 10)",
+            "id": "Q",
+            "name": "Q",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Q]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "-h [5..]    -> number of iterations a variable needs to be optimal before considered for shrinking (default 100)",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-f",
+            "description": "-f [0,1]    -> do final optimality check for variables removed by shrinking. Although this test is usually positive, there is no guarantee that the optimum was found if the test is omitted. (default 1) Output options:",
+            "id": "F",
+            "name": "F",
+            "optional": true,
+            "type": "String",
+            "value-key": "[F]"
+        },
+        {
+            "command-line-flag": "-l",
+            "description": "-l string   -> file to write predicted labels of unlabeled examples into after transductive learning",
+            "id": "L",
+            "name": "L",
+            "optional": true,
+            "type": "String",
+            "value-key": "[L]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

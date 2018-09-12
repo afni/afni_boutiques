@@ -1,0 +1,149 @@
+{
+    "command-line": "niprobe [DUP] [NODATA] [ATTRIBUTE] [MATCH] [F] [S] [STDOUT] [STDERR] [NO] [QUIET] [FIND_NEL_WITH_ATTR] [FIND_NEL_NAMED] [SKIP_NEL_WITH_ATTR] [MW] [STREAMSPEC]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-dup",
+            "description": "Duplicate the element before showing it. This is to test NI_duplicate function.",
+            "id": "DUP",
+            "name": "DUP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DUP]"
+        },
+        {
+            "command-line-flag": "-nodata",
+            "description": "Show header parts only in output",
+            "id": "NODATA",
+            "name": "NODATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NODATA]"
+        },
+        {
+            "command-line-flag": "-attribute",
+            "description": "Dump the value of attribute ATTR",
+            "id": "ATTRIBUTE",
+            "name": "ATTRIBUTE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ATTRIBUTE]"
+        },
+        {
+            "command-line-flag": "-match",
+            "description": "If MATCH is exact, then attribute name is matched exactly. If MATCH is partial, then a match of all the characters in ATTR is enough. For example, an ATTR of COEF would match any of COEF COEF.1 COEF.2, etc. Default is -match exact",
+            "id": "MATCH",
+            "name": "MATCH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATCH]"
+        },
+        {
+            "command-line-flag": "-f",
+            "description": "streamspec is a filename (last option on the command line)",
+            "id": "F",
+            "name": "F",
+            "optional": true,
+            "type": "String",
+            "value-key": "[F]"
+        },
+        {
+            "command-line-flag": "-s",
+            "description": "streamspec is an element string like: '<T font=9 coords=\"2.3 23 2\"/>' (last option on the command line)",
+            "id": "S",
+            "name": "S",
+            "optional": true,
+            "type": "String",
+            "value-key": "[S]"
+        },
+        {
+            "command-line-flag": "-stdout",
+            "description": "write elements to stdout (default), instead of stderr",
+            "id": "STDOUT",
+            "name": "STDOUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STDOUT]"
+        },
+        {
+            "command-line-flag": "-stderr",
+            "description": "write elements to stderr, instead of stdout -#: put the # at the beginning of lines with no data (default)",
+            "id": "STDERR",
+            "name": "STDERR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STDERR]"
+        },
+        {
+            "command-line-flag": "-No",
+            "description": "-No#: Do not put the # at the beginning of lines with no data",
+            "id": "NO",
+            "name": "NO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "quiet stderr messages, and don't echo attribute name with -attribute option",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-find_nel_with_attr",
+            "description": "Only output elements that have an attribute ATTR of value ATTRVAL. a status of 1 is returned if no match is found.",
+            "id": "FIND_NEL_WITH_ATTR",
+            "name": "FIND_NEL_WITH_ATTR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIND_NEL_WITH_ATTR]"
+        },
+        {
+            "command-line-flag": "-find_nel_named",
+            "description": "Only print element named NAME",
+            "id": "FIND_NEL_NAMED",
+            "name": "FIND_NEL_NAMED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIND_NEL_NAMED]"
+        },
+        {
+            "command-line-flag": "-skip_nel_with_attr",
+            "description": "Do not output elements that have an attribute ATTR of value ATTRVAL.",
+            "id": "SKIP_NEL_WITH_ATTR",
+            "name": "SKIP_NEL_WITH_ATTR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKIP_NEL_WITH_ATTR]"
+        },
+        {
+            "command-line-flag": "-mw",
+            "description": "Don't wait on a stream for more than MAX_WAIT before you receive an element. Default is 100 msec. Set MAX_WAIT to -1 to wait forever and a day niprobe returns a status of 0 if it the stream opened. and there were no interruptions.",
+            "id": "MW",
+            "name": "MW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MW]"
+        },
+        {
+            "description": "NA",
+            "id": "streamspec",
+            "name": "streamspec",
+            "optional": false,
+            "type": "String",
+            "value-key": "[STREAMSPEC]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

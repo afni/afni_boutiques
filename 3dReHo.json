@@ -1,0 +1,141 @@
+{
+    "command-line": "3dReHo [PREFIX] [INSET] [CHI_SQ] [MASK] [NNEIGH] [NEIGH_RAD] [NEIGH_X] [NEIGH_Y] [NEIGH_Z] [BOX_RAD] [BOX_X] [BOX_Y] [BOX_Z] [IN_ROIS]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput file name part.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-inset",
+            "description": "ime series file.",
+            "id": "INSET",
+            "name": "INSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSET]"
+        },
+        {
+            "command-line-flag": "-chi_sq",
+            "description": "witch to output Friedman chi-sq value per voxel as a subbrick.",
+            "id": "CHI_SQ",
+            "name": "CHI_SQ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHI_SQ]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "an include a whole brain mask within which to calculate ReHo. Otherwise, data should be masked already.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-nneigh",
+            "description": "umber of voxels in neighborhood, inclusive; can be: 7   (for facewise neighbors, only), 19  (for face- and edge-wise neighbors), 27  (for face-, edge-, and node-wise neighbors). The default is: 27.",
+            "id": "NNEIGH",
+            "name": "NNEIGH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NNEIGH]"
+        },
+        {
+            "command-line-flag": "-neigh_RAD",
+            "description": "or additional voxelwise neighborhood control, the radius R of a desired neighborhood can be put in; R is a floating point number, and must be >1. Examples of the numbers of voxels in a given radius are as follows (you can roughly approximate with the ol' 4*PI*(R^3)/3 thing): R=2.0 -> V=33, R=2.3 -> V=57, R=2.9 -> V=93, R=3.1 -> V=123, R=3.9 -> V=251, R=4.5 -> V=389, R=6.1 -> V=949, but you can choose most any value.",
+            "id": "NEIGH_RAD",
+            "name": "NEIGH_RAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEIGH_RAD]"
+        },
+        {
+            "command-line-flag": "-neigh_X",
+            "description": "-neigh_X   A",
+            "id": "NEIGH_X",
+            "name": "NEIGH_X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEIGH_X]"
+        },
+        {
+            "command-line-flag": "-neigh_Y",
+            "description": "s if *that* weren't enough freedom, you can even have",
+            "id": "NEIGH_Y",
+            "name": "NEIGH_Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEIGH_Y]"
+        },
+        {
+            "command-line-flag": "-neigh_Z",
+            "description": "-neigh_Z   C     ellipsoidal volumes of voxelwise neighbors.  This is done by inputing the set of semi-radius lengths you want, again as floats/decimals. The 'hood is then made according to the following relation: (i/A)^2 + (j/B)^2 + (k/C)^2 <=1. which will have approx. V=4*PI*A*B*C/3. The impetus for this freedom was for use with data having anisotropic voxel edge lengths.",
+            "id": "NEIGH_Z",
+            "name": "NEIGH_Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEIGH_Z]"
+        },
+        {
+            "command-line-flag": "-box_RAD",
+            "description": "or additional voxelwise neighborhood control, the one can make a cubic box centered on a given voxel; BR specifies the number of voxels outward in a given cardinal direction, so the number of voxels in the volume would be as follows: BR=1 -> V=27, BR=2 -> V=125, BR=3 -> V=343, etc. In this case, BR should only be integer valued.",
+            "id": "BOX_RAD",
+            "name": "BOX_RAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BOX_RAD]"
+        },
+        {
+            "command-line-flag": "-box_X",
+            "description": "-box_X   BA",
+            "id": "BOX_X",
+            "name": "BOX_X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BOX_X]"
+        },
+        {
+            "command-line-flag": "-box_Y",
+            "description": "s if that *still* weren't enough freedom, you can have",
+            "id": "BOX_Y",
+            "name": "BOX_Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BOX_Y]"
+        },
+        {
+            "command-line-flag": "-box_Z",
+            "description": "-box_Z   BC     box volume neighborhoods of arbitrary dimension; these values put in get added in the +/- directions of each axis, so the volume in terms of number of voxels would be calculated: if BA = 1, BB = 2 and BC = 4, then V = (1+2*1)*(1+2*2)*(1+2*4) = 135. --> NB: you can't mix-n-match '-box_*' and '-neigh_*' settings. Mi dispiace (ma sol'un po).",
+            "id": "BOX_Z",
+            "name": "BOX_Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BOX_Z]"
+        },
+        {
+            "command-line-flag": "-in_rois",
+            "description": "an input a set of ROIs, each labelled with distinct integers. ReHo will be calculated per ROI. The output will be similar to the format of 3dROIstats: one row of numbers per INROIS subbrick, and the number of columns determined by the number of ROIs per subbrick (but only numbers are output). The output of this is in a file called PREFIX_ROI_reho.vals, and if `-chi_sq' values are being output, then those for the ROI values will be output in an analogously formatted file called PREFIX_ROI_reho.chi. Voxelwise ReHo will still be calculated and output.  + OUTPUT: [A] single file with name, e.g., PREFIX+orig.BRIK, which may have two subbricks (2nd subbrick if `-chi_sq' switch is used): [0] contains the ReHo (Kendall W) value per voxel; [1] contains Friedman chi-square of ReHo per voxel (optional); note that the number of degrees of freedom of this value is the length of time series minus 1. [B] can get list of ROI ReHo values, as well (optional).  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  + EXAMPLE: 3dReHo                         \\ -mask MASK+orig.             \\ -inset REST+orig        \\ -prefix REST_REHO       \\ -neigh_RAD 2.9          \\ -chi_sq  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  If you use this program, please reference the introductory/description paper for the FATCAT toolbox: Taylor PA, Saad ZS (2013).  FATCAT: (An Efficient) Functional And Tractographic Connectivity Analysis Toolbox. Brain Connectivity 3(5):523-535. ____________________________________________________________________________",
+            "id": "IN_ROIS",
+            "name": "IN_ROIS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_ROIS]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

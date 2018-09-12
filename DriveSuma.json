@@ -1,0 +1,1088 @@
+{
+    "command-line": "DriveSuma [COM] [SURF_LABEL] [I_TYPE] [SURF_STATE] [SURF_WINDING] [XYZ_1D] [AUTORECORD] [BKG_COL] [LOAD_VIEW] [LOAD_DO] [DO_DRAW_MASK] [FIXED_DO] [MOBILE_DO] [KEY] [VIEWER] [VIEWER_WIDTH] [VIEWER_HEIGHT] [VIEWER_SIZE] [VIEWER_POSITION] [CONTROLLER_POSITION] [INOUT_NOTIFY] [N_FOREG_SMOOTH] [N_FINAL_SMOOTH] [ANIM_DUP] [SAVE_AS] [SAVE_INDEX] [SAVE_RANGE] [SAVE_LAST] [SAVE_LAST_N] [SAVE_ALL] [CWD] [LOAD_DSET] [VIEW_SURF] [RENDERMODE] [TRANSMODE] [LOAD_COL] [VIEW_OBJECT_CONT] [MASKS] [2XMASKS] [DELETE_ALL_MASKS] [LOAD_MASKS] [SAVE_MASKS] [SWITCH_SURF] [SWITCH_DSET] [VIEW_DSET] [1_ONLY] [SWITCH_CMAP] [SWITCH_CMODE] [LOAD_CMAP] [I_SB] [I_RANGE] [SHW_0] [SHOW_0] [DSP] [T_SB] [T_VAL] [B_SB] [B_RANGE] [B_SCALE] [DIM] [OPA] [CLST] [USECLST] [SETSUMAENV] [WRITE_SURF_CONT_HELP] [WRITE_SURF_CONT_SPHINX_HELP] [SNAP_SURF_CONT_WIDGETS] [WRITE_VOL_CONT_HELP] [WRITE_VOL_CONT_SPHINX_HELP] [SNAP_VOL_CONT_WIDGETS] [WRITE_TRACT_CONT_HELP] [WRITE_TRACT_CONT_SPHINX_HELP] [SNAP_TRACT_CONT_WIDGETS] [WRITE_MASK_CONT_HELP] [WRITE_MASK_CONT_SPHINX_HELP] [SNAP_MASK_CONT_WIDGETS] [WRITE_GRAPH_CONT_HELP] [WRITE_GRAPH_CONT_SPHINX_HELP] [SNAP_GRAPH_CONT_WIDGETS] [WRITE_ROI_CONT_HELP] [WRITE_ROI_CONT_SPHINX_HELP] [SNAP_ROI_CONT_WIDGETS] [WRITE_SUMA_CONT_HELP] [WRITE_SUMA_CONT_SPHINX_HELP] [SNAP_SUMA_CONT_WIDGETS] [WRITE_MOUSE_KEYB_HELP] [WRITE_MOUSE_KEYB_SPHINX_HELP] [WRITE_MOUSE_CMAP_KEYB_HELP] [WRITE_MOUSE_CMAP_KEYB_SPHINX_HELP] [ECHO_EDU] [ECHO_NEL_STDOUT] [ECHO_NEL_STDERR] [ECHO_NEL] [EXAMPLES] [HELP] [H] [HELP_NIDO] [C_DEMO] [ONESTATE] [ANATOMICAL] [I] [TN] [TSN] [SPEC] [H_VIEW] [HVIEW] [H_WEB] [HWEB] [H_FIND] [H_RAW] [H_SPX] [H_ASPX] [ALL_OPTS] [PROGRAM] [TO] [DRIVE] [SUMA] [FROM] [COMMAND] [LINE.]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-com",
+            "description": "Command to be sent to SUMA. At least one command must be used and various commands can follow in succession. COM is the command string and consists of at least an action ACT. Some actions require additional parameters to follow ACT. Actions (ACT) and their parameters: ----------------------------------- o pause [MSG]: Pauses DriveSuma and awaits an 'Enter' to proceed with other commands. MSG is an optional collection of strings that can be displayed as a prompt to the user. See usage in examples below.  o sleep DUR: Put DriveSuma to sleep for a duration DUR. DUR is the duration, specified with something like 2s (or 2) or 150ms See usage in examples below.  o show_surf: Send surface to SUMA. + Mandatory parameters for show_surf action:",
+            "id": "COM",
+            "name": "COM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COM]"
+        },
+        {
+            "command-line-flag": "-surf_label",
+            "description": "A label (identifier) to assign to the surface",
+            "id": "SURF_LABEL",
+            "name": "SURF_LABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURF_LABEL]"
+        },
+        {
+            "command-line-flag": "-i_TYPE",
+            "description": "Name of surface file, see surface I/O options below for details. + Optional parameters for show_surf action:",
+            "id": "I_TYPE",
+            "name": "I_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I_TYPE]"
+        },
+        {
+            "command-line-flag": "-surf_state",
+            "description": "Name the state of that surface",
+            "id": "SURF_STATE",
+            "name": "SURF_STATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURF_STATE]"
+        },
+        {
+            "command-line-flag": "-surf_winding",
+            "description": "Winding of triangles. Choose from ccw or cw (normals on sphere pointing in). This option affects the lighting of the surface. + Example show_surf: 1- Create some surface 2- Start SUMA 3- Send new surface to SUMA --------------------------- CreateIcosahedron -rd 4 suma -niml & echo 'Wait until suma is ready then proceed.' DriveSuma -com show_surf -label icoco \\ -i_fs CreateIco_surf.asc  o node_xyz: Assign new coordinates to surface in SUMA + Mandatory parameters for action node_xyz:",
+            "id": "SURF_WINDING",
+            "name": "SURF_WINDING",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURF_WINDING]"
+        },
+        {
+            "command-line-flag": "-xyz_1D",
+            "description": "-xyz_1D COORDS.1D: A 1D formatted file containing a new coordinate for each of the nodes forming the surface. COORDS.1D must have three columns. Column selectors can be used here as they are in AFNI. If you do not have the coordinates handy in a 1D file and would prefer to get them directly from a surface, you can substitute -xyz_1D COORDS.1D with any valid suma surface input option. For example, if you want to send the coords of surface surf.gii, you can just use -i surf.gii, in lieu of -node_xyz COORDS.1D + Example node_xyz (needs surface from 'Example show_surf') 1- Create some variation on the coords of the surface 2- Send new coordinates to SUMA 3- Manipulate the x coordinate now 4- Send new coordinates again to SUMA ------------------------------------- o get_label: have current label associated with current node printed o set_outplug filename: redirect output to file instead of stdout ConvertSurface -i_fs CreateIco_surf.asc \\ -o_1D radcoord radcoord \\ -radial_to_sphere 100 DriveSuma -com node_xyz -label icoco \\",
+            "id": "XYZ_1D",
+            "name": "XYZ_1D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[XYZ_1D]"
+        },
+        {
+            "command-line-flag": "-autorecord",
+            "description": "Set the autorecord prefix See 'Ctrl+r' in suma's interactive help for details. You can can use this option to make different snapshots go to different directories or filenames. For example: ... -com viewer_cont -autorecord left/Javier.ppm \\ -key 'ctrl+left' -key 'ctrl+r' \\ -com viewer_cont -autorecord right/Javier.ppm \\ -key 'ctrl+right' -key 'ctrl+r' \\ ...",
+            "id": "AUTORECORD",
+            "name": "AUTORECORD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTORECORD]"
+        },
+        {
+            "command-line-flag": "-bkg_col",
+            "description": "Set the color of the background to R G B triplet. R G B values must be between 0 and 1",
+            "id": "BKG_COL",
+            "name": "BKG_COL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BKG_COL]"
+        },
+        {
+            "command-line-flag": "-load_view",
+            "description": "Load a previously saved view file (.vvs). Same as 'File-->Load View'",
+            "id": "LOAD_VIEW",
+            "name": "LOAD_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOAD_VIEW]"
+        },
+        {
+            "command-line-flag": "-load_do",
+            "description": "Load a displayable object file For detailed information on DO_FILE's format, see the section under suma's  help (ctrl+h) where the function of Ctrl+Alt+s is detailed.",
+            "id": "LOAD_DO",
+            "name": "LOAD_DO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOAD_DO]"
+        },
+        {
+            "command-line-flag": "-do_draw_mask",
+            "description": "Restrict where DO node-based objects are displayed. MASKMODE is one of: All: No restrictions n3Crosshair: Crosshair node + 3 neighboring layers n2Crosshair: Crosshair node + 2 neighboring layers n1Crosshair: Crosshair node only None: Show nothing. See also Ctrl+p option in SUMA.",
+            "id": "DO_DRAW_MASK",
+            "name": "DO_DRAW_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_DRAW_MASK]"
+        },
+        {
+            "command-line-flag": "-fixed_do",
+            "description": "Load a fixed coordinate type NIML DO that is defined by the string NIML_DO_STRING. This is more convenient than specifying a simple DO in a file. For example: DriveSuma -com viewer_cont \\ -fixed_do \"<T text='Hi' coord='0.5 0.2 0'/>\" or the simpler: DriveSuma -com viewer_cont \\ -fixed_do \"<T text='Up here' p=tlf/>\" DriveSuma -com viewer_cont \\ -fixed_do \"<T text='Down there' p=bcf/>\"  Repeated calls to -fixed_do would replace the previous object with the new one. You could specify multiple DOs by adding a qualifier string to the option -fixed_do. For example: DriveSuma -com viewer_cont \\ -fixed_do1 \"<T text='Tango' coord='0.5 0.2 0'/>\" DriveSuma -com viewer_cont \\ -fixed_do2 \"<T text='ognaT' coord='0.2 0.2 0'/>\" DriveSuma -com viewer_cont \\ -fixed_do1 \"<T text='-X-' coord='0.5 0.2 0'/>\" DriveSuma -com viewer_cont \\ -fixed_do3 \"<Tex target='FRAME' \\ filename='funstuff/face_afniman.jpg'/>\" or for a more useful example for how you can add a logo on the bottom right side and way back in the viewer: DriveSuma -com viewer_cont \\ -fixed_do3 \"<I target='FRAME' \\ coord   = '1 0 1' \\ h_align = 'right'  \\ v_align = 'bot'    \\ filename='funstuff/face_afniman.jpg'/>\"  For more information about DOs, see NIDO section below (visible with -help option) and demo script @DO.examples.",
+            "id": "FIXED_DO",
+            "name": "FIXED_DO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIXED_DO]"
+        },
+        {
+            "command-line-flag": "-mobile_do",
+            "description": "Mobile version of -fixed_do",
+            "id": "MOBILE_DO",
+            "name": "MOBILE_DO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOBILE_DO]"
+        },
+        {
+            "command-line-flag": "-key",
+            "description": "Act as if the key press KEY_STRING was applied in the viewer. ~ Not all key presses from interactive mode are allowed here. ~ Available keys and their variants are: [, ], comma (or ','), period (or '.'), space, a, b, d, G, j, m, n, p, r, t, z, up, down, left, right, and F1 to F12. ~ Key variants are specified this way: ctrl+Up or ctrl+alt+Down etc. ~ For help on key actions consult SUMA's GUI help. ~ Using multiple keys in the same command might not result in the serial display of the effect of each key, unless 'd' modifier is used as shown further below. For example, -key right -key right would most likely produce one image rotated twice rather than two images, each turned right once. The -key string can be followed by modifiers: For example, -key:r5:s0.2 has two modifiers, r5 and s0.2. All modifiers are separated by ':'. 'r' Repeat parameter, so r5 would repeat the same key 5 times. 's' Sleep parameter, so s0.2 would sleep for 0.2 seconds between repeated keys. 'd' Immediate redisplay flag. That is useful when you are performing a succession of keys and want to ensure each individual one gets displayed and recorded (most likely). Otherwise, successive keys may only display their resultant. 'd' is used automatically with 's' modifier. 'p' Pause flag. Requires user intervention to proceed. 'v' Value string. The string is passed to the function that processes this key, as if you'd entered that string in the GUI directly. To avoid parsing headaches, you should use quotes with this qualifier. For example, say you want to pass 0.0 0.0 0.0 to the 'ctrl+j' key press. At the shell you would enter: DriveSuma -com viewer_cont '-key:v\"0.8 0 10.3\"' ctrl+j In another example, say you want to jump to node 54 on the right hemisphere (hence the 'R' in '54R'), then you would execute: DriveSuma -com viewer_cont '-key:v54R' j",
+            "id": "KEY",
+            "name": "KEY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEY]"
+        },
+        {
+            "command-line-flag": "-viewer",
+            "description": "Specify which viewer should be acted upon. Default is viewer 'A'. Viewers must be created first (ctrl+n) before they can be acted upon. You can also refer to viewers with integers 0 for A, 1 for B, etc. For -viewer to take effect it must be in the same -com viewer_cont ... commands. For example: ... -com viewer_cont -viewer B -viewer_size 600 900 ...",
+            "id": "VIEWER",
+            "name": "VIEWER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEWER]"
+        },
+        {
+            "command-line-flag": "-viewer_width",
+            "description": "-viewer_width or (-width) WIDTH: Set the width in pixels of the current viewer.",
+            "id": "VIEWER_WIDTH",
+            "name": "VIEWER_WIDTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEWER_WIDTH]"
+        },
+        {
+            "command-line-flag": "-viewer_height",
+            "description": "-viewer_height or (-height) HEIGHT: Set the height in pixels of the current viewer.",
+            "id": "VIEWER_HEIGHT",
+            "name": "VIEWER_HEIGHT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEWER_HEIGHT]"
+        },
+        {
+            "command-line-flag": "-viewer_size",
+            "description": "Convenient combo of -viewer_width and -viewer_height",
+            "id": "VIEWER_SIZE",
+            "name": "VIEWER_SIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEWER_SIZE]"
+        },
+        {
+            "command-line-flag": "-viewer_position",
+            "description": "Set position on the screen",
+            "id": "VIEWER_POSITION",
+            "name": "VIEWER_POSITION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEWER_POSITION]"
+        },
+        {
+            "command-line-flag": "-controller_position",
+            "description": "Set position of the object (surface) controller on the screen",
+            "id": "CONTROLLER_POSITION",
+            "name": "CONTROLLER_POSITION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CONTROLLER_POSITION]"
+        },
+        {
+            "command-line-flag": "-inout_notify",
+            "description": "-inout_notify y/n: Turn on or off function call tracing",
+            "id": "INOUT_NOTIFY",
+            "name": "INOUT_NOTIFY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INOUT_NOTIFY]"
+        },
+        {
+            "command-line-flag": "-N_foreg_smooth",
+            "description": "Number of foreground smoothing iterations Same as suma's interactive '8' key or what you'd set with env: SUMA_NumForeSmoothing",
+            "id": "N_FOREG_SMOOTH",
+            "name": "N_FOREG_SMOOTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N_FOREG_SMOOTH]"
+        },
+        {
+            "command-line-flag": "-N_final_smooth",
+            "description": "Number of final color smoothing iterations Same as suma's interactive '*' key or what you'd set with env: SUMA_NumForeSmoothing + Example viewer_cont (assumes all previous examples have been executed and suma is still running). - a series of commands that should be obvious. ------------------------------------- DriveSuma -com  viewer_cont -key R -key ctrl+right DriveSuma -com  viewer_cont -key:r3:s0.3 up  \\",
+            "id": "N_FINAL_SMOOTH",
+            "name": "N_FINAL_SMOOTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N_FINAL_SMOOTH]"
+        },
+        {
+            "command-line-flag": "-anim_dup",
+            "description": "Save DUP copies of each frame into movie This has the effect of slowing movies down at the expense of file size, of course. DUP's default is set by the value of AFNI_ANIM_DUP environment variable. To set DUP back to its default value, use -anim_dup 0.",
+            "id": "ANIM_DUP",
+            "name": "ANIM_DUP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANIM_DUP]"
+        },
+        {
+            "command-line-flag": "-save_as",
+            "description": "-save_as PREFIX.EXT: Save image(s) in recorder in the format determined by extension EXT. Allowed extensions are: agif or gif: Animated GIF (movie) mpeg or mpg: MPEG (movie) jpeg or jpg: JPEG (stills) png: PNG (stills)",
+            "id": "SAVE_AS",
+            "name": "SAVE_AS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_AS]"
+        },
+        {
+            "command-line-flag": "-save_index",
+            "description": "Save one image indexed IND (start at 0)",
+            "id": "SAVE_INDEX",
+            "name": "SAVE_INDEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_INDEX]"
+        },
+        {
+            "command-line-flag": "-save_range",
+            "description": "Save images from FROM to TO",
+            "id": "SAVE_RANGE",
+            "name": "SAVE_RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_RANGE]"
+        },
+        {
+            "command-line-flag": "-save_last",
+            "description": "Save last image (default for still formats)",
+            "id": "SAVE_LAST",
+            "name": "SAVE_LAST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_LAST]"
+        },
+        {
+            "command-line-flag": "-save_last_n",
+            "description": "Save last N images",
+            "id": "SAVE_LAST_N",
+            "name": "SAVE_LAST_N",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_LAST_N]"
+        },
+        {
+            "command-line-flag": "-save_all",
+            "description": "Save all images (default for movie formats)",
+            "id": "SAVE_ALL",
+            "name": "SAVE_ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_ALL]"
+        },
+        {
+            "command-line-flag": "-cwd",
+            "description": "Set ABSPATH as SUMA's working directory. This path is used for storing output files or loading dsets. + Example recorder_cont (assumes there is a recorder window) currently open from SUMA. ------------------------------------- DriveSuma -com  recorder_cont -save_as allanimgif.agif \\ -com  recorder_cont -save_as lastone.jpg -save_last \\ -com  recorder_cont -save_as three.jpg -save_index 3 \\ -com  recorder_cont -save_as some.png -save_range 3 6  o object_cont: Apply settings to object controller. o surf_cont: Apply settings to surface controller. Note that for most cases, the use of object_cont and surf_cont is interchangeable. + Optional parameters for action surf_cont: (Parameter names reflect GUI labels.)",
+            "id": "CWD",
+            "name": "CWD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CWD]"
+        },
+        {
+            "command-line-flag": "-load_dset",
+            "description": "Load a dataset ! NOTE: When using -load_dset you can follow it with -surf_label in order to attach the dataset to a particular target surface.",
+            "id": "LOAD_DSET",
+            "name": "LOAD_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOAD_DSET]"
+        },
+        {
+            "command-line-flag": "-view_surf",
+            "description": "-view_surf y/n: Show or hide surface S_LABEL",
+            "id": "VIEW_SURF",
+            "name": "VIEW_SURF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEW_SURF]"
+        },
+        {
+            "command-line-flag": "-RenderMode",
+            "description": "-RenderMode V/F/L/P/H: Set the render mode for surface S_LABEL.",
+            "id": "RENDERMODE",
+            "name": "RENDERMODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RENDERMODE]"
+        },
+        {
+            "command-line-flag": "-TransMode",
+            "description": "-TransMode V/0/../16: Set the transparency mode for surface S_LABEL.",
+            "id": "TRANSMODE",
+            "name": "TRANSMODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TRANSMODE]"
+        },
+        {
+            "command-line-flag": "-load_col",
+            "description": "Load a colorfile named COL. Similar to what one loads under SUMA-->ctrl+s-->Load Col COL contains 4 columns, of the following format: n r g b where n is the node index and r g b are thre flooat values between 0 and 1 specifying the color of each node.",
+            "id": "LOAD_COL",
+            "name": "LOAD_COL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOAD_COL]"
+        },
+        {
+            "command-line-flag": "-view_object_cont",
+            "description": "-view_object_cont y/n: View object controller",
+            "id": "VIEW_OBJECT_CONT",
+            "name": "VIEW_OBJECT_CONT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEW_OBJECT_CONT]"
+        },
+        {
+            "command-line-flag": "-masks",
+            "description": "Equivalent of pressing 'Masks' in tract controller",
+            "id": "MASKS",
+            "name": "MASKS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASKS]"
+        },
+        {
+            "command-line-flag": "-2xmasks",
+            "description": "Equivalent of pressing 'Masks' twice in tract controller",
+            "id": "2XMASKS",
+            "name": "2XMASKS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[2XMASKS]"
+        },
+        {
+            "command-line-flag": "-delete_all_masks",
+            "description": "Well, delete all the masks.",
+            "id": "DELETE_ALL_MASKS",
+            "name": "DELETE_ALL_MASKS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DELETE_ALL_MASKS]"
+        },
+        {
+            "command-line-flag": "-load_masks",
+            "description": "Equivalent of pressing 'Load Masks' in masks controller",
+            "id": "LOAD_MASKS",
+            "name": "LOAD_MASKS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOAD_MASKS]"
+        },
+        {
+            "command-line-flag": "-save_masks",
+            "description": "Equivalent of pressing 'Save Masks' in masks controller",
+            "id": "SAVE_MASKS",
+            "name": "SAVE_MASKS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_MASKS]"
+        },
+        {
+            "command-line-flag": "-switch_surf",
+            "description": "switch state to that of surface labeled S_LABEL and make that surface be in focus.",
+            "id": "SWITCH_SURF",
+            "name": "SWITCH_SURF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SWITCH_SURF]"
+        },
+        {
+            "command-line-flag": "-switch_dset",
+            "description": "switch dataset to DSET",
+            "id": "SWITCH_DSET",
+            "name": "SWITCH_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SWITCH_DSET]"
+        },
+        {
+            "command-line-flag": "-view_dset",
+            "description": "-view_dset y/n: Set view toggle button of DSET",
+            "id": "VIEW_DSET",
+            "name": "VIEW_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VIEW_DSET]"
+        },
+        {
+            "command-line-flag": "-1_only",
+            "description": "-1_only y/n: Set 1_only toggle button of DSET",
+            "id": "1_ONLY",
+            "name": "1_ONLY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1_ONLY]"
+        },
+        {
+            "command-line-flag": "-switch_cmap",
+            "description": "switch colormap to CMAP",
+            "id": "SWITCH_CMAP",
+            "name": "SWITCH_CMAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SWITCH_CMAP]"
+        },
+        {
+            "command-line-flag": "-switch_cmode",
+            "description": "switch color mapping mode to CMODE",
+            "id": "SWITCH_CMODE",
+            "name": "SWITCH_CMODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SWITCH_CMODE]"
+        },
+        {
+            "command-line-flag": "-load_cmap",
+            "description": "-load_cmap CMAP.1D.cmap: load and switch colormap in file CMAP.1D.cmap",
+            "id": "LOAD_CMAP",
+            "name": "LOAD_CMAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOAD_CMAP]"
+        },
+        {
+            "command-line-flag": "-I_sb",
+            "description": "Switch intensity to ISBth column (sub-brick)",
+            "id": "I_SB",
+            "name": "I_SB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I_SB]"
+        },
+        {
+            "command-line-flag": "-I_range",
+            "description": "set intensity range from IR0 to IR1. If only one number is given, the range is symmetric from -|IR0| to |IR0|.",
+            "id": "I_RANGE",
+            "name": "I_RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I_RANGE]"
+        },
+        {
+            "command-line-flag": "-shw_0",
+            "description": "-shw_0 y/n      or",
+            "id": "SHW_0",
+            "name": "SHW_0",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHW_0]"
+        },
+        {
+            "command-line-flag": "-show_0",
+            "description": "-show_0 y/n: Set shw 0 toggle button of DSET.",
+            "id": "SHOW_0",
+            "name": "SHOW_0",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_0]"
+        },
+        {
+            "command-line-flag": "-Dsp",
+            "description": "Set the viewing mode of the current DSET. MODE is one of XXX, Con, Col, or 'C&C' (single quotes necessary for 'C&C' MODE). This is equivalent to setting the 'Dsp' menu button in the surface controller. The option is applied to the current DSET on the selected surface.",
+            "id": "DSP",
+            "name": "DSP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSP]"
+        },
+        {
+            "command-line-flag": "-T_sb",
+            "description": "Switch threshold to TSBth column (sub-brick) Set TSB to -1 to turn off thresholding.",
+            "id": "T_SB",
+            "name": "T_SB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T_SB]"
+        },
+        {
+            "command-line-flag": "-T_val",
+            "description": "Set threshold to THR",
+            "id": "T_VAL",
+            "name": "T_VAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T_VAL]"
+        },
+        {
+            "command-line-flag": "-B_sb",
+            "description": "Switch brightness modulation to BSBth column (sub-brick)",
+            "id": "B_SB",
+            "name": "B_SB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[B_SB]"
+        },
+        {
+            "command-line-flag": "-B_range",
+            "description": "set brightness clamping range from BR0 to BR1. If only one number is given, the range is symmetric from -|BR0| to |BR0|.",
+            "id": "B_RANGE",
+            "name": "B_RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[B_RANGE]"
+        },
+        {
+            "command-line-flag": "-B_scale",
+            "description": "Modulate brightness by BS0 factor for BR0 or lower by BS1 factor for BR1 or higher, and linearly interpolate scaling for BR0 < values < BR1",
+            "id": "B_SCALE",
+            "name": "B_SCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[B_SCALE]"
+        },
+        {
+            "command-line-flag": "-Dim",
+            "description": "Set the dimming factor.",
+            "id": "DIM",
+            "name": "DIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIM]"
+        },
+        {
+            "command-line-flag": "-Opa",
+            "description": "Set the opacity factor.",
+            "id": "OPA",
+            "name": "OPA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OPA]"
+        },
+        {
+            "command-line-flag": "-Clst",
+            "description": "Set the clustering parameters",
+            "id": "CLST",
+            "name": "CLST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLST]"
+        },
+        {
+            "command-line-flag": "-UseClst",
+            "description": "-UseClst y/n: Turn on/off clustering",
+            "id": "USECLST",
+            "name": "USECLST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USECLST]"
+        },
+        {
+            "command-line-flag": "-setSUMAenv",
+            "description": "-setSUMAenv \"'ENVname=ENVvalue'\": Set an ENV in SUMA. Note that most SUMA env need to be set at SUMA's launch time. Setting the env from DriveSuma may not achieve what you want, so consider using suma's -setenv instead.",
+            "id": "SETSUMAENV",
+            "name": "SETSUMAENV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SETSUMAENV]"
+        },
+        {
+            "command-line-flag": "-write_surf_cont_help",
+            "description": "-write_surf_cont_help FILE.txt: Write help output for surface controller uses into file FILE.txt (in append mode) Make sure the surface controller is open before you use this command.",
+            "id": "WRITE_SURF_CONT_HELP",
+            "name": "WRITE_SURF_CONT_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_SURF_CONT_HELP]"
+        },
+        {
+            "command-line-flag": "-write_surf_cont_sphinx_help",
+            "description": "-write_surf_cont_sphinx_help FILE.rst: Same as -write_surf_cont_help, but write SPHINX formatted RST file.",
+            "id": "WRITE_SURF_CONT_SPHINX_HELP",
+            "name": "WRITE_SURF_CONT_SPHINX_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_SURF_CONT_SPHINX_HELP]"
+        },
+        {
+            "command-line-flag": "-snap_surf_cont_widgets",
+            "description": "Takes snapshots of various widget groupings and save them under FROOT* Also, in the same vein as -write_surf_cont_help,",
+            "id": "SNAP_SURF_CONT_WIDGETS",
+            "name": "SNAP_SURF_CONT_WIDGETS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SNAP_SURF_CONT_WIDGETS]"
+        },
+        {
+            "command-line-flag": "-write_vol_cont_help",
+            "description": "-write_vol_cont_help",
+            "id": "WRITE_VOL_CONT_HELP",
+            "name": "WRITE_VOL_CONT_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_VOL_CONT_HELP]"
+        },
+        {
+            "command-line-flag": "-write_vol_cont_sphinx_help",
+            "description": "-write_vol_cont_sphinx_help",
+            "id": "WRITE_VOL_CONT_SPHINX_HELP",
+            "name": "WRITE_VOL_CONT_SPHINX_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_VOL_CONT_SPHINX_HELP]"
+        },
+        {
+            "command-line-flag": "-snap_vol_cont_widgets",
+            "description": "-snap_vol_cont_widgets",
+            "id": "SNAP_VOL_CONT_WIDGETS",
+            "name": "SNAP_VOL_CONT_WIDGETS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SNAP_VOL_CONT_WIDGETS]"
+        },
+        {
+            "command-line-flag": "-write_tract_cont_help",
+            "description": "-write_tract_cont_help",
+            "id": "WRITE_TRACT_CONT_HELP",
+            "name": "WRITE_TRACT_CONT_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_TRACT_CONT_HELP]"
+        },
+        {
+            "command-line-flag": "-write_tract_cont_sphinx_help",
+            "description": "-write_tract_cont_sphinx_help",
+            "id": "WRITE_TRACT_CONT_SPHINX_HELP",
+            "name": "WRITE_TRACT_CONT_SPHINX_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_TRACT_CONT_SPHINX_HELP]"
+        },
+        {
+            "command-line-flag": "-snap_tract_cont_widgets",
+            "description": "-snap_tract_cont_widgets",
+            "id": "SNAP_TRACT_CONT_WIDGETS",
+            "name": "SNAP_TRACT_CONT_WIDGETS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SNAP_TRACT_CONT_WIDGETS]"
+        },
+        {
+            "command-line-flag": "-write_mask_cont_help",
+            "description": "-write_mask_cont_help",
+            "id": "WRITE_MASK_CONT_HELP",
+            "name": "WRITE_MASK_CONT_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_MASK_CONT_HELP]"
+        },
+        {
+            "command-line-flag": "-write_mask_cont_sphinx_help",
+            "description": "-write_mask_cont_sphinx_help",
+            "id": "WRITE_MASK_CONT_SPHINX_HELP",
+            "name": "WRITE_MASK_CONT_SPHINX_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_MASK_CONT_SPHINX_HELP]"
+        },
+        {
+            "command-line-flag": "-snap_mask_cont_widgets",
+            "description": "-snap_mask_cont_widgets",
+            "id": "SNAP_MASK_CONT_WIDGETS",
+            "name": "SNAP_MASK_CONT_WIDGETS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SNAP_MASK_CONT_WIDGETS]"
+        },
+        {
+            "command-line-flag": "-write_graph_cont_help",
+            "description": "-write_graph_cont_help",
+            "id": "WRITE_GRAPH_CONT_HELP",
+            "name": "WRITE_GRAPH_CONT_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_GRAPH_CONT_HELP]"
+        },
+        {
+            "command-line-flag": "-write_graph_cont_sphinx_help",
+            "description": "-write_graph_cont_sphinx_help",
+            "id": "WRITE_GRAPH_CONT_SPHINX_HELP",
+            "name": "WRITE_GRAPH_CONT_SPHINX_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_GRAPH_CONT_SPHINX_HELP]"
+        },
+        {
+            "command-line-flag": "-snap_graph_cont_widgets",
+            "description": "-snap_graph_cont_widgets",
+            "id": "SNAP_GRAPH_CONT_WIDGETS",
+            "name": "SNAP_GRAPH_CONT_WIDGETS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SNAP_GRAPH_CONT_WIDGETS]"
+        },
+        {
+            "command-line-flag": "-write_roi_cont_help",
+            "description": "-write_roi_cont_help",
+            "id": "WRITE_ROI_CONT_HELP",
+            "name": "WRITE_ROI_CONT_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_ROI_CONT_HELP]"
+        },
+        {
+            "command-line-flag": "-write_roi_cont_sphinx_help",
+            "description": "-write_roi_cont_sphinx_help",
+            "id": "WRITE_ROI_CONT_SPHINX_HELP",
+            "name": "WRITE_ROI_CONT_SPHINX_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_ROI_CONT_SPHINX_HELP]"
+        },
+        {
+            "command-line-flag": "-snap_roi_cont_widgets",
+            "description": "-snap_roi_cont_widgets",
+            "id": "SNAP_ROI_CONT_WIDGETS",
+            "name": "SNAP_ROI_CONT_WIDGETS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SNAP_ROI_CONT_WIDGETS]"
+        },
+        {
+            "command-line-flag": "-write_suma_cont_help",
+            "description": "-write_suma_cont_help",
+            "id": "WRITE_SUMA_CONT_HELP",
+            "name": "WRITE_SUMA_CONT_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_SUMA_CONT_HELP]"
+        },
+        {
+            "command-line-flag": "-write_suma_cont_sphinx_help",
+            "description": "-write_suma_cont_sphinx_help",
+            "id": "WRITE_SUMA_CONT_SPHINX_HELP",
+            "name": "WRITE_SUMA_CONT_SPHINX_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_SUMA_CONT_SPHINX_HELP]"
+        },
+        {
+            "command-line-flag": "-snap_suma_cont_widgets",
+            "description": "-snap_suma_cont_widgets",
+            "id": "SNAP_SUMA_CONT_WIDGETS",
+            "name": "SNAP_SUMA_CONT_WIDGETS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SNAP_SUMA_CONT_WIDGETS]"
+        },
+        {
+            "command-line-flag": "-write_mouse_keyb_help",
+            "description": "-write_mouse_keyb_help FILE.txt: Write help output for mouse and keyboard shortcuts.",
+            "id": "WRITE_MOUSE_KEYB_HELP",
+            "name": "WRITE_MOUSE_KEYB_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_MOUSE_KEYB_HELP]"
+        },
+        {
+            "command-line-flag": "-write_mouse_keyb_sphinx_help",
+            "description": "-write_mouse_keyb_sphinx_help FILE.rst: Same as -write_mouse_keyb_help , but write SPHINX formatted RST file.",
+            "id": "WRITE_MOUSE_KEYB_SPHINX_HELP",
+            "name": "WRITE_MOUSE_KEYB_SPHINX_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_MOUSE_KEYB_SPHINX_HELP]"
+        },
+        {
+            "command-line-flag": "-write_mouse_cmap_keyb_help",
+            "description": "-write_mouse_cmap_keyb_help FILE.txt: Write help output for mouse and keyboard shortcuts.",
+            "id": "WRITE_MOUSE_CMAP_KEYB_HELP",
+            "name": "WRITE_MOUSE_CMAP_KEYB_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_MOUSE_CMAP_KEYB_HELP]"
+        },
+        {
+            "command-line-flag": "-write_mouse_cmap_keyb_sphinx_help",
+            "description": "-write_mouse_cmap_keyb_sphinx_help FILE.rst: Same as -write_mouse_cmap_keyb_help, but write SPHINX formatted RST file.  + Example surf_cont (assumes all previous examples have been executed and suma is still running). - Obvious chicaneries to follow: -------------------------------- echo 1 0 0 > bbr.1D.cmap; echo 1 1 1 >> bbr.1D.cmap; \\ echo 0 0  1 >> bbr.1D.cmap IsoSurface -shape 4 128 -o_ply blooby.ply quickspec -spec blooby.spec -tn ply blooby.ply SurfaceMetrics -curv -spec blooby.spec \\ -surf_A blooby -prefix blooby DriveSuma -com show_surf -surf_label blooby \\ -i_ply blooby.ply -surf_winding cw \\ -surf_state la_blooby DriveSuma -com surf_cont -load_dset blooby.curv.1D.dset \\ -surf_label blooby -view_surf_cont y DriveSuma -com surf_cont -I_sb 7 -T_sb 8 -T_val 0.0 DriveSuma -com surf_cont -I_range 0.05 -T_sb -1 DriveSuma -com surf_cont -I_sb 8 -I_range -0.1 0.1 \\ -T_val 0.02 -Dim 0.4 DriveSuma -com surf_cont -B_sb 7 -B_range 0.5 -B_scale 0.1 0.9 DriveSuma -com surf_cont -switch_dset Convexity -1_only y DriveSuma -com surf_cont -switch_cmap roi64 -1_only n DriveSuma -com surf_cont -switch_cmode Dir DriveSuma -com surf_cont -view_dset n DriveSuma -com surf_cont -switch_dset blooby.curv.1D.dset \\",
+            "id": "WRITE_MOUSE_CMAP_KEYB_SPHINX_HELP",
+            "name": "WRITE_MOUSE_CMAP_KEYB_SPHINX_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_MOUSE_CMAP_KEYB_SPHINX_HELP]"
+        },
+        {
+            "command-line-flag": "-echo_edu",
+            "description": "Echos the entire command line (without -echo_edu) for edification purposes",
+            "id": "ECHO_EDU",
+            "name": "ECHO_EDU",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO_EDU]"
+        },
+        {
+            "command-line-flag": "-echo_nel_stdout",
+            "description": "Spit out the NIML object being sent to SUMA for",
+            "id": "ECHO_NEL_STDOUT",
+            "name": "ECHO_NEL_STDOUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO_NEL_STDOUT]"
+        },
+        {
+            "command-line-flag": "-echo_nel_stderr",
+            "description": "edification purposes. These two options are meant to help motivate the example in HalloSuma. You need to have SUMA up and listening for this option to take effect. Example: DriveSuma -echo_nel_stdout -com viewer_cont '-key:v28' j",
+            "id": "ECHO_NEL_STDERR",
+            "name": "ECHO_NEL_STDERR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO_NEL_STDERR]"
+        },
+        {
+            "command-line-flag": "-echo_nel",
+            "description": "Write the elements to FILE. You can also use stdout or stderr for FILE.",
+            "id": "ECHO_NEL",
+            "name": "ECHO_NEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO_NEL]"
+        },
+        {
+            "command-line-flag": "-examples",
+            "description": "Show all the sample commands and exit",
+            "id": "EXAMPLES",
+            "name": "EXAMPLES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXAMPLES]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "All the help, in detail. ** NOTE: You should also take a look at scripts @DO.examples and @DriveSuma for examples. Suma's interactive help (ctrl+h) for the kinds of controls you can have with -key option.",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "-help, with slightly less detail",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-help_nido",
+            "description": "Show the help for NIML Displayable Objects and exit. Same as suma -help_nido",
+            "id": "HELP_NIDO",
+            "name": "HELP_NIDO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_NIDO]"
+        },
+        {
+            "command-line-flag": "-C_demo",
+            "description": "execute a preset number of commands which are meant to illustrate how one can communicate with SUMA from one's own C code. Naturally, you'll need to look at the source code file SUMA_DriveSuma.c Example: suma -niml & DriveSuma -C_demo  Specifying input surfaces using -i or -i_TYPE options: -i_TYPE inSurf specifies the input surface, TYPE is one of the following: fs: FreeSurfer surface. If surface name has .asc it is assumed to be in ASCII format. Otherwise it is assumed to be in BINARY_BE (Big Endian) format. Patches in Binary format cannot be read at the moment. sf: SureFit surface. You must specify the .coord followed by the .topo file. vec (or 1D): Simple ascii matrix format. You must specify the coord (NodeList) file followed by the topo (FaceSetList) file. coord contains 3 floats per line, representing X Y Z vertex coordinates. topo contains 3 ints per line, representing v1 v2 v3 triangle vertices. ply: PLY format, ascii or binary. Only vertex and triangulation info is preserved. stl: STL format, ascii or binary. This format of no use for much of the surface-based analyses. Objects are defined as a soup of triangles with no information about which edges they share. STL is only useful for taking surface models to some 3D printing software. mni: MNI .obj format, ascii only. Only vertex, triangulation, and node normals info is preserved. byu: BYU format, ascii. Polygons with more than 3 edges are turned into triangles. bv: BrainVoyager format. Only vertex and triangulation info is preserved. dx: OpenDX ascii mesh format. Only vertex and triangulation info is preserved. Requires presence of 3 objects, the one of class 'field' should contain 2 components 'positions' and 'connections' that point to the two objects containing node coordinates and topology, respectively. gii: GIFTI XML surface format. obj: OBJ file format for triangular meshes only. The following primitives are preserved: v (vertices), (faces, triangles only), and p (points) Note that if the surface filename has the proper extension, it is enough to use the -i option and let the programs guess the type from the extension.  You can also specify multiple surfaces after -i option. This makes it possible to use wildcards on the command line for reading in a bunch of surfaces at once.",
+            "id": "C_DEMO",
+            "name": "C_DEMO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[C_DEMO]"
+        },
+        {
+            "command-line-flag": "-onestate",
+            "description": "Make all -i_* surfaces have the same state, i.e. they all appear at the same time in the viewer. By default, each -i_* surface has its own state. For -onestate to take effect, it must precede all -i options with on the command line.",
+            "id": "ONESTATE",
+            "name": "ONESTATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ONESTATE]"
+        },
+        {
+            "command-line-flag": "-anatomical",
+            "description": "Label all -i surfaces as anatomically correct. Again, this option should precede the -i_* options.  More variants for option -i: ----------------------------- You can also load standard-mesh spheres that are formed in memory with the following notation",
+            "id": "ANATOMICAL",
+            "name": "ANATOMICAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANATOMICAL]"
+        },
+        {
+            "command-line-flag": "-i",
+            "description": "Where NUM is the parameter controlling the mesh density exactly as the parameter -ld linDepth does in CreateIcosahedron. For example: suma -i ld60 create on the fly a surface that is identical to the one produced by: CreateIcosahedron -ld 60 -tosphere",
+            "id": "I",
+            "name": "I",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I]"
+        },
+        {
+            "command-line-flag": "-tn",
+            "description": "specify surface type and name. See below for help on the parameters.",
+            "id": "TN",
+            "name": "TN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TN]"
+        },
+        {
+            "command-line-flag": "-tsn",
+            "description": "specify surface type state and name. TYPE: Choose from the following (case sensitive): 1D: 1D format FS: FreeSurfer ascii format PLY: ply format MNI: MNI obj ascii format BYU: byu format SF: Caret/SureFit format BV: BrainVoyager format GII: GIFTI format NAME: Name of surface file. For SF and 1D formats, NAME is composed of two names the coord file followed by the topo file STATE: State of the surface. Default is S1, S2.... for each surface. Specifying a surface specification (spec) file:",
+            "id": "TSN",
+            "name": "TSN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TSN]"
+        },
+        {
+            "command-line-flag": "-spec",
+            "description": "specify the name of the SPEC file. As with option -i, you can load template spec files with symbolic notation trickery as in: suma -spec MNI_N27 which will load the all the surfaces from template MNI_N27 at the original FreeSurfer mesh density. The string following -spec is formatted in the following manner: HEMI:TEMPLATE:DENSITY where: HEMI specifies a hemisphere. Choose from 'l', 'r', 'lh', 'rh', 'lr', or 'both' which is the default if you do not specify a hemisphere. TEMPLATE: Specify the template name. For now, choose from MNI_N27 if you want surfaces from the MNI_N27 volume, or TT_N27 for the Talairach version. Those templates must be installed under this directory: /root/.afni/data/ If you have no surface templates there, download one of: https://afni.nimh.nih.gov/pub/dist/tgz/suma_MNI_N27.tgz https://afni.nimh.nih.gov/pub/dist/tgz/suma_TT_N27.tgz https://afni.nimh.nih.gov/pub/dist/tgz/suma_MNI152_2009.tgz and untar them under directory /root/.afni/data/ DENSITY: Use if you want to load standard-mesh versions of the template surfaces. Note that only ld20, ld60, ld120, and ld141 are in the current distributed templates. You can create other densities if you wish with MapIcosahedron, but follow the same naming convention to enable SUMA to find them. This parameter is optional. The order in which you specify HEMI, TEMPLATE, and DENSITY, does not matter. For template surfaces, the -sv option is provided automatically, so you can have SUMA talking to AFNI with something like: suma -spec MNI_N27:ld60 & afni -niml /root/.afni/data/suma_MNI_N27  [-novolreg]: Ignore any Rotate, Volreg, Tagalign, or WarpDrive transformations present in the Surface Volume. [-noxform]: Same as -novolreg [-setenv \"'ENVname=ENVvalue'\"]: Set environment variable ENVname to be ENVvalue. Quotes are necessary. Example: suma -setenv \"'SUMA_BackgroundColor = 1 0 1'\" See also options -update_env, -environment, etc in the output of 'suma -help' Common Debugging Options: [-trace]: Turns on In/Out debug and Memory tracing. For speeding up the tracing log, I recommend you redirect stdout to a file when using this option. For example, if you were running suma you would use: suma -spec lh.spec -sv ... > TraceFile This option replaces the old -iodbg and -memdbg. [-TRACE]: Turns on extreme tracing. [-nomall]: Turn off memory tracing. [-yesmall]: Turn on memory tracing (default). NOTE: For programs that output results to stdout (that is to your shell/screen), the debugging info might get mixed up with your results.   Global Options (available to all AFNI/SUMA programs)",
+            "id": "SPEC",
+            "name": "SPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEC]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open help in text editor. AFNI will try to find a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open help in web browser. AFNI will try to find a browser.",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Look for lines in this programs's -help output that match (approximately) WORD.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "command-line-flag": "-h_raw",
+            "description": "Help string unedited",
+            "id": "H_RAW",
+            "name": "H_RAW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_RAW]"
+        },
+        {
+            "command-line-flag": "-h_spx",
+            "description": "Help string in sphinx loveliness, but do not try to autoformat",
+            "id": "H_SPX",
+            "name": "H_SPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_SPX]"
+        },
+        {
+            "command-line-flag": "-h_aspx",
+            "description": "Help string in sphinx with autoformatting of options, etc.",
+            "id": "H_ASPX",
+            "name": "H_ASPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_ASPX]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "Try to identify all options for the program from the output of its -help option. Some options might be missed and others misidentified. Use this output for hints only.   Ziad S. Saad SSCC/NIMH/NIH saadz@mail.nih.gov",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "description": "NA",
+            "id": "program",
+            "name": "program",
+            "optional": false,
+            "type": "String",
+            "value-key": "[PROGRAM]"
+        },
+        {
+            "description": "NA",
+            "id": "to",
+            "name": "to",
+            "optional": false,
+            "type": "String",
+            "value-key": "[TO]"
+        },
+        {
+            "description": "NA",
+            "id": "drive",
+            "name": "drive",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DRIVE]"
+        },
+        {
+            "description": "NA",
+            "id": "suma",
+            "name": "suma",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SUMA]"
+        },
+        {
+            "description": "NA",
+            "id": "from",
+            "name": "from",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FROM]"
+        },
+        {
+            "description": "NA",
+            "id": "command",
+            "name": "command",
+            "optional": false,
+            "type": "String",
+            "value-key": "[COMMAND]"
+        },
+        {
+            "description": "NA",
+            "id": "line.",
+            "name": "line.",
+            "optional": false,
+            "type": "String",
+            "value-key": "[LINE.]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

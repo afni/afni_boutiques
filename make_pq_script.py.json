@@ -1,0 +1,47 @@
+{
+    "command-line": "make_pq_script.py [DATASET] [BRICK_INDEX] [MASK] [OUT.SCRIPT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        },
+        {
+            "description": "NA",
+            "id": "brick_index",
+            "name": "brick_index",
+            "optional": false,
+            "type": "String",
+            "value-key": "[BRICK_INDEX]"
+        },
+        {
+            "description": "NA",
+            "id": "mask",
+            "name": "mask",
+            "optional": false,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "description": "NA",
+            "id": "out.script",
+            "name": "out.script",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUT.SCRIPT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

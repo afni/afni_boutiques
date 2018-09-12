@@ -1,0 +1,224 @@
+{
+    "command-line": "@clip_volume [INPUT] [BELOW] [ABOVE] [LEFT] [RIGHT] [ANTERIOR] [POSTERIOR] [BOX] [MASK_BOX] [AND] [OR] [VERB] [CROP_ALLZERO] [CROP_GREEDY] [CROP] [PREFIX] [FOLLOWERS] [SCRIPT] [TO] [CLIP] [REGIONS] [OF] [A] [VOLUME]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "Volume to clip + At least one of the options below:",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-below",
+            "description": "Set to 0 slices below Zmm Zmm (and all other coordinates) are in RAI as displayed by AFNI on the top left corner of the AFNI controller",
+            "id": "BELOW",
+            "name": "BELOW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BELOW]"
+        },
+        {
+            "command-line-flag": "-above",
+            "description": "Set to 0 slices above Zmm",
+            "id": "ABOVE",
+            "name": "ABOVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ABOVE]"
+        },
+        {
+            "command-line-flag": "-left",
+            "description": "Set to 0 slices left of Xmm",
+            "id": "LEFT",
+            "name": "LEFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LEFT]"
+        },
+        {
+            "command-line-flag": "-right",
+            "description": "Set to 0 slices right of Xmm",
+            "id": "RIGHT",
+            "name": "RIGHT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RIGHT]"
+        },
+        {
+            "command-line-flag": "-anterior",
+            "description": "Set to 0 slices anterior to Ymm",
+            "id": "ANTERIOR",
+            "name": "ANTERIOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANTERIOR]"
+        },
+        {
+            "command-line-flag": "-posterior",
+            "description": "Set to 0 slices posterior to Ymm + Or the box option:",
+            "id": "POSTERIOR",
+            "name": "POSTERIOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POSTERIOR]"
+        },
+        {
+            "command-line-flag": "-box",
+            "description": "Clip the volume to a box centered at Cx, Cy, Cz (RAI mm), and of dimensions Dx Dy Dz (RAI mm)",
+            "id": "BOX",
+            "name": "BOX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BOX]"
+        },
+        {
+            "command-line-flag": "-mask_box",
+            "description": "Same as -box, but set all values inside of box to 1. Example: @clip_volume -mask_box 20.671 -10.016 23.362 10 10 10 \\ -input seg_no_spat.c+orig.BRIK \\ -prefix small_box_volume -crop_greedy  Note: If you are not cropping the output, you might consider using 3dUndump instead.  Optional parameters:",
+            "id": "MASK_BOX",
+            "name": "MASK_BOX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK_BOX]"
+        },
+        {
+            "command-line-flag": "-and",
+            "description": "-and (default): Combine with next clipping planes using 'and'",
+            "id": "AND",
+            "name": "AND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AND]"
+        },
+        {
+            "command-line-flag": "-or",
+            "description": "Combine with next clipping planes using 'or' Note: These two parameters affect the clipping options that come after after them. Unfortunately they are used to build a mask of what is to be kept in the end, rather than what is to be removed, so they can be confusing. A '-and' multiplies the mask by what is to be kept from the next cut, and a '-or' adds to it.",
+            "id": "OR",
+            "name": "OR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OR]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Verbose, show command",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-crop_allzero",
+            "description": "Crop the output volume with 3dAutobox -noclust This would keep 3dAutobox from removing any slices unless they are all zeros",
+            "id": "CROP_ALLZERO",
+            "name": "CROP_ALLZERO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CROP_ALLZERO]"
+        },
+        {
+            "command-line-flag": "-crop_greedy",
+            "description": "Crop the output volume with 3dAutobox In addition to what you specified for cropping, slices with a few non zero voxels might also get chopped off by 3dAutobox",
+            "id": "CROP_GREEDY",
+            "name": "CROP_GREEDY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CROP_GREEDY]"
+        },
+        {
+            "command-line-flag": "-crop",
+            "description": "Same as -crop_greedy, kept for backward compatibility",
+            "id": "CROP",
+            "name": "CROP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CROP]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use PRFX for output prefix. Default is the input prefix with _clp suffixed to it.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-followers",
+            "description": "-followers DSET1 DSET2 ...: Apply the same treatment to the follower datasets. Note that cropped or clipped versions are all named automatically by affixing _clp to their prefix.  Example: @clip_volume -below -30 -above 53 -left 20 -right -13 -anterior -15 \\ -posterior 42 -input ABanat+orig. -verb -prefix sample  Written by Ziad S. Saad (saadz@mail.nih.gov) SSCC/NIMH/NIH/DHHS",
+            "id": "FOLLOWERS",
+            "name": "FOLLOWERS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FOLLOWERS]"
+        },
+        {
+            "description": "NA",
+            "id": "script",
+            "name": "script",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SCRIPT]"
+        },
+        {
+            "description": "NA",
+            "id": "to",
+            "name": "to",
+            "optional": false,
+            "type": "String",
+            "value-key": "[TO]"
+        },
+        {
+            "description": "NA",
+            "id": "clip",
+            "name": "clip",
+            "optional": false,
+            "type": "String",
+            "value-key": "[CLIP]"
+        },
+        {
+            "description": "NA",
+            "id": "regions",
+            "name": "regions",
+            "optional": false,
+            "type": "String",
+            "value-key": "[REGIONS]"
+        },
+        {
+            "description": "NA",
+            "id": "of",
+            "name": "of",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OF]"
+        },
+        {
+            "description": "NA",
+            "id": "a",
+            "name": "a",
+            "optional": false,
+            "type": "String",
+            "value-key": "[A]"
+        },
+        {
+            "description": "NA",
+            "id": "volume",
+            "name": "volume",
+            "optional": false,
+            "type": "String",
+            "value-key": "[VOLUME]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

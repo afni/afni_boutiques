@@ -1,0 +1,661 @@
+{
+    "command-line": "3dmerge [1THTOIN] [2THTOIN] [1NONEG] [1ABS] [1CLIP] [2CLIP] [1UCLIP] [2UCLIP] [1THRESH] [2THRESH] [1BLUR_SIGMA] [1BLUR_RMS] [1BLUR_FWHM] [T1BLUR_SIGMA] [T1BLUR_RMS] [T1BLUR_FWHM] [1ZVOL] [DXYZ] [1CLUST] [1CLUST_MEAN] [1CLUST_MAX] [1CLUST_AMAX] [1CLUST_SMAX] [1CLUST_SIZE] [1CLUST_ORDER] [1CLUST_DEPTH] [ISOVALUE] [ISOMERGE] [1ERODE] [1DILATE] [1FILTER_MEAN] [1FILTER_NZMEAN] [1FILTER_MAX] [1FILTER_AMAX] [1FILTER_SMAX] [1FILTER_AVER] [T1FILTER_MEAN] [T1FILTER_NZMEAN] [T1FILTER_MAX] [T1FILTER_AMAX] [T1FILTER_SMAX] [T1FILTER_AVER] [1MULT] [1ZSCORE] [NOZERO] [DATUM] [KEEPTHR] [DOALL] [QUIET] [1DINDEX] [1TINDEX] [1FMASK] [1FILTER_EXPR] [1FILTER_BLUR] [1FILTER_WINSOR] [1RANK] [GMEAN] [GNZMEAN] [GMAX] [GAMAX] [GSMAX] [GCOUNT] [GORDER] [GFISHER] [NSCALE] [TGFISHER] [GHITS] [GCLUST] [SESSION] [PREFIX] [DATASETS] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-1thtoin",
+            "description": "Copy threshold data over intensity data. This is only valid for datasets with some thresholding statistic attached.  All subsequent operations apply to this substituted data.",
+            "id": "1THTOIN",
+            "name": "1THTOIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1THTOIN]"
+        },
+        {
+            "command-line-flag": "-2thtoin",
+            "description": "The same as -1thtoin, but do NOT scale the threshold values from shorts to floats when processing.  This option is only provided for compatibility with the earlier versions of the AFNI package '3d*' programs.",
+            "id": "2THTOIN",
+            "name": "2THTOIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[2THTOIN]"
+        },
+        {
+            "command-line-flag": "-1noneg",
+            "description": "Zero out voxels with negative intensities",
+            "id": "1NONEG",
+            "name": "1NONEG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1NONEG]"
+        },
+        {
+            "command-line-flag": "-1abs",
+            "description": "Take absolute values of intensities",
+            "id": "1ABS",
+            "name": "1ABS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1ABS]"
+        },
+        {
+            "command-line-flag": "-1clip",
+            "description": "Clip intensities in range (-val,val) to zero",
+            "id": "1CLIP",
+            "name": "1CLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1CLIP]"
+        },
+        {
+            "command-line-flag": "-2clip",
+            "description": "Clip intensities in range (v1,v2) to zero",
+            "id": "2CLIP",
+            "name": "2CLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[2CLIP]"
+        },
+        {
+            "command-line-flag": "-1uclip",
+            "description": "These options are like the above, but do not apply",
+            "id": "1UCLIP",
+            "name": "1UCLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1UCLIP]"
+        },
+        {
+            "command-line-flag": "-2uclip",
+            "description": "-2uclip v1 v2        any automatic scaling factor that may be attached to the data.  These are for use only in special circumstances.  (The 'u' means 'unscaled'.  Program '3dinfo' can be used to find the scaling factors.) N.B.: Only one of these 'clip' options can be used; you cannot combine them to have multiple clipping executed.",
+            "id": "2UCLIP",
+            "name": "2UCLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[2UCLIP]"
+        },
+        {
+            "command-line-flag": "-1thresh",
+            "description": "Use the threshold data to censor the intensities (only valid for 'fith', 'fico', or 'fitt' datasets) (or if the threshold sub-brick is set via -1tindex) N.B.: The value 'thr' is floating point, in the range 0.0 < thr < 1.0  for 'fith' and 'fico' datasets, and 0.0 < thr < 32.7 for 'fitt' datasets.",
+            "id": "1THRESH",
+            "name": "1THRESH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1THRESH]"
+        },
+        {
+            "command-line-flag": "-2thresh",
+            "description": "Zero out voxels where the threshold sub-brick value lies between 't1' and 't2' (exclusive).  If t1=-t2, is the same as '-1thresh t2'.",
+            "id": "2THRESH",
+            "name": "2THRESH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[2THRESH]"
+        },
+        {
+            "command-line-flag": "-1blur_sigma",
+            "description": "Gaussian blur with sigma = bmm (in mm)",
+            "id": "1BLUR_SIGMA",
+            "name": "1BLUR_SIGMA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1BLUR_SIGMA]"
+        },
+        {
+            "command-line-flag": "-1blur_rms",
+            "description": "Gaussian blur with rms deviation = bmm",
+            "id": "1BLUR_RMS",
+            "name": "1BLUR_RMS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1BLUR_RMS]"
+        },
+        {
+            "command-line-flag": "-1blur_fwhm",
+            "description": "Gaussian blur with FWHM = bmm",
+            "id": "1BLUR_FWHM",
+            "name": "1BLUR_FWHM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1BLUR_FWHM]"
+        },
+        {
+            "command-line-flag": "-t1blur_sigma",
+            "description": "Gaussian blur of threshold with sigma = bmm(in mm)",
+            "id": "T1BLUR_SIGMA",
+            "name": "T1BLUR_SIGMA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T1BLUR_SIGMA]"
+        },
+        {
+            "command-line-flag": "-t1blur_rms",
+            "description": "Gaussian blur of threshold with rms deviation = bmm",
+            "id": "T1BLUR_RMS",
+            "name": "T1BLUR_RMS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T1BLUR_RMS]"
+        },
+        {
+            "command-line-flag": "-t1blur_fwhm",
+            "description": "Gaussian blur of threshold with FWHM = bmm",
+            "id": "T1BLUR_FWHM",
+            "name": "T1BLUR_FWHM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T1BLUR_FWHM]"
+        },
+        {
+            "command-line-flag": "-1zvol",
+            "description": "-1zvol x1 x2 y1 y2 z1 z2 = Zero out entries inside the 3D volume defined by x1 <= x <= x2, y1 <= y <= y2, z1 <= z <= z2 ; N.B.: The ranges of x,y,z in a dataset can be found using the '3dinfo' program. Dimensions are in mm. N.B.: This option may not work correctly at this time, but I've not figured out why!  CLUSTERING",
+            "id": "1ZVOL",
+            "name": "1ZVOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1ZVOL]"
+        },
+        {
+            "command-line-flag": "-dxyz",
+            "description": "= In the cluster editing options, the spatial clusters are defined by connectivity in true 3D distance, using the voxel dimensions recorded in the dataset header. This option forces the cluster editing to behave as if all 3 voxel dimensions were set to 1 mm.  In this case, 'rmm' is then the max number of grid cells apart voxels can be to be considered directly connected, and 'vmul' is the min number of voxels to keep in the cluster. N.B.: The '=1' is part of the option string, and can't be replaced by some other value.  If you MUST have some other value for voxel dimensions, use program 3drefit.  The following cluster options are mutually exclusive:",
+            "id": "DXYZ",
+            "name": "DXYZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DXYZ]"
+        },
+        {
+            "command-line-flag": "-1clust",
+            "description": "Form clusters with connection distance rmm and clip off data not in clusters of volume at least vmul microliters",
+            "id": "1CLUST",
+            "name": "1CLUST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1CLUST]"
+        },
+        {
+            "command-line-flag": "-1clust_mean",
+            "description": "Same as -1clust, but all voxel intensities within a cluster are replaced by the average intensity of the cluster.",
+            "id": "1CLUST_MEAN",
+            "name": "1CLUST_MEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1CLUST_MEAN]"
+        },
+        {
+            "command-line-flag": "-1clust_max",
+            "description": "Same as -1clust, but all voxel intensities within a cluster are replaced by the maximum intensity of the cluster.",
+            "id": "1CLUST_MAX",
+            "name": "1CLUST_MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1CLUST_MAX]"
+        },
+        {
+            "command-line-flag": "-1clust_amax",
+            "description": "Same as -1clust, but all voxel intensities within a cluster are replaced by the maximum absolute intensity of the cluster.",
+            "id": "1CLUST_AMAX",
+            "name": "1CLUST_AMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1CLUST_AMAX]"
+        },
+        {
+            "command-line-flag": "-1clust_smax",
+            "description": "Same as -1clust, but all voxel intensities within a cluster are replaced by the maximum signed intensity of the cluster.",
+            "id": "1CLUST_SMAX",
+            "name": "1CLUST_SMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1CLUST_SMAX]"
+        },
+        {
+            "command-line-flag": "-1clust_size",
+            "description": "Same as -1clust, but all voxel intensities within a cluster are replaced by the size of the cluster (in multiples of vmul).",
+            "id": "1CLUST_SIZE",
+            "name": "1CLUST_SIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1CLUST_SIZE]"
+        },
+        {
+            "command-line-flag": "-1clust_order",
+            "description": "Same as -1clust, but all voxel intensities within a cluster are replaced by the cluster size index (largest cluster=1, next=2, ...).",
+            "id": "1CLUST_ORDER",
+            "name": "1CLUST_ORDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1CLUST_ORDER]"
+        },
+        {
+            "command-line-flag": "-1clust_depth",
+            "description": "Same as -1clust, but all voxel intensities are replaced by the number of peeling operations needed to remove them from the cluster. That number is an indication of how deep a voxel is inside a cluster",
+            "id": "1CLUST_DEPTH",
+            "name": "1CLUST_DEPTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1CLUST_DEPTH]"
+        },
+        {
+            "command-line-flag": "-isovalue",
+            "description": "Clusters will be formed only from contiguous (in the rmm sense) voxels that also have the same value.  N.B.:  The normal method is to cluster all contiguous nonzero voxels together.",
+            "id": "ISOVALUE",
+            "name": "ISOVALUE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ISOVALUE]"
+        },
+        {
+            "command-line-flag": "-isomerge",
+            "description": "Clusters will be formed from each distinct value in the dataset; spatial contiguity will not be used (but you still have to supply rmm and vmul on the command line).  N.B.:  'Clusters' formed this way may well have components that are widely separated!  * If rmm is given as 0, this means to use the 6 nearest neighbors to form clusters of nonzero voxels. * If vmul is given as zero, then all cluster sizes will be accepted (probably not very useful!). * If vmul is given as negative, then abs(vmul) is the minimum number of voxels to keep.  The following commands produce erosion and dilation of 3D clusters. These commands assume that one of the -1clust commands has been used. The purpose is to avoid forming strange clusters with 2 (or more) main bodies connected by thin 'necks'.  Erosion can cut off the neck. Dilation will minimize erosion of the main bodies. Note:  Manipulation of values inside a cluster (-1clust commands) occurs AFTER the following two commands have been executed.",
+            "id": "ISOMERGE",
+            "name": "ISOMERGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ISOMERGE]"
+        },
+        {
+            "command-line-flag": "-1erode",
+            "description": "-1erode pv    For each voxel, set the intensity to zero unless pv % of the voxels within radius rmm are nonzero.",
+            "id": "1ERODE",
+            "name": "1ERODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1ERODE]"
+        },
+        {
+            "command-line-flag": "-1dilate",
+            "description": "-1dilate      Restore voxels that were removed by the previous command if there remains a nonzero voxel within rmm.  The following filter options are mutually exclusive:",
+            "id": "1DILATE",
+            "name": "1DILATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1DILATE]"
+        },
+        {
+            "command-line-flag": "-1filter_mean",
+            "description": "Set each voxel to the average intensity of the voxels within a radius of rmm.",
+            "id": "1FILTER_MEAN",
+            "name": "1FILTER_MEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1FILTER_MEAN]"
+        },
+        {
+            "command-line-flag": "-1filter_nzmean",
+            "description": "Set each voxel to the average intensity of the non-zero voxels within a radius of rmm.",
+            "id": "1FILTER_NZMEAN",
+            "name": "1FILTER_NZMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1FILTER_NZMEAN]"
+        },
+        {
+            "command-line-flag": "-1filter_max",
+            "description": "Set each voxel to the maximum intensity of the voxels within a radius of rmm.",
+            "id": "1FILTER_MAX",
+            "name": "1FILTER_MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1FILTER_MAX]"
+        },
+        {
+            "command-line-flag": "-1filter_amax",
+            "description": "Set each voxel to the maximum absolute intensity of the voxels within a radius of rmm.",
+            "id": "1FILTER_AMAX",
+            "name": "1FILTER_AMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1FILTER_AMAX]"
+        },
+        {
+            "command-line-flag": "-1filter_smax",
+            "description": "Set each voxel to the maximum signed intensity of the voxels within a radius of rmm.",
+            "id": "1FILTER_SMAX",
+            "name": "1FILTER_SMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1FILTER_SMAX]"
+        },
+        {
+            "command-line-flag": "-1filter_aver",
+            "description": "Same idea as '_mean', but implemented using a new code that should be faster.  The following threshold filter options are mutually exclusive:",
+            "id": "1FILTER_AVER",
+            "name": "1FILTER_AVER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1FILTER_AVER]"
+        },
+        {
+            "command-line-flag": "-t1filter_mean",
+            "description": "Set each correlation or threshold voxel to the average of the voxels within a radius of rmm.",
+            "id": "T1FILTER_MEAN",
+            "name": "T1FILTER_MEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T1FILTER_MEAN]"
+        },
+        {
+            "command-line-flag": "-t1filter_nzmean",
+            "description": "Set each correlation or threshold voxel to the average of the non-zero voxels within a radius of rmm.",
+            "id": "T1FILTER_NZMEAN",
+            "name": "T1FILTER_NZMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T1FILTER_NZMEAN]"
+        },
+        {
+            "command-line-flag": "-t1filter_max",
+            "description": "Set each correlation or threshold voxel to the maximum of the voxels within a radius of rmm.",
+            "id": "T1FILTER_MAX",
+            "name": "T1FILTER_MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T1FILTER_MAX]"
+        },
+        {
+            "command-line-flag": "-t1filter_amax",
+            "description": "Set each correlation or threshold voxel to the maximum absolute intensity of the voxels within a radius of rmm.",
+            "id": "T1FILTER_AMAX",
+            "name": "T1FILTER_AMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T1FILTER_AMAX]"
+        },
+        {
+            "command-line-flag": "-t1filter_smax",
+            "description": "Set each correlation or threshold voxel to the maximum signed intensity of the voxels within a radius of rmm.",
+            "id": "T1FILTER_SMAX",
+            "name": "T1FILTER_SMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T1FILTER_SMAX]"
+        },
+        {
+            "command-line-flag": "-t1filter_aver",
+            "description": "Same idea as '_mean', but implemented using a new code that should be faster.",
+            "id": "T1FILTER_AVER",
+            "name": "T1FILTER_AVER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T1FILTER_AVER]"
+        },
+        {
+            "command-line-flag": "-1mult",
+            "description": "Multiply intensities by the given factor",
+            "id": "1MULT",
+            "name": "1MULT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1MULT]"
+        },
+        {
+            "command-line-flag": "-1zscore",
+            "description": "If the sub-brick is labeled as a statistic from a known distribution, it will be converted to an equivalent N(0,1) deviate (or 'z score'). If the sub-brick is not so labeled, nothing will be done.  The above '-1' options are carried out in the order given above, regardless of the order in which they are entered on the command line.  N.B.: The 3 '-1blur' options just provide different ways of specifying the radius used for the blurring function. The relationships among these specifications are sigma = 0.57735027 * rms = 0.42466090 * fwhm The requisite convolutions are done using FFTs; this is by far the slowest operation among the editing options.  OTHER OPTIONS:",
+            "id": "1ZSCORE",
+            "name": "1ZSCORE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1ZSCORE]"
+        },
+        {
+            "command-line-flag": "-nozero",
+            "description": "Do NOT write the output dataset if it would be all zero.",
+            "id": "NOZERO",
+            "name": "NOZERO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOZERO]"
+        },
+        {
+            "command-line-flag": "-datum",
+            "description": "Coerce the output data to be stored as the given type, which may be byte, short, or float. N.B.: Byte data cannot be negative.  If this datum type is chosen, any negative values in the edited and/or merged dataset will be set to zero.",
+            "id": "DATUM",
+            "name": "DATUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATUM]"
+        },
+        {
+            "command-line-flag": "-keepthr",
+            "description": "When using 3dmerge to edit exactly one dataset of a functional type with a threshold statistic attached, normally the resulting dataset is of the 'fim' (intensity only) type.  This option tells 3dmerge to copy the threshold data (unedited in any way) into the output dataset. N.B.: This option is ignored if 3dmerge is being used to combine 2 or more datasets. N.B.: The -datum option has no effect on the storage of the threshold data.  Instead use '-thdatum type'.",
+            "id": "KEEPTHR",
+            "name": "KEEPTHR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEPTHR]"
+        },
+        {
+            "command-line-flag": "-doall",
+            "description": "Apply editing and merging options to ALL sub-bricks uniformly in a dataset. N.B.: All input datasets must have the same number of sub-bricks when using the -doall option. N.B.: The threshold specific options (such as -1thresh, -keepthr, -tgfisher, etc.) are not compatible with the -doall command.  Neither are the -1dindex or the -1tindex options. N.B.: All labels and statistical parameters for individual sub-bricks are copied from the first dataset.  It is the responsibility of the user to verify that these are appropriate.  Note that sub-brick auxiliary data can be modified using program 3drefit.",
+            "id": "DOALL",
+            "name": "DOALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOALL]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "Reduce the number of messages shown",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-1dindex",
+            "description": "Uses sub-brick #j as the data source , and uses sub-brick",
+            "id": "1DINDEX",
+            "name": "1DINDEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1DINDEX]"
+        },
+        {
+            "command-line-flag": "-1tindex",
+            "description": "#k as the threshold source.  With these, you can operate on any given sub-brick of the inputs dataset(s) to produce as output a 1 brick dataset.  If desired, a collection of 1 brick datasets can later be assembled into a multi-brick bucket dataset using program '3dbucket' or into a 3D+time dataset using program '3dTcat'. N.B.: If these options aren't used, j=0 and k=1 are the defaults  The following option allows you to specify a mask dataset that limits the action of the 'filter' options to voxels that are nonzero in the mask:",
+            "id": "1TINDEX",
+            "name": "1TINDEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1TINDEX]"
+        },
+        {
+            "command-line-flag": "-1fmask",
+            "description": "Read dataset 'mset' (which can include a sub-brick specifier) and use the nonzero voxels as a mask for the filter options. Filtering calculations will not use voxels that are outside the mask.  If an output voxel does not have ANY masked voxels inside the rmm radius, then that output voxel will be set to 0. N.B.: * Only the -1filter_* and -t1filter_* options are affected by -1fmask. * Voxels NOT in the fmask will be set to zero in the output when the filtering occurs.  THIS IS NEW BEHAVIOR, as of 11 Oct 2007.  Previously, voxels not in the fmask, but within 'rmm' of a voxel in the mask, would get a nonzero output value, as those nearby voxels would be combined (via whatever '-1f...' option was given). * If you wish to restore this old behavior, where non-fmask voxels can get nonzero output, then use the new option '-1fm_noclip' in addition to '-1fmask'. The two comments below apply to the case where '-1fm_noclip' is given! * In the linear averaging filters (_mean, _nzmean, and _expr), voxels not in the mask will not be used or counted in either the numerator or denominator. This can give unexpected results if you use '-1fm_noclip'. For example, if the mask is designed to exclude the volume outside the brain, then voxels exterior to the brain, but within 'rmm', will have a few voxels inside the brain included in the filtering.  Since the sum of weights (the denominator) is only over those few intra-brain voxels, the effect will be to extend the significant part of the result outward by rmm from the surface of the brain.  In contrast, without the mask, the many small-valued voxels outside the brain would be included in the numerator and denominator sums, which would barely change the numerator (since the voxel values are small outside the brain), but would increase the denominator greatly (by including many more weights).  The effect in this case (no -1fmask) is to make the filtering taper off gradually in the rmm-thickness shell around the brain. * Thus, if the -1fmask is intended to clip off non-brain data from the filtering, its use should be followed by masking operation using 3dcalc: 3dmerge -1filter_aver 12 -1fm_noclip -1fmask mask+orig -prefix x input+orig 3dcalc  -a x -b mask+orig -prefix y -expr 'a*step(b)' rm -f x+orig.* The desired result is y+orig - filtered using only brain voxels (as defined by mask+orig), and with the output confined to the brain voxels as well.  The following option allows you to specify an almost arbitrary weighting function for 3D linear filtering:",
+            "id": "1FMASK",
+            "name": "1FMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1FMASK]"
+        },
+        {
+            "command-line-flag": "-1filter_expr",
+            "description": "-1filter_expr rmm expr Defines a linear filter about each voxel of radius 'rmm' mm. The filter weights are proportional to the expression evaluated at each voxel offset in the rmm neighborhood.  You can use only these symbols in the expression: r = radius from center x = dataset x-axis offset from center y = dataset y-axis offset from center z = dataset z-axis offset from center i = x-axis index offset from center j = y-axis index offset from center k = z-axis index offset from center Example:",
+            "id": "1FILTER_EXPR",
+            "name": "1FILTER_EXPR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1FILTER_EXPR]"
+        },
+        {
+            "command-line-flag": "-1filter_blur",
+            "description": "-1filter_blur fwhm which is equivalent to",
+            "id": "1FILTER_BLUR",
+            "name": "1FILTER_BLUR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1FILTER_BLUR]"
+        },
+        {
+            "command-line-flag": "-1filter_winsor",
+            "description": "-1filter_winsor rmm nw The data values within the radius rmm of each voxel are sorted. Suppose there are 'N' voxels in this group.  We index the sorted voxels as s[0] <= s[1] <= ... <= s[N-1], and we call the value of the central voxel 'v' (which is also in array s[]). If v < s[nw]    , then v is replaced by s[nw] otherwise If v > s[N-1-nw], then v is replace by s[N-1-nw] otherwise v is unchanged The effect is to increase 'too small' values up to some middling range, and to decrease 'too large' values. If N is odd, and nw=(N-1)/2, this would be a median filter. In practice, I recommend that nw be about N/4; for example,",
+            "id": "1FILTER_WINSOR",
+            "name": "1FILTER_WINSOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1FILTER_WINSOR]"
+        },
+        {
+            "command-line-flag": "-1rank",
+            "description": "-1rank If the input voxels were, say, 12  45  9  0  9  12  0 the output would be             2   3  1  0  1   2  0 This option is handy for turning FreeSurfer's segmentation volumes to ROI volumes that can be easily colorized with AFNI. For example: 3dmerge -1rank -prefix aparc+aseg_rank aparc+aseg.nii To view aparc+aseg_rank+orig, use the ROI_128 colormap and set the colorbar range to 128. The -1rank option also outputs a 1D file that contains the mapping from the input dataset to the ranked output. Sub-brick float factors are ignored.  This option only works on datasets of integral values or of integral data types. 'float' values are typecast to 'int' before being ranked.  See also program 3dRank  MERGING OPTIONS APPLIED TO FORM THE OUTPUT DATASET: [That is, different ways to combine results. The] [following '-g' options are mutually exclusive! ]",
+            "id": "1RANK",
+            "name": "1RANK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1RANK]"
+        },
+        {
+            "command-line-flag": "-gmean",
+            "description": "Combine datasets by averaging intensities (including zeros) -- this is the default",
+            "id": "GMEAN",
+            "name": "GMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GMEAN]"
+        },
+        {
+            "command-line-flag": "-gnzmean",
+            "description": "Combine datasets by averaging intensities (not counting zeros)",
+            "id": "GNZMEAN",
+            "name": "GNZMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GNZMEAN]"
+        },
+        {
+            "command-line-flag": "-gmax",
+            "description": "Combine datasets by taking max intensity (e.g., -7 and 2 combine to 2)",
+            "id": "GMAX",
+            "name": "GMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GMAX]"
+        },
+        {
+            "command-line-flag": "-gamax",
+            "description": "Combine datasets by taking max absolute intensity (e.g., -7 and 2 combine to 7)",
+            "id": "GAMAX",
+            "name": "GAMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GAMAX]"
+        },
+        {
+            "command-line-flag": "-gsmax",
+            "description": "Combine datasets by taking max signed intensity (e.g., -7 and 2 combine to -7)",
+            "id": "GSMAX",
+            "name": "GSMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GSMAX]"
+        },
+        {
+            "command-line-flag": "-gcount",
+            "description": "Combine datasets by counting number of 'hits' in each voxel (see below for defintion of 'hit')",
+            "id": "GCOUNT",
+            "name": "GCOUNT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GCOUNT]"
+        },
+        {
+            "command-line-flag": "-gorder",
+            "description": "Combine datasets in order of input: * If a voxel is nonzero in dataset #1, then that value goes into the voxel. * If a voxel is zero in dataset #1 but nonzero in dataset #2, then the value from #2 is used. * And so forth: the first dataset with a nonzero entry in a given voxel 'wins'",
+            "id": "GORDER",
+            "name": "GORDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GORDER]"
+        },
+        {
+            "command-line-flag": "-gfisher",
+            "description": "Takes the arctanh of each input, averages these, and outputs the tanh of the average.  If the input datum is 'short', then input values are scaled by 0.0001 and output values by 10000.  This option is for merging bricks of correlation coefficients.",
+            "id": "GFISHER",
+            "name": "GFISHER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GFISHER]"
+        },
+        {
+            "command-line-flag": "-nscale",
+            "description": "If the output datum is shorts, don't do the scaling to the max range [similar to 3dcalc's -nscale option]  MERGING OPERATIONS APPLIED TO THE THRESHOLD DATA: [That is, different ways to combine the thresholds.  If none of these ] [are given, the thresholds will not be merged and the output dataset  ] [will not have threshold data attached.  Note that the following '-tg'] [command line options are mutually exclusive, but are independent of  ] [the '-g' options given above for merging the intensity data values.  ]",
+            "id": "NSCALE",
+            "name": "NSCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NSCALE]"
+        },
+        {
+            "command-line-flag": "-tgfisher",
+            "description": "This option is only applicable if each input dataset is of the 'fico' or 'fith' types -- functional intensity plus correlation or plus threshold. (In the latter case, the threshold values are interpreted as correlation coefficients.) The correlation coefficients are averaged as described by -gfisher above, and the output dataset will be of the fico type if all inputs are fico type; otherwise, the output datasets will be of the fith type. N.B.: The difference between the -tgfisher and -gfisher methods is that -tgfisher applies to the threshold data stored with a dataset, while -gfisher applies to the intensity data.  Thus, -gfisher would normally be applied to a dataset created from correlation coefficients directly, or from the application of the -1thtoin option to a fico or fith dataset.  OPTIONAL WAYS TO POSTPROCESS THE COMBINED RESULTS: [May be combined with the above methods.] [Any combination of these options may be used.]",
+            "id": "TGFISHER",
+            "name": "TGFISHER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TGFISHER]"
+        },
+        {
+            "command-line-flag": "-ghits",
+            "description": "Delete voxels that aren't !=0 in at least count datasets (!=0 is a 'hit')",
+            "id": "GHITS",
+            "name": "GHITS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GHITS]"
+        },
+        {
+            "command-line-flag": "-gclust",
+            "description": "Form clusters with connection distance rmm and clip off data not in clusters of volume at least vmul microliters  The '-g' and '-tg' options apply to the entire group of input datasets.  OPTIONS THAT CONTROL THE NAMES OF THE OUTPUT DATASET:",
+            "id": "GCLUST",
+            "name": "GCLUST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GCLUST]"
+        },
+        {
+            "command-line-flag": "-session",
+            "description": "write output into given directory (default=./)",
+            "id": "SESSION",
+            "name": "SESSION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SESSION]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "use 'pname' for the output dataset prefix (default=mrg)  NOTES: **  If only one dataset is read into this program, then the '-g' options do not apply, and the output dataset is simply the '-1' options applied to the input dataset (i.e., edited). **  A merged output dataset is ALWAYS of the intensity-only variety. **  You can combine the outputs of 3dmerge with other sub-bricks using the program 3dbucket. **  Complex-valued datasets cannot be merged. **  This program cannot handle time-dependent datasets without -doall. **  Note that the input datasets are specified by their .HEAD files, but that their .BRIK files must exist also!  INPUT DATASET NAMES ------------------- This program accepts datasets that are modified on input according to the following schemes: 'r1+orig[3..5]'                                    {sub-brick selector} 'r1+orig<100..200>'                                {sub-range selector} 'r1+orig[3..5]<100..200>'                          {both selectors} '3dcalc( -a r1+orig -b r2+orig -expr 0.5*(a+b) )'  {calculation} For the gruesome details, see the output of 'afni -help'.  ** Input datasets using sub-brick selectors are treated as follows: - 3D+time if the dataset is 3D+time and more than 1 brick is chosen - otherwise, as bucket datasets (-abuc or -fbuc) (in particular, fico, fitt, etc. datasets are converted to fbuc) ** If you are NOT using -doall, and choose more than one sub-brick with the selector, then you may need to use -1dindex to further pick out the sub-brick on which to operate (why you would do this I cannot fathom).  If you are also using a thresholding operation (e.g., -1thresh), then you also MUST use -1tindex to choose which sub-brick counts as the 'threshold' value.  When used with sub-brick selection, 'index' refers the dataset AFTER it has been read in: -1dindex 1 -1tindex 3 'dset+orig[4..7]' means to use the #5 sub-brick of dset+orig as the data for merging and the #7 sub-brick of dset+orig as the threshold values. ** The above example would better be done with -1tindex 1 'dset+orig[5,7]' since the default data index is 0. (You would only use -1tindex if you are actually using a thresholding operation.) ** -1dindex and -1tindex apply to all input datasets.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "description": "NA",
+            "id": "datasets",
+            "name": "datasets",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASETS]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

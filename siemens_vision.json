@@ -1,0 +1,40 @@
+{
+    "command-line": "siemens_vision [RENAME] [FILENAME] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-rename",
+            "description": "-rename ppp  which will rename each file to the form 'ppp.nnnn.ima', where 'nnnn' is the image number expressed with 4 digits.  When '-rename' is used, the header info from the input files will not be printed.",
+            "id": "RENAME",
+            "name": "RENAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RENAME]"
+        },
+        {
+            "description": "NA",
+            "id": "filename",
+            "name": "filename",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FILENAME]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

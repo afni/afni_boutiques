@@ -1,0 +1,39 @@
+{
+    "command-line": "@djunct_dwi_selector.tcsh [DWI] [PNG] [OUTFILE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "DWI",
+            "name": "DWI",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DWI]"
+        },
+        {
+            "description": "NA",
+            "id": "PNG",
+            "name": "PNG",
+            "optional": false,
+            "type": "String",
+            "value-key": "[PNG]"
+        },
+        {
+            "description": "NA",
+            "id": "OUTFILE",
+            "name": "OUTFILE",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTFILE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

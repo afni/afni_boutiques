@@ -1,0 +1,90 @@
+{
+    "command-line": "rotcom [X] [Y] [Z] ['-ROTATE] [AAI] [BBR] [CCA] [EEL] [FFP']",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-x",
+            "description": "Right      [and so +x = Left     ]",
+            "id": "X",
+            "name": "X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[X]"
+        },
+        {
+            "command-line-flag": "-y",
+            "description": "Anterior   [    so +y = Posterior]",
+            "id": "Y",
+            "name": "Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Y]"
+        },
+        {
+            "command-line-flag": "-z",
+            "description": "Inferior   [    so +z = Superior ] For example, the output of command rotcom '-rotate 10I 0R 0A' is the 3 lines below: 0.984808 -0.173648  0.000000  0.000 0.173648  0.984808  0.000000  0.000 0.000000  0.000000  1.000000  0.000  -- RWCox - Nov 2002",
+            "id": "Z",
+            "name": "Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Z]"
+        },
+        {
+            "description": "NA",
+            "id": "'-rotate",
+            "name": "'-rotate",
+            "optional": false,
+            "type": "String",
+            "value-key": "['-ROTATE]"
+        },
+        {
+            "description": "NA",
+            "id": "aaI",
+            "name": "aaI",
+            "optional": false,
+            "type": "String",
+            "value-key": "[AAI]"
+        },
+        {
+            "description": "NA",
+            "id": "bbR",
+            "name": "bbR",
+            "optional": false,
+            "type": "String",
+            "value-key": "[BBR]"
+        },
+        {
+            "description": "NA",
+            "id": "ccA",
+            "name": "ccA",
+            "optional": false,
+            "type": "String",
+            "value-key": "[CCA]"
+        },
+        {
+            "description": "NA",
+            "id": "eeL",
+            "name": "eeL",
+            "optional": false,
+            "type": "String",
+            "value-key": "[EEL]"
+        },
+        {
+            "description": "NA",
+            "id": "ffP'",
+            "name": "ffP'",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FFP']"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

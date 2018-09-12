@@ -1,0 +1,112 @@
+{
+    "command-line": "@NoisySkullStrip [INPUT] [3DSKULLSTRIP_OPTS] [KEEP_TMP] [H_WEB] [HWEB] [H_VIEW] [HVIEW] [ALL_OPTS] [H_FIND] [<-INPUT] [ANAT>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "The anatomical dataset Optional parameters:",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-3dSkullStrip_opts",
+            "description": "Anything following this option is passed to 3dSkullStrip",
+            "id": "3DSKULLSTRIP_OPTS",
+            "name": "3DSKULLSTRIP_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[3DSKULLSTRIP_OPTS]"
+        },
+        {
+            "command-line-flag": "-keep_tmp",
+            "description": "Do not erase temporary files at the end.  The script outputs the following: ANAT.ns  : A skull stripped version of ANAT ANAT.air and ANAT.skl: A couple of special masks ANAT.lsp : A volume that is used to threshold 'air' out of the volume to be stripped. @NoisySkullStrip tries to choose a threshold automatically but fails at times. You can set the threshold manually with -lspth and rerun the script to try and get a better result  Do send me feedback on this script's performance.  Global Help Options: --------------------",
+            "id": "KEEP_TMP",
+            "name": "KEEP_TMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_TMP]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open webpage with help for this program",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "Same as -h_web",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open -help output in a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "Same as -hview",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "List all of the options for this script",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Search for lines containing WORD in -help output. Seach is approximate. Ziad S. Saad, March 28 08. saadz@mail.nih.gov",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "description": "NA",
+            "id": "<-input",
+            "name": "<-input",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-INPUT]"
+        },
+        {
+            "description": "NA",
+            "id": "ANAT>",
+            "name": "ANAT>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[ANAT>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

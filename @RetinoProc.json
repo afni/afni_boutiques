@@ -1,0 +1,447 @@
+{
+    "command-line": "@RetinoProc [PHASE] [DELAY] [TR] [PERIOD_ECC] [PERIOD_POL] [PRE_ECC] [PRE_POL] [ON_ECC] [ON_POL] [VAR_ON_ECC] [VAR_ON_POL] [NWEDGES] [NRINGS] [FWHM_POL] [FWHM_ECC] [IGNORE] [NO_TSHIFT] [CCW] [CLW] [EXP] [CON] [EPI_REF] [EPI_ANAT_REF] [NOVR] [NO_VOLREG] [ANAT_VOL] [SURF_VOL] [GM] [WM] [PIAL] [MIDLAYER] [LAYER] [SPEC_LEFT] [SPEC_RIGHT] [LH_CCW] [LH_CLW] [LH_EXP] [LH_CON] [DORTS] [CLW_ORTS] [SID] [OUT_DIR] [ECHO] [ECHO_EDU] [A2E_OPTS] [AEA_OPTS] [FETCH_DEMO] [INSTALL_DEMO]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-phase",
+            "description": "Use phase of fundamental frequency to estimate latency (default)",
+            "id": "PHASE",
+            "name": "PHASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PHASE]"
+        },
+        {
+            "command-line-flag": "-delay",
+            "description": "Use delay relative to reference time series to estimate latency You should be better off using the -delay option, especially in noisy situations To graph the reference time series relative to which response latency is estimated you will need to run @RetinoProc command first. The reference time series are generated at run time. The reference time series are in ascii files called ECC.1D and POL.1D. You can easily plot them with 1dplot. You can also get the commands that generated them (using the program waver) from files called: ECC.WAVER.log and POL.WAVER.log.  +++ Stimulus, and Time Series Parameters:",
+            "id": "DELAY",
+            "name": "DELAY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DELAY]"
+        },
+        {
+            "command-line-flag": "-TR",
+            "description": "TR, in seconds, of retinotopic scans",
+            "id": "TR",
+            "name": "TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR]"
+        },
+        {
+            "command-line-flag": "-period_ecc",
+            "description": "Period, in seconds, of eccentricity (rings) and",
+            "id": "PERIOD_ECC",
+            "name": "PERIOD_ECC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERIOD_ECC]"
+        },
+        {
+            "command-line-flag": "-period_pol",
+            "description": "polar angle (wedges) stimuli, respectively. The period is the duration the stimulus takes to complete a full cycle. In other terms, if you were to point at one part of the stimulus and follow that part with your finger, the period is the duration it takes your finger to get back to the starting position. The period is independent of the number of rings/wedges used. For most sane people, TECC and TPOL have the same value.",
+            "id": "PERIOD_POL",
+            "name": "PERIOD_POL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERIOD_POL]"
+        },
+        {
+            "command-line-flag": "-pre_ecc",
+            "description": "PREECC and PREPOL are the durations, in sec, before the",
+            "id": "PRE_ECC",
+            "name": "PRE_ECC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PRE_ECC]"
+        },
+        {
+            "command-line-flag": "-pre_pol",
+            "description": "each of the two stimuli began. The duration is relative to the beginning of the retinotopic time series, after the pre-steadystate images have been removed.",
+            "id": "PRE_POL",
+            "name": "PRE_POL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PRE_POL]"
+        },
+        {
+            "command-line-flag": "-on_ecc",
+            "description": "Number of stimulation blocks in both directions",
+            "id": "ON_ECC",
+            "name": "ON_ECC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ON_ECC]"
+        },
+        {
+            "command-line-flag": "-on_pol",
+            "description": "followed by the duration of stimulation in sec. per visual location.",
+            "id": "ON_POL",
+            "name": "ON_POL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ON_POL]"
+        },
+        {
+            "command-line-flag": "-var_on_ecc",
+            "description": "Use multiple",
+            "id": "VAR_ON_ECC",
+            "name": "VAR_ON_ECC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VAR_ON_ECC]"
+        },
+        {
+            "command-line-flag": "-var_on_pol",
+            "description": "on durations and create multiple reference time series for 3dRetinoPhase. See -multi_ref_ts option in 3dRetinoPhase. Leave -var_ options alone If you don't know what you're doing with it. All ON_ values are in seconds. STEP_* must be multiple of TR.  Options -*on* are only useful if you use -delay.",
+            "id": "VAR_ON_POL",
+            "name": "VAR_ON_POL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VAR_ON_POL]"
+        },
+        {
+            "command-line-flag": "-nwedges",
+            "description": "Number of wedges in polar stimulus, and number of rings.",
+            "id": "NWEDGES",
+            "name": "NWEDGES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NWEDGES]"
+        },
+        {
+            "command-line-flag": "-nrings",
+            "description": "in eccentricity stimulus.",
+            "id": "NRINGS",
+            "name": "NRINGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NRINGS]"
+        },
+        {
+            "command-line-flag": "-fwhm_pol",
+            "description": "Target smoothness, in mm, for the polar and for the",
+            "id": "FWHM_POL",
+            "name": "FWHM_POL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FWHM_POL]"
+        },
+        {
+            "command-line-flag": "-fwhm_ecc",
+            "description": "eccentricity stimuli. Note that the script outputs results for both smoothed and unsmoothed time series.",
+            "id": "FWHM_ECC",
+            "name": "FWHM_ECC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FWHM_ECC]"
+        },
+        {
+            "command-line-flag": "-ignore",
+            "description": "Ignore IGN volumes from the beginning of each time series. When IGN is not 0, make sure that PREECC and PREPOL values represents the durations AFTER IGN volumes are taken out. This option is useless if you input surface-based time series such as with option -lh_ccw",
+            "id": "IGNORE",
+            "name": "IGNORE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE]"
+        },
+        {
+            "command-line-flag": "-no_tshift",
+            "description": "Do not correct for slice timing. Assume it has been done. This option is useless if you input surface-based time series such as with option -lh_ccw  +++ Volumetric input: Time series datasets",
+            "id": "NO_TSHIFT",
+            "name": "NO_TSHIFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_TSHIFT]"
+        },
+        {
+            "command-line-flag": "-ccw",
+            "description": "-ccw CCW_1 CCW_2 ...: Specify the retinotopic time series for each of the",
+            "id": "CCW",
+            "name": "CCW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CCW]"
+        },
+        {
+            "command-line-flag": "-clw",
+            "description": "-clw CLW_1 CLW_2 ...: four stimulus types. You can have multiple runs of",
+            "id": "CLW",
+            "name": "CLW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLW]"
+        },
+        {
+            "command-line-flag": "-exp",
+            "description": "-exp EXP_1 EXP_2 ...: each type.",
+            "id": "EXP",
+            "name": "EXP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXP]"
+        },
+        {
+            "command-line-flag": "-con",
+            "description": "-con CON_1 CON_2 ...:  Reference and Anatomical Volumes",
+            "id": "CON",
+            "name": "CON",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CON]"
+        },
+        {
+            "command-line-flag": "-epi_ref",
+            "description": "Specify a volume from the EPI time series to which all EPI volumes are aligned. Default is the 4th sub-brick of the first epi time series on the command line.",
+            "id": "EPI_REF",
+            "name": "EPI_REF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EPI_REF]"
+        },
+        {
+            "command-line-flag": "-epi_anat_ref",
+            "description": "Specify a volume from the EPI time series that is better suited for aligning the T1 to it than EpiRef might be. EpiAnatRef is usually a pre-steadystate volume which still shows anatomical contrast. This volume is first registered to EpiRef, then its registered version is used as a targe for registering AVol. If not set, EpiAnatRef is set to be EpiRef.",
+            "id": "EPI_ANAT_REF",
+            "name": "EPI_ANAT_REF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EPI_ANAT_REF]"
+        },
+        {
+            "command-line-flag": "-noVR",
+            "description": "Skip time series volume registration step. There will be no regression of motion estimates with this option",
+            "id": "NOVR",
+            "name": "NOVR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOVR]"
+        },
+        {
+            "command-line-flag": "-no_volreg",
+            "description": "Same as -noVR",
+            "id": "NO_VOLREG",
+            "name": "NO_VOLREG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_VOLREG]"
+        },
+        {
+            "command-line-flag": "-anat_vol",
+            "description": "T1 volume acquired during the same session as the retinotopic scans. This volume is assumed to need registration to EpiRef volume. The registration is carried out automatically by the script, producing a dataset we will call AVol@Epi. -anat_vol@epi AVol@Epi: Instead of letting the script align AVol to your EpiRef, you can supply AVol@Epi directly and skip the registration. Of course, you should be sure that AVol@Epi is indeed aligned with  EpiRef",
+            "id": "ANAT_VOL",
+            "name": "ANAT_VOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANAT_VOL]"
+        },
+        {
+            "command-line-flag": "-surf_vol",
+            "description": "SVol is the Surface Volume for the cortical surfaces. SVol is created when you first run @SUMA_Make_Spec_* scripts. This volume is eventually aligned to AVol@Epi with @SUMA_AlignToExperiment in order to create SVol@Epi -surf_vol@epi SVol@Epi: SVol that has been aligned to the experiment's EPI data. If you use this option, you would be providing the output of @SUMA_AlignToExperiment step mentioned above, allowing the script to skip running it. To be sure you have the right volume, you should be sure the surfaces align with the EPI data. Check for this with AFNI and SUMA using: suma -spec SPL -sv SVol@Epi & ; afni -niml & Note this option used to be called -surf_vol_alndepi  +++ Volume --> Surface options Maps by gray matter intersection:",
+            "id": "SURF_VOL",
+            "name": "SURF_VOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURF_VOL]"
+        },
+        {
+            "command-line-flag": "-gm",
+            "description": "Map voxels that intersect gray matter as defined by the bounding smoothed white matter and pial surfaces. (default)  Maps by single surface intersections:",
+            "id": "GM",
+            "name": "GM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GM]"
+        },
+        {
+            "command-line-flag": "-wm",
+            "description": "Map voxels that intersect the smoothed white matter surface only This seems to give cleaner maps, perhaps by being less encumbered by pial voxels that may have aliased sampling.",
+            "id": "WM",
+            "name": "WM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WM]"
+        },
+        {
+            "command-line-flag": "-pial",
+            "description": "Map voxels that intersect the pial surface only",
+            "id": "PIAL",
+            "name": "PIAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PIAL]"
+        },
+        {
+            "command-line-flag": "-midlayer",
+            "description": "Map voxels that intersect the surface lying midway between smoothed white matter and pial surfaces",
+            "id": "MIDLAYER",
+            "name": "MIDLAYER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIDLAYER]"
+        },
+        {
+            "command-line-flag": "-layer",
+            "description": "Map voxels that intersect the surface that is a fraction FRAC of the cortical thickness away from the smoothed white matter surface. In other terms:",
+            "id": "LAYER",
+            "name": "LAYER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LAYER]"
+        },
+        {
+            "command-line-flag": "-spec_left",
+            "description": "SPL, and SPR are the spec files for the left and",
+            "id": "SPEC_LEFT",
+            "name": "SPEC_LEFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEC_LEFT]"
+        },
+        {
+            "command-line-flag": "-spec_right",
+            "description": "right hemispheres, respectively.  Time series datasets: For use when time series have already been mapped onto the surface.",
+            "id": "SPEC_RIGHT",
+            "name": "SPEC_RIGHT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEC_RIGHT]"
+        },
+        {
+            "command-line-flag": "-lh_ccw",
+            "description": "-lh_ccw CCW_1 CCW_2 ...: Specify the datasets containing retinotopic time",
+            "id": "LH_CCW",
+            "name": "LH_CCW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LH_CCW]"
+        },
+        {
+            "command-line-flag": "-lh_clw",
+            "description": "-lh_clw CLW_1 CLW_2 ...: series that have already been mapped to the",
+            "id": "LH_CLW",
+            "name": "LH_CLW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LH_CLW]"
+        },
+        {
+            "command-line-flag": "-lh_exp",
+            "description": "-lh_exp EXP_1 EXP_2 ...: surface for each of the four stimulus types.",
+            "id": "LH_EXP",
+            "name": "LH_EXP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LH_EXP]"
+        },
+        {
+            "command-line-flag": "-lh_con",
+            "description": "-lh_con CON_1 CON_2 ...: You can have multiple runs of each type. The script assumes that nuisance parameters have already been regressed out of these time series. For the right hemisphere, replace -lh_ in the option names with -rh_ It makes no sense to use these options along with -ccw, -clw, -exp, or -con.  +++ Misc Parameters:",
+            "id": "LH_CON",
+            "name": "LH_CON",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LH_CON]"
+        },
+        {
+            "command-line-flag": "-dorts",
+            "description": "Detrend time series using columns in ORT1D file The length of the time series in ORT1D should match that of the time series being fed to 3dDetrend Also, the this option applies to all the time series being processed so that assumes they all have the same lengths. Alternately, you can specify a separate ORT file for each dataset on the command line with:",
+            "id": "DORTS",
+            "name": "DORTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DORTS]"
+        },
+        {
+            "command-line-flag": "-clw_orts",
+            "description": "-clw_orts CLW_1_ORT.1D CLW_2_ORT.1D ...: -ccw, -clw, -exp, -con options",
+            "id": "CLW_ORTS",
+            "name": "CLW_ORTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLW_ORTS]"
+        },
+        {
+            "command-line-flag": "-sid",
+            "description": "SID is a flag identifying the subject",
+            "id": "SID",
+            "name": "SID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SID]"
+        },
+        {
+            "command-line-flag": "-out_dir",
+            "description": "Directory where processing results are to be stored",
+            "id": "OUT_DIR",
+            "name": "OUT_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_DIR]"
+        },
+        {
+            "command-line-flag": "-echo",
+            "description": "Turn on the command echoing to help with debugging script failure",
+            "id": "ECHO",
+            "name": "ECHO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO]"
+        },
+        {
+            "command-line-flag": "-echo_edu",
+            "description": "Turn on command echoing for certain programs only as opposed to the shell's echoing",
+            "id": "ECHO_EDU",
+            "name": "ECHO_EDU",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO_EDU]"
+        },
+        {
+            "command-line-flag": "-A2E_opts",
+            "description": "-A2E_opts 'A2E_OPTS': Pass options A2E_OPTS to @SUMA_AlignToExperiment You might use for example,",
+            "id": "A2E_OPTS",
+            "name": "A2E_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[A2E_OPTS]"
+        },
+        {
+            "command-line-flag": "-AEA_opts",
+            "description": "-AEA_opts 'AEA_OPTS': Pass options AEA_OPTS to align_epi_anat.py, which is the tool used to align T1 anat to EPI. For example if 3dSkullStrip is failing to strip the epi and you can add:",
+            "id": "AEA_OPTS",
+            "name": "AEA_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AEA_OPTS]"
+        },
+        {
+            "command-line-flag": "-fetch_demo",
+            "description": "Get the demo archive, do not install it. (see Sample Data below)",
+            "id": "FETCH_DEMO",
+            "name": "FETCH_DEMO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FETCH_DEMO]"
+        },
+        {
+            "command-line-flag": "-install_demo",
+            "description": "Get it, install it, and start processing the 1st example  The process: ============ The full process consists of the following steps: - Copy input data in the results directory - Time shift and register volumetric epi data to EpiRef - Align EpiAnatRef to EpiRef to produce a NEW EpiAnatRef - Align AVol to (new) EpiAnatRef to produce AVol@Epi - Align SVol to AVol@Epi to produce SVol@Epi - Detrend components of no interest from time series volumes - Map time series to Surfaces - Smooth time series on the surfaces - Run 3dRetinoPhase on time series to produce field angle dataset - Run SurfRetinoMap on field angle data to produce visual field ratio datasets. - Create a script to show the results with little pain. The script is named @ShowResult and is stored in DIR/  Sample Data: ============ You can download a test dataset, generously contributed by Peter J. Kohler and Sergey V. Fogelson from: afni.nimh.nih.gov/pub/dist/tgz/AfniRetinoDemo.tgz A README file in the archive will point you to sample scripts that illustrate the usage of @RetinoProc.  You can also use -fetch_demo to have this script get it for you.  References: =========== [1] RW Cox. AFNI: Software for analysis and visualization of functional magnetic resonance neuroimages. Computers and Biomedical Research, 29: 162-173, 1996. [2] Saad Z.S., et al.  SUMA: An Interface For Surface-Based Intra- And Inter-Subject Analysis With AFNI. Proc. 2004 IEEE International Symposium on Biomed. Imaging, 1510-1513 [3] Saad, Z.S., et al. Analysis and use of FMRI response delays. Hum Brain Mapp, 2001. 13(2): p. 74-93. [4] Saad, Z.S., et al., Estimation of FMRI Response Delays. Neuroimage, 2003. 18(2): p. 494-504. [5] Warnking et al. FMRI Retinotopic Mapping - Step by Step. Neuroimage 17, (2002)  Acknowledgments: ================ Peter J. Kohler, and Sergey V. Fogelson: for feedback and sample data Michael Beauchamp: for a motivating script and webpage on retintopy Ikuko Mukai, Masaki Fukunaga, and Li-Wei Kuo: for difficult data and making the case for a -delay option Jonathan Polimeni: for retinotopy trade secrets  Kvetching: ============ Questions and Comments are best posted to AFNI's message board: https://afni.nimh.nih.gov/afni/community/board/  Ziad S. Saad      Aug. 2010",
+            "id": "INSTALL_DEMO",
+            "name": "INSTALL_DEMO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSTALL_DEMO]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

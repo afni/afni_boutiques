@@ -1,0 +1,177 @@
+{
+    "command-line": "3dclust [NN1] [NN2] [NN3] [NOABS] [SUMMARIZE] [NOSUM] [VERB] [1DFORMAT] [NO_1DFORMAT] [QUIET] [MNI] [ISOVALUE] [ISOMERGE] [INMASK] [PREFIX] [SAVEMASK] [BINARY] [1TINDEX]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-NN1",
+            "description": "1st nearest-neighbor (faces touching) clustering",
+            "id": "NN1",
+            "name": "NN1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NN1]"
+        },
+        {
+            "command-line-flag": "-NN2",
+            "description": "2nd nearest-neighbor (edges touching) clustering",
+            "id": "NN2",
+            "name": "NN2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NN2]"
+        },
+        {
+            "command-line-flag": "-NN3",
+            "description": "clustering method (vmul is set to 2 voxels)",
+            "id": "NN3",
+            "name": "NN3",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NN3]"
+        },
+        {
+            "command-line-flag": "-noabs",
+            "description": "Use the signed voxel intensities (not the absolute value) for calculation of the mean and Standard Error of the Mean (SEM)",
+            "id": "NOABS",
+            "name": "NOABS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOABS]"
+        },
+        {
+            "command-line-flag": "-summarize",
+            "description": "Write out only the total nonzero voxel count and volume for each dataset",
+            "id": "SUMMARIZE",
+            "name": "SUMMARIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUMMARIZE]"
+        },
+        {
+            "command-line-flag": "-nosum",
+            "description": "Suppress printout of the totals",
+            "id": "NOSUM",
+            "name": "NOSUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOSUM]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Print out a progress report (to stderr) as the computations proceed",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-1Dformat",
+            "description": "Write output in 1D format (now default). You can redirect the output to a .1D file and use the file as input to whereami for obtaining Atlas-based information on cluster locations. See whereami -help for more info.",
+            "id": "1DFORMAT",
+            "name": "1DFORMAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1DFORMAT]"
+        },
+        {
+            "command-line-flag": "-no_1Dformat",
+            "description": "Do not write output in 1D format.",
+            "id": "NO_1DFORMAT",
+            "name": "NO_1DFORMAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_1DFORMAT]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "Suppress all non-essential output",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-mni",
+            "description": "If the input dataset has the +tlrc view, this option will transform the output xyz-coordinates from TLRC to MNI space.  N.B.0: Only use this option if the dataset is in Talairach space, NOT when it is already in MNI space. N.B.1: The MNI template brain is about 5 mm higher (in S), 10 mm lower (in I), 5 mm longer (in PA), and tilted about 3 degrees backwards, relative to the Talairach- Tournoux Atlas brain.  For more details, see http://www.mrc-cbu.cam.ac.uk/Imaging/mnispace.html N.B.2: If the input dataset does not have the +tlrc view, then the only effect is to flip the output coordinates to the 'LPI' (neuroscience) orientation, as if you gave the '-orient LPI' option.)",
+            "id": "MNI",
+            "name": "MNI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MNI]"
+        },
+        {
+            "command-line-flag": "-isovalue",
+            "description": "Clusters will be formed only from contiguous (in the rmm sense) voxels that also have the same value.  N.B.:  The normal method is to cluster all contiguous nonzero voxels together.",
+            "id": "ISOVALUE",
+            "name": "ISOVALUE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ISOVALUE]"
+        },
+        {
+            "command-line-flag": "-isomerge",
+            "description": "Clusters will be formed from each distinct value in the dataset; spatial contiguity will not be used (but you still have to supply rmm and vmul on the command line).  N.B.:  'Clusters' formed this way may well have components that are widely separated!",
+            "id": "ISOMERGE",
+            "name": "ISOMERGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ISOMERGE]"
+        },
+        {
+            "command-line-flag": "-inmask",
+            "description": "If 3dClustSim put an internal attribute into the input dataset that describes a mask, 3dclust will use this mask to eliminate voxels before clustering, if you give this option.  '-inmask' is how the AFNI AFNI Clusterize GUI works by default. [If there is no internal mask in the dataset] [header, then '-inmask' doesn't do anything.]  N.B.: The usual way for 3dClustSim to have put this internal mask into a functional dataset is via afni_proc.py.",
+            "id": "INMASK",
+            "name": "INMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INMASK]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Write a new dataset that is a copy of the input, but with all voxels not in a cluster set to zero; the new dataset's prefix is 'ppp'  N.B.:  Use of the -prefix option only affects the first input dataset.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-savemask",
+            "description": "Write a new dataset that is an ordered mask, such that the largest cluster is labeled '1', the next largest '2' and so forth.  Should be the same as '3dmerge -1clust_order' or Clusterize 'SaveMsk'.",
+            "id": "SAVEMASK",
+            "name": "SAVEMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVEMASK]"
+        },
+        {
+            "command-line-flag": "-binary",
+            "description": "This turns the output of '-savemask' into a binary (0 or 1) mask, rather than a cluster-index mask. **-->> If no clusters are found, the mask is not written!  ----------------------------------------------------------------------- N.B.: 'N.B.' is short for 'Nota Bene', Latin for 'Note Well'; also see http://en.wikipedia.org/wiki/Nota_bene -----------------------------------------------------------------------  E.g., 3dclust -1clip 0.3  5  3000 func+orig'[1]'  The above command tells 3dclust to find potential cluster volumes for dataset func+orig, sub-brick #1, where the threshold has been set to 0.3 (i.e., ignore voxels with activation threshold >0.3 or <-0.3). Voxels must be no more than 5 mm apart, and the cluster volume must be at least 3000 micro-liters in size.  Explanation of 3dclust Output: -----------------------------  Volume       : Volume that makes up the cluster, in microliters (mm^3) (or the number of voxels, if -dxyz=1 is given)  CM RL        : Center of mass (CM) for the cluster in the Right-Left direction (i.e., the coordinates for the CM)  CM AP        : Center of mass for the cluster in the Anterior-Posterior direction  CM IS        : Center of mass for the cluster in the Inferior-Superior direction  minRL, maxRL : Bounding box for the cluster, min and max coordinates in the Right-Left direction  minAP, maxAP : Min and max coordinates in the Anterior-Posterior direction of the volume cluster  minIS, max IS: Min and max coordinates in the Inferior-Superior direction of the volume cluster  Mean         : Mean value for the volume cluster  SEM          : Standard Error of the Mean for the volume cluster  Max Int      : Maximum Intensity value for the volume cluster  MI RL        : Coordinate of the Maximum Intensity value in the Right-Left direction of the volume cluster  MI AP        : Coordinate of the Maximum Intensity value in the Anterior-Posterior direction of the volume cluster  MI IS        : Coordinate of the Maximum Intensity value in the Inferior-Superior direction of the volume cluster -----------------------------------------------------------------------  Nota Bene:  * The program does not work on complex- or rgb-valued datasets!  * Using the -1noneg option is strongly recommended!  * 3D+time datasets are allowed, but only if you use the",
+            "id": "BINARY",
+            "name": "BINARY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BINARY]"
+        },
+        {
+            "command-line-flag": "-1tindex",
+            "description": "-1tindex and -1dindex options.  * Bucket datasets are allowed, but you will almost certainly want to use the -1tindex and -1dindex options with these.  * SEM values are not realistic for interpolated data sets! A ROUGH correction is to multiply the SEM of the interpolated data set by the square root of the number of interpolated voxels per original voxel.  * If you use -dxyz=1, then rmm should be given in terms of voxel edges (not mm) and vmul should be given in terms of voxel counts (not microliters).  Thus, to connect to only 3D nearest neighbors and keep clusters of 10 voxels or more, use something like '3dclust -dxyz=1 1.01 10 dset+orig'. In the report, 'Volume' will be voxel count, but the rest of the coordinate dependent information will be in actual xyz millimeters.  * The default coordinate output order is DICOM.  If you prefer the SPM coordinate order, use the option '-orient LPI' or set the environment variable AFNI_ORIENT to 'LPI'.  For more information, see file README.environment.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "1TINDEX",
+            "name": "1TINDEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1TINDEX]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

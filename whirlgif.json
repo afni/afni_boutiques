@@ -1,0 +1,69 @@
+{
+    "command-line": "whirlgif [V] [LOOP] [TIME] [TRANS] [O] [I]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-v",
+            "description": "-v              verbose mode",
+            "id": "V",
+            "name": "V",
+            "optional": true,
+            "type": "String",
+            "value-key": "[V]"
+        },
+        {
+            "command-line-flag": "-loop",
+            "description": "-loop [count]   add the Netscape 'loop' extension.",
+            "id": "LOOP",
+            "name": "LOOP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOOP]"
+        },
+        {
+            "command-line-flag": "-time",
+            "description": "-time delay     inter-frame timing.",
+            "id": "TIME",
+            "name": "TIME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TIME]"
+        },
+        {
+            "command-line-flag": "-trans",
+            "description": "-trans index    set the colormap index 'index' to be transparent",
+            "id": "TRANS",
+            "name": "TRANS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TRANS]"
+        },
+        {
+            "command-line-flag": "-o",
+            "description": "-o outfile      write the results to 'outfile'",
+            "id": "O",
+            "name": "O",
+            "optional": true,
+            "type": "String",
+            "value-key": "[O]"
+        },
+        {
+            "command-line-flag": "-i",
+            "description": "-i incfile      read a list of names from 'incfile'  TIPS  If you don't specify an output file, the GIF will be sent to stdout. This is a good thing if you're using this in a CGI script, a very bad thing if you run this from a terminal and forget to redirect stdout.  The output file (if any) and -loop _MUST_ be specified before any gif images.  You can specify several delay statements on the command line to change the delay between images in the middle of an animation, e.g.  whirlgif -time 5 a.gif b.gif c.gif -time 100 d.gif -time 5 e.gif f.gif  Although it's generally considered to be evil, you can also specify several transparency statements on the command line, to change the transparent color in the middle of an animation. This may cause problems for some programs.   BUGS + The loop 'count' is ineffective because Netspcape always loops infinitely. + Should be able to specify delay in an 'incfile' list (see next bug). + Does not handle filenames starting with a - (hypen), except in 'incfile'.  This program is available from http://www.msg.net/utility/whirlgif/ ------------------------------------------------------------------- Kevin Kadow     kadokev@msg.net Based on 'txtmerge' written by: Mark Podlipec   podlipec@wellfleet.com",
+            "id": "I",
+            "name": "I",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

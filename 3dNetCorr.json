@@ -1,0 +1,159 @@
+{
+    "command-line": "3dNetCorr [PREFIX] [INSET] [MASK] [IN_ROIS] [FISH_Z] [PART_CORR] [TS_OUT] [TS_LABEL] [TS_INDIV] [TS_WB_CORR] [TS_WB_Z] [TS_WB_STRLABEL] [NIFTI] [OUTPUT_MASK_NONNULL] [PUSH_THRU_MANY_ZEROS] [IGNORE_LT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput file name part (see description below).",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-inset",
+            "description": "ime series file (4D data set).",
+            "id": "INSET",
+            "name": "INSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSET]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "an include a whole brain mask within which to calculate correlation. (Otherwise, data should be masked already; the program will try to analyze.)",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-in_rois",
+            "description": "an input a set of ROIs, each labelled with distinct integers. Multiple subbricks can be input, each will be treated as a separate network.",
+            "id": "IN_ROIS",
+            "name": "IN_ROIS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_ROIS]"
+        },
+        {
+            "command-line-flag": "-fish_z",
+            "description": "witch to also output a matrix of Fisher Z-transform values for the corr coefs (r): Z = atanh(r) , (with Z=4 being output along matrix diagonals where r=1, as the r-to-Z conversion is ceilinged at Z = atanh(r=0.999329) = 4, which is still *quite* a high Pearson-r value.",
+            "id": "FISH_Z",
+            "name": "FISH_Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FISH_Z]"
+        },
+        {
+            "command-line-flag": "-part_corr",
+            "description": "utput the partial correlation matrix. It is calculated from the inverse of regular Pearson matrix, R, as follows: let M = R^{I} be in the inverse of the Pearson cc matrix.  Then each element p_{ij} of the partial correlation (PC) matrix is given as: p_{ij} = -M_{ij}/sqrt( M_{ii} * M_{jj} ). This will also calculate the PC-beta (PCB) matrix, which is not symmetric, and whose values are given as: b_{ij} = -M_{ij}/M_{ii}. Use as you wish.  For both PC and PCB, the diagonals should be uniformly (negative) unity.",
+            "id": "PART_CORR",
+            "name": "PART_CORR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PART_CORR]"
+        },
+        {
+            "command-line-flag": "-ts_out",
+            "description": "witch to output the mean time series of the ROIs that have been used to generate the correlation matrices. Output filenames mirror those of the correlation matrix files, with a '.netts' postfix.",
+            "id": "TS_OUT",
+            "name": "TS_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TS_OUT]"
+        },
+        {
+            "command-line-flag": "-ts_label",
+            "description": "dditional switch when using '-ts_out'. Using this option will insert the integer ROI label at the start of each line of the *.netts file created. Thus, for a time series of length N, each line will have N+1 numbers, where the first is the integer ROI label and the subsequent N are scientific notation values.",
+            "id": "TS_LABEL",
+            "name": "TS_LABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TS_LABEL]"
+        },
+        {
+            "command-line-flag": "-ts_indiv",
+            "description": "witch to create a directory for each network that contains the average time series for each ROI in individual files (each file has one line). The directories are labelled PREFIX_000_INDIV/, PREFIX_001_INDIV/, etc. (one per network). Within each directory, the files are labelled ROI_001.netts, ROI_002.netts, etc., with the numbers given by the actual ROI integer labels.",
+            "id": "TS_INDIV",
+            "name": "TS_INDIV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TS_INDIV]"
+        },
+        {
+            "command-line-flag": "-ts_wb_corr",
+            "description": "witch to perform whole brain correlation for each ROI's average time series; this will automatically create a directory for each network that contains the set of whole brain correlation maps (Pearson 'r's). The directories are labelled as above for '-ts_indiv' Within each directory, the files are labelled WB_CORR_ROI_001+orig, WB_CORR_ROI_002+orig, etc., with the numbers given by the actual ROI integer labels.",
+            "id": "TS_WB_CORR",
+            "name": "TS_WB_CORR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TS_WB_CORR]"
+        },
+        {
+            "command-line-flag": "-ts_wb_Z",
+            "description": "ame as above in '-ts_wb_corr', except that the maps have been Fisher transformed to Z-scores the relation: Z=atanh(r). To avoid infinities in the transform, Pearson values are effectively capped at |r| = 0.999329 (where |Z| = 4.0;  hope that's good enough). Files are labelled WB_Z_ROI_001+orig, etc.",
+            "id": "TS_WB_Z",
+            "name": "TS_WB_Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TS_WB_Z]"
+        },
+        {
+            "command-line-flag": "-ts_wb_strlabel",
+            "description": "y default, '-ts_wb_{corr,Z}' output files are named using the int number of a given ROI, such as: WB_Z_ROI_001+orig. with this option, one can replace the int (such as '001') with the string label (such as 'L-thalamus') *if* one has a labeltable attached to the file.",
+            "id": "TS_WB_STRLABEL",
+            "name": "TS_WB_STRLABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TS_WB_STRLABEL]"
+        },
+        {
+            "command-line-flag": "-nifti",
+            "description": "utput any correlation map files as NIFTI files (default is BRIK/HEAD). Only useful if using '-ts_wb_corr' and/or '-ts_wb_Z'.",
+            "id": "NIFTI",
+            "name": "NIFTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NIFTI]"
+        },
+        {
+            "command-line-flag": "-output_mask_nonnull",
+            "description": "-output_mask_nonnull :internally, this program checks for where there are nonnull time series, because we don't like those, in general.  With this flag, the user can output the determined mask of non-null time series.",
+            "id": "OUTPUT_MASK_NONNULL",
+            "name": "OUTPUT_MASK_NONNULL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTPUT_MASK_NONNULL]"
+        },
+        {
+            "command-line-flag": "-push_thru_many_zeros",
+            "description": "-push_thru_many_zeros :by default, this program will grind to a halt and refuse to calculate if any ROI contains >10 percent of voxels with null times series (i.e., each point is 0), as of April, 2017.  This is because it seems most likely that hidden badness is responsible. However, if the user still wants to carry on the calculation anyways, then this option will allow one to push on through.  However, if any ROI *only* has null time series, then the program will not calculate and the user will really, really, really need to address their masking.",
+            "id": "PUSH_THRU_MANY_ZEROS",
+            "name": "PUSH_THRU_MANY_ZEROS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PUSH_THRU_MANY_ZEROS]"
+        },
+        {
+            "command-line-flag": "-ignore_LT",
+            "description": "witch to ignore any label table labels in the '-in_rois' file, if there are any labels attached.  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  + EXAMPLE: 3dNetCorr                                  \\ -inset REST_in_DWI.nii.gz               \\ -in_rois ROI_ICMAP_GM+orig              \\ -fish_z                                 \\ -ts_wb_corr                             \\ -mask mask_DWI+orig                     \\ -prefix FMRI/REST_corr  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  If you use this program, please reference the introductory/description paper for the FATCAT toolbox: Taylor PA, Saad ZS (2013).  FATCAT: (An Efficient) Functional And Tractographic Connectivity Analysis Toolbox. Brain Connectivity 3(5):523-535. ____________________________________________________________________________",
+            "id": "IGNORE_LT",
+            "name": "IGNORE_LT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE_LT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

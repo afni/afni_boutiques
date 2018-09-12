@@ -1,0 +1,68 @@
+{
+    "command-line": "3dAutobox [PREFIX] [INPUT] [NOCLUST] [EXTENT] [NPAD] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "Crop the input dataset to the size of the box, and write an output dataset with PREFIX for the name. * If -prefix is not used, no new volume is written out, just the (x,y,z) extents of the voxels to be kept.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "An alternate way to specify the input dataset. The default method is to pass DATASET as the last parameter on the command line.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-noclust",
+            "description": "Don't do any clustering to find box. Any non-zero voxel will be preserved in the cropped volume. The default method uses some clustering to find the cropping box, and will clip off small isolated blobs.",
+            "id": "NOCLUST",
+            "name": "NOCLUST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOCLUST]"
+        },
+        {
+            "command-line-flag": "-extent",
+            "description": "Write to standard out the spatial extent of the box",
+            "id": "EXTENT",
+            "name": "EXTENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXTENT]"
+        },
+        {
+            "command-line-flag": "-npad",
+            "description": "Number of extra voxels to pad on each side of box, since some troublesome people (that's you, LRF) want this feature for no apparent reason. * With this option, it is possible to get a dataset that is actually bigger than the input. * You can input a negative value for NNN, which will crop the dataset even more than the automatic method.   ++ Compile date = Sep  7 2018 {:}",
+            "id": "NPAD",
+            "name": "NPAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NPAD]"
+        },
+        {
+            "description": "NA",
+            "id": "DATASET",
+            "name": "DATASET",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,141 @@
+{
+    "command-line": "@Quiet_Talkers [SUDO] [PROG] [NPB_VAL] [NPB_RANGE] [PIF] [NO_NPB] [LIST] [QUIET] [H_WEB] [HWEB] [H_VIEW] [HVIEW] [ALL_OPTS] [H_FIND]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-sudo",
+            "description": "Invoke higher powers to kill processes that you do not own",
+            "id": "SUDO",
+            "name": "SUDO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUDO]"
+        },
+        {
+            "command-line-flag": "-prog",
+            "description": "Instead of the default program list, only kill PROG You can use multiple -prog options",
+            "id": "PROG",
+            "name": "PROG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PROG]"
+        },
+        {
+            "command-line-flag": "-npb_val",
+            "description": "Kill those programs using NIML port block NV",
+            "id": "NPB_VAL",
+            "name": "NPB_VAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NPB_VAL]"
+        },
+        {
+            "command-line-flag": "-npb_range",
+            "description": "Kill those using NIML port blocks between NV0 and NV1",
+            "id": "NPB_RANGE",
+            "name": "NPB_RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NPB_RANGE]"
+        },
+        {
+            "command-line-flag": "-pif",
+            "description": "Kill those programs that have a string matching KEY_STRING in their commandline. Most AFNI programs allow for a -pif KEY_STRING option that does nothing but serve a process identification purpose",
+            "id": "PIF",
+            "name": "PIF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PIF]"
+        },
+        {
+            "command-line-flag": "-no_npb",
+            "description": "Kill any program in the list regardless of -npb options or -pif",
+            "id": "NO_NPB",
+            "name": "NO_NPB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_NPB]"
+        },
+        {
+            "command-line-flag": "-list",
+            "description": "Just list process numbers, don't run kill command",
+            "id": "LIST",
+            "name": "LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIST]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "Do it quietly  Global Help Options: --------------------",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open webpage with help for this program",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "Same as -h_web",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open -help output in a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "Same as -hview",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "List all of the options for this script",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Search for lines containing WORD in -help output. Seach is approximate.  Examples: To kill all programs in list that used the -npb option @Quiet_Talkers  To kill all those with either -npb 3 or 6 @Quiet_Talkers -npb_val 3 -npb_val 6  To kill all those with -npb values in the range 5..9 @Quiet_Talkers -npb_range 5 9  To restrict the search to certain programs only: @Quiet_Talkers -prog suma -prog afni -npb_range 5 9  General purpose destruction: You can also kill process that have a certain string in the command line. Usually such commands are flagged with the hidden AFNI option -pif. Example: suma -pif SOME_KEY_STRING & @Quiet_Talkers -prog suma -pif SOME_KEY_STRING  Note that with -pif, the npb options are disabled.  Say you want to kill any 'afni' @Quiet_Talkers -prog afni -pif ' ' or @Quiet_Talkers -prog afni -no_npb  Ziad S. Saad   saadz@mail.nih.gov",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,41 @@
+{
+    "command-line": "DTIStudioFibertoSegments [OUTPUT] [SWAP] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-output",
+            "description": "-output / -prefix = name of the output file (not an AFNI dataset prefix) the default output name will be rawxyzseg.dat",
+            "id": "OUTPUT",
+            "name": "OUTPUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTPUT]"
+        },
+        {
+            "command-line-flag": "-swap",
+            "description": "-swap - swap bytes in data\\n",
+            "id": "SWAP",
+            "name": "SWAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SWAP]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

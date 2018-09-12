@@ -1,0 +1,95 @@
+{
+    "command-line": "3dmaskSVD [VNORM] [SVAL] [MASK] [AUTOMASK] [POLORT] [BPASS] [ORT] [INPUT] [INPUTDATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-vnorm",
+            "description": "L2 normalize all time series before SVD [recommended!]",
+            "id": "VNORM",
+            "name": "VNORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VNORM]"
+        },
+        {
+            "command-line-flag": "-sval",
+            "description": "output singular vectors 0 .. a [default a=0 = first one only]",
+            "id": "SVAL",
+            "name": "SVAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SVAL]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "define the mask [default is entire dataset == slow!]",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "you'll have to guess what this option does",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-polort",
+            "description": "if you are lazy and didn't run 3dDetrend (like Zhark)",
+            "id": "POLORT",
+            "name": "POLORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POLORT]"
+        },
+        {
+            "command-line-flag": "-bpass",
+            "description": "bandpass [mutually exclusive with -polort]",
+            "id": "BPASS",
+            "name": "BPASS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BPASS]"
+        },
+        {
+            "command-line-flag": "-ort",
+            "description": "-ort xx.1D  = time series to remove from the data before SVD-ization ++ You can give more than 1 '-ort' option ++ 'xx.1D' can contain more than 1 column",
+            "id": "ORT",
+            "name": "ORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ORT]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "alternative way to give the input dataset name  ------- Example: ------- You have a mask dataset with discrete values 1, 2, ... 77 indicating some ROIs; you want to get the SVD from each ROI's time series separately, and then put these into 1 big 77 column .1D file.  You can do this using a csh shell script like the one below:  # Compute the individual SVD vectors foreach mm ( `count 1 77` ) 3dmaskSVD -vnorm -mask mymask+orig\"<${mm}..${mm}>\" epi+orig > qvec${mm}.1D end # Glue them together into 1 big file, then delete the individual files 1dcat qvec*.1D > allvec.1D /bin/rm -f qvec*.1D # Plot the results to a JPEG file, then compute their correlation matrix 1dplot -one -nopush -jpg allvec.jpg allvec.1D 1ddot -terse allvec.1D > allvec_COR.1D  [[ If you use the bash shell,  you'll have to figure out the syntax ]] [[ yourself. Zhark has no sympathy for you bash shell infidels, and ]] [[ considers you only slightly better than those lowly Emacs users. ]] [[ And do NOT ever even mention 'nedit' in Zhark's august presence! ]]  ++ Compile date = Sep  7 2018 {:}",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "description": "NA",
+            "id": "inputdataset",
+            "name": "inputdataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUTDATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

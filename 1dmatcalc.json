@@ -1,0 +1,23 @@
+{
+    "command-line": "1dmatcalc [EXPRESSION]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "expression",
+            "name": "expression",
+            "optional": false,
+            "type": "String",
+            "value-key": "[EXPRESSION]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

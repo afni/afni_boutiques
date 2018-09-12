@@ -1,0 +1,140 @@
+{
+    "command-line": "3dTagalign [MASTER] [NOKEEPTAGS] [MATVEC] [ROTATE] [AFFINE] [ROTSCL] [PREFIX] [VERB] [DUMMY] [LINEAR] [CUBIC] [NN] [QUINTIC] [DSET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-master",
+            "description": "Use dataset 'mset' as the master dataset [this is a nonoptional option]",
+            "id": "MASTER",
+            "name": "MASTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASTER]"
+        },
+        {
+            "command-line-flag": "-nokeeptags",
+            "description": "Don't put transformed locations of dset's tags into the output dataset [default = keep tags]",
+            "id": "NOKEEPTAGS",
+            "name": "NOKEEPTAGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOKEEPTAGS]"
+        },
+        {
+            "command-line-flag": "-matvec",
+            "description": "Write the matrix+vector of the transformation to file 'mfile'.  This can be used as input to the '-matvec_in2out' option of 3dWarp, if you want to align other datasets in the same way (e.g., functional datasets).",
+            "id": "MATVEC",
+            "name": "MATVEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATVEC]"
+        },
+        {
+            "command-line-flag": "-rotate",
+            "description": "Compute the best transformation as a rotation + shift. This is the default.",
+            "id": "ROTATE",
+            "name": "ROTATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ROTATE]"
+        },
+        {
+            "command-line-flag": "-affine",
+            "description": "Compute the best transformation as a general affine map rather than just a rotation + shift.  In all cases, the transformation from input to output coordinates is of the form [out] = [R] [in] + [V] where [R] is a 3x3 matrix and [V] is a 3-vector. By default, [R] is computed as a proper (det=1) rotation matrix (3 parameters).  The '-affine' option says to fit [R] as a general matrix (9 parameters). N.B.: An affine transformation can rotate, rescale, and shear the volume.  Be sure to look at the dataset before and after to make sure things are OK.",
+            "id": "AFFINE",
+            "name": "AFFINE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFFINE]"
+        },
+        {
+            "command-line-flag": "-rotscl",
+            "description": "Compute transformation as a rotation times an isotropic scaling; that is, [R] is an orthogonal matrix times a scalar. N.B.: '-affine' and '-rotscl' do unweighted least squares.",
+            "id": "ROTSCL",
+            "name": "ROTSCL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ROTSCL]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use 'pp' as the prefix for the output dataset. [default = 'tagalign']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Print progress reports",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-dummy",
+            "description": "Don't actually rotate the dataset, just compute the transformation matrix and vector.  If '-matvec' is used, the mfile will be written.",
+            "id": "DUMMY",
+            "name": "DUMMY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DUMMY]"
+        },
+        {
+            "command-line-flag": "-linear",
+            "description": "-linear     }",
+            "id": "LINEAR",
+            "name": "LINEAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LINEAR]"
+        },
+        {
+            "command-line-flag": "-cubic",
+            "description": "= Chooses spatial interpolation method.",
+            "id": "CUBIC",
+            "name": "CUBIC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CUBIC]"
+        },
+        {
+            "command-line-flag": "-NN",
+            "description": "=   [default = cubic]",
+            "id": "NN",
+            "name": "NN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NN]"
+        },
+        {
+            "command-line-flag": "-quintic",
+            "description": "-quintic    }  Nota Bene: * The transformation is carried out using the same methods as program 3dWarp.  Author: RWCox - 16 Jul 2000, etc.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "QUINTIC",
+            "name": "QUINTIC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUINTIC]"
+        },
+        {
+            "description": "NA",
+            "id": "dset",
+            "name": "dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

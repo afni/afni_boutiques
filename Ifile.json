@@ -1,0 +1,31 @@
+{
+    "command-line": "Ifile [<FILE] [LIST>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "<File",
+            "name": "<File",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<FILE]"
+        },
+        {
+            "description": "NA",
+            "id": "List>",
+            "name": "List>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[LIST>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

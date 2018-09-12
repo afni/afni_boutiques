@@ -1,0 +1,123 @@
+{
+    "command-line": "@measure_in2out [MASKSET] [SURFSET] [OUTDIR] [RESAMPLE] [INCREMENT] [SURFSMOOTH] [MAXTHICK] [DEPTHSEARCH] [MASKINOUTVALS] [KEEP_TEMP_FILES] [SURFSMOOTH_METHOD] [FS_CORT_DIR]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-maskset",
+            "description": "-maskset mydset      mask dataset for input",
+            "id": "MASKSET",
+            "name": "MASKSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASKSET]"
+        },
+        {
+            "command-line-flag": "-surfset",
+            "description": "-surfset mydset.gii  surface dataset onto which to map thickness (probably a pial/gray matter surface)",
+            "id": "SURFSET",
+            "name": "SURFSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURFSET]"
+        },
+        {
+            "command-line-flag": "-outdir",
+            "description": "-outdir thickdir     output directory  Other options:",
+            "id": "OUTDIR",
+            "name": "OUTDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTDIR]"
+        },
+        {
+            "command-line-flag": "-resample",
+            "description": "-resample mm   resample input to mm in millimeters (put a number here) set this to half a voxel or \\\"auto\\\". No resampling is done by default Resampling is highly recommended for most 1mm data",
+            "id": "RESAMPLE",
+            "name": "RESAMPLE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RESAMPLE]"
+        },
+        {
+            "command-line-flag": "-increment",
+            "description": "-increment mm  test thickness at increments of sub-voxel distance default is 1/4 voxel minimum distance (in-plane)",
+            "id": "INCREMENT",
+            "name": "INCREMENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INCREMENT]"
+        },
+        {
+            "command-line-flag": "-surfsmooth",
+            "description": "-surfsmooth mm smooth surface map of thickness by mm millimeters default is 6 mm",
+            "id": "SURFSMOOTH",
+            "name": "SURFSMOOTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURFSMOOTH]"
+        },
+        {
+            "command-line-flag": "-maxthick",
+            "description": "-maxthick mm   search for maximum thickness value of mm millimeters default is 6 mm",
+            "id": "MAXTHICK",
+            "name": "MAXTHICK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAXTHICK]"
+        },
+        {
+            "command-line-flag": "-depthsearch",
+            "description": "-depthsearch mm map to surface by looking for max along mm millimeter normal vectors. default is 3 mm",
+            "id": "DEPTHSEARCH",
+            "name": "DEPTHSEARCH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEPTHSEARCH]"
+        },
+        {
+            "command-line-flag": "-maskinoutvals",
+            "description": "-maskinoutvals v1 v2 v3  use v1 for value of mask, v2 and v3 for inside and outside mask values, e.g. \"1 -2 -1\"",
+            "id": "MASKINOUTVALS",
+            "name": "MASKINOUTVALS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASKINOUTVALS]"
+        },
+        {
+            "command-line-flag": "-keep_temp_files",
+            "description": "-keep_temp_files do not delete the intermediate files (for testing)",
+            "id": "KEEP_TEMP_FILES",
+            "name": "KEEP_TEMP_FILES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_TEMP_FILES]"
+        },
+        {
+            "command-line-flag": "-surfsmooth_method",
+            "description": "-surfsmooth_method heattype heat method used for smoothing surfaces default is HEAT_07 but HEAT_05 is also useful for some models",
+            "id": "SURFSMOOTH_METHOD",
+            "name": "SURFSMOOTH_METHOD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURFSMOOTH_METHOD]"
+        },
+        {
+            "command-line-flag": "-fs_cort_dir",
+            "description": "-fs_cort_dir dirname use FreeSurfer SUMA directory from @SUMA_Make_Spec_FS for processing  Output: inout_dist.nii.gz - volumetric thickness/distance from in to out in_and_out.nii.gz - volumetric distance to inside and outside in 2 volumes inout_thick.niml.dset - unsmoothed thickness mapped to surface nodes inout_thick_smooth.niml.dset - smoothed thickness mapped to surface nodes  Other datasets included in output: maskset.nii.gz, maskset_rs.nii.gz - mask and optional resampled mask anat.gii - surface representation of mask volume quick.spec - simple specification file for surface to use with suma commands  See related scripts and programs for computing thickness: @measure_bb_thick, @measure_erosion_thick and SurfMeasures",
+            "id": "FS_CORT_DIR",
+            "name": "FS_CORT_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FS_CORT_DIR]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

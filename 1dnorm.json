@@ -1,0 +1,67 @@
+{
+    "command-line": "1dnorm [NORM1] [NORMX] [DEMEAN] [DEMED] [INFILE] [OUTFILE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-norm1",
+            "description": "Normalize so sum of absolute values is 1 (L_1 norm)",
+            "id": "NORM1",
+            "name": "NORM1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORM1]"
+        },
+        {
+            "command-line-flag": "-normx",
+            "description": "So that max absolute value is 1 (L_infinity norm)",
+            "id": "NORMX",
+            "name": "NORMX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORMX]"
+        },
+        {
+            "command-line-flag": "-demean",
+            "description": "Subtract each column's mean before normalizing",
+            "id": "DEMEAN",
+            "name": "DEMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEMEAN]"
+        },
+        {
+            "command-line-flag": "-demed",
+            "description": "Subtract each column's median before normalizing [-demean and -demed are mutually exclusive!]  ++ Compile date = Sep  7 2018 {:}",
+            "id": "DEMED",
+            "name": "DEMED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEMED]"
+        },
+        {
+            "description": "NA",
+            "id": "infile",
+            "name": "infile",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INFILE]"
+        },
+        {
+            "description": "NA",
+            "id": "outfile",
+            "name": "outfile",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTFILE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,141 @@
+{
+    "command-line": "fat_proc_map_to_dti [SOURCE] [BASE] [PREFIX] [FOLLOWERS_NN] [FOLLOWERS_WSINC5] [FOLLOWERS_SURF] [FOLLOWERS_NDSET] [FOLLOWERS_SPEC] [MATRIX] [COST] [WARP] [WORKDIR] [NO_CMD_OUT] [NO_CLEAN]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-source",
+            "description": "1w volume (required); 'source' volume from which we are mapping, such as an anatomical volume in whose space ROIs might have been defined.  SSS gets mapped into the '-base BBB' volume's space.",
+            "id": "SOURCE",
+            "name": "SOURCE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SOURCE]"
+        },
+        {
+            "command-line-flag": "-base",
+            "description": "WI reference volume (required; should be from same subject as SSS), such as the b=0 (or minimally DWed volume), for aligning to; subbrick selections are allowed, so that dwi_dwi.nii'[0]', for example, would be allowed.  This is the base dset for the alignment, with the purpose to bring other volumes into the DWI/DTI space (see the '-followers* ...' options, below).  **NOTE**: BBB and SSS should be from the same subject by this function, because only affine alignment with 3dAllineate is performed!",
+            "id": "BASE",
+            "name": "BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput prefix for files and snapshots.  Required.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-followers_NN",
+            "description": "-followers_NN  DSET01 DSET02 DSET03 ... :apply the same transformation to 'follower' data sets; one or more dsets can be listed, with each assumed to overlay on the T1W source set. The 'NN' interpolation of 3dAllineate is applied to these dsets, so that integer values remain integer valued; thus, these might be dsets with ROI maps already created.  NB: subbrick selectors are not allowed on the DSETs here at present.  Labeltables attached to these dsets do get propagated, as well.",
+            "id": "FOLLOWERS_NN",
+            "name": "FOLLOWERS_NN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FOLLOWERS_NN]"
+        },
+        {
+            "command-line-flag": "-followers_wsinc5",
+            "description": "-followers_wsinc5  DSET1 DSET2 DSET3 ... similar to the above '-followers_NN ...', except in this case the final applied mapping is 'wsinc5', which is appropriate, for example, for floating point values. Again, a list of one or more volumes (sans subbrick selectors) can be provided here.  No labeltable is propagated for these sets (I doubt they would have one, anyways).",
+            "id": "FOLLOWERS_WSINC5",
+            "name": "FOLLOWERS_WSINC5",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FOLLOWERS_WSINC5]"
+        },
+        {
+            "command-line-flag": "-followers_surf",
+            "description": "-followers_surf    SURF1 SURF2 SURF3 ... :similar to the above '-followers_* ...', except in this case the mapping is applied to surface dsets, such as '*.gii'.  Per usual, a list of one or more surfaces can be provided here.",
+            "id": "FOLLOWERS_SURF",
+            "name": "FOLLOWERS_SURF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FOLLOWERS_SURF]"
+        },
+        {
+            "command-line-flag": "-followers_ndset",
+            "description": "-followers_ndset   NDSET1 NDSET2 NDSET3 ... :similar to the above '-followers_* ...', except in this case the mapping is applied to '*.niml.dset' files, such as '*.annot.niml.dset'.  Per usual, a list of one or more surfaces can be provided here. Prob wouldn't make sense to use this without using '-followers_surf ...'.",
+            "id": "FOLLOWERS_NDSET",
+            "name": "FOLLOWERS_NDSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FOLLOWERS_NDSET]"
+        },
+        {
+            "command-line-flag": "-followers_spec",
+            "description": "-followers_spec    SPEC1 SPEC2 SPEC3 ... :similar to the above '-followers_* ...', except in this case the mapping is applied to '*.spec' files. Per usual, a list of one or more surfaces can be provided here.  Wouldn't make sense to use this without using both '-followers_surf ...' and '-followers_ndset ...' to map the dsets referred to in the file!",
+            "id": "FOLLOWERS_SPEC",
+            "name": "FOLLOWERS_SPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FOLLOWERS_SPEC]"
+        },
+        {
+            "command-line-flag": "-matrix",
+            "description": "ne can apply a pre-made matrix that has been made by 3dAllineate previously.  With this option.  If you want.",
+            "id": "MATRIX",
+            "name": "MATRIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATRIX]"
+        },
+        {
+            "command-line-flag": "-cost",
+            "description": "ne can apply any cost function CCC that is accepted by 3dAllineate.  The default is for matching dsets of opposite contrast, such as a T1w to a b=0 DWI, which is like a T2w contrast (def: lpc).",
+            "id": "COST",
+            "name": "COST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COST]"
+        },
+        {
+            "command-line-flag": "-warp",
+            "description": "ne can set the linear affine warp type through the same warp arguments accepted by 3dAllineate: shift_only, shift_rotate, shift_rotate_scale, affine_general, etc. (def: affine_general).",
+            "id": "WARP",
+            "name": "WARP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WARP]"
+        },
+        {
+            "command-line-flag": "-workdir",
+            "description": "pecify a working directory, which can be removed; (default name = '__WORKING_map_to_dti')",
+            "id": "WORKDIR",
+            "name": "WORKDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WORKDIR]"
+        },
+        {
+            "command-line-flag": "-no_cmd_out",
+            "description": "on't save the command line call of this program and the location where it was run (otherwise, it is saved by default in the ODIR/).",
+            "id": "NO_CMD_OUT",
+            "name": "NO_CMD_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CMD_OUT]"
+        },
+        {
+            "command-line-flag": "-no_clean",
+            "description": "o not delete temporary working directory (default is to remove it to save disk space).  # ----------------------------------------------------------------------  EXAMPLE  fat_proc_map_to_dti  \\ -source          brain.nii            \\ -base            dwi_dwi.nii.gz'[0]'  \\ -prefix          indt                 \\",
+            "id": "NO_CLEAN",
+            "name": "NO_CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CLEAN]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

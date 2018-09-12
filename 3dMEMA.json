@@ -1,0 +1,258 @@
+{
+    "command-line": "3dMEMA [SET] [GROUPS] [COVARIATES_CENTER] [COVARIATES_MODEL] [HKTEST] [RIO] [CIO] [CONTRAST_NAME] [COVARIATES] [COVARIATES_NAME] [DBGARGS] [EQUAL_VARIANCE] [HELP] [JOBS] [MASK] [MAX_ZEROS] [MISSING_DATA] [MODEL_OUTLIERS] [N_NONZERO] [NO_HKTEST] [NO_MODEL_OUTLIERS] [NO_RESIDUAL_Z] [PREFIX] [RESIDUAL_Z] [SHOW_ALLOWED_OPTIONS] [UNEQUAL_VARIANCE] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-set",
+            "description": "-set  happy  \\ ac   ac+tlrc'[14]'   ac+tlrc'[15]'  \\ ejk  ejk+tlrc'[14]'  ejk+tlrc'[15]' \\ ... ss   ss+tlrc'[14]'   ss+tlrc'[15]' \\ -max_zeros 4    \\ -model_outliers \\ -residual_Z  3dMEMA   -prefix ex1  \\ -jobs 4      \\",
+            "id": "SET",
+            "name": "SET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET]"
+        },
+        {
+            "command-line-flag": "-groups",
+            "description": "-groups horses goats  \\",
+            "id": "GROUPS",
+            "name": "GROUPS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GROUPS]"
+        },
+        {
+            "command-line-flag": "-covariates_center",
+            "description": "25 13 weight = 100 150  \\",
+            "id": "COVARIATES_CENTER",
+            "name": "COVARIATES_CENTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COVARIATES_CENTER]"
+        },
+        {
+            "command-line-flag": "-covariates_model",
+            "description": "ifferent slope=same  where file CovFile.txt looks something like this:  name  age  weight ejk   93    117 jcp   3     34 ss    12    200 ac    12    130 jp    65    130 mb    25    630 trr   18    187 delb  9     67 tony  12    4000   Example 3 --- Paired type (difference of two regression coefficients or general linear contrasts from each subject in a group). One scenario of general linear combinations is to test linear or higher order trend at individual level, and then take the trend information to group level. --------------------------------- 3dMEMA   -prefix ex2  \\ -jobs 4      \\ -missing_data happyMiss+tlrc sadMiss+tlrc \\",
+            "id": "COVARIATES_MODEL",
+            "name": "COVARIATES_MODEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COVARIATES_MODEL]"
+        },
+        {
+            "command-line-flag": "-HKtest",
+            "description": "Perform Hartung-Knapp adjustment for the output t-statistic. This approach is more robust when the number of subjects is small, and is generally preferred. -KHtest is the default with t-statistic output.",
+            "id": "HKTEST",
+            "name": "HKTEST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HKTEST]"
+        },
+        {
+            "command-line-flag": "-Rio",
+            "description": "Use R's io functions",
+            "id": "RIO",
+            "name": "RIO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RIO]"
+        },
+        {
+            "command-line-flag": "-cio",
+            "description": "Use AFNI's C io functions",
+            "id": "CIO",
+            "name": "CIO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CIO]"
+        },
+        {
+            "command-line-flag": "-contrast_name",
+            "description": "(no help available)",
+            "id": "CONTRAST_NAME",
+            "name": "CONTRAST_NAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CONTRAST_NAME]"
+        },
+        {
+            "command-line-flag": "-covariates",
+            "description": "Specify the name of a text file containing a table for the covariate(s). Each column in the file is treated as a separate covariate, and each row contains the values of these covariates for each subject. Option -unequal_variance may not be used in the presence of covariates with two groups. To avoid confusion, it is best you format COVAR_FILE in this manner with BOTH row and column names: subj  age   weight Jane   25   300 Joe    22   313 ...    ..   ... This way, there is no amiguity as to which values are attributed to which subject, nor to the label of the covariate(s). The word 'subj' must be the first word of the first row. You can still get at the values of the columns of such a file with AFNI's 1dcat -ok_text, which will treat the first row, and first column, as all 0s. Alternate, but less recommended ways to specify the covariates: (column names only) age   weight 25   300 22   313 ..   ... or (no row and column names) 25   300 22   313 ..   ...",
+            "id": "COVARIATES",
+            "name": "COVARIATES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COVARIATES]"
+        },
+        {
+            "command-line-flag": "-covariates_name",
+            "description": "-covariates_name. This makes clear which center belongs to which covariate. When two groups are used, you need to specify a center for each of the groups (CEN_K.A, CEN_K.B). Example: If you had covariates age, and weight, you would use:",
+            "id": "COVARIATES_NAME",
+            "name": "COVARIATES_NAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COVARIATES_NAME]"
+        },
+        {
+            "command-line-flag": "-dbgArgs",
+            "description": "This option will enable R to save the parameters in a file called .3dMEMA.dbg.AFNI.args in the current directory so that debugging can be performed.",
+            "id": "DBGARGS",
+            "name": "DBGARGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DBGARGS]"
+        },
+        {
+            "command-line-flag": "-equal_variance",
+            "description": "Assume same cross-subjects variability between GROUP1 and GROUP2 (homoskedasticity). (Default)",
+            "id": "EQUAL_VARIANCE",
+            "name": "EQUAL_VARIANCE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EQUAL_VARIANCE]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "this help message",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-jobs",
+            "description": "On a multi-processor machine, parallel computing will speed up the program significantly. Choose 1 for a single-processor computer.",
+            "id": "JOBS",
+            "name": "JOBS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[JOBS]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Process voxels inside this mask only. Default is no masking.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-max_zeros",
+            "description": "Do not compute statistics at any voxel that has more than MM zero beta coefficients or GLTs. Voxels around the edges of the group brain will not have data from some of the subjects. Therefore, some of their beta's or GLTs and t-stats are masked with 0. 3dMEMA can handle missing data at those voxels but obviously too much missing data is not good. Setting -max_zeros to 0.25 means process data only at voxels where no more than 1/4 of the data is missing. The default value is 0 (no missing values allowed). MM can be a positive integer less than the number of subjects, or a fraction between 0 and 1. Alternatively option -missing_data can be used to handle missing data.",
+            "id": "MAX_ZEROS",
+            "name": "MAX_ZEROS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX_ZEROS]"
+        },
+        {
+            "command-line-flag": "-missing_data",
+            "description": "This option corrects for inflated statistics for the voxels where some subjects do not have any data available due to imperfect spatial alignment or other reasons. The absence of this option means no missing data will be assumed. Two formats of option setting exist as shown below.",
+            "id": "MISSING_DATA",
+            "name": "MISSING_DATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MISSING_DATA]"
+        },
+        {
+            "command-line-flag": "-model_outliers",
+            "description": "Model outlier betas with a Laplace distribution of of subject-specific error. Default is -no_model_outliers",
+            "id": "MODEL_OUTLIERS",
+            "name": "MODEL_OUTLIERS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODEL_OUTLIERS]"
+        },
+        {
+            "command-line-flag": "-n_nonzero",
+            "description": "Do not compute statistics at any voxel that has less than NN non-zero beta values. This options is complimentary to -max_zeroes, and matches an option in the interactive 3dMEMA mode. NN is basically (number of unique subjects - MM). Alternatively option -missing_data can be used to handle missing data.",
+            "id": "N_NONZERO",
+            "name": "N_NONZERO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N_NONZERO]"
+        },
+        {
+            "command-line-flag": "-no_HKtest",
+            "description": "Do not make the Hartung-Knapp adjustment. -KHtest is the default with t-statistic output.",
+            "id": "NO_HKTEST",
+            "name": "NO_HKTEST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_HKTEST]"
+        },
+        {
+            "command-line-flag": "-no_model_outliers",
+            "description": "No modeling of outlier betas/GLTs (Default).",
+            "id": "NO_MODEL_OUTLIERS",
+            "name": "NO_MODEL_OUTLIERS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_MODEL_OUTLIERS]"
+        },
+        {
+            "command-line-flag": "-no_residual_Z",
+            "description": "Do not output residuals and their  Z values (Default).",
+            "id": "NO_RESIDUAL_Z",
+            "name": "NO_RESIDUAL_Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_RESIDUAL_Z]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Output prefix (just prefix, no view+suffix needed)",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-residual_Z",
+            "description": "Output residuals and their Z values used in identifying outliers at voxel level. Default is -no_residual_Z",
+            "id": "RESIDUAL_Z",
+            "name": "RESIDUAL_Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RESIDUAL_Z]"
+        },
+        {
+            "command-line-flag": "-show_allowed_options",
+            "description": "list of allowed options",
+            "id": "SHOW_ALLOWED_OPTIONS",
+            "name": "SHOW_ALLOWED_OPTIONS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_ALLOWED_OPTIONS]"
+        },
+        {
+            "command-line-flag": "-unequal_variance",
+            "description": "Model cross-subjects variability difference between GROUP1 and GROUP2 (heteroskedasticity). This option may NOT be invoked when covariate is present in the model. Default is -equal_variance (homoskedasticity). This option may not be useded when covariates are involved in the model.",
+            "id": "UNEQUAL_VARIANCE",
+            "name": "UNEQUAL_VARIANCE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNEQUAL_VARIANCE]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "VERB is an integer specifying verbosity level. 0 for quiet (Default). 1 or more: talkative.  ####################################################################### Please consider citing the following if this program is useful for you:  Chen et al., 2012. FMRI Group Analysis Combining Effect Estimates and Their Variances. NeuroImage. NeuroImage 60: 747-765.  https://afni.nimh.nih.gov/sscc/gangc/MEMA.html  #######################################################################",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

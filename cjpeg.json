@@ -1,0 +1,159 @@
+{
+    "command-line": "cjpeg [QUALITY] [GRAYSCALE] [OPTIMIZE] [PROGRESSIVE] [TARGA] [DCT] [RESTART] [SMOOTH] [MAXMEMORY] [OUTFILE] [VERBOSE] [BASELINE] [QTABLES] [QSLOTS] [SAMPLE] [SCANS]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-quality",
+            "description": "-quality N     Compression quality (0..100; 5-95 is useful range)",
+            "id": "QUALITY",
+            "name": "QUALITY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUALITY]"
+        },
+        {
+            "command-line-flag": "-grayscale",
+            "description": "-grayscale     Create monochrome JPEG file",
+            "id": "GRAYSCALE",
+            "name": "GRAYSCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GRAYSCALE]"
+        },
+        {
+            "command-line-flag": "-optimize",
+            "description": "-optimize      Optimize Huffman table (smaller file, but slow compression)",
+            "id": "OPTIMIZE",
+            "name": "OPTIMIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OPTIMIZE]"
+        },
+        {
+            "command-line-flag": "-progressive",
+            "description": "-progressive   Create progressive JPEG file",
+            "id": "PROGRESSIVE",
+            "name": "PROGRESSIVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PROGRESSIVE]"
+        },
+        {
+            "command-line-flag": "-targa",
+            "description": "-targa         Input file is Targa format (usually not needed) Switches for advanced users:",
+            "id": "TARGA",
+            "name": "TARGA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TARGA]"
+        },
+        {
+            "command-line-flag": "-dct",
+            "description": "-dct int       Use integer DCT method (default)",
+            "id": "DCT",
+            "name": "DCT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DCT]"
+        },
+        {
+            "command-line-flag": "-restart",
+            "description": "-restart N     Set restart interval in rows, or in blocks with B",
+            "id": "RESTART",
+            "name": "RESTART",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RESTART]"
+        },
+        {
+            "command-line-flag": "-smooth",
+            "description": "-smooth N      Smooth dithered input (N=1..100 is strength)",
+            "id": "SMOOTH",
+            "name": "SMOOTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SMOOTH]"
+        },
+        {
+            "command-line-flag": "-maxmemory",
+            "description": "-maxmemory N   Maximum memory to use (in kbytes)",
+            "id": "MAXMEMORY",
+            "name": "MAXMEMORY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAXMEMORY]"
+        },
+        {
+            "command-line-flag": "-outfile",
+            "description": "-outfile name  Specify name for output file",
+            "id": "OUTFILE",
+            "name": "OUTFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTFILE]"
+        },
+        {
+            "command-line-flag": "-verbose",
+            "description": "-verbose  or  -debug   Emit debug output Switches for wizards:",
+            "id": "VERBOSE",
+            "name": "VERBOSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERBOSE]"
+        },
+        {
+            "command-line-flag": "-baseline",
+            "description": "-baseline      Force baseline quantization tables",
+            "id": "BASELINE",
+            "name": "BASELINE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASELINE]"
+        },
+        {
+            "command-line-flag": "-qtables",
+            "description": "-qtables file  Use quantization tables given in file",
+            "id": "QTABLES",
+            "name": "QTABLES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QTABLES]"
+        },
+        {
+            "command-line-flag": "-qslots",
+            "description": "-qslots N[,...]    Set component quantization tables",
+            "id": "QSLOTS",
+            "name": "QSLOTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QSLOTS]"
+        },
+        {
+            "command-line-flag": "-sample",
+            "description": "-sample HxV[,...]  Set component sampling factors",
+            "id": "SAMPLE",
+            "name": "SAMPLE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAMPLE]"
+        },
+        {
+            "command-line-flag": "-scans",
+            "description": "-scans file    Create multi-scan JPEG per script file",
+            "id": "SCANS",
+            "name": "SCANS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCANS]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

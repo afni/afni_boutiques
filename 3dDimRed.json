@@ -1,0 +1,174 @@
+{
+    "command-line": "3dDimRed [RDIM] [PREFIX] [SING] [1DCOLS] [INPUT] [POLORT] [BAND] [DT] [TR] [DESPIKE] [NOVNORM] [MASK] [AUTOMASK] [CHUNK] [QUIET] [INSET1] [INSET2] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-rdim",
+            "description": "The number 'rr' is the number of dimensions to use for the output = the number of output 3D+time datasets. * 'rr' must be more than 0 and less than the number of input datasets. * If 'rr' is set to 0, or is not given, then no output 3D+time datasets will be produced!",
+            "id": "RDIM",
+            "name": "RDIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RDIM]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "The string 'pp' is the root prefix for the output datasets. The first one will get the prefix 'pp_001', etc. * If '-prefix' is not given, then the default root prefix is 'dimred'.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-sing",
+            "description": "Save the singular values at each voxel into a dataset with prefix 'pp_sing', where 'pp' is the root prefix. * If this option is not given, the singular values are not saved.",
+            "id": "SING",
+            "name": "SING",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SING]"
+        },
+        {
+            "command-line-flag": "-1Dcols",
+            "description": "-1Dcols a b ... = This option lets you specify some extra time series to be included in the dimension reduction, which are fixed for each input voxel.  Each column of each 1D file following '-1Dcols' is added to the collection of vectors to be processed at each voxel.",
+            "id": "1DCOLS",
+            "name": "1DCOLS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1DCOLS]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "-input x y ...  = Alternate way to input 3D+time datasets.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-polort",
+            "description": "Detrend the time series with polynomial basis of order 'qq' prior to further processing. * You cannot use this option with '-band'! * If neither '-polort' nor '-band' is given, then the mean of each time series is removed (e.g., '-polort 0').",
+            "id": "POLORT",
+            "name": "POLORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POLORT]"
+        },
+        {
+            "command-line-flag": "-band",
+            "description": "This option specifies to bandpass the time series prior to further processing (as in program 3dBandpass). * You cannot use this option with '-polort'!",
+            "id": "BAND",
+            "name": "BAND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BAND]"
+        },
+        {
+            "command-line-flag": "-dt",
+            "description": "Set time step to 'dd' seconds (for use with '-band'). *OR*            * Usually the time step is taken from the 3D+time dataset",
+            "id": "DT",
+            "name": "DT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DT]"
+        },
+        {
+            "command-line-flag": "-TR",
+            "description": "-TR dd              header, but '-dt' (or '-TR') lets you over-ride that. * If all inputs are 1D files, then this option is needed to set the right time step; otherwise, TR is taken as 1.",
+            "id": "TR",
+            "name": "TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR]"
+        },
+        {
+            "command-line-flag": "-despike",
+            "description": "Despike each input time series before other processing. * Hopefully, you don't need to do this, which is why it is optional.",
+            "id": "DESPIKE",
+            "name": "DESPIKE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DESPIKE]"
+        },
+        {
+            "command-line-flag": "-novnorm",
+            "description": "By default, just before the SVD, each time series vector is normalized to L2 magnitude 1.  Use '-novnorm' to turn this step off.",
+            "id": "NOVNORM",
+            "name": "NOVNORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOVNORM]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Mask dataset",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "Create mask from first input dataset",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-chunk",
+            "description": "3dDimRed can use up a LOT of memory.  This option lets you cut down on that by having it operate on the voxels in chunks.  The downside to doing this is more disk I/O. * '-chunk' alone means do 10,000 voxels at one time. * '-chunk 999' means to do 999 voxels at one time (etc).",
+            "id": "CHUNK",
+            "name": "CHUNK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHUNK]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "Suppress some of the fun informative progress messages.  ------ NOTES: ------ * You can input ONLY 1D files, via the -1Dcols option.  In that case, there is only 1 'voxel', and instead of 'rdim' datasets being output output to hold the results, a single 1D dataset with 'rdim' columns will be produced. * The output vectors are the first 'rdim' left singular vectors, as would be produced by '1dsvd -1Dleft' (for example).  They are intended to be used in further processing scripts, and are probably not useful by themselves. * Written by Zhark the Singular -- April 2012  ========================================================================= * This binary version of 3dDimRed is compiled using OpenMP, a semi- automatic parallelizer software toolkit, which splits the work across multiple CPUs/cores on the same shared memory computer. * OpenMP is NOT like MPI -- it does not work with CPUs connected only by a network (e.g., OpenMP doesn't work with 'cluster' setups). * For implementation and compilation details, please see https://afni.nimh.nih.gov/pub/dist/doc/misc/OpenMP.html * The number of CPU threads used will default to the maximum number on your system. You can control this value by setting environment variable OMP_NUM_THREADS to some smaller value (including 1). * Un-setting OMP_NUM_THREADS resets OpenMP back to its default state of using all CPUs available. ++ However, on some systems, it seems to be necessary to set variable OMP_NUM_THREADS explicitly, or you only get one CPU. ++ On other systems with many CPUS, you probably want to limit the CPU count, since using more than (say) 16 threads is probably useless. * You must set OMP_NUM_THREADS in the shell BEFORE running the program, since OpenMP queries this variable BEFORE the program actually starts. ++ You can't usefully set this variable in your ~/.afnirc file or on the command line with the '-D' option. * How many threads are useful? That varies with the program, and how well it was coded. You'll have to experiment on your own systems! * The number of CPUs on this particular computer system is ...... 4. * The maximum number of CPUs that will be used is now set to .... 4. =========================================================================  ++ Compile date = Sep  7 2018 {:}",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "description": "NA",
+            "id": "inset1",
+            "name": "inset1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INSET1]"
+        },
+        {
+            "description": "NA",
+            "id": "inset2",
+            "name": "inset2",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INSET2]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

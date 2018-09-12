@@ -1,0 +1,96 @@
+{
+    "command-line": "make_stim_times.py [PREFIX] [NRUNS] [NT] [TR] [OFFSET] [NO_CONSEC] [SHOW_VALID_OPTS] [VERB] [AMPLITUDES]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "output prefix for files -run_trs TR1 TR2 ...           : specify TRs/run, if they differ (if same, can use -nruns/-nt)",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-nruns",
+            "description": "number of runs",
+            "id": "NRUNS",
+            "name": "NRUNS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NRUNS]"
+        },
+        {
+            "command-line-flag": "-nt",
+            "description": "number of TRs per run",
+            "id": "NT",
+            "name": "NT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NT]"
+        },
+        {
+            "command-line-flag": "-tr",
+            "description": "TR time, in seconds",
+            "id": "TR",
+            "name": "TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR]"
+        },
+        {
+            "command-line-flag": "-offset",
+            "description": "add OFFSET to all output times -labels LAB1 LAB2 ...          : provide labels for filenames",
+            "id": "OFFSET",
+            "name": "OFFSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OFFSET]"
+        },
+        {
+            "command-line-flag": "-no_consec",
+            "description": "do not allow consecutive events",
+            "id": "NO_CONSEC",
+            "name": "NO_CONSEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CONSEC]"
+        },
+        {
+            "command-line-flag": "-show_valid_opts",
+            "description": "output all options",
+            "id": "SHOW_VALID_OPTS",
+            "name": "SHOW_VALID_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_VALID_OPTS]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "provide verbose output  complex options:",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-amplitudes",
+            "description": "\"marry\" times with amplitudes  This is to make files for -stim_times_AM1 or -stim_times_AM2 in 3dDeconvolve (for 2-parameter amplitude modulation).  With this option, the output files do not just contain times, they contain values in the format 'time*amplitude', where the amplitude is the non-zero value in the input file.  For example, the input might look like:  0 2.4 0 0 -1.2  On a TR=2.5 grid, this would (skip zeros as usual and) output:  2.5*2.4 10*-1.2  ---------------------------------------------------------------------------  examples:  1. Given 3 stimulus classes, A, B and C, each with a single column file spanning 7 runs (with some number of TRs per run), create 3 stim_times files (stimes.01.1D, stimes.02.1D, stimes.02.1D) having the times, in seconds, of the stimuli, one run per row.  make_stim_times.py -files stimA.1D stimB.1D stimC.1D   \\ -prefix stimes1 -tr 2.5 -nruns 7 -nt 100  2. Same as 1, but suppose stim_all.1D has all 3 stim types (so 3 columns).  make_stim_times.py -files stim_all.1D -prefix stimes2 -tr 2.5 \\ -nruns 7 -nt 100  2b. Same, but maybe the run lengths differ.  make_stim_times.py -files stim_all.1D -prefix stimes2 -tr 2.5 \\ -run_trs 100 110 90 100 110 90 100  3. Same as 2, but the stimuli were presented at the middle of the TR, so add 1.25 seconds to each stimulus time.  make_stim_times.py -files stim_all.1D -prefix stimes3 -tr 2.5 \\ -nruns 7 -nt 100 -offset 1.25  4. An appropriate conversion of stim_files to stim_times for the example in AFNI_data2 (HowTo #5).  The labels will appear in the resulting filenames.  make_stim_times.py -prefix stim_times -tr 1.0 -nruns 10 -nt 272 \\ -files misc_files/all_stims.1D                   \\ -labels ToolMovie HumanMovie ToolPoint HumanPoint  5. Generate files for 2-term amplitude modulation in 3dDeconvolve (i.e. for use with -stim_times_AM2).  For any TR that has a non-zero value in the input, the output will have that current time along with the non-zero amplitude value in the format time:value.  Just add -amplitudes to any existing command.  make_stim_times.py -files stim_weights.1D -prefix stimes5 -tr 2.5 \\ -nruns 7 -nt 100 -amplitudes  - R Reynolds, Nov 17, 2006 ===========================================================================",
+            "id": "AMPLITUDES",
+            "name": "AMPLITUDES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AMPLITUDES]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

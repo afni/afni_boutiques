@@ -1,0 +1,42 @@
+{
+    "command-line": "3dTfilter [FILTER] [INPUT] [PREFIX]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-filter",
+            "description": "-filter rank -filter adaptive:7 means to do the following operations (1) turn the data into ranks (2) apply the adaptive mean filter to the ranks  Notes: ------ ** This program is a work in progress, and more capabilities will be added as time allows, as the need arises, and as the author's whims bubble to the surface of his febrile brain.  ** This program is for people who have Sisu.  Options: --------",
+            "id": "FILTER",
+            "name": "FILTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FILTER]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "-input inputdataset",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix outputdataset",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,68 @@
+{
+    "command-line": "3dThreetoRGB [PREFIX] [SCALE] [MASK] [FIM] [ANAT] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "Write output into dataset with prefix 'ppp'. [default='rgb']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-scale",
+            "description": "Multiply input values by 'fac' before using as RGB [default=1].  If you have floating point inputs in range 0..1, then using '-scale 255' would make a lot of sense.",
+            "id": "SCALE",
+            "name": "SCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Only output nonzero values where the mask dataset 'mset' is nonzero.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-fim",
+            "description": "Write result as a 'fim' type dataset. [this is the default]",
+            "id": "FIM",
+            "name": "FIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIM]"
+        },
+        {
+            "command-line-flag": "-anat",
+            "description": "Write result as a anatomical type dataset. Notes: * Input datasets must be byte-, short-, or float-valued. * You might calculate the component datasets using 3dcalc. * You can also create RGB-valued datasets in to3d, using 2D raw PPM image files as input, or the 3Dr: format. * RGB fim overlays are transparent in AFNI in voxels where all 3 bytes are zero - that is, it won't overlay solid black. * At present, there is limited support for RGB datasets. About the only thing you can do is display them in 2D slice windows in AFNI.  -- RWCox - April 2002  ++ Compile date = Sep  7 2018 {:}",
+            "id": "ANAT",
+            "name": "ANAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANAT]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

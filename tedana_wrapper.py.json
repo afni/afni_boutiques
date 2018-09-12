@@ -1,0 +1,132 @@
+{
+    "command-line": "tedana_wrapper.py [MASK] [INPUT] [TEDANA_OPTS] [TE] [PREP_ONLY] [TEDANA_PROG] [TEDANA_IS_EXEC] [TED_LABEL] [H] [HELP] [RESULTS_DIR] [PREFIX] [SAVE_ALL]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-mask",
+            "description": "-mask masked_bandit+tlrc \\",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "-input echo_01+tlrc echo_02+tlrc echo_03+tlrc \\",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-tedana_opts",
+            "description": "-tedana_opts \"--initcost=tanh --conv=2.5e-5 --kdaw=10\"  ------------------------------------------  Options ~1~  Required arguments:",
+            "id": "TEDANA_OPTS",
+            "name": "TEDANA_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEDANA_OPTS]"
+        },
+        {
+            "command-line-flag": "-TE",
+            "description": "-TE ms [ms ...]       Echo time (ms) for each echo.",
+            "id": "TE",
+            "name": "TE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TE]"
+        },
+        {
+            "command-line-flag": "-prep_only",
+            "description": "-prep_only            Do not run tedana.py, stop at 3dZcat.",
+            "id": "PREP_ONLY",
+            "name": "PREP_ONLY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREP_ONLY]"
+        },
+        {
+            "command-line-flag": "-tedana_prog",
+            "description": "-tedana_prog TEDANA_PROG Path and name of the version of tedana.py that will be run.Default is meica.libs/tedana.py in the afni binaries directory.",
+            "id": "TEDANA_PROG",
+            "name": "TEDANA_PROG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEDANA_PROG]"
+        },
+        {
+            "command-line-flag": "-tedana_is_exec",
+            "description": "-tedana_is_exec       Run 'tedana.py' rather than 'python tedana.py'.",
+            "id": "TEDANA_IS_EXEC",
+            "name": "TEDANA_IS_EXEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEDANA_IS_EXEC]"
+        },
+        {
+            "command-line-flag": "-ted_label",
+            "description": "-ted_label LABEL      Suffix for output folder. Adds suffix like TED.LABEL (NOT A PATH)",
+            "id": "TED_LABEL",
+            "name": "TED_LABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TED_LABEL]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "-h, --help            show this help message and exit",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "-help                 Show this help.",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-results_dir",
+            "description": "-results_dir DIR      Folder to be created for all outputs. Default [./Bunnymen].",
+            "id": "RESULTS_DIR",
+            "name": "RESULTS_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RESULTS_DIR]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix PREFIX        Prefix for dataset names. Default [Bunnymen].",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-save_all",
+            "description": "-save_all             Save intermediate datasets. Default is to save only the 3dZcat stacked dataset (and tedana stuff)  ------------------------------------------ Justin Rajendra circa 02/2018 I hope this will be useful for someone... Keep on keeping on! ------------------------------------------",
+            "id": "SAVE_ALL",
+            "name": "SAVE_ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_ALL]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

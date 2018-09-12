@@ -1,0 +1,105 @@
+{
+    "command-line": "Vecwarp [APAR] [MATVEC] [FORWARD] [BACKWARD] [INPUT] [X] [Y] [Z] [OUTPUT] [FORCE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-apar",
+            "description": "Use the AFNI dataset 'aaa' as the source of the transformation; this dataset must be in +acpc or +tlrc coordinates, and must contain the attributes WARP_TYPE and WARP_DATA which describe the forward transformation from +orig coordinates to the 'aaa' coordinate system. N.B.: The +orig version of this dataset must also be readable, since it is also needed when translating vectors between SureFit and AFNI coordinates. Only the .HEAD files are actually used.",
+            "id": "APAR",
+            "name": "APAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[APAR]"
+        },
+        {
+            "command-line-flag": "-matvec",
+            "description": "Read an affine transformation matrix-vector from file 'mmm', which must be in the format u11 u12 u13 v1 u21 u22 u23 v2 u31 u32 u33 v3 where each 'uij' and 'vi' is a number.  The forward transformation is defined as [ xout ]   [ u11 u12 u13 ] [ xin ]   [ v1 ] [ yout ] = [ u21 u22 u23 ] [ yin ] + [ v2 ] [ zout ]   [ u31 u32 u33 ] [ zin ]   [ v3 ]  Exactly one of -apar or -matvec must be used to specify the transformation.",
+            "id": "MATVEC",
+            "name": "MATVEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATVEC]"
+        },
+        {
+            "command-line-flag": "-forward",
+            "description": "-forward means to apply the forward transformation; *OR*        -backward means to apply the backward transformation",
+            "id": "FORWARD",
+            "name": "FORWARD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FORWARD]"
+        },
+        {
+            "command-line-flag": "-backward",
+            "description": "-backward     * For example, if the transformation is specified by '-apar fred+tlrc', then the forward transformation is from +orig to +tlrc coordinates, and the backward transformation is from +tlrc to +orig coordinates. * If the transformation is specified by -matvec, then the matrix-vector read in defines the forward transform as above, and the backward transformation is defined as the inverse. * If neither -forward nor -backward is given, then -forward is the default.",
+            "id": "BACKWARD",
+            "name": "BACKWARD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BACKWARD]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "Read input 3-vectors from file 'iii' (from stdin if 'iii' is '-' or the -input option is missing).  Input data may be in one of the following ASCII formats:  * SureFit .coord files: BeginHeader lines of text ... EndHeader count int x y z int x y z et cetera... In this case, everything up to and including the count is simply passed through to the output.  Each (x,y,z) triple is transformed, and output with the int label that precedes it.  Lines that cannot be scanned as 1 int and 3 floats are treated as comments and are passed to through to the output unchanged. N.B.-1: For those using SureFit surfaces created after the SureFit/Caret merger (post. 2005), you need to use the flag -new_surefit. Talk to Donna about this! N.B.-2: SureFit coordinates are x = distance Right    of Left-most      dataset corner y = distance Anterior to Posterior-most dataset corner z = distance Superior to Inferior-most  dataset corner For example, if the transformation is specified by -forward -apar fred+tlrc then the input (x,y,z) are relative to fred+orig and the output (x,y,z) are relative to fred+tlrc.  If instead",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-x",
+            "description": "Right     +x = Left",
+            "id": "X",
+            "name": "X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[X]"
+        },
+        {
+            "command-line-flag": "-y",
+            "description": "Anterior  +y = Posterior",
+            "id": "Y",
+            "name": "Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Y]"
+        },
+        {
+            "command-line-flag": "-z",
+            "description": "Inferior  +z = Superior",
+            "id": "Z",
+            "name": "Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Z]"
+        },
+        {
+            "command-line-flag": "-output",
+            "description": "Write the output to file 'ooo' (to stdout if 'ooo' is '-', or if the -output option is missing).  If the file already exists, it will not be overwritten unless the -force option is also used.",
+            "id": "OUTPUT",
+            "name": "OUTPUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTPUT]"
+        },
+        {
+            "command-line-flag": "-force",
+            "description": "If the output file already exists, -force can be used to overwrite it.  If you want to use -force, it must come before -output on the command line.  EXAMPLES:  Vecwarp -apar fred+tlrc -input fred.orig.coord > fred.tlrc.coord  This transforms the vectors defined in original coordinates to Talairach coordinates, using the transformation previously defined by AFNI markers.  Vecwarp -apar fred+tlrc -input fred.tlrc.coord -backward > fred.test.coord  This does the reverse transformation; fred.test.coord should differ from fred.orig.coord only by roundoff error.  Author: RWCox - October 2001  ++ Compile date = Sep  7 2018 {:}",
+            "id": "FORCE",
+            "name": "FORCE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FORCE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,59 @@
+{
+    "command-line": "3dRowFillin [MAXGAP] [DIR] [BINARY] [PREFIX] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-maxgap",
+            "description": "set the maximum length of a blank region that will be filled in to 'N' [default=9].",
+            "id": "MAXGAP",
+            "name": "MAXGAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAXGAP]"
+        },
+        {
+            "command-line-flag": "-dir",
+            "description": "set the direction of fill to 'D', which can be one of the following: A-P, P-A, I-S, S-I, L-R, R-L, x, y, z, XYZ.OR, XYZ.AND The first 6 are anatomical directions; x,y, and z, are reference to the dataset internal axes. XYZ.OR means do the fillin in x, followed by y, followed by z directions. XYZ.AND is like XYZ.OR but only accept voxels that would have been filled in each of the three fill calls. Note that with XYZ* options, the fill value depends on on the axis orientation. So you're better off sticking to single valued dsets when using them. See also -binary option below",
+            "id": "DIR",
+            "name": "DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIR]"
+        },
+        {
+            "command-line-flag": "-binary",
+            "description": "Turn input dataset to 0 and 1 before filling in. Output will also be a binary valued dataset.",
+            "id": "BINARY",
+            "name": "BINARY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BINARY]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "set the prefix to 'P' for the output dataset.  N.B.: If the input dataset has more than one sub-brick, only the first one will be processed.  * The intention of this program is to let you fill in slice gaps made when drawing ROIs with the 'Draw Dataset' plugin.  If you draw every 5th coronal slice, say, then you could fill in using 3dRowFillin -maxgap 4 -dir A-P -prefix fredfill fred+orig * This program is moderately obsolescent, since I later added the 'Linear Fillin' controls to the 'Draw Dataset' plugin.   ++ Compile date = Sep  7 2018 {:}",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

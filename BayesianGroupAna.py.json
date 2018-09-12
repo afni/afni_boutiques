@@ -1,0 +1,150 @@
+{
+    "command-line": "BayesianGroupAna.py [PREFIX] [Y] [CHAINS] [PLOT] [DATATABLE] [H] [HELP] [X] [NO_CENTER] [ITERATIONS] [CONTROL_LIST] [MORE_PLOTS] [RDATA] [SEED] [OVERWRITE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix dock_of_the_bayes   \\",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-y",
+            "description": "-y zscore -x some_x other_x \\",
+            "id": "Y",
+            "name": "Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Y]"
+        },
+        {
+            "command-line-flag": "-chains",
+            "description": "-chains 4 -iterations 1000  \\",
+            "id": "CHAINS",
+            "name": "CHAINS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHAINS]"
+        },
+        {
+            "command-line-flag": "-plot",
+            "description": "-plot -more_plots rhat violin  ------------------------------------------  Options ~1~  Required arguments:",
+            "id": "PLOT",
+            "name": "PLOT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PLOT]"
+        },
+        {
+            "command-line-flag": "-dataTable",
+            "description": "-dataTable DATATABLE  Input text file.",
+            "id": "DATATABLE",
+            "name": "DATATABLE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATATABLE]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "-h, --help            show this help message and exit",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "-help                 Show this help.",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-x",
+            "description": "-x VAR [VAR ...]      Column name for the x variables. If not specified, only the intercept will be added.",
+            "id": "X",
+            "name": "X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[X]"
+        },
+        {
+            "command-line-flag": "-no_center",
+            "description": "-no_center            Disable centering on the x variables. Maybe useful if you centered manually.",
+            "id": "NO_CENTER",
+            "name": "NO_CENTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CENTER]"
+        },
+        {
+            "command-line-flag": "-iterations",
+            "description": "-iterations ITER      Number of total iterations per chain including warmup. Default [1000]",
+            "id": "ITERATIONS",
+            "name": "ITERATIONS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ITERATIONS]"
+        },
+        {
+            "command-line-flag": "-control_list",
+            "description": "-control_list LIST    Comma separated list of control parameters to pass to the brm function. (example: 'adapt_delta=0.99,max_treedepth=20'). Default is the brm function defaults",
+            "id": "CONTROL_LIST",
+            "name": "CONTROL_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CONTROL_LIST]"
+        },
+        {
+            "command-line-flag": "-more_plots",
+            "description": "-more_plots TYPE [TYPE ...] Output \"stanplots\" given different types of plot names.",
+            "id": "MORE_PLOTS",
+            "name": "MORE_PLOTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MORE_PLOTS]"
+        },
+        {
+            "command-line-flag": "-RData",
+            "description": "-RData                Save the R session workspace and data.",
+            "id": "RDATA",
+            "name": "RDATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RDATA]"
+        },
+        {
+            "command-line-flag": "-seed",
+            "description": "-seed SEED            Seed to generate random number. Default [1234]",
+            "id": "SEED",
+            "name": "SEED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SEED]"
+        },
+        {
+            "command-line-flag": "-overwrite",
+            "description": "-overwrite            Overwrites the output files.  ------------------------------------------ Justin Rajendra circa 05/2018 4 Gang Box... Keep on keeping on! ------------------------------------------",
+            "id": "OVERWRITE",
+            "name": "OVERWRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OVERWRITE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

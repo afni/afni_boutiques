@@ -1,0 +1,157 @@
+{
+    "command-line": "3dpc [DMEAN] [VMEAN] [VNORM] [NORMALIZE] [NSCALE] [PCSAVE] [REDUCE] [PREFIX] [1DDUM] [VERBOSE] [QUIET] [EIGONLY] [FLOAT] [MASK] [DATASET] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-dmean",
+            "description": "remove the mean from each input brick (across space)",
+            "id": "DMEAN",
+            "name": "DMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DMEAN]"
+        },
+        {
+            "command-line-flag": "-vmean",
+            "description": "remove the mean from each input voxel (across bricks) [N.B.: -dmean and -vmean are mutually exclusive] [default: don't remove either mean]",
+            "id": "VMEAN",
+            "name": "VMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VMEAN]"
+        },
+        {
+            "command-line-flag": "-vnorm",
+            "description": "L2 normalize each input voxel time series [occurs after the de-mean operations above,] [and before the brick normalization below. ]",
+            "id": "VNORM",
+            "name": "VNORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VNORM]"
+        },
+        {
+            "command-line-flag": "-normalize",
+            "description": "L2 normalize each input brick (after mean subtraction) [default: don't normalize]",
+            "id": "NORMALIZE",
+            "name": "NORMALIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORMALIZE]"
+        },
+        {
+            "command-line-flag": "-nscale",
+            "description": "Scale the covariance matrix by the number of samples This is not done by default for backward compatibility. You probably want this option on.",
+            "id": "NSCALE",
+            "name": "NSCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NSCALE]"
+        },
+        {
+            "command-line-flag": "-pcsave",
+            "description": "'sss' is the number of components to save in the output; it can't be more than the number of input bricks [default = none of them] * To get all components, set 'sss' to a very large number (more than the time series length), like 99999 You can also use the key word ALL, as in -pcsave ALL to save all the components.",
+            "id": "PCSAVE",
+            "name": "PCSAVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PCSAVE]"
+        },
+        {
+            "command-line-flag": "-reduce",
+            "description": "Compute a 'dimensionally reduced' dataset with the top 'r' eigenvalues and write to disk in dataset 'pp' [default = don't compute this at all] * If '-vmean' is given, then each voxel's mean will be added back into the reduced time series.  If you don't want this behaviour, you could remove the mean with 3dDetrend before running 3dpc. * On the other hand, the effects of '-vnorm' and '-dmean' and '-normalize' are not reversed in this output (at least at present -- send some cookies and we'll talk).",
+            "id": "REDUCE",
+            "name": "REDUCE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REDUCE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Name for output dataset (will be a bucket type); * Also, the eigen-timeseries will be in 'pname'_vec.1D (all of them) and in 'pnameNN.1D' for eigenvalue #NN individually (NN=00 .. 'sss'-1, corresponding to the brick index in the output dataset) * The eigenvalues will be printed to file 'pname'_eig.1D All eigenvalues are printed, regardless of '-pcsave'. [default value of pname = 'pc']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-1ddum",
+            "description": "Add 'ddd' dummy lines to the top of each *.1D file. These lines will have the value 999999, and can be used to align the files appropriately. [default value of ddd = 0]",
+            "id": "1DDUM",
+            "name": "1DDUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1DDUM]"
+        },
+        {
+            "command-line-flag": "-verbose",
+            "description": "Print progress reports during the computations",
+            "id": "VERBOSE",
+            "name": "VERBOSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERBOSE]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "Don't print progress reports [the default]",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-eigonly",
+            "description": "Only compute eigenvalues, then write them to 'pname'_eig.1D, and stop.",
+            "id": "EIGONLY",
+            "name": "EIGONLY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EIGONLY]"
+        },
+        {
+            "command-line-flag": "-float",
+            "description": "Save eigen-bricks as floats [default = shorts, scaled so that |max|=10000]",
+            "id": "FLOAT",
+            "name": "FLOAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLOAT]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Use the 0 sub-brick of dataset 'mset' as a mask to indicate which voxels to analyze (a sub-brick selector is allowed) [default = use all voxels]  Example using 1D data a input, with each column being the equivalent of a sub-brick: 3dpc -prefix mmm -dmean -nscale -pcsave ALL datafile.1D   ++ Compile date = Sep  7 2018 {:}",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

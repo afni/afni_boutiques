@@ -1,0 +1,105 @@
+{
+    "command-line": "3dinfill [INPUT] [PREFIX] [NITER] [BLEND] [MINHITS] [ED] [MASK] [MASK_RANGE] [MRANGE] [CMASK]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "Fill volume DSET",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use PREF for output prefix.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-Niter",
+            "description": "Do not allow the fill function to do more than NITER passes. A -1 (default) lets the function go to a maximum of 500 iterations. You will be warned if you run our of iterations and holes persist.",
+            "id": "NITER",
+            "name": "NITER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NITER]"
+        },
+        {
+            "command-line-flag": "-blend",
+            "description": "Sets method for assigning a value to a hole. MODE: Fill with most frequent neighbor value. Use MODE when filling integral valued data such as ROIs or atlases. AVG: Fill with average of neighboring values. AUTO: Use MODE if DSET is integral, AVG otherwise. SOLID: No blending, brutish fill. See also -minhits SOLID_CLEAN: SOLID, followed by removal of dangling chunks Dangling chunks are defined as non-zero regions that surround lesser holes, i.e. holes that have less than MH. The cleanup step is not iterative though, and you are most likely better off using option -ed to do the cleanup.",
+            "id": "BLEND",
+            "name": "BLEND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLEND]"
+        },
+        {
+            "command-line-flag": "-minhits",
+            "description": "Crietrion for considering a zero voxel to be a hole MH refers to the total number of directions alogn which a zero voxel is considered surrounded by non zero values. a value of 1 is the least strict criterion, and a value of 3 is the strictest. This parameter can only be used with -blend SOLID",
+            "id": "MINHITS",
+            "name": "MINHITS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MINHITS]"
+        },
+        {
+            "command-line-flag": "-ed",
+            "description": "Erode N times then dialate N times to get rid of hanging chunks. Values filled in by this process get value V.",
+            "id": "ED",
+            "name": "ED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ED]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Provide mask dataset to select subset of input.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-mask_range",
+            "description": "Specify the range of values to consider from MSET. Default is anything non-zero.",
+            "id": "MASK_RANGE",
+            "name": "MASK_RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK_RANGE]"
+        },
+        {
+            "command-line-flag": "-mrange",
+            "description": "Same as option -mask_range",
+            "id": "MRANGE",
+            "name": "MRANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MRANGE]"
+        },
+        {
+            "command-line-flag": "-cmask",
+            "description": "Provide cmask expression. Voxels where expression is 0 are excluded from computations. For example: -cmask '-a T1.div.r+orig -b T1.uni.r+orig -expr step(a/b-10)' NOTE: For the moment, masking is only implemented for the SOLID* fill method.  Example 1: Starting from a whole head mask that has some big holes in it where CSF and cavities are. Fill the inside of the mask and remove dangling chunks in the end with -ed 3dinfill -blend SOLID -ed 3 1 -prefix filledmask \\ -minhits 2 -input holymask+orig.  This program will be slow for high res datasets with large holes. If you are trying to fill holes in masks, consider also: 3dmask_tool -fill_holes",
+            "id": "CMASK",
+            "name": "CMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CMASK]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

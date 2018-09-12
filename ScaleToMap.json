@@ -1,0 +1,326 @@
+{
+    "command-line": "ScaleToMap [INPUT] [V] [CMAP] [CMAPDB] [CMAPFILE] [FRF] [CLP] [APR] [ANR] [INTERP] [NOINTERP] [DIRECT] [MSK_ZERO] [MSK] [MSK_COL] [NOMSK_COL] [BR] [VERB] [SHOWMAP] [SHOWDB] [H] [HELP] [H_VIEW] [HVIEW] [H_WEB] [HWEB] [H_FIND] [H_RAW] [H_SPX] [H_ASPX] [ALL_OPTS] [<-INPUT] [INTFILE] [ICOL] [VCOL>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "input data. Infile: 1D formatted ascii file containing node values icol: index of node index column (-1 if the node index is implicit) vcol: index of node value column. Example: -input ValOnly.1D -1 0 for a 1D file containing node values in the first column and no node indices. Example: -input NodeVal.1D 1 3 for a 1D file containing node indices in the SECOND column and node values in the FOURTH column (index counting begins at 0)",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-v",
+            "description": "-v and -iv options are now obsolete. Use -input option instead.",
+            "id": "V",
+            "name": "V",
+            "optional": true,
+            "type": "String",
+            "value-key": "[V]"
+        },
+        {
+            "command-line-flag": "-cmap",
+            "description": "(optional, default RGYBR20) choose one of the standard colormaps available with SUMA: RGYBR20, BGYR19, BW20, GRAY20, MATLAB_DEF_BYR64, ROI64, ROI128 You can also use AFNI's default paned color maps: The maps are labeled according to the number of panes and their sign. Example: afni_p10 uses the positive 10-pane afni colormap. afni_n10 is the negative counterpart. These maps are meant to be used with the options -apr and -anr listed below. You can also load non-default AFNI colormaps from .pal files (AFNI's colormap format); see option -cmapdb below.",
+            "id": "CMAP",
+            "name": "CMAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CMAP]"
+        },
+        {
+            "command-line-flag": "-cmapdb",
+            "description": "read color maps from AFNI .pal file In addition to the default paned AFNI colormaps, you can load colormaps from a .pal file. To access maps in the Palfile you must use the -cmap option with the label formed by the name of the palette, its sign and the number of panes. For example, to following palette: ***PALETTES deco [13] should be accessed with -cmap deco_n13 ***PALETTES deco [13+] should be accessed with -cmap deco_p13",
+            "id": "CMAPDB",
+            "name": "CMAPDB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CMAPDB]"
+        },
+        {
+            "command-line-flag": "-cmapfile",
+            "description": "read color map from Mapfile. Mapfile:1D formatted ascii file containing colormap. each row defines a color in one of two ways: R  G  B        or R  G  B  f where R, G, B specify the red, green and blue values, between 0 and 1 and f specifies the fraction of the range reached at this color. THINK values of right of AFNI colorbar. The use of fractions (it is optional) would allow you to create non-linear color maps where colors cover differing fractions of the data range. Sample colormap with positive range only (a la AFNI): 0  0  1  1.0 0  1  0  0.8 1  0  0  0.6 1  1  0  0.4 0  1  1  0.2 Note the order in which the colors and fractions are specified. The bottom color of the +ve colormap should be at the bottom of the file and have the lowest +ve fraction. The fractions here define a a linear map so they are not necessary but they illustrate the format of the colormaps. Comparable colormap with negative range included: 0  0  1   1.0 0  1  0   0.6 1  0  0   0.2 1  1  0  -0.2 0  1  1  -0.6 The bottom color of the -ve colormap should have the lowest -ve fraction. You can use -1 -1 -1 for a color to indicate a no color (like the 'none' color in AFNI). Values mapped to this 'no color' will be masked as with the -msk option. If your 1D color file has more than three or 4 columns, you can use the [] convention adopted by AFNI programs to select the columns you need.",
+            "id": "CMAPFILE",
+            "name": "CMAPFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CMAPFILE]"
+        },
+        {
+            "command-line-flag": "-frf",
+            "description": "(optional) first row in file is the first color. As explained in the -cmapfile option above, the first or bottom (indexed 0 )color of the colormap should be at the bottom of the file. If the opposite is true, use the -frf option to signal that. This option is only useful with -cmapfile.",
+            "id": "FRF",
+            "name": "FRF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FRF]"
+        },
+        {
+            "command-line-flag": "-clp",
+            "description": "-clp/-perc_clp clp0 clp1: (optional, default no clipping) clips values in IntVect. if -clp is used then values in vcol < clp0 are clipped to clp0 and > clp1 are clipped to clp1 if -perc_clp is used them vcol is clipped to the values corresponding to clp0 and clp1 percentile. The -clp/-prec_clp options are mutually exclusive with -apr/-anr.",
+            "id": "CLP",
+            "name": "CLP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLP]"
+        },
+        {
+            "command-line-flag": "-apr",
+            "description": "(optional) clips the values in IntVect to [0 range]. This option allows range of colormap to be set as in AFNI, with Positive colorbar (Pos selected). This option is mutually exclusive with -clp/-perc_clp). set range = 0 for autoranging. If you use -apr and your colormap contains fractions, you must use a positive range colormap.",
+            "id": "APR",
+            "name": "APR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[APR]"
+        },
+        {
+            "command-line-flag": "-anr",
+            "description": "(optional) clips the values in IntVect to [-range range]. This option allows range of colormap to be set as in AFNI, with Negative colorbar (Pos NOT selected). This option is mutually exclusive with -clp/-perc_clp). set range = 0 for autoranging. If you use -anr and your colormap contains fractions, you must use a negative range colormap.",
+            "id": "ANR",
+            "name": "ANR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANR]"
+        },
+        {
+            "command-line-flag": "-interp",
+            "description": "(default) use color interpolation between colors in colormap If a value is assigned between two colors on the colorbar, it receives a color that is an interpolation between those two colors. This is the default behaviour in SUMA and AFNI when using the continuous colorscale. Mutually exclusive with -nointerp and -direct options.",
+            "id": "INTERP",
+            "name": "INTERP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INTERP]"
+        },
+        {
+            "command-line-flag": "-nointerp",
+            "description": "(optional) turns off color interpolation within the colormap Color assigniment is done a la AFNI when the paned colormaps are used. Mutually exclusive with -interp and -direct options.",
+            "id": "NOINTERP",
+            "name": "NOINTERP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOINTERP]"
+        },
+        {
+            "command-line-flag": "-direct",
+            "description": "(optional) values (typecast to integers) are mapped directly to index of color in color maps. Example: value 4 is assigned to the 5th (index 4) color in the color map (same for values 4.2 and 4.7). This mapping scheme is useful for ROI indexed type data. Negative data values are set to 0 and values >= N_col (the number of colors in the colormap) are set to N_col -1",
+            "id": "DIRECT",
+            "name": "DIRECT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIRECT]"
+        },
+        {
+            "command-line-flag": "-msk_zero",
+            "description": "(optional) values that are 0 will get masked no matter what colormaps or mapping schemes you are using. AFNI masks all zero values by default.",
+            "id": "MSK_ZERO",
+            "name": "MSK_ZERO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MSK_ZERO]"
+        },
+        {
+            "command-line-flag": "-msk",
+            "description": "(optinal, default is no masking) Values in vcol (BEFORE clipping is performed) between [msk0 msk1] are masked by the masking color.",
+            "id": "MSK",
+            "name": "MSK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MSK]"
+        },
+        {
+            "command-line-flag": "-msk_col",
+            "description": "(optional, default is 0.3 0.3 0.3) Sets the color of masked voxels.",
+            "id": "MSK_COL",
+            "name": "MSK_COL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MSK_COL]"
+        },
+        {
+            "command-line-flag": "-nomsk_col",
+            "description": "do not output nodes that got masked. It does not make sense to use this option with -msk_col.",
+            "id": "NOMSK_COL",
+            "name": "NOMSK_COL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOMSK_COL]"
+        },
+        {
+            "command-line-flag": "-br",
+            "description": "(optional, default is 1) Applies a brightness factor to the colors of the colormap and the mask color. -h or -help: displays this help message.  The following options are for debugging and sanity checks.",
+            "id": "BR",
+            "name": "BR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BR]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "(optional) verbose mode.",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-showmap",
+            "description": "(optional) print the colormap to the screen and quit. This option is for debugging and sanity checks. You can use MakeColorMap in Usage3 to write out a colormap in its RGB form.",
+            "id": "SHOWMAP",
+            "name": "SHOWMAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOWMAP]"
+        },
+        {
+            "command-line-flag": "-showdb",
+            "description": "(optional) print the colors and colormaps of AFNI along with any loaded from the file Palfile. [-novolreg]: Ignore any Rotate, Volreg, Tagalign, or WarpDrive transformations present in the Surface Volume. [-noxform]: Same as -novolreg [-setenv \"'ENVname=ENVvalue'\"]: Set environment variable ENVname to be ENVvalue. Quotes are necessary. Example: suma -setenv \"'SUMA_BackgroundColor = 1 0 1'\" See also options -update_env, -environment, etc in the output of 'suma -help' Common Debugging Options: [-trace]: Turns on In/Out debug and Memory tracing. For speeding up the tracing log, I recommend you redirect stdout to a file when using this option. For example, if you were running suma you would use: suma -spec lh.spec -sv ... > TraceFile This option replaces the old -iodbg and -memdbg. [-TRACE]: Turns on extreme tracing. [-nomall]: Turn off memory tracing. [-yesmall]: Turn on memory tracing (default). NOTE: For programs that output results to stdout (that is to your shell/screen), the debugging info might get mixed up with your results.   Global Options (available to all AFNI/SUMA programs)",
+            "id": "SHOWDB",
+            "name": "SHOWDB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOWDB]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "Mini help, at time, same as -help in many cases.",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "The entire help output",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open help in text editor. AFNI will try to find a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open help in web browser. AFNI will try to find a browser.",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Look for lines in this programs's -help output that match (approximately) WORD.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "command-line-flag": "-h_raw",
+            "description": "Help string unedited",
+            "id": "H_RAW",
+            "name": "H_RAW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_RAW]"
+        },
+        {
+            "command-line-flag": "-h_spx",
+            "description": "Help string in sphinx loveliness, but do not try to autoformat",
+            "id": "H_SPX",
+            "name": "H_SPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_SPX]"
+        },
+        {
+            "command-line-flag": "-h_aspx",
+            "description": "Help string in sphinx with autoformatting of options, etc.",
+            "id": "H_ASPX",
+            "name": "H_ASPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_ASPX]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "Try to identify all options for the program from the output of its -help option. Some options might be missed and others misidentified. Use this output for hints only.    Compile Date: Sep  7 2018  Ziad S. Saad SSCC/NIMH/NIH saadz@mail.nih.gov July 31/02",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "description": "NA",
+            "id": "<-input",
+            "name": "<-input",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-INPUT]"
+        },
+        {
+            "description": "NA",
+            "id": "IntFile",
+            "name": "IntFile",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INTFILE]"
+        },
+        {
+            "description": "NA",
+            "id": "icol",
+            "name": "icol",
+            "optional": false,
+            "type": "String",
+            "value-key": "[ICOL]"
+        },
+        {
+            "description": "NA",
+            "id": "vcol>",
+            "name": "vcol>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[VCOL>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

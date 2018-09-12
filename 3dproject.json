@@ -1,0 +1,123 @@
+{
+    "command-line": "3dproject [SUM] [MAX] [AMAX] [SMAX] [FIRST] [NSIZE] [MIRROR] [OUTPUT] [RL] [AP] [IS] [ALL]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-sum",
+            "description": "> Add the dataset voxels along the projection direction",
+            "id": "SUM",
+            "name": "SUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUM]"
+        },
+        {
+            "command-line-flag": "-max",
+            "description": "> Take the maximum of the voxels [the default is -sum]",
+            "id": "MAX",
+            "name": "MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX]"
+        },
+        {
+            "command-line-flag": "-amax",
+            "description": "> Take the absolute maximum of the voxels",
+            "id": "AMAX",
+            "name": "AMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AMAX]"
+        },
+        {
+            "command-line-flag": "-smax",
+            "description": "> Take the signed maximum of the voxels; for example,",
+            "id": "SMAX",
+            "name": "SMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SMAX]"
+        },
+        {
+            "command-line-flag": "-first",
+            "description": "> Take the first value greater than x",
+            "id": "FIRST",
+            "name": "FIRST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIRST]"
+        },
+        {
+            "command-line-flag": "-nsize",
+            "description": "> Scale the output images up to 'normal' sizes (e.g., 64x64, 128x128, or 256x256) This option only applies to byte or short datasets.",
+            "id": "NSIZE",
+            "name": "NSIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NSIZE]"
+        },
+        {
+            "command-line-flag": "-mirror",
+            "description": "> The radiologists' and AFNI convention is to display axial and coronal images with the subject's left on the right of the image; the use of this option will mirror the axial and coronal projections so that left is left and right is right.",
+            "id": "MIRROR",
+            "name": "MIRROR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIRROR]"
+        },
+        {
+            "command-line-flag": "-output",
+            "description": "> Output projections will named root.sag, root.cor, and root.axi [the default root is 'proj']",
+            "id": "OUTPUT",
+            "name": "OUTPUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTPUT]"
+        },
+        {
+            "command-line-flag": "-RL",
+            "description": "> Project in the Right-to-Left direction along all the data (produces root.sag)",
+            "id": "RL",
+            "name": "RL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RL]"
+        },
+        {
+            "command-line-flag": "-AP",
+            "description": "> Project in the Anterior-to-Posterior direction along all the data (produces root.cor)",
+            "id": "AP",
+            "name": "AP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AP]"
+        },
+        {
+            "command-line-flag": "-IS",
+            "description": "> Project in the Inferior-to-Superior direction along all the data (produces root.axi)",
+            "id": "IS",
+            "name": "IS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IS]"
+        },
+        {
+            "command-line-flag": "-ALL",
+            "description": "> Equivalent to '-RL all -AP all -IS all'  * NOTE that a projection direction will not be used if the bounds aren't given for that direction; thus, at least one of -RL, -AP, or -IS must be used, or nothing will be computed! * NOTE that in the directions transverse to the projection direction, all the data is used; that is, '-RL -5 5' will produce a full sagittal image summed over a 10 mm slice, irrespective of the -IS or -AP extents. * NOTE that the [editing options] are the same as in 3dmerge. In particular, the '-1thtoin' option can be used to project the threshold data (if available).  INPUT DATASET NAMES ------------------- This program accepts datasets that are modified on input according to the following schemes: 'r1+orig[3..5]'                                    {sub-brick selector} 'r1+orig<100..200>'                                {sub-range selector} 'r1+orig[3..5]<100..200>'                          {both selectors} '3dcalc( -a r1+orig -b r2+orig -expr 0.5*(a+b) )'  {calculation} For the gruesome details, see the output of 'afni -help'.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "ALL",
+            "name": "ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

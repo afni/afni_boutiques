@@ -1,0 +1,58 @@
+{
+    "command-line": "3dXYZcat [PREFIX] [VERB] [DIR] [DATASET] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use 'pname' for the output dataset prefix name. [default prefix = 'xyzcat']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Print out some verbositiness as the program proceeds.",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-dir",
+            "description": "Catenate along direction 'Q', which is one of X or Y or Z (synonyms are I or J or K) which are the STORAGE directions (not DICOM) of the 3D grid of the input datasets. [default direction = 'X', for no good reason]  Command line arguments after the above are taken as input datasets.  Notes: ------ * If the i-th input dataset has dimensions nx[i] X ny[i] X nz[i], then case Q = X | I ==> all ny[i] and nz[i] must be the same; the output dataset has nx = sum{ nx[i] } case Q = Y | J ==> all nx[i] and nz[i] must be the same; the output dataset has ny = sum{ ny[i] } case Q = Z | K ==> all nx[i] and ny[i] must be the same; the output dataset has nz = sum{ nz[i] } * In all cases, the input datasets must have the same number of sub-bricks (time points) and the same data storage type. * You can use the '3dinfo' program to see the orientation and grid size of a dataset, to help you decide how to glue your inputs together. * There must be at least two datasets input (otherwise, the program doesn't make much sense, now does it?). * This is mostly useful for making side-by-side pictures from multiple datasets, for edification and elucidation. * If you have some other use for 3dXYZcat, let me know!  ** Author: RW Cox [Dec 2010] **  ++ Compile date = Sep  7 2018 {:}",
+            "id": "DIR",
+            "name": "DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIR]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

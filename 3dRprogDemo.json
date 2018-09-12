@@ -1,0 +1,114 @@
+{
+    "command-line": "3dRprogDemo [H_ASPX] [H_RAW] [H_SPX] [H_TXT] [HELP] [INPUT] [MASK] [PREFIX] [SCALE] [SHOW_ALLOWED_OPTIONS] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-h_aspx",
+            "description": "like -h_spx, with autolabeling",
+            "id": "H_ASPX",
+            "name": "H_ASPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_ASPX]"
+        },
+        {
+            "command-line-flag": "-h_raw",
+            "description": "this help message, as is in the code.",
+            "id": "H_RAW",
+            "name": "H_RAW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_RAW]"
+        },
+        {
+            "command-line-flag": "-h_spx",
+            "description": "this help message, in sphinx format",
+            "id": "H_SPX",
+            "name": "H_SPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_SPX]"
+        },
+        {
+            "command-line-flag": "-h_txt",
+            "description": "this help message, in simple text",
+            "id": "H_TXT",
+            "name": "H_TXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_TXT]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "this help message, in simple text.",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "-input DSET1                       \\ Specify the dataset to be scaled. Note that you can use the various sub-brick selectors used by AFNI e.g: -input pb05.Regression+tlrc'[face#0_Beta]'  \\ You can use multiple instances of -input in one command line to process multiple datasets in the same manner.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Process voxels inside this mask only. Default is no masking.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Output prefix (just prefix, no view+suffix needed)",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-scale",
+            "description": "Multiply each voxel by SS",
+            "id": "SCALE",
+            "name": "SCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE]"
+        },
+        {
+            "command-line-flag": "-show_allowed_options",
+            "description": "list of allowed options",
+            "id": "SHOW_ALLOWED_OPTIONS",
+            "name": "SHOW_ALLOWED_OPTIONS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_ALLOWED_OPTIONS]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "VERB is an integer specifying verbosi",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

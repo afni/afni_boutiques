@@ -1,0 +1,59 @@
+{
+    "command-line": "@grayplot [PVORDER] [PEELORDER] [IJKORDER] [ALLORDER] [DIRNAME]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-pvorder",
+            "description": "-pvorder = Within each partition, voxels are ordered by a simple similarity measure, so the top of each partition will echo have voxel time series that are more similar than the bottom of the partition. This ordering helps make it clear if there are many time series with similar temporal patterns, which will show up as vertical bands in the grayplot. * Note that '-pvorder' is based on the data, so the voxel order in the grayplot will differ between datasets in the same directory, unlike the geometrically-based orderings '-peelorder' and '-ijkorder'. * I personally like '-pvorder' for the clarity provided by having similar voxel time series clustered together.",
+            "id": "PVORDER",
+            "name": "PVORDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PVORDER]"
+        },
+        {
+            "command-line-flag": "-peelorder",
+            "description": "-peelorder = Within each partition, voxels are ordered by how many 'peel' operations are needed to reach a given voxel; that is, how far a voxel is from the partition's boundary. Voxels at the edge of the partition are first, etc.",
+            "id": "PEELORDER",
+            "name": "PEELORDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PEELORDER]"
+        },
+        {
+            "command-line-flag": "-ijkorder",
+            "description": "-ijkorder = Within each partition, voxels are just ordered by the 3D index in which they appear in the dataset. Possibly not exciting. This order will primarily be from Inferior to Superior in the brain (top to bottom in the grayplot image), using AFNI's convention for storing +tlrc datasets.",
+            "id": "IJKORDER",
+            "name": "IJKORDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IJKORDER]"
+        },
+        {
+            "command-line-flag": "-ALLorder",
+            "description": "-ALLorder = Create grayplots for all ordering methods. Can be useful for comparisons, but of course will take a little longer to run. **** Only one of these options can be given; if you give more options, then the script will become confused and not work. **** The default (no option given) order is '-ijkorder'.  NOTA BENE: * Also see '3dGrayplot -help', since the actual grayplot is created by that program. * Since the vertical (spatial) dimension of the output grayplot image is only 1200 pixels, each horizontal (time) row in the plot will be the combination of multiple voxels, in whatever order they appear. * Since the horizontal dimension of the output grayplot image is 1800 pixels, unless the time series has more than 1800 points, each time point will be stretched (interpolated) to fill more than one pixel. * I personally find '-pvorder' to be the most useful, but the other orderings can also be interesting to compare. * I like to use the AFNI 'aiv' program to view the images, rather than a standard image viewer program, since aiv's default settings show more contrast, which helps me see more structure in the grayplots. * Note that 'structure' in the grayplots of the errts datasets is in some sense BAD, since individual-subject statistics are computed from the errts dataset assuming it is just noise. * I prefer using 3dREMLfit and so the most relevant grayplot is from errts.SUBJECT_REMLwh+tlrc (the pre-whitened errts.SUBJECT_REML+tlrc). The voxelwise pre-whitening tends to removes a little of the visible structure in the grayplot. * Author: RWCox -- May 2018 * Notice: Subject to horrific and drastic change at any instant. * Changes since original version: a) Revised 3dGrayplot and @grayplot to plot data with a fixed range, so the images from different datasets can be compared. b) Revised to use +orig datasets if +tlrc datasets aren't found.",
+            "id": "ALLORDER",
+            "name": "ALLORDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALLORDER]"
+        },
+        {
+            "description": "NA",
+            "id": "dirname",
+            "name": "dirname",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DIRNAME]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

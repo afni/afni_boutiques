@@ -1,0 +1,69 @@
+{
+    "command-line": "@SkullStrip_TouchUp [PREFIX] [BRAIN] [HEAD] [MASK_OUT] [ORIG_DIM] [HELP]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "output file and folder name",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-brain",
+            "description": "skull stripped data set to touch up",
+            "id": "BRAIN",
+            "name": "BRAIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BRAIN]"
+        },
+        {
+            "command-line-flag": "-head",
+            "description": "whole head anatomical data set",
+            "id": "HEAD",
+            "name": "HEAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HEAD]"
+        },
+        {
+            "command-line-flag": "-mask_out",
+            "description": "output a binary mask in addition to actual data",
+            "id": "MASK_OUT",
+            "name": "MASK_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK_OUT]"
+        },
+        {
+            "command-line-flag": "-orig_dim",
+            "description": "edit in the original image dimensions",
+            "id": "ORIG_DIM",
+            "name": "ORIG_DIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ORIG_DIM]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "show this help  ----------------------------------------------------------------------------- examples:  @SkullStrip_TouchUp -prefix disco -brain disco_brain+orig -head disco_anat+orig  ----------------------------------------------------------------------------- Justin Rajendra 07/05/2017",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

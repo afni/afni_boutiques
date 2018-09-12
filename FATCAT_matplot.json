@@ -1,0 +1,33 @@
+{
+    "command-line": "FATCAT_matplot [HELP] [SHINYFOLDER]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "Show this help.",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-ShinyFolder",
+            "description": "Use a custom shiny folder (for testing purposes).  ----------------------------------------------------------------------------- examples: FATCAT_matplot ~/disco_netcc_folder  ----------------------------------------------------------------------------- Justin Rajendra 11/2017",
+            "id": "SHINYFOLDER",
+            "name": "SHINYFOLDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHINYFOLDER]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

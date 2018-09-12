@@ -1,0 +1,213 @@
+{
+    "command-line": "AnalyzeTrace [MAX_FUNC_LINES] [SUMA_C] [MAX_ERR] [H] [HELP] [H_VIEW] [HVIEW] [H_WEB] [HWEB] [H_FIND] [H_RAW] [H_SPX] [H_ASPX] [ALL_OPTS] [PROGRAM] [TO] [ANALYZE] [SUMA] [(AND] [AFNI'S] [PERHAPS)] [STACK] [OUTPUT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-max_func_lines",
+            "description": "Set the maximum number of code lines before a function returns. Default is no limit.",
+            "id": "MAX_FUNC_LINES",
+            "name": "MAX_FUNC_LINES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX_FUNC_LINES]"
+        },
+        {
+            "command-line-flag": "-suma_c",
+            "description": "FILE is a SUMA_*.c file. It is analyzed for functions that use SUMA_ RETURN (typo on purpose to avoid being caught here) without ENTRY Note: The file for this program has special strings (in comments at times) to avoid false alarms when processing it.",
+            "id": "SUMA_C",
+            "name": "SUMA_C",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUMA_C]"
+        },
+        {
+            "command-line-flag": "-max_err",
+            "description": "Stop after encountering MAX_ERR errors reported in log. Default is 5. Error key terms are: 'Error', 'error', 'corruption'  You should also search for the string: 'Note No RETURN or exit here'. Its occurrence can be an error at times.  [-novolreg]: Ignore any Rotate, Volreg, Tagalign, or WarpDrive transformations present in the Surface Volume. [-noxform]: Same as -novolreg [-setenv \"'ENVname=ENVvalue'\"]: Set environment variable ENVname to be ENVvalue. Quotes are necessary. Example: suma -setenv \"'SUMA_BackgroundColor = 1 0 1'\" See also options -update_env, -environment, etc in the output of 'suma -help' Common Debugging Options: [-trace]: Turns on In/Out debug and Memory tracing. For speeding up the tracing log, I recommend you redirect stdout to a file when using this option. For example, if you were running suma you would use: suma -spec lh.spec -sv ... > TraceFile This option replaces the old -iodbg and -memdbg. [-TRACE]: Turns on extreme tracing. [-nomall]: Turn off memory tracing. [-yesmall]: Turn on memory tracing (default). NOTE: For programs that output results to stdout (that is to your shell/screen), the debugging info might get mixed up with your results.   Global Options (available to all AFNI/SUMA programs)",
+            "id": "MAX_ERR",
+            "name": "MAX_ERR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX_ERR]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "Mini help, at time, same as -help in many cases.",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "The entire help output",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open help in text editor. AFNI will try to find a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open help in web browser. AFNI will try to find a browser.",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Look for lines in this programs's -help output that match (approximately) WORD.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "command-line-flag": "-h_raw",
+            "description": "Help string unedited",
+            "id": "H_RAW",
+            "name": "H_RAW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_RAW]"
+        },
+        {
+            "command-line-flag": "-h_spx",
+            "description": "Help string in sphinx loveliness, but do not try to autoformat",
+            "id": "H_SPX",
+            "name": "H_SPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_SPX]"
+        },
+        {
+            "command-line-flag": "-h_aspx",
+            "description": "Help string in sphinx with autoformatting of options, etc.",
+            "id": "H_ASPX",
+            "name": "H_ASPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_ASPX]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "Try to identify all options for the program from the output of its -help option. Some options might be missed and others misidentified. Use this output for hints only.    Compile Date: Sep  7 2018  Ziad S. Saad SSCC/NIMH/NIH saadz@mail.nih.gov",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "description": "NA",
+            "id": "program",
+            "name": "program",
+            "optional": false,
+            "type": "String",
+            "value-key": "[PROGRAM]"
+        },
+        {
+            "description": "NA",
+            "id": "to",
+            "name": "to",
+            "optional": false,
+            "type": "String",
+            "value-key": "[TO]"
+        },
+        {
+            "description": "NA",
+            "id": "analyze",
+            "name": "analyze",
+            "optional": false,
+            "type": "String",
+            "value-key": "[ANALYZE]"
+        },
+        {
+            "description": "NA",
+            "id": "SUMA",
+            "name": "SUMA",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SUMA]"
+        },
+        {
+            "description": "NA",
+            "id": "(and",
+            "name": "(and",
+            "optional": false,
+            "type": "String",
+            "value-key": "[(AND]"
+        },
+        {
+            "description": "NA",
+            "id": "AFNI's",
+            "name": "AFNI's",
+            "optional": false,
+            "type": "String",
+            "value-key": "[AFNI'S]"
+        },
+        {
+            "description": "NA",
+            "id": "perhaps)",
+            "name": "perhaps)",
+            "optional": false,
+            "type": "String",
+            "value-key": "[PERHAPS)]"
+        },
+        {
+            "description": "NA",
+            "id": "stack",
+            "name": "stack",
+            "optional": false,
+            "type": "String",
+            "value-key": "[STACK]"
+        },
+        {
+            "description": "NA",
+            "id": "output",
+            "name": "output",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTPUT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

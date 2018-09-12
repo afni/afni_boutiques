@@ -1,0 +1,112 @@
+{
+    "command-line": "3dLocalHistog [NBHD] [PREFIX] [HSAVE] [LAB_FILE] [EXCLUDE] [EXCNONLAB] [MINCOUNT] [PROB] [QUIET] [DATASET] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-nbhd",
+            "description": "-nbhd 'nnn'   = The string 'nnn' defines the region around each voxel that will be extracted for the statistics calculation.  The format of the 'nnn' string is the same as in 3dLocalstat: * 'SPHERE(r)' * 'RECT(a,b,c)' * 'RHDD(a)' * 'TOHD(a)' * If no '-nbhd' option is given, then just the voxel itself is used -- in which case, the input dataset(s) must comprise a total of at least 2 sub-bricks!",
+            "id": "NBHD",
+            "name": "NBHD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NBHD]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use string 'ppp' as the prefix for the output dataset.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-hsave",
+            "description": "Save the overall histogram into file 'sss'.  This file will have 2 columns:   value  count Values with zero count will not be shown in this file.",
+            "id": "HSAVE",
+            "name": "HSAVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HSAVE]"
+        },
+        {
+            "command-line-flag": "-lab_file",
+            "description": "Use file 'LL' as a label file.  The first column contains the numbers, the second column the corresponding labels. * You can use a column selector to choose the columns you want.  For example, if the first column has the labels and the second the values, use 'filename[1,0]'.",
+            "id": "LAB_FILE",
+            "name": "LAB_FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LAB_FILE]"
+        },
+        {
+            "command-line-flag": "-exclude",
+            "description": "-exclude a..b = Exclude values from 'a' to 'b' from the counting. * Zero (0) will never be excluded. * You can use '-exclude' more than once.",
+            "id": "EXCLUDE",
+            "name": "EXCLUDE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXCLUDE]"
+        },
+        {
+            "command-line-flag": "-excNONLAB",
+            "description": "If '-lab_file' is used, then exclude all values that are NOT in the label file (except for 0, of course).",
+            "id": "EXCNONLAB",
+            "name": "EXCNONLAB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXCNONLAB]"
+        },
+        {
+            "command-line-flag": "-mincount",
+            "description": "Exclude values which appear in the overall histogram fewer than 'mm' times. * Excluded  values will be treated as if they are zero (and so appear in the '0:Other' output sub-brick). * The overall histogram output by '-hsave' is NOT altered by the use of '-mincount' or '-exclude' or '-excNONLAB'.",
+            "id": "MINCOUNT",
+            "name": "MINCOUNT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MINCOUNT]"
+        },
+        {
+            "command-line-flag": "-prob",
+            "description": "Normally, the output dataset is a set of counts.  This option converts each count to a 'probability' by dividing by the total number of counts at each voxel. * The resulting dataset is stored as bytes, in units of 0.01, so that p=1 corresponds to 1/0.01=100.",
+            "id": "PROB",
+            "name": "PROB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PROB]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "Stop the highly informative progress reports.  OUTPUT DATASET -------------- * For each distinct value a sub-brick is produced. * The zero value will be first; after that, the values will appear in increasing order. * If '-lab_file' is used, then the sub-brick label for a given value's count will be of the form 'value:label'; for example, '2013:rh.lingual'. * For values NOT in the '-lab_file', the label will just be of the form 'value:'. * For the first (value=0) sub-brick, the label will be '0:Other'.  Author: RWCox - April 2013  ++ Compile date = Sep  7 2018 {:}",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

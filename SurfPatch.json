@@ -1,0 +1,366 @@
+{
+    "command-line": "SurfPatch [SPEC] [SURF_X] [INPUT] [PREFIX] [VOL] [VOL_ONLY] [OUT_TYPE] [HITS] [MASKLABEL] [PATCH2SURF] [NODE_DEPTH] [CHECK_BOWTIE] [FIX_BOWTIE] [OK_BOWTIE] [ADJUST_CONTOUR] [DO-NOT-ADJUST_CONTOUR] [STICHED_SURFACE] [COORD_GAIN] [FLIP_ORIENTATION] [VERB] [SV] [I_TYPE] [ONESTATE] [ANATOMICAL] [I] [TN] [TSN] [SURF_A] [H] [HELP] [H_VIEW] [HVIEW] [H_WEB] [HWEB] [H_FIND] [H_RAW] [H_SPX] [H_ASPX] [ALL_OPTS]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-spec",
+            "description": "Spec file containing input surfaces.",
+            "id": "SPEC",
+            "name": "SPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEC]"
+        },
+        {
+            "command-line-flag": "-surf_X",
+            "description": "Name of input surface X where X is a character from A to Z. If surfaces are specified using two files, use the name of the node coordinate file.",
+            "id": "SURF_X",
+            "name": "SURF_X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURF_X]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": " nodefile is the file containing nodes defining the patch. inode is the index of the column containing the nodes ilabel is the index of the column containing labels of the nodes in column inode. If you want to use all the nodes in column indode, then set this parameter to -1 (default). If ilabel is not equal to 0 then the corresponding node is used in creating the patch. See -masklabel option for one more variant.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Prefix of output patch. If more than one surface are entered, then the prefix will have _X added to it, where X is a character from A to Z. Output format depends on the input surface's. With that setting, checking on pre-existing files is only done before writing the new patch, which is annoying. You can set the output type ahead of time using -out_type option. This way checking for pre-existing output files can be done at the outset.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-vol",
+            "description": "Calculate the volume formed by the patch on surf_A and and surf_B. For this option, you must specify two and only two surfaces with surf_A and surf_B options.",
+            "id": "VOL",
+            "name": "VOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VOL]"
+        },
+        {
+            "command-line-flag": "-vol_only",
+            "description": "Only calculate the volume, don't write out patches. See also -fix_bowtie option below.  ** If you are more interested in the volume attributed to one node, or a set of nodes, between two isotopic surfaces, you are much better off using SurfMeasures' -node_volg option. SurfMeasures has an efficient implementation of the Gauss Theorem based volume estimation.",
+            "id": "VOL_ONLY",
+            "name": "VOL_ONLY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VOL_ONLY]"
+        },
+        {
+            "command-line-flag": "-out_type",
+            "description": "Type of all output patches, regardless of input surface type. Choose from: FreeSurfer, SureFit, 1D and Ply.",
+            "id": "OUT_TYPE",
+            "name": "OUT_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_TYPE]"
+        },
+        {
+            "command-line-flag": "-hits",
+            "description": "Minimum number of nodes specified for a triangle to be made a part of the patch (1 <= min_hits <= 3) default is 2.",
+            "id": "HITS",
+            "name": "HITS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HITS]"
+        },
+        {
+            "command-line-flag": "-masklabel",
+            "description": "If specified, then only nodes that are labeled with with msk are considered for the patch. This option is useful if you have an ROI dataset file and whish to create a patch from one out of many ROIs in that file. This option must be used with ilabel specified (not = -1)",
+            "id": "MASKLABEL",
+            "name": "MASKLABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASKLABEL]"
+        },
+        {
+            "command-line-flag": "-patch2surf",
+            "description": "Turn surface patch into a surface where only nodes used in forming the mesh are preserved.",
+            "id": "PATCH2SURF",
+            "name": "PATCH2SURF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PATCH2SURF]"
+        },
+        {
+            "command-line-flag": "-node_depth",
+            "description": "Compute depth of each node after projection onto the 1st principal direction of the nodes making up the surface. The results are written in a file with prefix NODE_DEPTH.pcdepth.1D.dset. You must use -patch2surf in order to use this option. Option is similar to the one in program ConvertSurface.",
+            "id": "NODE_DEPTH",
+            "name": "NODE_DEPTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NODE_DEPTH]"
+        },
+        {
+            "command-line-flag": "-check_bowtie",
+            "description": "Check if the patch has a section hanging by one node to the rest of the mesh. Think of a patch made of two triangles that are connected at one node only. Think Bowtie. Bowties should not occur if original surface is 2 manifold and min_hits == 1 -check_bowtie is the default when -vol or -vol_only are used. Volume computation will fail in the presence of bowties.",
+            "id": "CHECK_BOWTIE",
+            "name": "CHECK_BOWTIE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHECK_BOWTIE]"
+        },
+        {
+            "command-line-flag": "-fix_bowtie",
+            "description": "Modify patch to eliminate bowties. This only works if min_hits is > 1. The repair is done by relaxing min_hits at the node(s) where the bowtie happens.",
+            "id": "FIX_BOWTIE",
+            "name": "FIX_BOWTIE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FIX_BOWTIE]"
+        },
+        {
+            "command-line-flag": "-ok_bowtie",
+            "description": "Do not check for, or fix bowties. Default when -vol* are not used.",
+            "id": "OK_BOWTIE",
+            "name": "OK_BOWTIE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OK_BOWTIE]"
+        },
+        {
+            "command-line-flag": "-adjust_contour",
+            "description": "Once the patch is created, shrink its contours at nodes that were not in nodefile (non-selected). Each non-selected node is moved to the center of mass of itself and neighboring selected nodes. This adjustment might make sense when min_hits < 3",
+            "id": "ADJUST_CONTOUR",
+            "name": "ADJUST_CONTOUR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ADJUST_CONTOUR]"
+        },
+        {
+            "command-line-flag": "-do-not-adjust_contour",
+            "description": "-do-not-adjust_contour:  Do not adjust contrours. This is the default.",
+            "id": "DO-NOT-ADJUST_CONTOUR",
+            "name": "DO-NOT-ADJUST_CONTOUR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO-NOT-ADJUST_CONTOUR]"
+        },
+        {
+            "command-line-flag": "-stiched_surface",
+            "description": "Write out the stiched surface used to calculate the volume. If -adjust_contour is used, this option also writes out a file that shows which nodes on the original surface were adjusted. The first column in the node number. The 2nd contains the number of selected nodes that neighbored non-selected nodes in the patch.",
+            "id": "STICHED_SURFACE",
+            "name": "STICHED_SURFACE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STICHED_SURFACE]"
+        },
+        {
+            "command-line-flag": "-coord_gain",
+            "description": "Multiply node coordinates by a GAIN. That's useful if you have a tiny patch that needs enlargement for easier viewing in SUMA. Although you can zoon over very large ranges in SUMA tiny tiny patches are hard to work with because SUMA's parameters are optimized to work with objects on the order of a brain, not on the order of 1 mm. Gain is applied just before writing out patches.",
+            "id": "COORD_GAIN",
+            "name": "COORD_GAIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COORD_GAIN]"
+        },
+        {
+            "command-line-flag": "-flip_orientation",
+            "description": "Change orientation of triangles before writing surfaces.",
+            "id": "FLIP_ORIENTATION",
+            "name": "FLIP_ORIENTATION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_ORIENTATION]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Set verbosity level, 1 is the default.  Example 1: Given an ROI, a white matter and a gray matter surface calculate the volume of cortex enclosed by the roi on both surfaces. Assume you have the spec file and surfaces already. You can get the same files from the SUMA directory in the AFNI workshop SUMA's archive which you can get with: afni_open -aw suma_demo.tgz  Draw an ROI on the surface and save it as: lh.manualroi.1D.roi  To calculate the volume and create a enclosing surface: SurfPatch   -spec DemoSubj_lh.spec \\",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-sv",
+            "description": "-sv DemoSubj_SurfVol+orig  \\ -surf_A lh.smoothwm  \\ -surf_B lh.pial   \\ -prefix lh.patch \\ -input lh.manualroi.1D.roi 0 -1  \\ -out_type fs   \\ -vol  \\ -adjust_contour \\ -stiched_surface lh.stiched   \\ -flip_orientation  Example 2: If you want to voxelize the region between the two surfaces you can run the following on the output. 3dSurfMask -i lh.stiched.ply \\ -prefix lh.closed -fill_method SLOW \\ -grid_parent DemoSubj_SurfVol+orig.HEAD 3dSurfMask will output a dataset called lh.closed.d+orig which contains the signed closest distance from each voxel to the surface. Negative distances are outside the surface.  To examine the results: suma -npb 71 -i lh.stiched.ply -sv DemoSubj_SurfVol+orig. & afni -npb 71 -niml -yesplugouts & DriveSuma -npb 71 -com viewer_cont -key 't' plugout_drive  -npb 71  \\ -com 'SET_OVERLAY lh.closed.d' \\ -com 'SET_FUNC_RANGE A.3' \\ -com 'SET_PBAR_NUMBER A.10' \\ -com 'SET_DICOM_XYZ A. 10 70 22 '\\ -quit  Specifying input surfaces using -i or -i_TYPE options:",
+            "id": "SV",
+            "name": "SV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SV]"
+        },
+        {
+            "command-line-flag": "-i_TYPE",
+            "description": "-i_TYPE inSurf specifies the input surface, TYPE is one of the following: fs: FreeSurfer surface. If surface name has .asc it is assumed to be in ASCII format. Otherwise it is assumed to be in BINARY_BE (Big Endian) format. Patches in Binary format cannot be read at the moment. sf: SureFit surface. You must specify the .coord followed by the .topo file. vec (or 1D): Simple ascii matrix format. You must specify the coord (NodeList) file followed by the topo (FaceSetList) file. coord contains 3 floats per line, representing X Y Z vertex coordinates. topo contains 3 ints per line, representing v1 v2 v3 triangle vertices. ply: PLY format, ascii or binary. Only vertex and triangulation info is preserved. stl: STL format, ascii or binary. This format of no use for much of the surface-based analyses. Objects are defined as a soup of triangles with no information about which edges they share. STL is only useful for taking surface models to some 3D printing software. mni: MNI .obj format, ascii only. Only vertex, triangulation, and node normals info is preserved. byu: BYU format, ascii. Polygons with more than 3 edges are turned into triangles. bv: BrainVoyager format. Only vertex and triangulation info is preserved. dx: OpenDX ascii mesh format. Only vertex and triangulation info is preserved. Requires presence of 3 objects, the one of class 'field' should contain 2 components 'positions' and 'connections' that point to the two objects containing node coordinates and topology, respectively. gii: GIFTI XML surface format. obj: OBJ file format for triangular meshes only. The following primitives are preserved: v (vertices), (faces, triangles only), and p (points) Note that if the surface filename has the proper extension, it is enough to use the -i option and let the programs guess the type from the extension.  You can also specify multiple surfaces after -i option. This makes it possible to use wildcards on the command line for reading in a bunch of surfaces at once.",
+            "id": "I_TYPE",
+            "name": "I_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I_TYPE]"
+        },
+        {
+            "command-line-flag": "-onestate",
+            "description": "Make all -i_* surfaces have the same state, i.e. they all appear at the same time in the viewer. By default, each -i_* surface has its own state. For -onestate to take effect, it must precede all -i options with on the command line.",
+            "id": "ONESTATE",
+            "name": "ONESTATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ONESTATE]"
+        },
+        {
+            "command-line-flag": "-anatomical",
+            "description": "Label all -i surfaces as anatomically correct. Again, this option should precede the -i_* options.  More variants for option -i: ----------------------------- You can also load standard-mesh spheres that are formed in memory with the following notation",
+            "id": "ANATOMICAL",
+            "name": "ANATOMICAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANATOMICAL]"
+        },
+        {
+            "command-line-flag": "-i",
+            "description": "Where NUM is the parameter controlling the mesh density exactly as the parameter -ld linDepth does in CreateIcosahedron. For example: suma -i ld60 create on the fly a surface that is identical to the one produced by: CreateIcosahedron -ld 60 -tosphere",
+            "id": "I",
+            "name": "I",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I]"
+        },
+        {
+            "command-line-flag": "-tn",
+            "description": "specify surface type and name. See below for help on the parameters.",
+            "id": "TN",
+            "name": "TN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TN]"
+        },
+        {
+            "command-line-flag": "-tsn",
+            "description": "specify surface type state and name. TYPE: Choose from the following (case sensitive): 1D: 1D format FS: FreeSurfer ascii format PLY: ply format MNI: MNI obj ascii format BYU: byu format SF: Caret/SureFit format BV: BrainVoyager format GII: GIFTI format NAME: Name of surface file. For SF and 1D formats, NAME is composed of two names the coord file followed by the topo file STATE: State of the surface. Default is S1, S2.... for each surface. Specifying a Surface Volume:",
+            "id": "TSN",
+            "name": "TSN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TSN]"
+        },
+        {
+            "command-line-flag": "-surf_A",
+            "description": "specify the name of the first surface to load. If the program requires or allows multiple surfaces, use -surf_B ... -surf_Z . You need not use _A if only one surface is expected. SURFACE is the name of the surface as specified in the SPEC file. The use of -surf_ option requires the use of -spec option.  [-novolreg]: Ignore any Rotate, Volreg, Tagalign, or WarpDrive transformations present in the Surface Volume. [-noxform]: Same as -novolreg [-setenv \"'ENVname=ENVvalue'\"]: Set environment variable ENVname to be ENVvalue. Quotes are necessary. Example: suma -setenv \"'SUMA_BackgroundColor = 1 0 1'\" See also options -update_env, -environment, etc in the output of 'suma -help' Common Debugging Options: [-trace]: Turns on In/Out debug and Memory tracing. For speeding up the tracing log, I recommend you redirect stdout to a file when using this option. For example, if you were running suma you would use: suma -spec lh.spec -sv ... > TraceFile This option replaces the old -iodbg and -memdbg. [-TRACE]: Turns on extreme tracing. [-nomall]: Turn off memory tracing. [-yesmall]: Turn on memory tracing (default). NOTE: For programs that output results to stdout (that is to your shell/screen), the debugging info might get mixed up with your results.   Global Options (available to all AFNI/SUMA programs)",
+            "id": "SURF_A",
+            "name": "SURF_A",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURF_A]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "Mini help, at time, same as -help in many cases.",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "The entire help output",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open help in text editor. AFNI will try to find a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open help in web browser. AFNI will try to find a browser.",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Look for lines in this programs's -help output that match (approximately) WORD.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "command-line-flag": "-h_raw",
+            "description": "Help string unedited",
+            "id": "H_RAW",
+            "name": "H_RAW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_RAW]"
+        },
+        {
+            "command-line-flag": "-h_spx",
+            "description": "Help string in sphinx loveliness, but do not try to autoformat",
+            "id": "H_SPX",
+            "name": "H_SPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_SPX]"
+        },
+        {
+            "command-line-flag": "-h_aspx",
+            "description": "Help string in sphinx with autoformatting of options, etc.",
+            "id": "H_ASPX",
+            "name": "H_ASPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_ASPX]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "Try to identify all options for the program from the output of its -help option. Some options might be missed and others misidentified. Use this output for hints only.    Compile Date: Sep  7 2018  Ziad S. Saad SSCC/NIMH/NIH saadz@mail.nih.gov",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

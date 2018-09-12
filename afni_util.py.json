@@ -1,0 +1,96 @@
+{
+    "command-line": "afni_util.py [HELP] [EVAL] [EXEC] [FUNCHELP] [PRINT] [LPRINT] [LISTFUNC] [FLOAT] [JOIN]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-eval",
+            "description": "evaluate STRING in the context of afni_util.py (i.e. STRING can be function calls or other)  This option is used to simply execute the code in STRING.  Examples for eval:  afni_util.py -eval \"show_process_stack()\" afni_util.py -eval \"show_process_stack(verb=2)\" afni_util.py -eval \"show_process_stack(pid=1000)\"",
+            "id": "EVAL",
+            "name": "EVAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EVAL]"
+        },
+        {
+            "command-line-flag": "-exec",
+            "description": "execute STRING in the context of afni_util.py  This option is used to simply execute the code in STRING.  Examples for exec:  afni_util.py -exec \"y = 3+4 ; print y\" afni_util.py -exec \"import PyQt4\" afni_util.py -exec \"show_process_stack()\"",
+            "id": "EXEC",
+            "name": "EXEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXEC]"
+        },
+        {
+            "command-line-flag": "-funchelp",
+            "description": "print the help for afni_util.py function FUNC  Pring the FUNC.__doc__ text, if any.  Example:  afni_util.py -funchelp wrap_file_text",
+            "id": "FUNCHELP",
+            "name": "FUNCHELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FUNCHELP]"
+        },
+        {
+            "command-line-flag": "-print",
+            "description": "print the result of executing STRING  Akin to -eval, but print the results of evaluating STRING.  Examples for print:  afni_util.py -print \"get_last_history_ver_pack('DSET+tlrc')\" afni_util.py -print \"get_last_history_version('DSET+tlrc')\"",
+            "id": "PRINT",
+            "name": "PRINT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PRINT]"
+        },
+        {
+            "command-line-flag": "-lprint",
+            "description": "line print: print result list, one element per line  The 'l' stands for 'line' (or 'list').  This is akin to -print, but prints a list with one element per line.",
+            "id": "LPRINT",
+            "name": "LPRINT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LPRINT]"
+        },
+        {
+            "command-line-flag": "-listfunc",
+            "description": "-listfunc [SUB_OPTS] FUNC LIST ... : execute FUNC(LIST)  With this option, LIST is a list of values to be passed to FUNC(). Note that LIST can be simply '-' or 'stdin', in which case the list values are read from stdin.  This is similar to eval, but instead of requiring: -eval \"FUNC([v1,v2,v3,...])\" the list values can be left as trailing arguments:",
+            "id": "LISTFUNC",
+            "name": "LISTFUNC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LISTFUNC]"
+        },
+        {
+            "command-line-flag": "-float",
+            "description": "convert the list to floats before passing to FUNC()",
+            "id": "FLOAT",
+            "name": "FLOAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLOAT]"
+        },
+        {
+            "command-line-flag": "-join",
+            "description": "print the results join()'d together  Examples for listfunc:  afni_util.py -listfunc        min_mean_max_stdev 1 2 3 4 5 afni_util.py -listfunc -print min_mean_max_stdev 1 2 3 4 5 afni_util.py -listfunc -join  min_mean_max_stdev 1 2 3 4 5  afni_util.py -listfunc -join -float demean 1 2 3 4 5  afni_util.py -listfunc -join shuffle `count -digits 4 1 124` count -digits 4 1 124 | afni_util.py -listfunc -join shuffle - afni_util.py -listfunc glob2stdout 'EPI_run1/8*'  afni_util.py -listfunc -joinc list_minus_glob_form *HEAD  afni_util.py -listfunc -join -float linear_fit 2 3 5 4 8 5 8 9   Also, if LIST contains -list2, then 2 lists can be input to do something like: -eval \"FUNC([v1,v2,v3], [v4,v5,v6])\"  Examples with -list2:  afni_util.py -listfunc -print -float ttest 1 2 3 4 5 \\ -list2 2 2 4 6 8  afni_util.py -listfunc -print -float ttest_paired   \\ 1 2 3 4 5 -list2 2 4 5 6 8  afni_util.py -listfunc -join -float linear_fit      \\ `cat y.1D` -list2 `cat x.1D`",
+            "id": "JOIN",
+            "name": "JOIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[JOIN]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,87 @@
+{
+    "command-line": "3dZipperZapper [INPUT] [MASK] [PREFIX] [MIN_SLICE_NVOX] [MIN_STREAK_LEN] [DO_OUT_SLICE_PARAM] [NO_OUT_BAD_MASK] [NO_OUT_TEXT_VALS]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "nput the 3D+time file of DWIs or EPIs.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "ptional input of a single volume mask file, which gets applied to the each volume in FFF.  Otherwise, the dataset is assumed to be masked already.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "refix for output file name.  Any volumetric file extension included here (e.g., '.nii.gz') is propagated to any output volumetric dsets.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-min_slice_nvox",
+            "description": "-min_slice_nvox N :set the minimum number of voxels to be in the mask for a given slice to be included in the calcs. N must be >0 (and likely much more so, to be useful). Default: use 10 percent of the axial slice's size.",
+            "id": "MIN_SLICE_NVOX",
+            "name": "MIN_SLICE_NVOX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN_SLICE_NVOX]"
+        },
+        {
+            "command-line-flag": "-min_streak_len",
+            "description": "-min_streak_len L :set the minimum number of slices in a row to look for fluctuations within (def: L=4).  That is, if 'large enough' fluctuations are found in L consecutive slices, then the volume is flagged for motion.  A larger L means that more slices need to vary for a volume to be flagged for 'brightness fluctuations'.  NB: this does parameter setting does not affect the search for dropout slices.",
+            "id": "MIN_STREAK_LEN",
+            "name": "MIN_STREAK_LEN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN_STREAK_LEN]"
+        },
+        {
+            "command-line-flag": "-do_out_slice_param",
+            "description": "-do_out_slice_param :output the map of slice parameters (not done by default).  Might be of interest for investigating data.  Output file name base will be: PPP_param.",
+            "id": "DO_OUT_SLICE_PARAM",
+            "name": "DO_OUT_SLICE_PARAM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_OUT_SLICE_PARAM]"
+        },
+        {
+            "command-line-flag": "-no_out_bad_mask",
+            "description": "-no_out_bad_mask :do *not* output the mask of 'bad' slices that shows which volumes are considered bad (is output by default). Output file name base will be: PPP_badmask.",
+            "id": "NO_OUT_BAD_MASK",
+            "name": "NO_OUT_BAD_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_OUT_BAD_MASK]"
+        },
+        {
+            "command-line-flag": "-no_out_text_vals",
+            "description": "-no_out_text_vals :do *not* output the 1D files of the slice parameter values (are output by default). The list of slices in the mask (file name: PPP_sli.1D) and the list of values per slice per volume (file name: PPP_param.1D) are output.  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  EXAMPLE:  1) All types of outputs: 3dZipperZapper                                    \\ -input AP.nii.gz                              \\ -mask  AP_mask.nii.gz                         \\ -prefix ZZZ.nii.gz                            \\",
+            "id": "NO_OUT_TEXT_VALS",
+            "name": "NO_OUT_TEXT_VALS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_OUT_TEXT_VALS]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

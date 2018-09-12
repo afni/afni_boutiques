@@ -1,0 +1,32 @@
+{
+    "command-line": "3dTransformGroupInCorr [PREP] [AAA.GRPINCORR.NIML]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prep",
+            "description": "Defines the transformation.  The current possibilities are: SPEARMAN   ==> convert the data to ranks, so that the resulting individual subject correlations in 3dGroupInCorr are Spearman correlations QUANTILE:n ==> convert the data to n-levels of quantiles, so that the individual subject correlations become quantile correlations.  If ':n' is not given, then n=9 will be used.  NOTA BENE: ---------- Normally, you would probably do something like cp XXX.grpincorr.niml SP_XXX.grpincorr.niml cp XXX.grpincorr.data SP_XXX.grpincorr.data 3dTransformGroupInCorr -prep SPEARMAN SP_XXX.grpincorr.niml In this way, you would keep the original files for comparison purposes.  Author -- RWCox -- May 2012  ++ Compile date = Sep  7 2018 {:}",
+            "id": "PREP",
+            "name": "PREP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREP]"
+        },
+        {
+            "description": "NA",
+            "id": "AAA.grpincorr.niml",
+            "name": "AAA.grpincorr.niml",
+            "optional": false,
+            "type": "String",
+            "value-key": "[AAA.GRPINCORR.NIML]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

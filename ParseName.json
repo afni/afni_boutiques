@@ -1,0 +1,68 @@
+{
+    "command-line": "ParseName [CWD] [PRE] [APP] [OUT] [OUTSEP] [<FNAME>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-cwd",
+            "description": "Specify the working directory, from which relative path is constructed. Default is the program's CWD",
+            "id": "CWD",
+            "name": "CWD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CWD]"
+        },
+        {
+            "command-line-flag": "-pre",
+            "description": "Change the name so that you prepend PRE to the prefix",
+            "id": "PRE",
+            "name": "PRE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PRE]"
+        },
+        {
+            "command-line-flag": "-app",
+            "description": "Change the name so that you append APP to the prefix",
+            "id": "APP",
+            "name": "APP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[APP]"
+        },
+        {
+            "command-line-flag": "-out",
+            "description": "Output only one component of the parsed file name By default the whole parsed filename structure is displayed. OUT is one of the following: FullName: ABSOLUTE_PATH/FName RelName : RELATIVE_PATH/FName AbsPath : ABSOLUTE_PATH/ RelPath : RELATIVE_PATH/ HeadName: RELATIVE_PATH/HEADNAME Prefix  : PREFIX uPrefix : USER_PATH/PREFIX pPrefix : RELATIVE_PATH/PREFIX PPrefix : ABSOLUTE_PATH/PREFIX *PrefixView: Append view string (if any) to all prefix options listed above. OnDisk  : 1 if file is on disk, 0 otherwise FName   : Filename, no paths FNameNoAfniExt : File name without any AFNI extensions e.g.: ParseName -out FNameNoAfniExt test.nii.gz trim    : Trim the name to 20 characters. First the path goes, then extension, then view, then characters from the left. '~' indicates clipping. If you want to output multiple parameters, list them all between quotes with something like: -out 'HeadName RelPath'",
+            "id": "OUT",
+            "name": "OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT]"
+        },
+        {
+            "command-line-flag": "-outsep",
+            "description": "When outputing multiple components, use SEP as a separator between them. Default is ' ', one space character  Tests: ParseName -cwd /hello/Joe /hello/Joe/afni.c ParseName -cwd /hello/Joe/ /hello/Jane/afni.c ParseName -out Prefix something.nii ParseName -out uPrefixView something.nii ParseName -out uPrefixView something+orig ParseName -pre Need_ -out Prefix something.nii ParseName -pre Need_  something.nii'[65-88]' ParseName -pre Need_  something+orig.HEAD'{2-10}[4-6]' ParseName -pre Need_ -out HeadName  something+orig.HEAD'{2-10}[4-6]'  Ziad S. Saad SSCC/NIMH/NIH saadz@mail.nih.gov",
+            "id": "OUTSEP",
+            "name": "OUTSEP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTSEP]"
+        },
+        {
+            "description": "NA",
+            "id": "<FName>",
+            "name": "<FName>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<FNAME>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

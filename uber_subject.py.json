@@ -1,0 +1,510 @@
+{
+    "command-line": "uber_subject.py [HELP] [HELP_GUI] [HELP_HOWTO_PROGRAM] [HELP_INSTALL] [HELP_INSTALL_NOKIA] [HIST] [SHOW_DEFAULT_VARS] [SHOW_VALID_OPTS] [SHOW_SVAR_DICT] [VER] [VERB] [NO_GUI] [QT_OPTS] [PRINT_AP_COMMAND] [SAVE_AP_COMMAND] [EXEC_AP_COMMAND] [EXEC_PROC_SCRIPT] [CVAR] [SVAR] [ALIGN_COST] [ALIGN_GIANT_MOVE] [ALIGN_OPTS_AEA] [ANAL_DOMAIN] [ANAL_TYPE] [ANAT] [ANAT_HAS_SKULL] [BLOCKS] [BLUR_SIZE] [COMPUTE_FITTS] [EPI] [EPI_WILDCARD] [GET_TLRC] [GID] [GLTSYM] [GLTSYM_LABEL] [MOTION_LIMIT] [OUTLIER_LIMIT] [REGRESS_GOFORIT] [REGRESS_BANDPASS] [REGRESS_JOBS] [REGRESS_MOT_DERIV] [REGRESS_OPTS_3DD] [REML_EXEC] [RUN_CLUSTSIM] [SID] [STIM] [STIM_BASIS] [STIM_LABEL] [STIM_TYPE] [STIM_WILDCARD] [TCAT_NFIRST] [TLRC_BASE] [TLRC_OK_MAXITE] [TLRC_OPTS_AT] [VOLREG_BASE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-help_gui",
+            "description": "show help for GUI",
+            "id": "HELP_GUI",
+            "name": "HELP_GUI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_GUI]"
+        },
+        {
+            "command-line-flag": "-help_howto_program",
+            "description": "help for programming",
+            "id": "HELP_HOWTO_PROGRAM",
+            "name": "HELP_HOWTO_PROGRAM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_HOWTO_PROGRAM]"
+        },
+        {
+            "command-line-flag": "-help_install",
+            "description": "show install notes",
+            "id": "HELP_INSTALL",
+            "name": "HELP_INSTALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_INSTALL]"
+        },
+        {
+            "command-line-flag": "-help_install_nokia",
+            "description": "Nokia install help",
+            "id": "HELP_INSTALL_NOKIA",
+            "name": "HELP_INSTALL_NOKIA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_INSTALL_NOKIA]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show revision history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-show_default_vars",
+            "description": "show variable defaults",
+            "id": "SHOW_DEFAULT_VARS",
+            "name": "SHOW_DEFAULT_VARS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_DEFAULT_VARS]"
+        },
+        {
+            "command-line-flag": "-show_valid_opts",
+            "description": "show all valid options",
+            "id": "SHOW_VALID_OPTS",
+            "name": "SHOW_VALID_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_VALID_OPTS]"
+        },
+        {
+            "command-line-flag": "-show_svar_dict",
+            "description": "show subject var dictionary",
+            "id": "SHOW_SVAR_DICT",
+            "name": "SHOW_SVAR_DICT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_SVAR_DICT]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show module version",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set verbose level",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-no_gui",
+            "description": "do not open graphical interface",
+            "id": "NO_GUI",
+            "name": "NO_GUI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_GUI]"
+        },
+        {
+            "command-line-flag": "-qt_opts",
+            "description": "pass the given options to PyQt",
+            "id": "QT_OPTS",
+            "name": "QT_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QT_OPTS]"
+        },
+        {
+            "command-line-flag": "-print_ap_command",
+            "description": "show afni_proc.py script",
+            "id": "PRINT_AP_COMMAND",
+            "name": "PRINT_AP_COMMAND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PRINT_AP_COMMAND]"
+        },
+        {
+            "command-line-flag": "-save_ap_command",
+            "description": "save afni_proc.py script",
+            "id": "SAVE_AP_COMMAND",
+            "name": "SAVE_AP_COMMAND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_AP_COMMAND]"
+        },
+        {
+            "command-line-flag": "-exec_ap_command",
+            "description": "run afni_proc.py command",
+            "id": "EXEC_AP_COMMAND",
+            "name": "EXEC_AP_COMMAND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXEC_AP_COMMAND]"
+        },
+        {
+            "command-line-flag": "-exec_proc_script",
+            "description": "run proc script",
+            "id": "EXEC_PROC_SCRIPT",
+            "name": "EXEC_PROC_SCRIPT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXEC_PROC_SCRIPT]"
+        },
+        {
+            "command-line-flag": "-cvar",
+            "description": "set control variable to value",
+            "id": "CVAR",
+            "name": "CVAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CVAR]"
+        },
+        {
+            "command-line-flag": "-svar",
+            "description": "set subject variable to value",
+            "id": "SVAR",
+            "name": "SVAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SVAR]"
+        },
+        {
+            "command-line-flag": "-align_cost",
+            "description": "specify cost function for anat/EPI alignment",
+            "id": "ALIGN_COST",
+            "name": "ALIGN_COST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALIGN_COST]"
+        },
+        {
+            "command-line-flag": "-align_giant_move",
+            "description": "yes/no: use -giant_move in AEA.py",
+            "id": "ALIGN_GIANT_MOVE",
+            "name": "ALIGN_GIANT_MOVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALIGN_GIANT_MOVE]"
+        },
+        {
+            "command-line-flag": "-align_opts_aea",
+            "description": "specify extra options for align_epi_anat.py",
+            "id": "ALIGN_OPTS_AEA",
+            "name": "ALIGN_OPTS_AEA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALIGN_OPTS_AEA]"
+        },
+        {
+            "command-line-flag": "-anal_domain",
+            "description": "set data domain (volume/rest)",
+            "id": "ANAL_DOMAIN",
+            "name": "ANAL_DOMAIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANAL_DOMAIN]"
+        },
+        {
+            "command-line-flag": "-anal_type",
+            "description": "set analysis type (task/rest)",
+            "id": "ANAL_TYPE",
+            "name": "ANAL_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANAL_TYPE]"
+        },
+        {
+            "command-line-flag": "-anat",
+            "description": "set anatomical dataset name",
+            "id": "ANAT",
+            "name": "ANAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANAT]"
+        },
+        {
+            "command-line-flag": "-anat_has_skull",
+            "description": "yes/no: whether anat has skull",
+            "id": "ANAT_HAS_SKULL",
+            "name": "ANAT_HAS_SKULL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ANAT_HAS_SKULL]"
+        },
+        {
+            "command-line-flag": "-blocks",
+            "description": "set list of processing blocks to apply",
+            "id": "BLOCKS",
+            "name": "BLOCKS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLOCKS]"
+        },
+        {
+            "command-line-flag": "-blur_size",
+            "description": "set blur size, in mm",
+            "id": "BLUR_SIZE",
+            "name": "BLUR_SIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLUR_SIZE]"
+        },
+        {
+            "command-line-flag": "-compute_fitts",
+            "description": "yes/no: whether to just compute the fitts",
+            "id": "COMPUTE_FITTS",
+            "name": "COMPUTE_FITTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COMPUTE_FITTS]"
+        },
+        {
+            "command-line-flag": "-epi",
+            "description": "set list of EPI datasets",
+            "id": "EPI",
+            "name": "EPI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EPI]"
+        },
+        {
+            "command-line-flag": "-epi_wildcard",
+            "description": "yes/no: use wildcard for EPI dsets",
+            "id": "EPI_WILDCARD",
+            "name": "EPI_WILDCARD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EPI_WILDCARD]"
+        },
+        {
+            "command-line-flag": "-get_tlrc",
+            "description": "yes/no: get any +tlrc anat dset",
+            "id": "GET_TLRC",
+            "name": "GET_TLRC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GET_TLRC]"
+        },
+        {
+            "command-line-flag": "-gid",
+            "description": "set group ID",
+            "id": "GID",
+            "name": "GID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GID]"
+        },
+        {
+            "command-line-flag": "-gltsym",
+            "description": "specify list of symbolic GLTs",
+            "id": "GLTSYM",
+            "name": "GLTSYM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GLTSYM]"
+        },
+        {
+            "command-line-flag": "-gltsym_label",
+            "description": "set corresponding GLT labels",
+            "id": "GLTSYM_LABEL",
+            "name": "GLTSYM_LABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GLTSYM_LABEL]"
+        },
+        {
+            "command-line-flag": "-motion_limit",
+            "description": "set per-TR motion limit, in mm",
+            "id": "MOTION_LIMIT",
+            "name": "MOTION_LIMIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MOTION_LIMIT]"
+        },
+        {
+            "command-line-flag": "-outlier_limit",
+            "description": "specify outlier limit for censoring",
+            "id": "OUTLIER_LIMIT",
+            "name": "OUTLIER_LIMIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTLIER_LIMIT]"
+        },
+        {
+            "command-line-flag": "-regress_GOFORIT",
+            "description": "set GOFORIT level in 3dDeconvolve",
+            "id": "REGRESS_GOFORIT",
+            "name": "REGRESS_GOFORIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REGRESS_GOFORIT]"
+        },
+        {
+            "command-line-flag": "-regress_bandpass",
+            "description": "specify bandpass limits to remain after regress",
+            "id": "REGRESS_BANDPASS",
+            "name": "REGRESS_BANDPASS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REGRESS_BANDPASS]"
+        },
+        {
+            "command-line-flag": "-regress_jobs",
+            "description": "number of jobs to use in 3dDeconvolve",
+            "id": "REGRESS_JOBS",
+            "name": "REGRESS_JOBS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REGRESS_JOBS]"
+        },
+        {
+            "command-line-flag": "-regress_mot_deriv",
+            "description": "yes/no: regress motion derivatives",
+            "id": "REGRESS_MOT_DERIV",
+            "name": "REGRESS_MOT_DERIV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REGRESS_MOT_DERIV]"
+        },
+        {
+            "command-line-flag": "-regress_opts_3dD",
+            "description": "specify extra options for 3dDeconvolve",
+            "id": "REGRESS_OPTS_3DD",
+            "name": "REGRESS_OPTS_3DD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REGRESS_OPTS_3DD]"
+        },
+        {
+            "command-line-flag": "-reml_exec",
+            "description": "yes/no: whether to run 3dREMLfit",
+            "id": "REML_EXEC",
+            "name": "REML_EXEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REML_EXEC]"
+        },
+        {
+            "command-line-flag": "-run_clustsim",
+            "description": "yes/no: whether to run 3dClustSim",
+            "id": "RUN_CLUSTSIM",
+            "name": "RUN_CLUSTSIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RUN_CLUSTSIM]"
+        },
+        {
+            "command-line-flag": "-sid",
+            "description": "set subject ID",
+            "id": "SID",
+            "name": "SID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SID]"
+        },
+        {
+            "command-line-flag": "-stim",
+            "description": "set list of stim timing files",
+            "id": "STIM",
+            "name": "STIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STIM]"
+        },
+        {
+            "command-line-flag": "-stim_basis",
+            "description": "set basis functions for stim classes",
+            "id": "STIM_BASIS",
+            "name": "STIM_BASIS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STIM_BASIS]"
+        },
+        {
+            "command-line-flag": "-stim_label",
+            "description": "set stim file labels",
+            "id": "STIM_LABEL",
+            "name": "STIM_LABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STIM_LABEL]"
+        },
+        {
+            "command-line-flag": "-stim_type",
+            "description": "set stim types for stim classes",
+            "id": "STIM_TYPE",
+            "name": "STIM_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STIM_TYPE]"
+        },
+        {
+            "command-line-flag": "-stim_wildcard",
+            "description": "yes/no: use wildcard for stim files",
+            "id": "STIM_WILDCARD",
+            "name": "STIM_WILDCARD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STIM_WILDCARD]"
+        },
+        {
+            "command-line-flag": "-tcat_nfirst",
+            "description": "set number of TRs to remove, per run",
+            "id": "TCAT_NFIRST",
+            "name": "TCAT_NFIRST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TCAT_NFIRST]"
+        },
+        {
+            "command-line-flag": "-tlrc_base",
+            "description": "specify anat for standard space alignment",
+            "id": "TLRC_BASE",
+            "name": "TLRC_BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TLRC_BASE]"
+        },
+        {
+            "command-line-flag": "-tlrc_ok_maxite",
+            "description": "yes/no: pass -OK_maxite to @auto_tlrc",
+            "id": "TLRC_OK_MAXITE",
+            "name": "TLRC_OK_MAXITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TLRC_OK_MAXITE]"
+        },
+        {
+            "command-line-flag": "-tlrc_opts_at",
+            "description": "specify extra options for @auto_tlrc",
+            "id": "TLRC_OPTS_AT",
+            "name": "TLRC_OPTS_AT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TLRC_OPTS_AT]"
+        },
+        {
+            "command-line-flag": "-volreg_base",
+            "description": "set volreg base string (first/third/last)   - R Reynolds  Feb, 2011 ===========================================================================",
+            "id": "VOLREG_BASE",
+            "name": "VOLREG_BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VOLREG_BASE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

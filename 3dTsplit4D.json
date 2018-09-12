@@ -1,0 +1,50 @@
+{
+    "command-line": "3dTsplit4D [PREFIX] [KEEP_DATUM] [DIGITS] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "Prefix of the output datasets Numbers will be added after the prefix to denote prior sub-brick.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-keep_datum",
+            "description": "output uses original datum (no conversion to float)",
+            "id": "KEEP_DATUM",
+            "name": "KEEP_DATUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_DATUM]"
+        },
+        {
+            "command-line-flag": "-digits",
+            "description": "number of digits to use for output filenames   Authored by: Peter Molfese, UConn ++ Compile date = Sep  7 2018 {:}",
+            "id": "DIGITS",
+            "name": "DIGITS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIGITS]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

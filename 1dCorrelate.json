@@ -1,0 +1,112 @@
+{
+    "command-line": "1dCorrelate [PEARSON] [SPEARMAN] [QUADRANT] [KTAUB] [NBOOT] [ALPHA] [BLOCK] [BLK] [DAFNI_1DPLOT_BOXSIZE] [1DFILE] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-Pearson",
+            "description": "Pearson correlation                    [the default method]",
+            "id": "PEARSON",
+            "name": "PEARSON",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PEARSON]"
+        },
+        {
+            "command-line-flag": "-Spearman",
+            "description": "Spearman (rank) correlation      [more robust vs. outliers]",
+            "id": "SPEARMAN",
+            "name": "SPEARMAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEARMAN]"
+        },
+        {
+            "command-line-flag": "-Quadrant",
+            "description": "Quadrant (binarized) correlation  [most robust, but weaker]",
+            "id": "QUADRANT",
+            "name": "QUADRANT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUADRANT]"
+        },
+        {
+            "command-line-flag": "-Ktaub",
+            "description": "Kendall's tau_b 'correlation'    [popular somewhere, maybe]  ------------- Other Options  [these options cannot be abbreviated!] -------------",
+            "id": "KTAUB",
+            "name": "KTAUB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KTAUB]"
+        },
+        {
+            "command-line-flag": "-nboot",
+            "description": "Set the number of bootstrap replicates to 'B'. * The default value of B is 4000. * A larger number will give somewhat more accurate confidence intervals, at the cost of more CPU time.",
+            "id": "NBOOT",
+            "name": "NBOOT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NBOOT]"
+        },
+        {
+            "command-line-flag": "-alpha",
+            "description": "Set the 2-sided confidence interval width to '100-A' percent. * The default value of A is 5, giving the 2.5..97.5% interval. * The smallest allowed A is 1 (0.5%..99.5%) and the largest allowed value of A is 20 (10%..90%). * If you are interested assessing if the 'p-value' of a correlation is smaller than 5% (say), then you should use '-alpha 10' and see if the confidence interval includes 0.",
+            "id": "ALPHA",
+            "name": "ALPHA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALPHA]"
+        },
+        {
+            "command-line-flag": "-block",
+            "description": "Attempt to allow for serial correlation in the data by doing *OR*      variable-length block resampling, rather than completely",
+            "id": "BLOCK",
+            "name": "BLOCK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLOCK]"
+        },
+        {
+            "command-line-flag": "-blk",
+            "description": "-blk        random resampling as in the usual bootstrap. * You should NOT do this unless you believe that serial correlation (along each column) is present and significant. * Block resampling requires at least 20 data points in each input column.  Fewer than 20 will turn off this option. ----- Notes ----- * For each pair of columns, the output include the correlation value as directly calculated, plus the bias-corrected bootstrap value, and the desired (100-A)% confidence interval [also via bootstrap].  * The primary purpose of this program is to provide an easy way to get the bootstrap confidence intervals, since people almost always seem to use the asymptotic normal theory to decide if a correlation is 'significant', and this often seems misleading to me [especially for short columns].  * Bootstrapping confidence intervals for the inverse correlations matrix (i.e., partial correlations) would be interesting -- anyone out there need this ability?  ------------- Sample output  [command was '1dCorrelate -alpha 10 A2.1D B2.1D'] ------------- # Pearson correlation [n=12 #col=2] # Name      Name       Value   BiasCorr   5.00%   95.00%  N: 5.00% N:95.00% # --------  --------  -------- -------- -------- -------- -------- -------- A2.1D[0]  B2.1D[0]  +0.57254 +0.57225 -0.03826 +0.86306 +0.10265 +0.83353  * Bias correction of the correlation had little effect; this is very common. ++ To be clear, the bootstrap bias correction is to allow for potential bias in the statistical estimate of correlation when the sample size is small. ++ It cannot correct for biases that result from faulty data (or faulty assumptions about the data).  * The correlation is NOT significant at this level, since the CI (confidence interval) includes 0 in its range.  * For the Pearson method ONLY, the last two columns ('N:', as above) also show the widely used asymptotic normal theory confidence interval.  As in the example, the bootstrap interval is often (but not always) wider than the theoretical interval.  * In the example, the normal theory might indicate that the correlation is significant (less than a 5% chance that the CI includes 0), but the bootstrap CI shows that is not a reasonable statistical conclusion. ++ The principal reason that I wrote this program was to make it easy to check if the normal (Gaussian) theory for correlation significance testing is reasonable in any given case -- for small samples, it often is NOT reasonable!  * Using the same data with the '-S' option gives the table below, again indicating that there is no significant correlation between the columns (note also the lack of the 'N:' results for Spearman correlation):  # Spearman correlation [n=12 #col=2] # Name      Name       Value   BiasCorr   5.00%   95.00% # --------  --------  -------- -------- -------- -------- A2.1D[0]  B2.1D[0]  +0.46154 +0.42756 -0.23063 +0.86078  ------------- SAMPLE SCRIPT ------------- This script generates random data and correlates it until it is statistically significant at some level (default=2%).  Then it plots the data that looks correlated.  The point is to show what purely random stuff that appears correlated can look like. (Like most AFNI scripts, this is written in tcsh, not bash.)  #!/bin/tcsh set npt = 20 set alp = 2 foreach fred ( `count -dig 1 1 1000` ) 1dcat jrandom1D:${npt},2 > qqq.1D set aabb = ( `1dCorrelate -spearman -alpha $alp qqq.1D  | grep qqq.1D | colrm 1 42` ) set ab = `ccalc -form rint \"1000 * $aabb[1] * $aabb[2]\"` echo $fred $ab if( $ab > 1 )then 1dplot -one -noline -x qqq.1D'[0]' -xaxis -1:1:20:5 -yaxis -1:1:20:5            \\",
+            "id": "BLK",
+            "name": "BLK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BLK]"
+        },
+        {
+            "command-line-flag": "-DAFNI_1DPLOT_BOXSIZE",
+            "description": ".012                                              \\ -plabel \"N=$npt trial#=$fred \\alpha=${alp}% => r\\in[$aabb[1],$aabb[2]]\"  \\ qqq.1D'[1]' break endif end \\rm qqq.1D  ---------------------------------------------------------------------- *** Written by RWCox (AKA Zhark the Mad Correlator) -- 19 May 2011 ***  ++ Compile date = Sep  7 2018 {:}",
+            "id": "DAFNI_1DPLOT_BOXSIZE",
+            "name": "DAFNI_1DPLOT_BOXSIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DAFNI_1DPLOT_BOXSIZE]"
+        },
+        {
+            "description": "NA",
+            "id": "1Dfile",
+            "name": "1Dfile",
+            "optional": false,
+            "type": "String",
+            "value-key": "[1DFILE]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

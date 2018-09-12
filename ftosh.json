@@ -1,0 +1,103 @@
+{
+    "command-line": "ftosh [PREFIX] [SUFFIX] [START] [STEP] [NSIZE] [SCALE] [BASE] [TOP] [IMAGE_FILES] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "The output files will be named in the format",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-suffix",
+            "description": "'pname.index.sname' where 'pname' and 'sname'",
+            "id": "SUFFIX",
+            "name": "SUFFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUFFIX]"
+        },
+        {
+            "command-line-flag": "-start",
+            "description": "are strings given by the first 2 options.",
+            "id": "START",
+            "name": "START",
+            "optional": true,
+            "type": "String",
+            "value-key": "[START]"
+        },
+        {
+            "command-line-flag": "-step",
+            "description": "'index' is a number, given by 'si+(i-1)*ss' for the i-th output file, for i=1,2,... *** Default pname = 'sh' *** Default sname = nothing at all *** Default si    = 1 *** Default ss    = 1",
+            "id": "STEP",
+            "name": "STEP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STEP]"
+        },
+        {
+            "command-line-flag": "-nsize",
+            "description": "Enforce the 'normal size' option, to make the output images 64x64, 128x128, or 256x256.",
+            "id": "NSIZE",
+            "name": "NSIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NSIZE]"
+        },
+        {
+            "command-line-flag": "-scale",
+            "description": "'sval' and 'bval' are numeric values; if",
+            "id": "SCALE",
+            "name": "SCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE]"
+        },
+        {
+            "command-line-flag": "-base",
+            "description": "sval is given, then the output images are",
+            "id": "BASE",
+            "name": "BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASE]"
+        },
+        {
+            "command-line-flag": "-top",
+            "description": "formed by scaling the inputs by the formula 'output = sval*(input-bval)'. *** Default sval is determined by finding V = largest abs(input-bval) in all the input images and then sval = tval / V. *** Default tval is 32000; note that tval is only used if sval is not given on the command line. *** Default bval is 0.",
+            "id": "TOP",
+            "name": "TOP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TOP]"
+        },
+        {
+            "description": "NA",
+            "id": "image_files",
+            "name": "image_files",
+            "optional": false,
+            "type": "String",
+            "value-key": "[IMAGE_FILES]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

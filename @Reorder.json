@@ -1,0 +1,78 @@
+{
+    "command-line": "@Reorder [HELP] [INPUT] [MAPFILE] [PREFIX] [OFFSET] [SAVE_WORK] [TEST]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "(REQUIRED) input dataset to reorder",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-mapfile",
+            "description": "(REQUIRED) TR to event mapping - see Reorder plugin Help for example",
+            "id": "MAPFILE",
+            "name": "MAPFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAPFILE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "(REQUIRED) prefix for output dataset",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-offset",
+            "description": "offset mapfile TR indices by OFFSET (in TRs)",
+            "id": "OFFSET",
+            "name": "OFFSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OFFSET]"
+        },
+        {
+            "command-line-flag": "-save_work",
+            "description": "do not delete work directory (reorder.work.dir) at end",
+            "id": "SAVE_WORK",
+            "name": "SAVE_WORK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_WORK]"
+        },
+        {
+            "command-line-flag": "-test",
+            "description": "just report sub-bricks, do not create datasets  R Reynolds (for J Bjork) Sep 2009",
+            "id": "TEST",
+            "name": "TEST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEST]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

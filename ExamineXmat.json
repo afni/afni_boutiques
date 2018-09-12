@@ -1,0 +1,105 @@
+{
+    "command-line": "ExamineXmat [CPREFIX] [H] [HELP] [INPUT] [INTERACTIVE] [PPREFIX] [PREFIX] [SELECT] [SHOW_ALLOWED_OPTIONS] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-cprefix",
+            "description": "Prefix of cor image only",
+            "id": "CPREFIX",
+            "name": "CPREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CPREFIX]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "this help message",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "this help message",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "xmat file to plot",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-interactive",
+            "description": "Run examine Xmat in interactive mode This is the default if -prefix is not given. If -interactive is used with -prefix, the last plot you see is the plot saved to file.  -msg.trace: Output trace information along with errors and notices",
+            "id": "INTERACTIVE",
+            "name": "INTERACTIVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INTERACTIVE]"
+        },
+        {
+            "command-line-flag": "-pprefix",
+            "description": "Prefix of plot image only",
+            "id": "PPREFIX",
+            "name": "PPREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PPREFIX]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Prefix of plot image and cor image",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-select",
+            "description": "What to plot. Selection Strings: To select regressors, you can use regressor indices or regressor labels. For example, say your tasks (and therefore regressors) are labeled \"house\", \"face\", \"random\" Then to view house and face regressors only, select: \"house, face\" or \"house face\" or \"h fa\" etc. You can also use regressor indices (start at 0) So you can select \"0, 5, 10:12\" for regressors 0, 5, 10, 11, and 12 You can also combine strings and integers in the same selection. Commas, semicolons, and quotes are ignored.  Alternately you can specify special strings: 'ALL': The entire matrix 'ALL_TASKS': All task regressors 'RONI': All regressors of no interest (baseline+motion) 'BASE': All baseline regressors 'MOT': All motion regressors",
+            "id": "SELECT",
+            "name": "SELECT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SELECT]"
+        },
+        {
+            "command-line-flag": "-show_allowed_options",
+            "description": "list of allowed options",
+            "id": "SHOW_ALLOWED_OPTIONS",
+            "name": "SHOW_ALLOWED_OPTIONS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_ALLOWED_OPTIONS]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "VERB is an integer specifying verbosity level. 0 for quiet (Default). 1 or more: talkative.  Ziad S. Saad   (SSCC/NIMH/NIH)",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

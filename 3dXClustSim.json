@@ -1,0 +1,132 @@
+{
+    "command-line": "3dXClustSim [INSET] [INSDAT] [NN] [SID] [HPOW] [NCASE] [PTHR] [FPR] [MULTIFPR] [MINCLUST] [PREFIX] [VERB] [QUIET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-inset",
+            "description": "-inset       mask sdata ... {MANDATORY} [from 3dtoXdataset or 3dttest++]",
+            "id": "INSET",
+            "name": "INSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSET]"
+        },
+        {
+            "command-line-flag": "-insdat",
+            "description": "-insdat                     Data files are in the '.sdat' format.",
+            "id": "INSDAT",
+            "name": "INSDAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSDAT]"
+        },
+        {
+            "command-line-flag": "-NN",
+            "description": "-NN          1 or 2 or 3    [-NN1 or -NN2 or -NN3 will work; default = 2]",
+            "id": "NN",
+            "name": "NN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NN]"
+        },
+        {
+            "command-line-flag": "-sid",
+            "description": "-sid         1 or 2         [-1sid or -2sid will work; default = 2]",
+            "id": "SID",
+            "name": "SID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SID]"
+        },
+        {
+            "command-line-flag": "-hpow",
+            "description": "-hpow        0 1 2          [or some subset of these; default = 2]",
+            "id": "HPOW",
+            "name": "HPOW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HPOW]"
+        },
+        {
+            "command-line-flag": "-ncase",
+            "description": "-ncase       N lab1 .. labN [multiple processing cases; e.g., blurs] [default = 1 A] [example = 4 b04 b06 b08 b10]",
+            "id": "NCASE",
+            "name": "NCASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NCASE]"
+        },
+        {
+            "command-line-flag": "-pthr",
+            "description": "-pthr        list of values [default = 0.0100 0.0056 0.0031 0.0018 0.0010] [equiv z1= 2.326  2.536  2.731  2.911  3.090 ] [equiv z2= 2.576  2.770  2.958  3.121  3.291 ]",
+            "id": "PTHR",
+            "name": "PTHR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PTHR]"
+        },
+        {
+            "command-line-flag": "-FPR",
+            "description": "-FPR ff      set global FPR goal to ff%, where ff is an integer from 2 to 9 (inclusive). Default value is 5.",
+            "id": "FPR",
+            "name": "FPR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FPR]"
+        },
+        {
+            "command-line-flag": "-multiFPR",
+            "description": "-multiFPR    compute results for multiple FPR goals (2%, 3%, ... 9%)",
+            "id": "MULTIFPR",
+            "name": "MULTIFPR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MULTIFPR]"
+        },
+        {
+            "command-line-flag": "-minclust",
+            "description": "-minclust M  don't allow clusters smaller than M voxels [default M=5]",
+            "id": "MINCLUST",
+            "name": "MINCLUST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MINCLUST]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix      something",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "-verb        be more verbose",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "-quiet       silentium est aureum  **----------------------------------------------------------- ** Authored by Lamont Cranston, also known as ... The Shadow. **-----------------------------------------------------------",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

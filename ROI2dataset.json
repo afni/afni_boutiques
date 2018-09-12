@@ -1,0 +1,114 @@
+{
+    "command-line": "ROI2dataset [PREFIX] [KEEP_SEPARATE] [NODELIST] [INPUT] [NODELIST_WITH_ROIVAL] [LABEL_DSET] [H] [OF] [DOM_PAR_ID] [PAD_TO_NODE] [PAD_LABEL]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "Prefix of output dataset. Program will not overwrite existing datasets. See also -label_dset alternate below.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-keep_separate",
+            "description": "Output one column (sub-brick) for each ROI value  and/or",
+            "id": "KEEP_SEPARATE",
+            "name": "KEEP_SEPARATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_SEPARATE]"
+        },
+        {
+            "command-line-flag": "-nodelist",
+            "description": "Prefix for a set of .1D files -nodelist.nodups NL: that contain a list of node indices in the order in which they appear in an ROI. This way you can make use of the directionality of an ROI line instead of just treating it as a set of nodes. For each integer label 'i' in the ROI files provided with the -input option, you will get a file called NL.i.1D listing the nodes in the order they were encountered in an ROI file and across ROI files. If you want duplicate node entries removed, then use -nodelist.nodups instead. For example, say you traced an ROI that consisted of some arbitrary curved path and you want to get the nodes forming the path in the order traversed while drawing. First save the path drawn, say to trace.niml.roi, then use the following command: ROI2dataset -nodelist.nodups TRACE \\",
+            "id": "NODELIST",
+            "name": "NODELIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NODELIST]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "-input trace.niml.roi Note: You can use the output of -nodelist as input to ConvertDset's -node_select_1D option. This is not the case for -nodelist because ConvertDset's -node_select_1D does not allow for duplicate node entries.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-nodelist_with_ROIval",
+            "description": "Also add the ROIval as a second column in .1D files output by -nodelist.",
+            "id": "NODELIST_WITH_ROIVAL",
+            "name": "NODELIST_WITH_ROIVAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NODELIST_WITH_ROIVAL]"
+        },
+        {
+            "command-line-flag": "-label_dset",
+            "description": "Write a label dataset, instead of a simple dataset. Labeled datasets are treated differently in SUMA. This option also sets the output format to NIML. Note: Using -keep_separate with this option is legal, but makes little sense. You can't view more than one sub-brick in SUMA for Labeled datasets.",
+            "id": "LABEL_DSET",
+            "name": "LABEL_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABEL_DSET]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "-h | -help: This help message",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-of",
+            "description": "Output format of dataset. FORMAT is one of: ni_bi: NIML binary ni_as: NIML ascii (default) 1D   : 1D AFNI format.",
+            "id": "OF",
+            "name": "OF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OF]"
+        },
+        {
+            "command-line-flag": "-dom_par_id",
+            "description": "Idcode of domain parent. When specified, only ROIs have the same domain parent are included in the output. If id is not specified then the first domain parent encountered in the ROI list is adopted as dom_par_id. 1D roi files do not have domain parent information. They will be added to the output data under the chosen dom_par_id.",
+            "id": "DOM_PAR_ID",
+            "name": "DOM_PAR_ID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOM_PAR_ID]"
+        },
+        {
+            "command-line-flag": "-pad_to_node",
+            "description": "Output a full dset from node 0 to node max_index (a total of max_index + 1 nodes). Nodes that are not part of any ROI will get a default label of 0 unless you specify your own padding label.",
+            "id": "PAD_TO_NODE",
+            "name": "PAD_TO_NODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAD_TO_NODE]"
+        },
+        {
+            "command-line-flag": "-pad_label",
+            "description": "Use padding_label (an integer) to label nodes that do not belong to any ROI. Default is 0. This padding value is also used in the multi-column format of option -keep_separate.   Compile Date: Sep  7 2018  Ziad S. Saad SSCC/NIMH/NIH saadz@mail.nih.gov",
+            "id": "PAD_LABEL",
+            "name": "PAD_LABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAD_LABEL]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

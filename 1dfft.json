@@ -1,0 +1,94 @@
+{
+    "command-line": "1dfft [IGNORE] [USE] [NFFT] [TOCX] [FROMCX] [HILBERT] [NODETREND] [INFILE] [OUTFILE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-ignore",
+            "description": "Skip the first 'sss' lines in the input file. [default = no skipping]",
+            "id": "IGNORE",
+            "name": "IGNORE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE]"
+        },
+        {
+            "command-line-flag": "-use",
+            "description": "Use only 'uuu' lines of the input file. [default = use them all, Frank]",
+            "id": "USE",
+            "name": "USE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USE]"
+        },
+        {
+            "command-line-flag": "-nfft",
+            "description": "Set FFT length to 'nnn'. [default = length of data (# of lines used)]",
+            "id": "NFFT",
+            "name": "NFFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NFFT]"
+        },
+        {
+            "command-line-flag": "-tocx",
+            "description": "Save Re and Im parts of transform in 2 columns.",
+            "id": "TOCX",
+            "name": "TOCX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TOCX]"
+        },
+        {
+            "command-line-flag": "-fromcx",
+            "description": "Convert 2 column complex input into 1 column real output. [-fromcx will not work if the original] [data FFT length was an odd number! :(]",
+            "id": "FROMCX",
+            "name": "FROMCX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FROMCX]"
+        },
+        {
+            "command-line-flag": "-hilbert",
+            "description": "When -fromcx is used, the inverse FFT will do the Hilbert transform instead.",
+            "id": "HILBERT",
+            "name": "HILBERT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HILBERT]"
+        },
+        {
+            "command-line-flag": "-nodetrend",
+            "description": "Skip the detrending of the input.  Nota Bene: * Each input time series has any quadratic trend of the form 'a+b*t+c*t*t' removed before the FFT, where 't' is the line number. * The FFT length can be any positive even integer, but the Fast Fourier Transform algorithm will be slower if any prime factors of the FFT length are large (say > 997) Unless you are applying this program to VERY long files, this slowdown will probably not be appreciable. * If the FFT length is longer than the file length, the data is zero-padded to make up the difference. * Do NOT call the output of this program the Power Spectrum! That is something else entirely. * If 'outfile' is '-' (or missing), the output appears on stdout.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "NODETREND",
+            "name": "NODETREND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NODETREND]"
+        },
+        {
+            "description": "NA",
+            "id": "infile",
+            "name": "infile",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INFILE]"
+        },
+        {
+            "description": "NA",
+            "id": "outfile",
+            "name": "outfile",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUTFILE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

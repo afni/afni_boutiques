@@ -1,0 +1,168 @@
+{
+    "command-line": "djpeg [COLORS] [FAST] [GRAYSCALE] [SCALE] [BMP] [GIF] [OS2] [PNM] [TARGA] [DCT] [DITHER] [MAP] [NOSMOOTH] [ONEPASS] [MAXMEMORY] [OUTFILE] [VERBOSE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-colors",
+            "description": "-colors N      Reduce image to no more than N colors",
+            "id": "COLORS",
+            "name": "COLORS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COLORS]"
+        },
+        {
+            "command-line-flag": "-fast",
+            "description": "-fast          Fast, low-quality processing",
+            "id": "FAST",
+            "name": "FAST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FAST]"
+        },
+        {
+            "command-line-flag": "-grayscale",
+            "description": "-grayscale     Force grayscale output",
+            "id": "GRAYSCALE",
+            "name": "GRAYSCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GRAYSCALE]"
+        },
+        {
+            "command-line-flag": "-scale",
+            "description": "-scale M/N     Scale output image by fraction M/N, eg, 1/8",
+            "id": "SCALE",
+            "name": "SCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE]"
+        },
+        {
+            "command-line-flag": "-bmp",
+            "description": "-bmp           Select BMP output format (Windows style)",
+            "id": "BMP",
+            "name": "BMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BMP]"
+        },
+        {
+            "command-line-flag": "-gif",
+            "description": "-gif           Select GIF output format",
+            "id": "GIF",
+            "name": "GIF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GIF]"
+        },
+        {
+            "command-line-flag": "-os2",
+            "description": "-os2           Select BMP output format (OS/2 style)",
+            "id": "OS2",
+            "name": "OS2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OS2]"
+        },
+        {
+            "command-line-flag": "-pnm",
+            "description": "-pnm           Select PBMPLUS (PPM/PGM) output format (default)",
+            "id": "PNM",
+            "name": "PNM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PNM]"
+        },
+        {
+            "command-line-flag": "-targa",
+            "description": "-targa         Select Targa output format Switches for advanced users:",
+            "id": "TARGA",
+            "name": "TARGA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TARGA]"
+        },
+        {
+            "command-line-flag": "-dct",
+            "description": "-dct int       Use integer DCT method (default)",
+            "id": "DCT",
+            "name": "DCT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DCT]"
+        },
+        {
+            "command-line-flag": "-dither",
+            "description": "-dither fs     Use F-S dithering (default)",
+            "id": "DITHER",
+            "name": "DITHER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DITHER]"
+        },
+        {
+            "command-line-flag": "-map",
+            "description": "-map FILE      Map to colors used in named image file",
+            "id": "MAP",
+            "name": "MAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAP]"
+        },
+        {
+            "command-line-flag": "-nosmooth",
+            "description": "-nosmooth      Don't use high-quality upsampling",
+            "id": "NOSMOOTH",
+            "name": "NOSMOOTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOSMOOTH]"
+        },
+        {
+            "command-line-flag": "-onepass",
+            "description": "-onepass       Use 1-pass quantization (fast, low quality)",
+            "id": "ONEPASS",
+            "name": "ONEPASS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ONEPASS]"
+        },
+        {
+            "command-line-flag": "-maxmemory",
+            "description": "-maxmemory N   Maximum memory to use (in kbytes)",
+            "id": "MAXMEMORY",
+            "name": "MAXMEMORY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAXMEMORY]"
+        },
+        {
+            "command-line-flag": "-outfile",
+            "description": "-outfile name  Specify name for output file",
+            "id": "OUTFILE",
+            "name": "OUTFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTFILE]"
+        },
+        {
+            "command-line-flag": "-verbose",
+            "description": "-verbose  or  -debug   Emit debug output",
+            "id": "VERBOSE",
+            "name": "VERBOSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERBOSE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

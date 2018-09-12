@@ -1,0 +1,60 @@
+{
+    "command-line": "3dTRfix [INPUT] [TRLIST] [TIMELIST] [PREFIX] [TROUT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "Input dataset 'iii'. [MANDATORY]",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-TRlist",
+            "description": "1D columnar file of time gaps between sub-bricks in 'iii'; If the input dataset has N time points, this file must have at least N-1 (positive) values. * Please note that these time steps (or the time values in '-TIMElist') should be in seconds, NOT in milliseconds! * AFNI time units are seconds!!!",
+            "id": "TRLIST",
+            "name": "TRLIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TRLIST]"
+        },
+        {
+            "command-line-flag": "-TIMElist",
+            "description": "Alternative to '-TRlist', where you give the N values of the times at each sub-brick; these values must be monotonic increasing and non-negative. * You must give exactly one of '-TIMElist' or '-TRlist'. * The TR value given in the input dataset header is ignored.",
+            "id": "TIMELIST",
+            "name": "TIMELIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TIMELIST]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Prefix name for the output dataset.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-TRout",
+            "description": "'ddd' gives the value for the output dataset's TR (in sec). If '-TRout' is not given, then the average TR of the input dataset will be used.  November 2014 -- Zhark the Fixer",
+            "id": "TROUT",
+            "name": "TROUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TROUT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

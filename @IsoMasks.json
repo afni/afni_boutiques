@@ -1,0 +1,31 @@
+{
+    "command-line": "@IsoMasks [V1] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "v1",
+            "name": "v1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[V1]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

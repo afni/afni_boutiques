@@ -1,0 +1,84 @@
+{
+    "command-line": "1dcat [NONCONST] [NONFIXED] [FORM] [STACK] [SEL] [A.1D] [B.1D] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-nonconst",
+            "description": "Columns that are identically constant should be omitted from the output.",
+            "id": "NONCONST",
+            "name": "NONCONST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NONCONST]"
+        },
+        {
+            "command-line-flag": "-nonfixed",
+            "description": "Keep only columns that are marked as 'free' in the 3dAllineate header from '-1Dparam_save'. If there is no such header, all columns are kept.",
+            "id": "NONFIXED",
+            "name": "NONFIXED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NONFIXED]"
+        },
+        {
+            "command-line-flag": "-form",
+            "description": "Format of the numbers to be output. You can also substitute -form FORM with shortcuts such as -i, -f, or -c. For help on -form's usage, and its shortcut versions see ccalc's help for the option of the same name.",
+            "id": "FORM",
+            "name": "FORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FORM]"
+        },
+        {
+            "command-line-flag": "-stack",
+            "description": "Stack the columns of the resultant matrix in the output.",
+            "id": "STACK",
+            "name": "STACK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STACK]"
+        },
+        {
+            "command-line-flag": "-sel",
+            "description": "Apply the same column/row selection string to all filenames on the command line. For example: 1dcat -sel '[0,2]' f1.1D f2.1D is the same as: 1dcat f1.1D'[1,2]' f2.1D'[1,2]' The advantage of the option is that it allows wildcard use in file specification so that you can run something like: 1dcat -sel '[0,2]' f?.1D  EXAMPLE: -------- Input file 1: 1 2 3 4 Input file 2: 5 6 7 8  1dcat data1.1D data2.1D > catout.1D Output file: 1 5 2 6 3 7 4 8   ++ Compile date = Sep  7 2018 {:}",
+            "id": "SEL",
+            "name": "SEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SEL]"
+        },
+        {
+            "description": "NA",
+            "id": "a.1D",
+            "name": "a.1D",
+            "optional": false,
+            "type": "String",
+            "value-key": "[A.1D]"
+        },
+        {
+            "description": "NA",
+            "id": "b.1D",
+            "name": "b.1D",
+            "optional": false,
+            "type": "String",
+            "value-key": "[B.1D]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

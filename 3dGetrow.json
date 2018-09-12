@@ -1,0 +1,68 @@
+{
+    "command-line": "3dGetrow [XROW] [YROW] [ZROW] [INPUT] [OUTPUT] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-xrow",
+            "description": "extract row along the x-direction at fixed y-index of j and fixed z-index of k.",
+            "id": "XROW",
+            "name": "XROW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[XROW]"
+        },
+        {
+            "command-line-flag": "-yrow",
+            "description": "similar for a row along the y-direction",
+            "id": "YROW",
+            "name": "YROW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[YROW]"
+        },
+        {
+            "command-line-flag": "-zrow",
+            "description": "similar for a row along the z-direction",
+            "id": "ZROW",
+            "name": "ZROW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZROW]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "read input from dataset 'ddd' (instead of putting dataset name at end of command line)",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-output",
+            "description": "filename for output .1D ASCII file will be 'ff' (if 'ff' is '-', then output is to stdout, the default)  N.B.: if the input dataset has more than one sub-brick, each sub-brick will appear as a separate column in the output file.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "OUTPUT",
+            "name": "OUTPUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTPUT]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

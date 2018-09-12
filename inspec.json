@@ -1,0 +1,85 @@
+{
+    "command-line": "inspec [SPEC] [PREFIX] [DETAIL] [LRMERGE] [REMOVE_STATE] [H] [<-SPEC] [SPECFILE>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-spec",
+            "description": "specfile to be read",
+            "id": "SPEC",
+            "name": "SPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEC]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "rewrite spec file.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-detail",
+            "description": "level of output detail default is 1 in general, 0 with -LRmerge. Available levels are 0, 1, 2 and 3.",
+            "id": "DETAIL",
+            "name": "DETAIL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DETAIL]"
+        },
+        {
+            "command-line-flag": "-LRmerge",
+            "description": "-LRmerge LeftSpec RightSpec: Merge two spec files in a way that makes sense for viewing in SUMA",
+            "id": "LRMERGE",
+            "name": "LRMERGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LRMERGE]"
+        },
+        {
+            "command-line-flag": "-remove_state",
+            "description": "-remove_state STATE_RM: Get rid of state STATE_RM from the specfile",
+            "id": "REMOVE_STATE",
+            "name": "REMOVE_STATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REMOVE_STATE]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "-h or -help: This message here.  Compile Date: Sep  7 2018  Ziad S. Saad SSCC/NIMH/NIH saadz@mail.nih.gov Dec 2 03",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "description": "NA",
+            "id": "<-spec",
+            "name": "<-spec",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-SPEC]"
+        },
+        {
+            "description": "NA",
+            "id": "specfile>",
+            "name": "specfile>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SPECFILE>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

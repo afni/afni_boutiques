@@ -1,0 +1,59 @@
+{
+    "command-line": "3dDeghost [INPUT] [PREFIX] [FPS] [FILT] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "Another way to specify the input dataset",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use 'pp' for prefix of output dataset",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-FPS",
+            "description": "Define the Frequency, Phase, and Slice directions in the dataset based on the axis orientations inside the dataset header (e.g., see the output of 3dinfo).  The 'abc' code is a permutaton of the digits '123'. *  The first digit 'a' specifies which dataset axis/index is the Frequency encoding direction. *  The second digit 'b' specifies which dataset direction is the Phase encoding direction. *  The third digit 'c' specifies which dataset direction is the Slice encoding direction. -->>** The default value for 'abc' is '123'; that is, the dataset is ordered so that the first index (x-axis) is frequency, the second index is phase, and the third index is slice.  In most cases, this is how the reconstruction software will store the images.  Only in unusual cases should you need the '-FPS' option!",
+            "id": "FPS",
+            "name": "FPS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FPS]"
+        },
+        {
+            "command-line-flag": "-filt",
+            "description": "Length of time series filter to apply when estimating ghosting parameters.  Set N to 0 or 1 to turn this feature off; otherwise, N should be an odd positive integer from 3 to 19 [default N=11]. * Longer filter lengths ARE allowed, but will be slow (cases with N <= 19 are hand coded for speed). * Datasets with fewer than 4 time points will not be filtered.  For longer datasets, if the filter length is too big, it will be shortened ruthlessly. ======= METHOD: ======= Would you believe me if I said magic? Would you accept secret algorithms known only to the Olmecs? How about something so ad hoc that it cannot be described without embarrasment and shame?  -- Feb 2014 - Zhark the Phantasmal  ++ Compile date = Sep  7 2018 {:}",
+            "id": "FILT",
+            "name": "FILT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FILT]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

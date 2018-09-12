@@ -1,0 +1,47 @@
+{
+    "command-line": "imaver [OUT_AVE] [OUT_SIG] [INPUT_IMAGES] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "out_ave",
+            "name": "out_ave",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUT_AVE]"
+        },
+        {
+            "description": "NA",
+            "id": "out_sig",
+            "name": "out_sig",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OUT_SIG]"
+        },
+        {
+            "description": "NA",
+            "id": "input_images",
+            "name": "input_images",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT_IMAGES]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

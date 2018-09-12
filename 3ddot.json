@@ -1,0 +1,149 @@
+{
+    "command-line": "3ddot [MASK] [MRANGE] [DEMEAN] [DOCOR] [DODOT] [DOCOEF] [DOSUMS] [DOETA2] [DODICE] [SHOW_LABELS] [UPPER] [FULL] [1D] [NIML] [DSET1]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-mask",
+            "description": "-mask mset   Means to use the dataset 'mset' as a mask: Only voxels with nonzero values in 'mset' will be averaged from 'dataset'.  Note that the mask dataset and the input dataset must have the same number of voxels.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-mrange",
+            "description": "-mrange a b  Means to further restrict the voxels from 'mset' so that only those mask values between 'a' and 'b' (inclusive) will be used.  If this option is not given, all nonzero values from 'mset' are used. Note that if a voxel is zero in 'mset', then it won't be included, even if a < 0 < b.",
+            "id": "MRANGE",
+            "name": "MRANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MRANGE]"
+        },
+        {
+            "command-line-flag": "-demean",
+            "description": "-demean      Means to remove the mean from each volume prior to computing the correlation.",
+            "id": "DEMEAN",
+            "name": "DEMEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEMEAN]"
+        },
+        {
+            "command-line-flag": "-docor",
+            "description": "-docor       Return the correlation coefficient (default).",
+            "id": "DOCOR",
+            "name": "DOCOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOCOR]"
+        },
+        {
+            "command-line-flag": "-dodot",
+            "description": "-dodot       Return the dot product (unscaled).",
+            "id": "DODOT",
+            "name": "DODOT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DODOT]"
+        },
+        {
+            "command-line-flag": "-docoef",
+            "description": "-docoef      Return the least square fit coefficients {a,b} so that dset2 is approximately a + b*dset1",
+            "id": "DOCOEF",
+            "name": "DOCOEF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOCOEF]"
+        },
+        {
+            "command-line-flag": "-dosums",
+            "description": "x> ybar=<y> <(x-xbar)^2> <(y-ybar)^2> <(x-xbar)(y-ybar)> and the correlation coefficient.",
+            "id": "DOSUMS",
+            "name": "DOSUMS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOSUMS]"
+        },
+        {
+            "command-line-flag": "-doeta2",
+            "description": "-doeta2      Return eta-squared (Cohen, NeuroImage 2008).",
+            "id": "DOETA2",
+            "name": "DOETA2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOETA2]"
+        },
+        {
+            "command-line-flag": "-dodice",
+            "description": "-dodice      Return the Dice coefficient (the Sorensen-Dice index).",
+            "id": "DODICE",
+            "name": "DODICE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DODICE]"
+        },
+        {
+            "command-line-flag": "-show_labels",
+            "description": "-show_labels Print sub-brick labels to help identify what is being correlated. This option is useful when you have more than 2 sub-bricks at input.",
+            "id": "SHOW_LABELS",
+            "name": "SHOW_LABELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_LABELS]"
+        },
+        {
+            "command-line-flag": "-upper",
+            "description": "-upper       Compute upper triangular matrix",
+            "id": "UPPER",
+            "name": "UPPER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UPPER]"
+        },
+        {
+            "command-line-flag": "-full",
+            "description": "-full        Compute the whole matrix. A waste of time, but handy for parsing.",
+            "id": "FULL",
+            "name": "FULL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FULL]"
+        },
+        {
+            "command-line-flag": "-1D",
+            "description": "-1D          Comment headings in order to read in 1D format. This is only useful with -full.",
+            "id": "1D",
+            "name": "1D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1D]"
+        },
+        {
+            "command-line-flag": "-NIML",
+            "description": "-NIML        Write output in NIML 1D format. Nicer for plotting.",
+            "id": "NIML",
+            "name": "NIML",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NIML]"
+        },
+        {
+            "description": "NA",
+            "id": "dset1",
+            "name": "dset1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET1]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

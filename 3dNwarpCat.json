@@ -1,0 +1,111 @@
+{
+    "command-line": "3dNwarpCat [INTERP] [VERB] [PREFIX] [SPACE] [WARP1] [WARP2] [IWARP] [EXPAD] [WARP1] [WARP2] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-interp",
+            "description": "'iii' is the interpolation mode: ++ Modes allowed are a subset of those in 3dAllineate: linear  quintic  wsinc5 ++ The default interpolation mode is 'wsinc5'. ++ 'linear' is much faster but less accurate. ++ 'quintic' is between 'linear' and 'wsinc5', in both accuracy and speed.",
+            "id": "INTERP",
+            "name": "INTERP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INTERP]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "print (to stderr) various fun messages along the road.",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "prefix name for the output dataset that holds the warp.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-space",
+            "description": "attach string 'sss' to the output dataset as its atlas space marker.",
+            "id": "SPACE",
+            "name": "SPACE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPACE]"
+        },
+        {
+            "command-line-flag": "-warp1",
+            "description": "alternative way to specify warp#1",
+            "id": "WARP1",
+            "name": "WARP1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WARP1]"
+        },
+        {
+            "command-line-flag": "-warp2",
+            "description": "alternative way to specify warp#2 (etc.) ++ If you use any '-warpX' option for X=1..99, then any addition warps specified after all command line options appear AFTER these enumerated warps. That is, '-warp1 A+tlrc -warp2 B+tlrc C+tlrc' is like using '-warp3 C+tlrc'. ++ At most 99 warps can be used.  If you need more, PLEASE back away from the computer slowly, and get professional counseling.",
+            "id": "WARP2",
+            "name": "WARP2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WARP2]"
+        },
+        {
+            "command-line-flag": "-iwarp",
+            "description": "Invert the final warp before output.",
+            "id": "IWARP",
+            "name": "IWARP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IWARP]"
+        },
+        {
+            "command-line-flag": "-expad",
+            "description": "Pad the nonlinear warps by 'PP' voxels in all directions. The warp displacements are extended by linear extrapolation from the faces of the input grid.  AUTHOR -- RWCox -- March 2013  ========================================================================= * This binary version of 3dNwarpCat is compiled using OpenMP, a semi- automatic parallelizer software toolkit, which splits the work across multiple CPUs/cores on the same shared memory computer. * OpenMP is NOT like MPI -- it does not work with CPUs connected only by a network (e.g., OpenMP doesn't work with 'cluster' setups). * For implementation and compilation details, please see https://afni.nimh.nih.gov/pub/dist/doc/misc/OpenMP.html * The number of CPU threads used will default to the maximum number on your system. You can control this value by setting environment variable OMP_NUM_THREADS to some smaller value (including 1). * Un-setting OMP_NUM_THREADS resets OpenMP back to its default state of using all CPUs available. ++ However, on some systems, it seems to be necessary to set variable OMP_NUM_THREADS explicitly, or you only get one CPU. ++ On other systems with many CPUS, you probably want to limit the CPU count, since using more than (say) 16 threads is probably useless. * You must set OMP_NUM_THREADS in the shell BEFORE running the program, since OpenMP queries this variable BEFORE the program actually starts. ++ You can't usefully set this variable in your ~/.afnirc file or on the command line with the '-D' option. * How many threads are useful? That varies with the program, and how well it was coded. You'll have to experiment on your own systems! * The number of CPUs on this particular computer system is ...... 4. * The maximum number of CPUs that will be used is now set to .... 4. =========================================================================  ++ Compile date = Sep  7 2018 {:}",
+            "id": "EXPAD",
+            "name": "EXPAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXPAD]"
+        },
+        {
+            "description": "NA",
+            "id": "warp1",
+            "name": "warp1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[WARP1]"
+        },
+        {
+            "description": "NA",
+            "id": "warp2",
+            "name": "warp2",
+            "optional": false,
+            "type": "String",
+            "value-key": "[WARP2]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

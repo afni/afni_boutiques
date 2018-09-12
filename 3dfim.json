@@ -1,0 +1,69 @@
+{
+    "command-line": "3dfim [IM1] [INPUT] [PREFIX] [IDEAL] [PERCENT] [ORT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-im1",
+            "description": "index of first image to be used in time series correlation; default is 1",
+            "id": "IM1",
+            "name": "IM1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IM1]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "filename of 3d + time data file for input",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "prefix of filename for saving functional data",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-ideal",
+            "description": "filename of a time series to which the image data is to be correlated.",
+            "id": "IDEAL",
+            "name": "IDEAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IDEAL]"
+        },
+        {
+            "command-line-flag": "-percent",
+            "description": "-percent p      Calculate percentage change due to the ideal time series p     = maximum allowed percentage change from baseline Note: values greater than p are set equal to p.",
+            "id": "PERCENT",
+            "name": "PERCENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERCENT]"
+        },
+        {
+            "command-line-flag": "-ort",
+            "description": "filename of a time series to which the image data is to be orthogonalized  N.B.: It is possible to specify more than one ideal time series file. Each one is separately correlated with the image time series and the one most highly correlated is selected for each pixel.  Multiple ideals are specified using more than one '-ideal fname' option, or by using the form '-ideal [ fname1 fname2 ... ]' -- this latter method allows the use of wildcarded ideal filenames. The '[' character that indicates the start of a group of ideals can actually be any ONE of these: [{/% and the ']' that ends the group can be:  ]}/%  [Format of ideal time series files: ASCII; one number per line; Same number of lines as images in the time series; Value over 33333 --> don't use this image in the analysis]  N.B.: It is also possible to specify more than one ort time series file.  The image time series is orthogonalized to each ort time series.  Multiple orts are specified by using more than one '-ort fname' option, or by using the form '-ort [ fname1 fname2 ... ]'.  This latter method allows the use of wildcarded ort filenames. The '[' character that indicates the start of a group of ideals can actually be any ONE of these: [{/% and the ']' that ends the group can be:  ]}/%  [Format of ort time series files: ASCII; one number per line; At least same number of lines as images in the time series]    ++ Compile date = Sep  7 2018 {:}",
+            "id": "ORT",
+            "name": "ORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ORT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

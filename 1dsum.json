@@ -1,0 +1,75 @@
+{
+    "command-line": "1dsum [IGNORE] [USE] [MEAN] [NOCOMMENT] [A.1D] [B.1D] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-ignore",
+            "description": "skip the first nn rows of each file",
+            "id": "IGNORE",
+            "name": "IGNORE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE]"
+        },
+        {
+            "command-line-flag": "-use",
+            "description": "use only mm rows from each file",
+            "id": "USE",
+            "name": "USE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USE]"
+        },
+        {
+            "command-line-flag": "-mean",
+            "description": "compute the average instead of the sum",
+            "id": "MEAN",
+            "name": "MEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MEAN]"
+        },
+        {
+            "command-line-flag": "-nocomment",
+            "description": "the # comments from the header of the first input file will be reproduced to the output; if you do NOT want this to happen, use the '-nocomment' option.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "NOCOMMENT",
+            "name": "NOCOMMENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOCOMMENT]"
+        },
+        {
+            "description": "NA",
+            "id": "a.1D",
+            "name": "a.1D",
+            "optional": false,
+            "type": "String",
+            "value-key": "[A.1D]"
+        },
+        {
+            "description": "NA",
+            "id": "b.1D",
+            "name": "b.1D",
+            "optional": false,
+            "type": "String",
+            "value-key": "[B.1D]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

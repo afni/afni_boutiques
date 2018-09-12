@@ -1,0 +1,150 @@
+{
+    "command-line": "@AddEdge [HELP] [EXAMINELIST] [AX_MONT] [AX_GEOM] [SAG_GEOM] [LAYOUT] [NO_LAYOUT] [EDGE_PERCENTILE] [SINGLE_EDGE] [OPA] [KEEP_TEMP] [NO_DEOBLIQUE] [AUTO_RECORD] [AUTO] [NO_AUTO]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "this help screen",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-examinelist",
+            "description": "use list of paired datasets from file mmmm (default is _ae.ExamineList.log)",
+            "id": "EXAMINELIST",
+            "name": "EXAMINELIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXAMINELIST]"
+        },
+        {
+            "command-line-flag": "-ax_mont",
+            "description": "-ax_mont 'montformat': axial montage string (default='2x2:24')",
+            "id": "AX_MONT",
+            "name": "AX_MONT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AX_MONT]"
+        },
+        {
+            "command-line-flag": "-ax_geom",
+            "description": "-ax_geom 'geomformat': axial image window geometry (default = '777x702+433+334')",
+            "id": "AX_GEOM",
+            "name": "AX_GEOM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AX_GEOM]"
+        },
+        {
+            "command-line-flag": "-sag_geom",
+            "description": "-sag_geom 'geomformat': sagittal image window geometry (default = '540x360+4+436')",
+            "id": "SAG_GEOM",
+            "name": "SAG_GEOM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAG_GEOM]"
+        },
+        {
+            "command-line-flag": "-layout",
+            "description": "use AFNI layout file mmmm for display",
+            "id": "LAYOUT",
+            "name": "LAYOUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LAYOUT]"
+        },
+        {
+            "command-line-flag": "-no_layout",
+            "description": "do not use layout. Use AFNI as it is open.",
+            "id": "NO_LAYOUT",
+            "name": "NO_LAYOUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_LAYOUT]"
+        },
+        {
+            "command-line-flag": "-edge_percentile",
+            "description": "specify edge threshold value (default=30%)",
+            "id": "EDGE_PERCENTILE",
+            "name": "EDGE_PERCENTILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EDGE_PERCENTILE]"
+        },
+        {
+            "command-line-flag": "-single_edge",
+            "description": "show only a single edge in composite image",
+            "id": "SINGLE_EDGE",
+            "name": "SINGLE_EDGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SINGLE_EDGE]"
+        },
+        {
+            "command-line-flag": "-opa",
+            "description": "set opacity of overlay (default=9 opaque)",
+            "id": "OPA",
+            "name": "OPA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OPA]"
+        },
+        {
+            "command-line-flag": "-keep_temp",
+            "description": "do not remove temporary files",
+            "id": "KEEP_TEMP",
+            "name": "KEEP_TEMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_TEMP]"
+        },
+        {
+            "command-line-flag": "-no_deoblique",
+            "description": "do not deoblique any data to show overlap",
+            "id": "NO_DEOBLIQUE",
+            "name": "NO_DEOBLIQUE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_DEOBLIQUE]"
+        },
+        {
+            "command-line-flag": "-auto_record",
+            "description": "save jpeg files of current slices  without prompting",
+            "id": "AUTO_RECORD",
+            "name": "AUTO_RECORD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTO_RECORD]"
+        },
+        {
+            "command-line-flag": "-auto",
+            "description": "Closes old AFNI sessions and relaunch a new one that ready to listen to @AddEdge in review mode. This is the current default in review mode",
+            "id": "AUTO",
+            "name": "AUTO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTO]"
+        },
+        {
+            "command-line-flag": "-no_auto",
+            "description": "Opposite of -auto",
+            "id": "NO_AUTO",
+            "name": "NO_AUTO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_AUTO]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

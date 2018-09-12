@@ -1,0 +1,150 @@
+{
+    "command-line": "@SUMA_AlignToExperiment [EA_CLIP_BELOW] [PREFIX] [EXP_ANAT] [SURF_ANAT] [WD] [STRIP_SKULL] [AL] [OUT_DXYZ] [INIT_XFORM] [H_WEB] [HWEB] [H_VIEW] [HVIEW] [ALL_OPTS] [H_FIND]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-EA_clip_below",
+            "description": "-EA_clip_below option or you could end up with a very distorted brain.  The default now is to use -coarserot option with 3dWarpDrive, this should make the program more robust. If you want to try running without it the add -ncr with -wd I would be interested in examining cases where -wd option failed to produce a good alignment.  [-al]: Use 3dAllineate to do the 12 parameter alignment. Cost function is 'lpa'.  [-al_opt 'Options for 3dAllineate']: Specify set of options between quotes to pass to 3dAllineate.  [-ok_change_view]: Be quiet when view of registered volume is changed to match that of the Experiment_Anatomy, even when rigid body registration is used.  [-strip_skull WHICH]: Use 3dSkullStrip to remove non-brain tissue and potentially improve the alignment. WHICH can be one of 'exp_anat', 'surf_anat', 'both', or 'neither' (default).  In the first case, the skull is removed from Experiment_Anatomy dataset, in the second it is removed from the surf_anat dataset.  With 'both' the skull is removed from Experiment_Anatomy and Surface_Anatomy.  [-skull_strip_opt 'Options For 3dSkullStrip']: Pass the options between quotes to 3dSkullStrip.  [-align_centers]: Adds an additional transformation to align the volume centers. This is a good option to use when volumes are severely out of alignment.  [-init_xform XFORM0.1D]: Apply affine transform in XFORM0.1D to Surface_Anatomy before beginning registration.  After convergence, combine XFORM.1D and the the registration matrix to create the output volume To verify that XFORM0.1D does what you think it should be doing, try: 3dWarp -matvec_out2in XFORM0.1D           \\",
+            "id": "EA_CLIP_BELOW",
+            "name": "EA_CLIP_BELOW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EA_CLIP_BELOW]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix pre.SurfVol SurfVol+orig and verify that 'pre.SurfVol+orig' is transformed by XFORM0.1D as you expected it to be. XFORM0.1D can be obtained in a variety of ways. One of which involves extracting it from a transformed volume.  For example, say you want to perform an initial rotation that is equivalent to: 3drotate -matvec_order RotMat.1D          \\",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-exp_anat",
+            "description": "-exp_anat DemoSubj_spgrsa+orig.                       \\",
+            "id": "EXP_ANAT",
+            "name": "EXP_ANAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXP_ANAT]"
+        },
+        {
+            "command-line-flag": "-surf_anat",
+            "description": "-surf_anat ../FreeSurfer/SUMA/DemoSubj_SurfVol+orig.  Example 2: For datasets with some distortion and different coverage. Using 12 param. transform and clipping of areas below cerebellum: @SUMA_AlignToExperiment                                      \\",
+            "id": "SURF_ANAT",
+            "name": "SURF_ANAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURF_ANAT]"
+        },
+        {
+            "command-line-flag": "-wd",
+            "description": "-wd -prefix DemoSubj_SurfVol_WD_Alnd_Exp                 \\",
+            "id": "WD",
+            "name": "WD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WD]"
+        },
+        {
+            "command-line-flag": "-strip_skull",
+            "description": "-strip_skull both -skull_strip_opt -monkey               \\",
+            "id": "STRIP_SKULL",
+            "name": "STRIP_SKULL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STRIP_SKULL]"
+        },
+        {
+            "command-line-flag": "-al",
+            "description": "-align_centers                                           \\",
+            "id": "AL",
+            "name": "AL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AL]"
+        },
+        {
+            "command-line-flag": "-out_dxyz",
+            "description": "-out_dxyz 0.3  Example 4: When -exp_anat and -surf_anat have very different orientations Here is an egregious case where -exp_anat (EA) was rotated severely out of whack relative to -surf_anat (SV), AND volume centers were way off.  With the 'Nudge Dataset' plugin, it was determined that a 60deg.  rotation got SV oriented more like ExpAnat.  The plugin can be made to spit out an the 3dRotate command to apply the roation: 3drotate                                        \\ -quintic -clipit                            \\ -rotate 0.00I 60.00R 0.00A                  \\ -ashift 0.00S 0.00L 0.00P                   \\",
+            "id": "OUT_DXYZ",
+            "name": "OUT_DXYZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_DXYZ]"
+        },
+        {
+            "command-line-flag": "-init_xform",
+            "description": "-init_xform XFORM0.1D -align_centers       \\",
+            "id": "INIT_XFORM",
+            "name": "INIT_XFORM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INIT_XFORM]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open webpage with help for this program",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "Same as -h_web",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open -help output in a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "Same as -hview",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "List all of the options for this script",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Search for lines containing WORD in -help output. Seach is approximate.  More help may be found at: https://afni.nimh.nih.gov/ssc/ziad/SUMA/SUMA_doc.htm  Ziad Saad (saadz@mail.nih.gov) SSCC/NIMH/ National Institutes of Health, Bethesda Maryland",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

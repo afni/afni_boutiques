@@ -1,0 +1,57 @@
+{
+    "command-line": "@Purify_1D [SUB] [SUF] [DSET1] [DSET2] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-sub",
+            "description": "You can use the sub-brick selection mode, a la AFNI, to output a select number of columns. See Example below.",
+            "id": "SUB",
+            "name": "SUB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUB]"
+        },
+        {
+            "command-line-flag": "-suf",
+            "description": "STRING is attached to the output prefix which is formed from the input names  Example: @Purify_1D -sub '[0,3]' somedataset.1D.dset  Ziad S. Saad SSCC/NIMH/NIH saadz@mail.nih.gov",
+            "id": "SUF",
+            "name": "SUF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUF]"
+        },
+        {
+            "description": "NA",
+            "id": "dset1",
+            "name": "dset1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET1]"
+        },
+        {
+            "description": "NA",
+            "id": "dset2",
+            "name": "dset2",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET2]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

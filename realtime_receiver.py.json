@@ -1,0 +1,150 @@
+{
+    "command-line": "realtime_receiver.py [HELP] [HIST] [SHOW_VALID_OPTS] [VER] [DATA_CHOICE] [DC_PARAMS] [SERIAL_PORT] [SHOW_COMM_TIMES] [SHOW_DATA] [SHOW_DEMO_DATA] [SHOW_DEMO_GUI] [SWAP] [TCP_PORT] [VERB] [WRITE_TEXT_DATA]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show module history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-show_valid_opts",
+            "description": "list valid options",
+            "id": "SHOW_VALID_OPTS",
+            "name": "SHOW_VALID_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_VALID_OPTS]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show current version  other options",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-data_choice",
+            "description": "pick which data to send as feedback motion       : send the 6 motion parameters motion_norm  : send the Euclidean norm of them all_extras   : send all 'extra' values (ROI or voxel values) diff_ratio   :  (a-b)/(abs(a)+abs(b)) for 2 'extra' values * To add additional CHOICE methods, see the function compute_TR_data().",
+            "id": "DATA_CHOICE",
+            "name": "DATA_CHOICE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATA_CHOICE]"
+        },
+        {
+            "command-line-flag": "-dc_params",
+            "description": "-dc_params P1 P2 ...      : set data_choice parameters e.g. for diff_ratio, parmas P1 P2 P1 = dr low limit, P2 = scalar -> [0,1] result is (dr-P1)*P2  {applied in [0,1]}",
+            "id": "DC_PARAMS",
+            "name": "DC_PARAMS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DC_PARAMS]"
+        },
+        {
+            "command-line-flag": "-serial_port",
+            "description": "specify serial port file for feedback data",
+            "id": "SERIAL_PORT",
+            "name": "SERIAL_PORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SERIAL_PORT]"
+        },
+        {
+            "command-line-flag": "-show_comm_times",
+            "description": "display communication times",
+            "id": "SHOW_COMM_TIMES",
+            "name": "SHOW_COMM_TIMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_COMM_TIMES]"
+        },
+        {
+            "command-line-flag": "-show_data",
+            "description": "-show_data yes/no         : display incoming data in terminal window",
+            "id": "SHOW_DATA",
+            "name": "SHOW_DATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_DATA]"
+        },
+        {
+            "command-line-flag": "-show_demo_data",
+            "description": "display feedback data in terminal window",
+            "id": "SHOW_DEMO_DATA",
+            "name": "SHOW_DEMO_DATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_DEMO_DATA]"
+        },
+        {
+            "command-line-flag": "-show_demo_gui",
+            "description": "demonstrate a feedback GUI",
+            "id": "SHOW_DEMO_GUI",
+            "name": "SHOW_DEMO_GUI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_DEMO_GUI]"
+        },
+        {
+            "command-line-flag": "-swap",
+            "description": "swap bytes incoming data",
+            "id": "SWAP",
+            "name": "SWAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SWAP]"
+        },
+        {
+            "command-line-flag": "-tcp_port",
+            "description": "specify TCP port for incoming connections",
+            "id": "TCP_PORT",
+            "name": "TCP_PORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TCP_PORT]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set the verbosity level",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-write_text_data",
+            "description": "write data to text file 'FNAME'  ----------------------------------------------------------------------------- R Reynolds    July 2009 =============================================================================",
+            "id": "WRITE_TEXT_DATA",
+            "name": "WRITE_TEXT_DATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_TEXT_DATA]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

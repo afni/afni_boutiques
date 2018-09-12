@@ -1,0 +1,86 @@
+{
+    "command-line": "3dAFNItoNIFTI [PREFIX] [VERB] [FLOAT] [PURE] [DENOTE] [OLDID] [NEWID] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "Write the NIfTI-1.1 file as 'ppp.nii'. Default: the dataset's prefix is used. * You can use 'ppp.hdr' to output a 2-file NIfTI-1.1 file pair 'ppp.hdr' & 'ppp.img'. * If you want a compressed file, try using a prefix like 'ppp.nii.gz'. * Setting the Unix environment variable AFNI_AUTOGZIP to YES will result in all output .nii files being gzip-ed.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Be verbose = print progress messages. Repeating this increases the verbosity (maximum setting is 3 '-verb' options).",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-float",
+            "description": "Force the output dataset to be 32-bit floats.  This option should be used when the input AFNI dataset has different float scale factors for different sub-bricks, an option that NIfTI-1.1 does not support.  The following options affect the contents of the AFNI extension field that is written by default into the NIfTI-1.1 header:",
+            "id": "FLOAT",
+            "name": "FLOAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLOAT]"
+        },
+        {
+            "command-line-flag": "-pure",
+            "description": "Do NOT write an AFNI extension field into the output file.  Only use this option if needed.  You can also use the 'nifti_tool' program to strip extensions from a file.",
+            "id": "PURE",
+            "name": "PURE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PURE]"
+        },
+        {
+            "command-line-flag": "-denote",
+            "description": "When writing the AFNI extension field, remove text notes that might contain subject identifying information.",
+            "id": "DENOTE",
+            "name": "DENOTE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DENOTE]"
+        },
+        {
+            "command-line-flag": "-oldid",
+            "description": "Give the new dataset the input dataset's AFNI ID code.",
+            "id": "OLDID",
+            "name": "OLDID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OLDID]"
+        },
+        {
+            "command-line-flag": "-newid",
+            "description": "Give the new dataset a new AFNI ID code, to distinguish it from the input dataset. **** N.B.:  -newid is now the default action.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "NEWID",
+            "name": "NEWID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEWID]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

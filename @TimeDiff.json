@@ -1,0 +1,31 @@
+{
+    "command-line": "@TimeDiff [<FILE1>] [<FILE2>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "<FILE1>",
+            "name": "<FILE1>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<FILE1>]"
+        },
+        {
+            "description": "NA",
+            "id": "<FILE2>",
+            "name": "<FILE2>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<FILE2>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,63 @@
+{
+    "command-line": "@parse_afni_name [SCRIPT] [TO] [PARSE] [AN] [AFNI] [NAME]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "script",
+            "name": "script",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SCRIPT]"
+        },
+        {
+            "description": "NA",
+            "id": "to",
+            "name": "to",
+            "optional": false,
+            "type": "String",
+            "value-key": "[TO]"
+        },
+        {
+            "description": "NA",
+            "id": "parse",
+            "name": "parse",
+            "optional": false,
+            "type": "String",
+            "value-key": "[PARSE]"
+        },
+        {
+            "description": "NA",
+            "id": "an",
+            "name": "an",
+            "optional": false,
+            "type": "String",
+            "value-key": "[AN]"
+        },
+        {
+            "description": "NA",
+            "id": "AFNI",
+            "name": "AFNI",
+            "optional": false,
+            "type": "String",
+            "value-key": "[AFNI]"
+        },
+        {
+            "description": "NA",
+            "id": "name",
+            "name": "name",
+            "optional": false,
+            "type": "String",
+            "value-key": "[NAME]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

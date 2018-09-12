@@ -1,0 +1,69 @@
+{
+    "command-line": "@make_stim_file [HELP] [DEBUG] [OUTFILE] [MAXREPS] [NO_HEADERS] [ZERO_BASED]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help information",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "print debug information along the way e.g. -debug 1 the default is 0, max is 2",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-outfile",
+            "description": "(required) results are sent to this output file e.g. -outfile green.n.gold.out",
+            "id": "OUTFILE",
+            "name": "OUTFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTFILE]"
+        },
+        {
+            "command-line-flag": "-maxreps",
+            "description": "use REPS as the maximum repeptition time e.g. -maxreps 200 the default is to use the maximum rep time from the input  This option basically pads the output columns with 0s, so that each column has REPS rows (of 1s and 0s).",
+            "id": "MAXREPS",
+            "name": "MAXREPS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAXREPS]"
+        },
+        {
+            "command-line-flag": "-no_headers",
+            "description": "do not include headers in output file e.g. -no_headers the default is print column headers (# commented out)",
+            "id": "NO_HEADERS",
+            "name": "NO_HEADERS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_HEADERS]"
+        },
+        {
+            "command-line-flag": "-zero_based",
+            "description": "consider stim times as zero-based numbers e.g. -zero_based the default is 1-based (probably a bad choice...)   ------------------------------ Notes:  1. It is probably easiest to use redirection from an input file for execution of the program.  That way, mistakes can be more easily fixed and retried.  See 'Sample execution 2'.  2. Since most people start off with stimulus data in colums, and since this program requires input in rows for each header, it may be easiest to go through a few initial steps: - make sure all data is in integer form - make sure all blank spaces are filled with 0 - save the file to an ascii data file (without headers) - use AFNI program '1dtranspose' to convert column data to row format - add the column headers back to the top of the ascii file  3. The -maxreps option is recommended when using redirection, so that the user does not have to add the value to the bottom of the file. ------------------------------ Sample execution 1: (typing input on command line)  a. executing the following command:  @make_stim_file -outfile red_blue_out  b. and providing input data as follows:  headers -> red blue 'red' -> 2 4 'blue' -> 2 3 5 maxreps -> 6  c. will produce 'red_blue_out', containing:  red blue 0 0 1 1 0 1 1 0 0 1 0 0 ------------------------------ Sample execution 2: (using redirection)  a. given input file 'my_input_file': (a text file with input data)  red blue 2 4 2 3 5 6  b. run the script using redirection with -maxreps option  @make_stim_file -maxreps 6 -outfile red_blue_out < my_input_file  c. now there exists output file 'red_blue_out':  red blue 0 0 1 1 0 1 1 0 0 1 0 0 ------------------------------ R. Reynolds ------------------------------",
+            "id": "ZERO_BASED",
+            "name": "ZERO_BASED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZERO_BASED]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

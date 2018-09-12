@@ -1,0 +1,148 @@
+{
+    "command-line": "@radial_correlate [HELP] [HIST] [DO_CLUST] [DO_CORR] [RDIR] [VER] [CTHESH] [FRAC_LIMIT] [MASK] [NFIRST] [MIN_THR] [PERCENTILE] [SPHERE_RAD] [DATASETS] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show modification history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-do_clust",
+            "description": "-do_clust yes/no  : clust correlation volumes? (yes or no) default = no  If 'no', only create the correlation volumes. Otherwise, run clustering and look for large artifacts from bad coil channels.",
+            "id": "DO_CLUST",
+            "name": "DO_CLUST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_CLUST]"
+        },
+        {
+            "command-line-flag": "-do_corr",
+            "description": "-do_corr yes/no   : create correlation volumes (yes or no) default = yes  If 'yes', create the correlation volumes. If 'no', simply assume they already exist. This is for re-testing a previous execution.",
+            "id": "DO_CORR",
+            "name": "DO_CORR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_CORR]"
+        },
+        {
+            "command-line-flag": "-rdir",
+            "description": "directory to do computations in default = corr_test.results",
+            "id": "RDIR",
+            "name": "RDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RDIR]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show version number  ---------------------------------------------  computational options:",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-cthesh",
+            "description": "threshold on correlation values (if 0, use percentile, else use this) default = 0.9",
+            "id": "CTHESH",
+            "name": "CTHESH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CTHESH]"
+        },
+        {
+            "command-line-flag": "-frac_limit",
+            "description": "min mask fraction surviving cluster default = 0.02",
+            "id": "FRAC_LIMIT",
+            "name": "FRAC_LIMIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FRAC_LIMIT]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "specify a mask dataset to replace automask default = automask This mask is expected to cover the brain.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-nfirst",
+            "description": "number of initial TRs to remove default = 3",
+            "id": "NFIRST",
+            "name": "NFIRST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NFIRST]"
+        },
+        {
+            "command-line-flag": "-min_thr",
+            "description": "min percentile threshold to be considered default = 0.45",
+            "id": "MIN_THR",
+            "name": "MIN_THR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN_THR]"
+        },
+        {
+            "command-line-flag": "-percentile",
+            "description": "percentile to use as threshold default = 80",
+            "id": "PERCENTILE",
+            "name": "PERCENTILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PERCENTILE]"
+        },
+        {
+            "command-line-flag": "-sphere_rad",
+            "description": "generate correlations within voxel spheres (if 0, go against average time series) default = 20  R Reynolds, Aug, 2011 ------------------------------------------------------------",
+            "id": "SPHERE_RAD",
+            "name": "SPHERE_RAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPHERE_RAD]"
+        },
+        {
+            "description": "NA",
+            "id": "datasets",
+            "name": "datasets",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASETS]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

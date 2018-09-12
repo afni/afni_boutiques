@@ -1,0 +1,192 @@
+{
+    "command-line": "imreg [NOWRITE] [PREFIX] [SUFFIX] [START] [STEP] [FLIM] [KEEPSIZE] [QUIET] [DEBUG] [DPREFIX] [BILINEAR] [MODES] [MLCF] [WTIM] [CMASS] [FINE] [NOFINE] [BASE_IMAGE] [IMAGE_SEQUENCE] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-nowrite",
+            "description": "-nowrite        Don't write outputs, just print progress reports.",
+            "id": "NOWRITE",
+            "name": "NOWRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOWRITE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix pname   The output files will be named in the format",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-suffix",
+            "description": "-suffix sname   'pname.index.sname' where 'pname' and 'sname'",
+            "id": "SUFFIX",
+            "name": "SUFFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUFFIX]"
+        },
+        {
+            "command-line-flag": "-start",
+            "description": "-start  si      are strings given by the first 2 options.",
+            "id": "START",
+            "name": "START",
+            "optional": true,
+            "type": "String",
+            "value-key": "[START]"
+        },
+        {
+            "command-line-flag": "-step",
+            "description": "-step   ss      'index' is a number, given by 'si+(i-1)*ss' for the i-th output file, for i=1,2,... *** Default pname = 'reg.' *** Default sname = nothing at all *** Default si    = 1 *** Default ss    = 1",
+            "id": "STEP",
+            "name": "STEP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STEP]"
+        },
+        {
+            "command-line-flag": "-flim",
+            "description": "-flim           Write output in mrilib floating point format (which can be converted to shorts using program ftosh). *** Default is to write images in format of first input file in the image_sequence.",
+            "id": "FLIM",
+            "name": "FLIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIM]"
+        },
+        {
+            "command-line-flag": "-keepsize",
+            "description": "-keepsize       Preserve the original image size on output. Default is without this option, and results in images that are padded to be square.",
+            "id": "KEEPSIZE",
+            "name": "KEEPSIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEPSIZE]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "-quiet          Don't write progress report messages.",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "-debug          Write lots of debugging output!",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-dprefix",
+            "description": "-dprefix dname  Write files 'dname'.dx, 'dname'.dy, 'dname'.phi for use in time series analysis.  ALIGNMENT ALGORITHMS:",
+            "id": "DPREFIX",
+            "name": "DPREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DPREFIX]"
+        },
+        {
+            "command-line-flag": "-bilinear",
+            "description": "-bilinear       Uses bilinear interpolation during the iterative adjustment procedure, rather than the default bicubic interpolation. NOT RECOMMENDED!",
+            "id": "BILINEAR",
+            "name": "BILINEAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BILINEAR]"
+        },
+        {
+            "command-line-flag": "-modes",
+            "description": "-modes c f r    Uses interpolation modes 'c', 'f', and 'r' during the coarse, fine, and registration phases of the algorithm, respectively.  The modes can be selected from 'bilinear', 'bicubic', and 'Fourier'.  The default is '-modes bicubic bicubic bicubic'.",
+            "id": "MODES",
+            "name": "MODES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODES]"
+        },
+        {
+            "command-line-flag": "-mlcF",
+            "description": "-mlcF           Equivalent to '-modes bilinear bicubic Fourier'.",
+            "id": "MLCF",
+            "name": "MLCF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MLCF]"
+        },
+        {
+            "command-line-flag": "-wtim",
+            "description": "-wtim filename  Uses the image in 'filename' as a weighting factor for each voxel (the larger the value the more importance is given to that voxel).  -dfspace[:0]    Uses the 'iterated diffential spatial' method to align the images.  The optional :0 indicates to skip the iteration of the method, and to use the simpler linear differential spatial alignment method. ACCURACY: displacments of at most a few pixels. *** This is the default method (without the :0).",
+            "id": "WTIM",
+            "name": "WTIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WTIM]"
+        },
+        {
+            "command-line-flag": "-cmass",
+            "description": "-cmass            Initialize the translation estimate by aligning the centers of mass of the images. N.B.: The reported shifts from the registration algorithm do NOT include the shifts due to this initial step.  The new two options are used to play with the -dfspace algorithm, which has a 'coarse' fit phase and a 'fine' fit phase:",
+            "id": "CMASS",
+            "name": "CMASS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CMASS]"
+        },
+        {
+            "command-line-flag": "-fine",
+            "description": "-fine blur dxy dphi  Set the 3 'fine' fit parameters: blur = FWHM of image blur prior to registration, in pixels [must be > 0]; dxy  = convergence tolerance for translations, in pixels; dphi = convergence tolerance for rotations, in degrees.",
+            "id": "FINE",
+            "name": "FINE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FINE]"
+        },
+        {
+            "command-line-flag": "-nofine",
+            "description": "-nofine              Turn off the 'fine' fit algorithm. By default, the algorithm is on, with parameters 1.0, 0.07, 0.21.",
+            "id": "NOFINE",
+            "name": "NOFINE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOFINE]"
+        },
+        {
+            "description": "NA",
+            "id": "base_image",
+            "name": "base_image",
+            "optional": false,
+            "type": "String",
+            "value-key": "[BASE_IMAGE]"
+        },
+        {
+            "description": "NA",
+            "id": "image_sequence",
+            "name": "image_sequence",
+            "optional": false,
+            "type": "String",
+            "value-key": "[IMAGE_SEQUENCE]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

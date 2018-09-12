@@ -1,0 +1,71 @@
+{
+    "command-line": "@toMNI_Qwarpar [(...] [AND] [THEN] [WAIT] [A] [LONG] [TIME)]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "(...",
+            "name": "(...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[(...]"
+        },
+        {
+            "description": "NA",
+            "id": "and",
+            "name": "and",
+            "optional": false,
+            "type": "String",
+            "value-key": "[AND]"
+        },
+        {
+            "description": "NA",
+            "id": "then",
+            "name": "then",
+            "optional": false,
+            "type": "String",
+            "value-key": "[THEN]"
+        },
+        {
+            "description": "NA",
+            "id": "wait",
+            "name": "wait",
+            "optional": false,
+            "type": "String",
+            "value-key": "[WAIT]"
+        },
+        {
+            "description": "NA",
+            "id": "a",
+            "name": "a",
+            "optional": false,
+            "type": "String",
+            "value-key": "[A]"
+        },
+        {
+            "description": "NA",
+            "id": "long",
+            "name": "long",
+            "optional": false,
+            "type": "String",
+            "value-key": "[LONG]"
+        },
+        {
+            "description": "NA",
+            "id": "time)",
+            "name": "time)",
+            "optional": false,
+            "type": "String",
+            "value-key": "[TIME)]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

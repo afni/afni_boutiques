@@ -1,0 +1,195 @@
+{
+    "command-line": "@update.afni.binaries [HELP] [HELP_SYS_PROGS] [APSEARCH] [BINDIR] [CURL] [DEFAULTS] [D] [DO_DOTFILES] [DO_EXTRAS] [NO_CERT_VERIFY] [NO_RECUR] [LOCAL_PACKAGE] [PROG_LIST] [PACKAGE] [PROTO] [QUICK] [SYS_OK] [TEST] [TEST_PROTOS] [REVERT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-help_sys_progs",
+            "description": "list system programs that block update  See -sys_ok for details.",
+            "id": "HELP_SYS_PROGS",
+            "name": "HELP_SYS_PROGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP_SYS_PROGS]"
+        },
+        {
+            "command-line-flag": "-apsearch",
+            "description": "-apsearch yes/no      : specify getting apsearch updates",
+            "id": "APSEARCH",
+            "name": "APSEARCH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[APSEARCH]"
+        },
+        {
+            "command-line-flag": "-bindir",
+            "description": "set AFNI binary directory to ABIN",
+            "id": "BINDIR",
+            "name": "BINDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BINDIR]"
+        },
+        {
+            "command-line-flag": "-curl",
+            "description": "default to curl instead of wget",
+            "id": "CURL",
+            "name": "CURL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CURL]"
+        },
+        {
+            "command-line-flag": "-defaults",
+            "description": "install current package into abin",
+            "id": "DEFAULTS",
+            "name": "DEFAULTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEFAULTS]"
+        },
+        {
+            "command-line-flag": "-d",
+            "description": "(short for -defaults)  This would be the method to 'update the package that I am currently using'.  This option implies -do_dotfiles and -apsearch yes.  The package would be decided by 'afni -ver' and the directory would come from 'which afni'.  If either of these is not appropriate, the package would be determined by the OS (Linux or OSX allowed, 32 or 64-bits), and the install dir would be ~/abin.  If -bindir or -package cannot be determined, it must be supplied by the user.  26 Sep 2012 : -update_apsearch is applied by default (if installed afni is in PATH)",
+            "id": "D",
+            "name": "D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[D]"
+        },
+        {
+            "command-line-flag": "-do_dotfiles",
+            "description": "if needed, try to initialize dot files  If .cshrc (or maybe .tcshrc) or .bashrc do not have the AFNI binary directory in the file (grep), add a line to update the PATH in each file.  Both files are updated (if need be).  * This option has no effect for the root user.",
+            "id": "DO_DOTFILES",
+            "name": "DO_DOTFILES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_DOTFILES]"
+        },
+        {
+            "command-line-flag": "-do_extras",
+            "description": "do extra niceties (beyond simple install)  This is a convenience option that implies:",
+            "id": "DO_EXTRAS",
+            "name": "DO_EXTRAS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_EXTRAS]"
+        },
+        {
+            "command-line-flag": "-no_cert_verify",
+            "description": "do not verify the server CA certificate  This option is regarding SSL/TLS Certificate Verification via some CA (certificate authority) list.  It may be needed if the client CA list does not recognize the certificate provided by the afni server.  For curl, this appends the '--insecure' option. For wget, this appends the '--no-check-certificate' option.  To check whether curl requires this, look for WinSSL in the output from: curl -V  See https://curl.haxx.se/docs/sslcerts.html for details.",
+            "id": "NO_CERT_VERIFY",
+            "name": "NO_CERT_VERIFY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CERT_VERIFY]"
+        },
+        {
+            "command-line-flag": "-no_recur",
+            "description": "do not download and run new @uab script",
+            "id": "NO_RECUR",
+            "name": "NO_RECUR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_RECUR]"
+        },
+        {
+            "command-line-flag": "-local_package",
+            "description": "install local PACKAGE.tgz package  This is a way to install an existing tgz file without needed to download it.",
+            "id": "LOCAL_PACKAGE",
+            "name": "LOCAL_PACKAGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOCAL_PACKAGE]"
+        },
+        {
+            "command-line-flag": "-prog_list",
+            "description": "install given programs, not whole PACKAGE  With this option, the listed programs would be installed, rather than the entire PACKAGE.  Note: directories are not allowed (e.g. meica.libs)",
+            "id": "PROG_LIST",
+            "name": "PROG_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PROG_LIST]"
+        },
+        {
+            "command-line-flag": "-package",
+            "description": "install distribution package PACKAGE (see also -local_package)",
+            "id": "PACKAGE",
+            "name": "PACKAGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PACKAGE]"
+        },
+        {
+            "command-line-flag": "-proto",
+            "description": "access afni host via this PROTOCOL  e.g. -proto http default: https  Use this option to specify the download protocol.  PROTOCOL may https, http or NONE (meaning not to prefix site name with any).",
+            "id": "PROTO",
+            "name": "PROTO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PROTO]"
+        },
+        {
+            "command-line-flag": "-quick",
+            "description": "quick mode, no fancies  This option blocks unwanted or unneeded actions, mostly for testing.  It basically applies:  -no_recur",
+            "id": "QUICK",
+            "name": "QUICK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUICK]"
+        },
+        {
+            "command-line-flag": "-sys_ok",
+            "description": "OK to update, even if system progs found  If any system program (e.g. man, sudo, xterm, yum) is found, the default behavior is not to continue the update.  Note that if 'afni -ver' shows a Debian package, then updates should be done via apt-get, not this program.  Use -sys_ok to all the update to proceed.  See -help_sys_progs for a list of checked system programs.",
+            "id": "SYS_OK",
+            "name": "SYS_OK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SYS_OK]"
+        },
+        {
+            "command-line-flag": "-test",
+            "description": "just attempt the download and quit",
+            "id": "TEST",
+            "name": "TEST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEST]"
+        },
+        {
+            "command-line-flag": "-test_protos",
+            "description": "test download protocols and exit",
+            "id": "TEST_PROTOS",
+            "name": "TEST_PROTOS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TEST_PROTOS]"
+        },
+        {
+            "command-line-flag": "-revert",
+            "description": "revert binaries to previous version  Revert the AFNI binaries to those in directory ABIN/auto_backup.PACKAGE, where ABIN would otherwise be considered the installation directory.  Use this option if the last update of the binaries got you a lump of coal.  There should be only 1 backup to revert to.  One cannot revert back 2 levels, say.  Note that the user must have write permissions in the ABIN directory.",
+            "id": "REVERT",
+            "name": "REVERT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REVERT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,96 @@
+{
+    "command-line": "3dPAR2AFNI.pl [H] [V] [S] [N] [A] [O] [G] [2] [4]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-h",
+            "description": "-h     This help message.",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-v",
+            "description": "-v     Be verbose in operation.",
+            "id": "V",
+            "name": "V",
+            "optional": true,
+            "type": "String",
+            "value-key": "[V]"
+        },
+        {
+            "command-line-flag": "-s",
+            "description": "-s     Skip the outliers test when converting 4D files The default is to perform the outliers test.",
+            "id": "S",
+            "name": "S",
+            "optional": true,
+            "type": "String",
+            "value-key": "[S]"
+        },
+        {
+            "command-line-flag": "-n",
+            "description": "-n     Output NIfTI files instead of HEAD/BRIK. The default is create HEAD/BRIK files.",
+            "id": "N",
+            "name": "N",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N]"
+        },
+        {
+            "command-line-flag": "-a",
+            "description": "-a     Output ANALYZE files instead of HEAD/BRIK.",
+            "id": "A",
+            "name": "A",
+            "optional": true,
+            "type": "String",
+            "value-key": "[A]"
+        },
+        {
+            "command-line-flag": "-o",
+            "description": "-o     The name of the directory where the created files should be placed.  If this directory does not exist the program exits without performing any conversion. The default is to place created files in the same directory as the PAR files.",
+            "id": "O",
+            "name": "O",
+            "optional": true,
+            "type": "String",
+            "value-key": "[O]"
+        },
+        {
+            "command-line-flag": "-g",
+            "description": "-g     Gzip the files created. The default is not to gzip the files.",
+            "id": "G",
+            "name": "G",
+            "optional": true,
+            "type": "String",
+            "value-key": "[G]"
+        },
+        {
+            "command-line-flag": "-2",
+            "description": "-2     2-Byte-swap the files created. The default is not to 2 byte-swap.",
+            "id": "2",
+            "name": "2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[2]"
+        },
+        {
+            "command-line-flag": "-4",
+            "description": "-4     4-Byte-swap the files created. The default is not to 4 byte-swap.  Sample invocations: 3dPAR2AFNI subject1.PAR Converts the file subject1.PAR file to subject1+orig.{HEAD,BRIK} 3dPAR2AFNI -s subject1.PAR Same as above but skip the outlier test 3dPAR2AFNI -n subject1.PAR Converts the file subject1.PAR file to subject1.nii 3dPAR2AFNI -n -s subject1.PAR Same as above but skip the outlier test 3dPAR2AFNI -n -s -o ~/tmp subject1.PAR Same as above but skip the outlier test and place the created NIfTI files in ~/tmp 3dPAR2AFNI -n -s -o ~/tmp *.PAR Converts all the PAR/REC files in the current directory to NIfTI files, skip the outlier test and place the created NIfTI files in ~/tmp",
+            "id": "4",
+            "name": "4",
+            "optional": true,
+            "type": "String",
+            "value-key": "[4]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

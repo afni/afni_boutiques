@@ -1,0 +1,573 @@
+{
+    "command-line": "Dimon [INFILE_PATTERN] [INFILE_PREFIX] [INFILE_LIST] [RT] [DRIVE_AFNI] [DRIVE_WAIT] [FAST] [HOST] [NUM_CHAN] [PAUSE] [REV_BYTE_ORDER] [RT_CMD] [SHOW_SORTED_LIST] [SLEEP_INIT] [SLEEP_VOL] [SLEEP_FRAC] [SWAP] [TE_LIST] [ZORDER] [DEBUG] [DICOM_ORG] [EPSILON] [FILE_TYPE] [HELP] [HIST] [MAX_IMAGES] [MAX_QUIET_TRS] [NICE] [NO_WAIT] [NT] [NUM_SLICES] [QUIET] [QUIT] [ORDER_AS_ZT] [READ_ALL] [REV_ORG_DIR] [REV_SORT_DIR] [SAVE_FILE_LIST] [SAVE_DETAILS] [SAVE_ERRORS] [SORT_BY_ACQ_TIME] [SORT_BY_NUM_SUFFIX] [SORT_METHOD] [START_FILE] [TR] [USE_IMON] [ASSUME_DICOM_MOSAIC] [USE_LAST_ELEM] [USE_SLICE_LOC] [USHORT2FLOAT] [VERSION] [GERT_RECO] [GERT_CREATE_DATASET] [GERT_FILENAME] [GERT_NZ] [GERT_OUTDIR] [SP] [GERT_TO3D_PREFIX] [GERT_CHAN_PREFIX] [GERT_WRITE_AS_NIFTI] [GERT_QUIT_ON_ERR] [USE_OBL_ORIGIN]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-infile_pattern",
+            "description": "specify pattern for input files  e.g. -infile_pattern 'run1/i*.dcm'  This option is used to specify a wildcard pattern matching the names of the input DICOM files.  These files should be sorted in the order that they are to be assembled, i.e. when the files are sorted alphabetically, they should be sequential slices in a volume, and the volumes should then progress over time (as with the 'to3d' program).  The pattern for this option must be within quotes, because it will be up to the program to search for new files (that match the pattern), not the shell.",
+            "id": "INFILE_PATTERN",
+            "name": "INFILE_PATTERN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFILE_PATTERN]"
+        },
+        {
+            "command-line-flag": "-infile_prefix",
+            "description": "specify prefix matching input files  e.g. -infile_prefix run1/i  This option is similar to -infile_pattern.  By providing only a prefix, the user need not use wildcard characters with quotes.  Using PREFIX with -infile_prefix is equivalent to using 'PREFIX*' with -infile_pattern (note the needed quotes).  Note that it may not be a good idea to use, say 'run1/' for the prefix, as there might be a readme file under that directory.  Note also that it is necessary to provide a '/' at the end, if the prefix is a directory (e.g. use run1/ instead of simply run1).",
+            "id": "INFILE_PREFIX",
+            "name": "INFILE_PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFILE_PREFIX]"
+        },
+        {
+            "command-line-flag": "-infile_list",
+            "description": "-infile_list MY_FILES.txt : filenames are in MY_FILES.txt  e.g. -infile_list subject_17_files  If the user would rather specify a list of DICOM files to read, those files can be enumerated in a text file, the name of which would be passed to the program.  --------------------------------------------------------------- real-time options:",
+            "id": "INFILE_LIST",
+            "name": "INFILE_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFILE_LIST]"
+        },
+        {
+            "command-line-flag": "-rt",
+            "description": "specify to use the real-time facility  With this option, the user tells 'Dimon' to use the real-time facility, passing each volume of images to an existing afni process on some machine (as specified by the '-host' option).  Whenever a new volume is acquired, it will be sent to the afni program for immediate update.  Note that afni must also be started with the '-rt' option to make use of this.  Note also that the '-host HOSTNAME' option is not required if afni is running on the same machine.",
+            "id": "RT",
+            "name": "RT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RT]"
+        },
+        {
+            "command-line-flag": "-drive_afni",
+            "description": "send 'drive afni' command, CMND  e.g.  -drive_afni 'OPEN_WINDOW axialimage'  This option is used to pass a single DRIVE_AFNI command to afni.  For example, 'OPEN_WINDOW axialimage' will open such an axial view window on the afni controller.  Note: the command 'CMND' must be given in quotes, so that the shell will send it as a single parameter.  Note: this option may be used multiple times.  See README.driver for more details.",
+            "id": "DRIVE_AFNI",
+            "name": "DRIVE_AFNI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DRIVE_AFNI]"
+        },
+        {
+            "command-line-flag": "-drive_wait",
+            "description": "send delayed 'drive afni' command, CMND  e.g.  -drive_wait 'OPEN_WINDOW axialimage'  This option is used to pass a single DRIVE_AFNI command to afni.  For example, 'OPEN_WINDOW axialimage' will open such an axial view window on the afni controller.  This has the same effect as '-drive_afni', except that the real-time plugin will wait until the next completed volume to execute the command.  An example of where this is useful is so that afni 'knows' about a new dataset before opening the given image window, allowing afni to size the window appropriately.",
+            "id": "DRIVE_WAIT",
+            "name": "DRIVE_WAIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DRIVE_WAIT]"
+        },
+        {
+            "command-line-flag": "-fast",
+            "description": "process data very quickly  short for:  -sleep_init 50 -sleep_vol 50",
+            "id": "FAST",
+            "name": "FAST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FAST]"
+        },
+        {
+            "command-line-flag": "-host",
+            "description": "specify the host for afni communication  e.g.  -host mycomputer.dot.my.network e.g.  -host 127.0.0.127 e.g.  -host mycomputer the default host is 'localhost'  The specified HOSTNAME represents the machine that is running afni.  Images will be sent to afni on this machine during the execution of 'Dimon'.  Note that the environment variable AFNI_TRUSTHOST must be set on the machine running afni.  Set this equal to the name of the machine running Imon (so that afni knows to accept the data from the sending machine).",
+            "id": "HOST",
+            "name": "HOST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HOST]"
+        },
+        {
+            "command-line-flag": "-num_chan",
+            "description": "specify number of channels to send over  e.g.  -num_chan 8  This option tells the realtime plugin how many channels to break incoming data into.  Each channel would then get its own dataset.  Note that this simply distributes the data as it is read across multiple datasets.  If 12 volumes are seen in some directory and -num_chan 2 is specified, then volumes 0, 2, 4, 6, 8 and 10 would go to one dataset (e.g. channel 1), while volumes 1,3,5,7,9,11 would go to another.  A sample use might be for multi-echo data.  If echo pairs appear to Dimon sequentially over the TRs, then -num_chan could be used to send each echo type to its own dataset. This option was added for J Evans.  Currently, -num_chan only affects the realtime use.",
+            "id": "NUM_CHAN",
+            "name": "NUM_CHAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUM_CHAN]"
+        },
+        {
+            "command-line-flag": "-pause",
+            "description": "pause after each new volume  e.g.  -pause 200  In some cases, the user may wish to slow down a real-time process.  This option will cause a delay of TIME_IN_MS milliseconds after each volume is found.",
+            "id": "PAUSE",
+            "name": "PAUSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAUSE]"
+        },
+        {
+            "command-line-flag": "-rev_byte_order",
+            "description": "pass the reverse of the BYTEORDER to afni  Reverse the byte order that is given to afni.  In case the detected byte order is not what is desired, this option can be used to reverse it.  See the (obsolete) '-swap' option for more details.",
+            "id": "REV_BYTE_ORDER",
+            "name": "REV_BYTE_ORDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REV_BYTE_ORDER]"
+        },
+        {
+            "command-line-flag": "-rt_cmd",
+            "description": "send COMMAND(s) to realtime plugin  e.g.  -rt_cmd 'GRAPH_XRANGE 120' e.g.  -rt_cmd 'GRAPH_XRANGE 120 \\n GRAPH_YRANGE 2.5'  This option is used to pass commands to the realtime plugin.  For example, 'GRAPH_XRANGE 120' will set the x-scale of the motion graph window to 120 (repetitions).  Note: the command 'COMMAND' must be given in quotes, so that the shell will send it as a single parameter.  Note: this option may be used multiple times.  See README.realtime for more details.",
+            "id": "RT_CMD",
+            "name": "RT_CMD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RT_CMD]"
+        },
+        {
+            "command-line-flag": "-show_sorted_list",
+            "description": "display -dicom_org info and quit  After the -dicom_org has taken effect, display the list of run index, image index and filenames that results. This option can be used as a simple review of the files under some directory tree, say.  See the -show_sorted_list example under example A2.",
+            "id": "SHOW_SORTED_LIST",
+            "name": "SHOW_SORTED_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_SORTED_LIST]"
+        },
+        {
+            "command-line-flag": "-sleep_init",
+            "description": "time to sleep between initial data checks  e.g.  -sleep_init 500  While Dimon searches for the first volume, it checks for files, pauses, checks, pauses, etc., until some are found. By default, the pause is approximately 3000 ms.  This option, given in milliseconds, will override that default time.  A small time makes the program seem more responsive.  But if the time is too small, and no new files are seen on successive checks, Dimon may think the first volume is complete (with too few slices).  If the minimum time it takes for the scanner to output more slices is T, then 1/2 T is a reasonable -sleep_init time.  Note: that minimum T had better be reliable.  The example shows a sleep time of half of a second.  See also -fast.",
+            "id": "SLEEP_INIT",
+            "name": "SLEEP_INIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SLEEP_INIT]"
+        },
+        {
+            "command-line-flag": "-sleep_vol",
+            "description": "time to sleep between volume checks  e.g.  -sleep_vol 1000  When Dimon finds some volumes and there still seems to be more to acquire, it sleeps for a while (and outputs '.'). This option can be used to specify the amount of time it sleeps before checking again.  The default is 1.5*TR.  The example shows a sleep time of one second.  See also -fast.",
+            "id": "SLEEP_VOL",
+            "name": "SLEEP_VOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SLEEP_VOL]"
+        },
+        {
+            "command-line-flag": "-sleep_frac",
+            "description": "new data search, fraction of TR to sleep  e.g.  -sleep_frac 0.5  When Dimon finds some volumes and there still seems to be more to acquire, it sleeps for a while (and outputs '.'). This option can be used to specify the amount of time it sleeps before checking again, as a fraction of the TR. The default is 1.5 (as the fraction).  The example shows a sleep time of one half of a TR.",
+            "id": "SLEEP_FRAC",
+            "name": "SLEEP_FRAC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SLEEP_FRAC]"
+        },
+        {
+            "command-line-flag": "-swap",
+            "description": "-swap  (obsolete) : swap data bytes before sending to afni  Since afni may be running on a different machine, the byte order may differ there.  This option will force the bytes to be reversed, before sending the data to afni.  ** As of version 3.0, this option should not be necessary. 'Dimon' detects the byte order of the image data, and then passes that information to afni.  The realtime plugin will (now) decide whether to swap bytes in the viewer.  If for some reason the user wishes to reverse the order from what is detected, '-rev_byte_order' can be used.",
+            "id": "SWAP",
+            "name": "SWAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SWAP]"
+        },
+        {
+            "command-line-flag": "-te_list",
+            "description": "-te_list 'TE TE TE ...' : specify a list of echo times  e.g. -te_list '13.9 31.7 49.5'  This optins is used to pass along a list of echo times to the realtime plugin.  The list should be enclosed in quotes to be a single program argument.  It is passed to plug_realtime as ECHO_TIMES TE TE TE ...",
+            "id": "TE_LIST",
+            "name": "TE_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TE_LIST]"
+        },
+        {
+            "command-line-flag": "-zorder",
+            "description": "slice order over time  e.g. -zorder alt e.g. -zorder seq the default is 'alt'  This options allows the user to alter the slice acquisition order in real-time mode, similar to the slice pattern of the '-sp' option.  The main differences are: o  only two choices are presently available o  the syntax is intentionally different (from that of 'to3d' or the '-sp' option)  ORDER values: alt   : alternating in the Z direction (over time) seq   : sequential in the Z direction (over time)  --------------------------------------------------------------- other options:",
+            "id": "ZORDER",
+            "name": "ZORDER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZORDER]"
+        },
+        {
+            "command-line-flag": "-debug",
+            "description": "show debug information during execution  e.g.  -debug 2 the default level is 1, the domain is [0,3] the '-quiet' option is equivalent to '-debug 0'",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-dicom_org",
+            "description": "organize files before other processing  e.g.  -dicom_org  When this flag is set, the program will attempt to read in all files subject to -infile_prefix or -infile_pattern, determine which are DICOM image files, and organize them into an ordered list of files per run.  This may be necessary since the alphabetized list of files will not always match the sequential slice and time order (which means, for instance, that '*.dcm' may not list files in the correct order.  In this case, if the DICOM files contain a valid 'image number' field (0x0020 0013), then they will be sorted before any further processing is done.  Notes:  - This does not work in real-time mode, since the files must all be organized before processing begins.  ** As of version 4.0, this _is_ a real-time option.  - The DICOM images need valid 'image number' fields for organization to be possible (DICOM field 0x0020 0013).  - This works will in conjunction with '-GERT_Reco', to create a script to make AFNI datasets.  There will be a single file per run that contains the image filenames for that run (in order).  This is fed to 'to3d'.  - This may be used with '-save_file_list', to store the list of sorted filenames in an output file.  - The images can be sorted in reverse order using the option, -rev_org_dir.",
+            "id": "DICOM_ORG",
+            "name": "DICOM_ORG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DICOM_ORG]"
+        },
+        {
+            "command-line-flag": "-epsilon",
+            "description": "specify EPSILON for 'equality' tests  e.g.  -epsilon 0.05 the default is 0.01  When checking z-coordinates or differences between them for 'equality', a check of (difference < EPSILON) is used. This option lets the user specify that cutoff value.",
+            "id": "EPSILON",
+            "name": "EPSILON",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EPSILON]"
+        },
+        {
+            "command-line-flag": "-file_type",
+            "description": "specify type of image files to be read  e.g.  -file_type AFNI the default is DICOM  Dimon will currently process GEMS 5.x or DICOM files (single slice or Siemens mosaic).  possible values for TYPE:  GEMS      : GE Medical Systems GEMS 5.x format DICOM     : DICOM format, possibly Siemens mosaic AFNI      : AFNI or NIfTI formatted datasets",
+            "id": "FILE_TYPE",
+            "name": "FILE_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FILE_TYPE]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "show this help information",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "display a history of program changes",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-max_images",
+            "description": "limit on images (slices per volume)  e.g.  -max_images 256 default = 3000  This variable is in case something is very messed up with the data, and prevents the program from continuing after failing to find a volume in this number of images.",
+            "id": "MAX_IMAGES",
+            "name": "MAX_IMAGES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX_IMAGES]"
+        },
+        {
+            "command-line-flag": "-max_quiet_trs",
+            "description": "max number of TRs without data (if -quit)  e.g.  -max_quiet_trs 4 default = 2  This variable is to specify the number of TRs for which having no new data is okay.  After this number of TRs, it is assumed that the run has ended.  The TR (duration) comes from either the image files or the -tr option.",
+            "id": "MAX_QUIET_TRS",
+            "name": "MAX_QUIET_TRS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX_QUIET_TRS]"
+        },
+        {
+            "command-line-flag": "-nice",
+            "description": "adjust the nice value for the process  e.g.  -nice 10 the default is 0, and the maximum is 20 a superuser may use down to the minimum of -19  A positive INCREMENT to the nice value of a process will lower its priority, allowing other processes more CPU time.",
+            "id": "NICE",
+            "name": "NICE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NICE]"
+        },
+        {
+            "command-line-flag": "-no_wait",
+            "description": "never wait for new data  More forceful than -quit, when using this option, the program should never wait for new data.  This option implies -quit and is implied by -gert_create_dataset.  This is appropriate to use when the image files have already been collected.",
+            "id": "NO_WAIT",
+            "name": "NO_WAIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_WAIT]"
+        },
+        {
+            "command-line-flag": "-nt",
+            "description": "set the number of time points per run  e.g.  -nt 120  With this option, if a run stalls before the specified VOLUMES_PER_RUN is reached (notably including the first run), the user will be notified.  Without this option, Dimon will compute the expected number of time points per run based on the first run (and will allow the value to increase based on subsequent runs). Therefore Dimon would not detect a stalled first run.",
+            "id": "NT",
+            "name": "NT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NT]"
+        },
+        {
+            "command-line-flag": "-num_slices",
+            "description": "slices per volume must match this  e.g.  -num_slices 34  Setting this puts a restriction on the first volume search, requiring the number of slices found to match.  This prevents odd failures at the scanner, which does not necessarily write out all files for the first volume before writing some file from the second.",
+            "id": "NUM_SLICES",
+            "name": "NUM_SLICES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUM_SLICES]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "show only errors and final information",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-quit",
+            "description": "quit when there is no new data  With this option, the program will terminate once a delay in new data occurs (an apparent end-of-run pause).  This option is implied by -no_wait.",
+            "id": "QUIT",
+            "name": "QUIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIT]"
+        },
+        {
+            "command-line-flag": "-order_as_zt",
+            "description": "change order from -time:tz to -time_zt  e.g.  -rev_org_dir  Assuming the images are initially sorted in to3d's -time:tz order (meaning across images, time changes first and slice position changes next, i.e. all time points for the first slice come first, then all time points for the next slice), re-order the images into the -time:zt order (meaning all slices at the first time point come first, then all slices at the next, etc).  Note that -time:zt is the usual order expected with Dimon, since it was intended for real-time use (when all slices for a given time point come together).  This option implies -read_all.  * This is a post-sort operation.  Images will be initially sorted based on the other options, then they will be shuffled into the slice-minor order (volumes of slices grouped over time).  * This should probably not be used on a real-time system.  See 'to3d -help' for the -time options.",
+            "id": "ORDER_AS_ZT",
+            "name": "ORDER_AS_ZT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ORDER_AS_ZT]"
+        },
+        {
+            "command-line-flag": "-read_all",
+            "description": "read all images at once  e.g.  -read_all  There is typically a limit on the number of images initially read or stored at any one time.  This option is to remove that limit.  It uses more memory, but is particularly important if sorting should be done over a complete image list.",
+            "id": "READ_ALL",
+            "name": "READ_ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[READ_ALL]"
+        },
+        {
+            "command-line-flag": "-rev_org_dir",
+            "description": "reverse the sort in dicom_org  e.g.  -rev_org_dir  With the -dicom_org option, the program will attempt to organize the DICOM files with respect to run and image numbers.  Normally that is an ascending sort.  With this option, the sort is reversed.  see also: -dicom_org",
+            "id": "REV_ORG_DIR",
+            "name": "REV_ORG_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REV_ORG_DIR]"
+        },
+        {
+            "command-line-flag": "-rev_sort_dir",
+            "description": "reverse the alphabetical sort on names  e.g.  -rev_sort_dir  With this option, the program will sort the input files in descending order, as opposed to ascending order.",
+            "id": "REV_SORT_DIR",
+            "name": "REV_SORT_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REV_SORT_DIR]"
+        },
+        {
+            "command-line-flag": "-save_file_list",
+            "description": "store the list of sorted files  e.g.  -save_file_list dicom_file_list  With this option the program will store the list of files, sorted via -dicom_org, in the output file, FILENAME.  The user may wish to have a separate list of the files.  Note: this option no longer requires '-dicom_org'.",
+            "id": "SAVE_FILE_LIST",
+            "name": "SAVE_FILE_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_FILE_LIST]"
+        },
+        {
+            "command-line-flag": "-save_details",
+            "description": "save details about images  e.g.  -save_defails dicom_details  With this option the program will store the list of files, along with many details for each image file.  It is akin to -save_file_list, only with extra information.  Fields:  index     : current index findex    : index in main finfo_t list (as found) sindex    : sorting index (-1 if not used) state     : current state (<=0:bad, 1=good, >1=todo) errs      : reading errors  zoff      : slice coordinate diff      : difference from previous coordinate data      : have data run       : apparent run index IIND      : image index (DICOM 0054 1330) RIN       : image instance number (DICOM 0020 0013) GEMEIND   : GE multi-echo index (DICOM RawDataRunNumber) ATIME     : Acquisition time (DICOM 0008 0032)",
+            "id": "SAVE_DETAILS",
+            "name": "SAVE_DETAILS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_DETAILS]"
+        },
+        {
+            "command-line-flag": "-save_errors",
+            "description": "save 'details' files on search/match errors  e.g.  -save_errors -save_details dicom_details  For use with -save_details, the option causes extra details files to be written upon any volume_search or volume_match errors.",
+            "id": "SAVE_ERRORS",
+            "name": "SAVE_ERRORS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_ERRORS]"
+        },
+        {
+            "command-line-flag": "-sort_by_acq_time",
+            "description": "sort files by acquisition time  e.g.  -dicom_org -sort_by_acq_time  When this option is used with -dicom_org, the program will sort DICOM images according to: run, acq time, image index and image number  For instance, Philips files may have 0020 0013 (Inst. Num) fields that are ordered as slice-major (volume minor). But since slice needs to be the minor number, Acquisition Time may be used for the major sort, before Instance Num. So sort first by Acquisition Num, then by Instance.  Consider example B2.",
+            "id": "SORT_BY_ACQ_TIME",
+            "name": "SORT_BY_ACQ_TIME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SORT_BY_ACQ_TIME]"
+        },
+        {
+            "command-line-flag": "-sort_by_num_suffix",
+            "description": "sort files according to numerical suffix  e.g.  -sort_by_num_suffix  With this option, the program will sort the input files according to the trailing '.NUMBER' in the filename.  This NUMBER will be evaluated as a positive integer, not via an alphabetic sort (so numbers need not be zero-padded).  This is intended for use on interleaved files, which are properly enumerated, but only in the filename suffix. Consider a set of names for a single, interleaved volume:  im001.1  im002.3  im003.5  im004.7  im005.9  im006.11 im007.2  im008.4  im009.6  im010.8  im011.10  Here the images were named by 'time' of acquisition, and were interleaved.  So an alphabetic sort is not along the slice position (z-order).  However the slice ordering was encoded in the suffix of the filenames.  NOTE: the suffix numbers must be unique",
+            "id": "SORT_BY_NUM_SUFFIX",
+            "name": "SORT_BY_NUM_SUFFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SORT_BY_NUM_SUFFIX]"
+        },
+        {
+            "command-line-flag": "-sort_method",
+            "description": "apply METHOD for real-time sorting  e.g. -sort_method geme_index  This option is used to specify the sorting method to apply to image structures after they have been read in.  methods:  none            : do not apply any real-time sorting acq_time        : by acqusition time, if set default         : sort by run, [ATIME], IIND, RIND geme_index      : by GE multi-echo index num_suffix      : based on numeric suffix zposn           : based on z-coordinate and input order  more detailed method descriptions:  none  Do not perform any real-time sorting.  One can still apply a pre-read name-based sort, such as -sort_by_num_suffix.  acq_time  Try to sort by acquisition time, if set.  This may apply to Philps images.  default  Sort by run, acq_time (maybe), image index (0054 1330), and REL Instance Number (0020 0013).  geme_index  This is for the GE multi-echo sequence.  Sort the list of images in groups of nslices*nechos (which should match 'Images in Acquisition' in the Dicom header).  Each such set of images should have the same GE_ME_INDEX sequence, starting from some arbitrary offset.  Note that the actual file order is somewhat unspecified, except that for a given geme_index, the files should be chronological.  num_suffix  Sort by numerical file suffix (e.g. image.01234).  zposn  Sort by z-coordinate.  This is limited to a single volume window of images, so num_slices should be set if there is more than 1 volume.",
+            "id": "SORT_METHOD",
+            "name": "SORT_METHOD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SORT_METHOD]"
+        },
+        {
+            "command-line-flag": "-start_file",
+            "description": "have Dimon process starting at S_FILE  e.g.  -start_file 043/I.901  With this option, any earlier I-files will be ignored by Dimon.  This is a good way to start processing a later run, if it desired not to look at the earlier data.  In this example, all files in directories 003 and 023 would be ignored, along with everything in 043 up through I.900.  So 043/I.901 might be the first file in run 2.",
+            "id": "START_FILE",
+            "name": "START_FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[START_FILE]"
+        },
+        {
+            "command-line-flag": "-tr",
+            "description": "specify the TR, in seconds  e.g.  -tr 5.0  In the case where volumes are acquired in clusters, the TR is different than the time needed to acquire one volume. But some scanners incorrectly store the latter time in the TR field.  This option allows the user to override what is found in the image files, which is particularly useul in real-time mode, though is also important to have stored properly in the final EPI datasets.  Here, TR is in seconds.",
+            "id": "TR",
+            "name": "TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR]"
+        },
+        {
+            "command-line-flag": "-use_imon",
+            "description": "revert to Imon functionality  ** This option is deprecated. Use -file_type GEMS, instead.",
+            "id": "USE_IMON",
+            "name": "USE_IMON",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USE_IMON]"
+        },
+        {
+            "command-line-flag": "-assume_dicom_mosaic",
+            "description": "as stated, useful for 3D format  Siemens 3D DICOM image files use a different type of mosaic format, missing the indicator string.  This option matches that for to3d.",
+            "id": "ASSUME_DICOM_MOSAIC",
+            "name": "ASSUME_DICOM_MOSAIC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ASSUME_DICOM_MOSAIC]"
+        },
+        {
+            "command-line-flag": "-use_last_elem",
+            "description": "use the last elements when reading DICOM  In some poorly created DICOM image files, some elements are listed incorrectly, before being listed correctly.  Use the option to search for the last occurrence of each element, not necessarily the first.",
+            "id": "USE_LAST_ELEM",
+            "name": "USE_LAST_ELEM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USE_LAST_ELEM]"
+        },
+        {
+            "command-line-flag": "-use_slice_loc",
+            "description": "use REL Slice Loc for z offset  REL Slice Location, 0020 1041, is sometimes used for the z offset, rather than Image Position.  Use this option to set slice offsets according to SLoc.",
+            "id": "USE_SLICE_LOC",
+            "name": "USE_SLICE_LOC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USE_SLICE_LOC]"
+        },
+        {
+            "command-line-flag": "-ushort2float",
+            "description": "convert short datasets to float in to3d  By default, if short integer datasets appear to be unsigned shorts, Dimon will add a similar -ushort2float to the to3d command when creating AFNI datasets (via -gert_create_dataset).  But if some runs need conversion and others do not, one can have a mix of types across runs.  Then one basically needs to decide whether to use floats for all subjects, one subject at a time, or to perform some conversion that removes the large shorts.  Applying -ushort2float in Dimon will result in passing it to any to3d commands (if -gert_create_dataset is applied), which would have all short datasets converted to float32.",
+            "id": "USHORT2FLOAT",
+            "name": "USHORT2FLOAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USHORT2FLOAT]"
+        },
+        {
+            "command-line-flag": "-version",
+            "description": "show the version information  --------------------------------------------------------------- GERT_Reco options:",
+            "id": "VERSION",
+            "name": "VERSION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERSION]"
+        },
+        {
+            "command-line-flag": "-GERT_Reco",
+            "description": "output a GERT_Reco_dicom script  Create a script called 'GERT_Reco_dicom', similar to the one that Ifile creates.  This script may be run to create the AFNI datasets corresponding to the I-files.",
+            "id": "GERT_RECO",
+            "name": "GERT_RECO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GERT_RECO]"
+        },
+        {
+            "command-line-flag": "-gert_create_dataset",
+            "description": "actually create the output dataset  Execute any GERT_Reco script, creating the AFNI or NIfTI datasets.  This option implies -GERT_Reco and -quit.  See also -gert_write_as_nifti.",
+            "id": "GERT_CREATE_DATASET",
+            "name": "GERT_CREATE_DATASET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GERT_CREATE_DATASET]"
+        },
+        {
+            "command-line-flag": "-gert_filename",
+            "description": "save GERT_Reco as FILENAME  e.g. -gert_filename gert_reco_anat  This option can be used to specify the name of the script, as opposed to using GERT_Reco_dicom.  By default, if the script is generated for a single run, it will be named GERT_Reco_dicom_NNN, where 'NNN' is the run number found in the image files.  If it is generated for multiple runs, then the default it to name it simply GERT_Reco_dicom.",
+            "id": "GERT_FILENAME",
+            "name": "GERT_FILENAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GERT_FILENAME]"
+        },
+        {
+            "command-line-flag": "-gert_nz",
+            "description": "specify the number of slices in a mosaic  e.g. -gert_nz 42  Dimon happens to be able to write valid to3d commands for mosaic (volume) data, even though it is intended for slices.  In the case of mosaics, the user must specify the number of slices in an image file, or any GERT_Reco script will specify nz as 1.",
+            "id": "GERT_NZ",
+            "name": "GERT_NZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GERT_NZ]"
+        },
+        {
+            "command-line-flag": "-gert_outdir",
+            "description": "set output directory in GERT_Reco  e.g. -gert_outdir subject_A7 e.g. -od subject_A7 the default is '-gert_outdir .'  This will add '-od OUTPUT_DIR' to the @RenamePanga command in the GERT_Reco script, creating new datasets in the OUTPUT_DIR directory, instead of the 'afni' directory.",
+            "id": "GERT_OUTDIR",
+            "name": "GERT_OUTDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GERT_OUTDIR]"
+        },
+        {
+            "command-line-flag": "-sp",
+            "description": "set output slice pattern in GERT_Reco  e.g. -sp alt-z the default is 'alt+z'  This options allows the user to alter the slice acquisition pattern in the GERT_Reco script.  See 'to3d -help' for more information.",
+            "id": "SP",
+            "name": "SP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SP]"
+        },
+        {
+            "command-line-flag": "-gert_to3d_prefix",
+            "description": "set to3d PREFIX in output script  e.g. -gert_to3d_prefix anatomy e.g. -gert_to3d_prefix epi.nii.gz  When creating a GERT_Reco script that calls 'to3d', this option will be applied to '-prefix'.  The default prefix is 'OutBrick_run_NNN', where NNN is the run number found in the images.  Use a NIFTI suffix to create a NIFTI dataset.  * Caution: this option should only be used when the output is for a single run.",
+            "id": "GERT_TO3D_PREFIX",
+            "name": "GERT_TO3D_PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GERT_TO3D_PREFIX]"
+        },
+        {
+            "command-line-flag": "-gert_chan_prefix",
+            "description": "use PREFIX instead of _chan_ in dsets  e.g. -gert_chan_prefix _echo_  When creating a GERT_Reco script that calls 'to3d' in the case of multi-channel (or echo) data, this option overrides the _chan_ part of the prefix.  Instead of naming the result as in: OutBrick_run_003_chan_001+orig.HEAD the name would use PREFIX, e.g. _echo_, in place of _chan_: OutBrick_run_003_echo_001+orig.HEAD",
+            "id": "GERT_CHAN_PREFIX",
+            "name": "GERT_CHAN_PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GERT_CHAN_PREFIX]"
+        },
+        {
+            "command-line-flag": "-gert_write_as_nifti",
+            "description": "output dataset should be in NIFTI format  By default, datasets created by the GERT_Reco script will be in AFNI format.  Use this option to create them in NIfTI format, instead.  These merely appends a .nii to the -prefix option of the to3d command.  This option is not necessary if -gert_to3d_prefix is NIFTI.  See also -gert_create_dataset, -gert_to3d_prefix.",
+            "id": "GERT_WRITE_AS_NIFTI",
+            "name": "GERT_WRITE_AS_NIFTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GERT_WRITE_AS_NIFTI]"
+        },
+        {
+            "command-line-flag": "-gert_quit_on_err",
+            "description": "Add -quit_on_err option to to3d command which has the effect of causing to3d to fail rather than come up in interactive mode if the input has an error.",
+            "id": "GERT_QUIT_ON_ERR",
+            "name": "GERT_QUIT_ON_ERR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GERT_QUIT_ON_ERR]"
+        },
+        {
+            "command-line-flag": "-use_obl_origin",
+            "description": "if oblique, pass -oblique_origin to to3d  This will usually apply a more accurate origin to the volume. Maybe this will become the default operation in the future.  ---------------------------------------------------------------  Author: R. Reynolds - version 4.23 (May 23, 2018)",
+            "id": "USE_OBL_ORIGIN",
+            "name": "USE_OBL_ORIGIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USE_OBL_ORIGIN]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

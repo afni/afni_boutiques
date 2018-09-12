@@ -1,0 +1,132 @@
+{
+    "command-line": "fat_proc_align_anat_pair [IN_T1W] [IN_T2W] [PREFIX] [NEWGRID] [OUT_T2W_GRID] [NO_FS_PREP] [IN_T2W_MASK] [DO_SS_TMP_T1W] [WARP] [MATRIX] [WORKDIR] [NO_CMD_OUT] [NO_CLEAN]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-in_t1w",
+            "description": "1w volume (required).",
+            "id": "IN_T1W",
+            "name": "IN_T1W",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_T1W]"
+        },
+        {
+            "command-line-flag": "-in_t2w",
+            "description": "2w volume (required; preferably from same subject as T1W).",
+            "id": "IN_T2W",
+            "name": "IN_T2W",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_T2W]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput prefix for files and snapshots (required).",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-newgrid",
+            "description": "pecify output T1w volume's final resolution; will be isotropic in this value (default: 1 mm, or smallest voxel edge length of input T1W if that value is < 1 mm).",
+            "id": "NEWGRID",
+            "name": "NEWGRID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEWGRID]"
+        },
+        {
+            "command-line-flag": "-out_t2w_grid",
+            "description": "inal T1w volume is on the T2W volume's grid (with possible addition of padding with a slice of zeros if prepping for FS).",
+            "id": "OUT_T2W_GRID",
+            "name": "OUT_T2W_GRID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_T2W_GRID]"
+        },
+        {
+            "command-line-flag": "-no_fs_prep",
+            "description": "heck output T1w volume to have an even number of slices in all directions, because FS appears to like/require this (at least at this slicetime of the universe, March, 2017).",
+            "id": "NO_FS_PREP",
+            "name": "NO_FS_PREP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_FS_PREP]"
+        },
+        {
+            "command-line-flag": "-in_t2w_mask",
+            "description": "-in_t2w_mask MASK_T2W :can input a mask to apply to the t2w volume for alignment purposes; might help in times of aligning hardship.",
+            "id": "IN_T2W_MASK",
+            "name": "IN_T2W_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_T2W_MASK]"
+        },
+        {
+            "command-line-flag": "-do_ss_tmp_t1w",
+            "description": "uring an intermediate step, apply skullstripping to the T1w volume-- final output is *not* skullstripped.  This might be useful if there is lots of non-brain tissue still in the T1w volume.",
+            "id": "DO_SS_TMP_T1W",
+            "name": "DO_SS_TMP_T1W",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_SS_TMP_T1W]"
+        },
+        {
+            "command-line-flag": "-warp",
+            "description": "an choose which of the possible affine degrees of freedom are employed in the warping, selecting them in the same manner described in 3dAllineate's help;  that is, WAR can be any of shift_only, shift_rotate, shift_rotate_scale, or affine_general.  Default: WAR = shift_rotate.",
+            "id": "WARP",
+            "name": "WARP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WARP]"
+        },
+        {
+            "command-line-flag": "-matrix",
+            "description": "ne can apply a pre-made matrix that has been made by 3dAllineate previously.  With this option.  If you want.",
+            "id": "MATRIX",
+            "name": "MATRIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATRIX]"
+        },
+        {
+            "command-line-flag": "-workdir",
+            "description": "pecify a working directory, which can be removed; (default name = '__WORKING_align_anat_pair')",
+            "id": "WORKDIR",
+            "name": "WORKDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WORKDIR]"
+        },
+        {
+            "command-line-flag": "-no_cmd_out",
+            "description": "on't save the command line call of this program and the location where it was run (otherwise, it is saved by default in the ODIR/).",
+            "id": "NO_CMD_OUT",
+            "name": "NO_CMD_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CMD_OUT]"
+        },
+        {
+            "command-line-flag": "-no_clean",
+            "description": "o not delete temporary working directory (default is to remove it to save disk space).  # ----------------------------------------------------------------------  EXAMPLE  # have isotropic 1x1x1 mm final anat: fat_proc_align_anat_pair  \\ -in_t1w    MPRAGE.nii.gz        \\ -in_t2w    T2w_anat.nii.gz      \\ -newgrid   1.0                  \\ -prefix    t1w_alnd  # match the final anat resolution to that of the t2w dset: fat_proc_align_anat_pair  \\ -in_t1w    MPRAGE.nii.gz        \\ -in_t2w    T2w_anat.nii.gz      \\ -out_t2w_grid                   \\ -prefix    t1w_alndb   # -----------------------------------------------------------------------",
+            "id": "NO_CLEAN",
+            "name": "NO_CLEAN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CLEAN]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

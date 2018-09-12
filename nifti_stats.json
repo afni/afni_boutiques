@@ -1,0 +1,76 @@
+{
+    "command-line": "nifti_stats [Q] [D] [1] [Z] [H] [VAL] [CODE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-q",
+            "description": "> output is 1-p.",
+            "id": "Q",
+            "name": "Q",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Q]"
+        },
+        {
+            "command-line-flag": "-d",
+            "description": "> output is density.",
+            "id": "D",
+            "name": "D",
+            "optional": true,
+            "type": "String",
+            "value-key": "[D]"
+        },
+        {
+            "command-line-flag": "-1",
+            "description": "> output is x such that Prob(statistic < x) = val.",
+            "id": "1",
+            "name": "1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[1]"
+        },
+        {
+            "command-line-flag": "-z",
+            "description": "> output is z such that Normal cdf(z) = p(val).",
+            "id": "Z",
+            "name": "Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[Z]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "> output is z such that 1/2-Normal cdf(z) = p(val). Allowable CODEs: CORREL      TTEST       FTEST       ZSCORE      CHISQ       BETA BINOM       GAMMA       POISSON     NORMAL      FTEST_NONC  CHISQ_NONC LOGISTIC    LAPLACE     UNIFORM     TTEST_NONC  WEIBULL     CHI INVGAUSS    EXTVAL      PVAL        LOGPVAL     LOG10PVAL Following CODE are distributional parameters, as needed.  Results are written to stdout, 1 number per output line. Example (piping output into AFNI program 1dplot): nifti_stats -d 0:4:.001 INVGAUSS 1 3 | 1dplot -dx 0.001 -stdin  Author - RW Cox - SSCC/NIMH/NIH/DHHS/USA/EARTH - March 2004",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "description": "NA",
+            "id": "val",
+            "name": "val",
+            "optional": false,
+            "type": "String",
+            "value-key": "[VAL]"
+        },
+        {
+            "description": "NA",
+            "id": "CODE",
+            "name": "CODE",
+            "optional": false,
+            "type": "String",
+            "value-key": "[CODE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

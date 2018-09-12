@@ -1,0 +1,411 @@
+{
+    "command-line": "3dTrackID [DTI_IN] [DTI_EXTRA] [DTI_SEARCH_NO] [DTI_LIST] [HARDI_GFA] [HARDI_DIRS] [HARDI_PARS] [MODE] [NETROIS] [PREFIX] [MASK] [THRU_MASK] [TARG_SURF_STOP] [TARG_SURF_TWIXT] [LOGIC] [MINI_NUM] [BUNDLE_THR] [UNCERT] [UNC_MIN_FA] [UNC_MIN_V] [ALGOPT] [ALG_THRESH_FA] [ALG_THRESH_ANG] [ALG_THRESH_LEN] [ALG_NSEED_X] [ALG_NSEED_Y] [ALG_NSEED_Z] [ALG_THRESH_FRAC] [ALG_NSEED_VOX] [ALG_NMONTE] [EXTRA_TR_PAR] [UNCUT_AT_ROIS] [DUMP_ROIS] [DUMP_NO_LABTAB] [DUMP_LAB_CONSEC] [POSTERIORI] [REC_ORIG] [DO_TRK_OUT] [NIFTI] [NO_INDIPAIR_OUT] [WRITE_ROIS] [WRITE_OPTS] [PAIR_OUT_POWER] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-dti_in",
+            "description": "asename of DTI volumes output by, e.g., 3dDWItoDT. NB- following volumes are *required* to be present: INPREF_FA, INPREF_MD, INPREF_L1, INPREF_V1, INPREF_V2, INPREF_V3, and (now) INPREF_RD (**now output by 3dTrackID**). Additionally, the program will search for all other scalar (=single brik) files with name INPREF* and will load these in as additional quantities for WM-ROI stats; this could be useful if, for example, you have PD or anatomical measures and want mean/stdev values in the WM-ROIs (to turn this feature off, see below, 'dti_search_NO'); all the INPREF* files must be in same DWI space. Sidenote: including/omitting a '_' at the end of INPREF makes no difference in the hunt for files.",
+            "id": "DTI_IN",
+            "name": "DTI_IN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DTI_IN]"
+        },
+        {
+            "command-line-flag": "-dti_extra",
+            "description": "f you want to use a non-FA derived definition for the WM skeleton in which tracts run, you can input one, and then the threshold in the -algopt file (or, via the '-alg_Thresh_FA' option) will be applied to thresholding this SET; similarly for the minimum uncertainty by default will be set to 0.015 times the max value of SET, or can be set with '-unc_min_FA'. If the SET name is formatted as INPREF*, then it will probably be included twice in stats, but that's not the worst thing. In grid files, name of this quantity will be 'XF' (stands for 'extra file').",
+            "id": "DTI_EXTRA",
+            "name": "DTI_EXTRA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DTI_EXTRA]"
+        },
+        {
+            "command-line-flag": "-dti_search_NO",
+            "description": "urn off the feature to search for more scalar (=single brik) files with INPREF*, for including stats in output GRID file. Will only go for FA, MD, L1 and RD scalars with INPREF.",
+            "id": "DTI_SEARCH_NO",
+            "name": "DTI_SEARCH_NO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DTI_SEARCH_NO]"
+        },
+        {
+            "command-line-flag": "-dti_list",
+            "description": "n alternative way to specify DTI input files, where FILE is a NIML-formatted text file that lists the explicit/specific files for DTI input.  This option is used in place of '-dti_in' and '-dti_extra' for loading data sets of FA, MD, L1, etc.  An 'extra' set (XF) can be loaded in the file, as well as supplementary scalar data sets for extra WM-ROI statistics. See below for a 'DTI LIST FILE EXAMPLE'. FOR MODEL HARDI:",
+            "id": "DTI_LIST",
+            "name": "DTI_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DTI_LIST]"
+        },
+        {
+            "command-line-flag": "-hardi_gfa",
+            "description": "ingle brik data set with generalized FA (GFA) info. In reality, it doesn't *have* to be a literal GFA, esp. if you are using some HARDI variety that doesn't have a specific GFA value-- in such a case, use whatever could be thresholded as your proxy for WM. The default threshold is still 0.2, so you will likely need to set a new one in the '-algopt ALG_FILE' file or from the commandline with '-alg_Thresh_FA', which does apply to the GFA in the HARDI case as well. Stats in GRID file are output under name 'GFA'.",
+            "id": "HARDI_GFA",
+            "name": "HARDI_GFA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HARDI_GFA]"
+        },
+        {
+            "command-line-flag": "-hardi_dirs",
+            "description": "or tracking if X>1 propagation directions per voxel are given, for example if HARDI data is input. DIRS would then be a file with 3*X briks of (x,y,z) ordered, unit magnitude vector components;  i.e., brik [0] contains V1_x, [1] V1_y, [2] V1_z, [3] V2_x, etc. (NB: even if X=1, this option works, but that would seem to take the HAR out of HARDI...)",
+            "id": "HARDI_DIRS",
+            "name": "HARDI_DIRS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HARDI_DIRS]"
+        },
+        {
+            "command-line-flag": "-hardi_pars",
+            "description": "earch for scalar (=single brik) files of naming format PREF*.  These will be read in for WM-ROI stats output in the GRID file.  For example, if there are some files PREF_PD.nii.gz, PREF_CAT.nii.gz and PREF_DOG.nii.gz, they will be labelled in the GRID file as 'PD', 'CAT' and 'DOG' (that '_' will be cut out). MODEL-INDEPENDENT OPTIONS:",
+            "id": "HARDI_PARS",
+            "name": "HARDI_PARS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HARDI_PARS]"
+        },
+        {
+            "command-line-flag": "-mode",
+            "description": "his necessary option is used to define whether one is performing deterministic, mini-probabilistic or full- probabilistic tractography, by selecting one of three respective modes:  DET, MINIP, or PROB.",
+            "id": "MODE",
+            "name": "MODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODE]"
+        },
+        {
+            "command-line-flag": "-netrois",
+            "description": "ask(s) of target ROIs- single file can have multiple briks, one per network. The target ROIs through which tracks will be kept should have index values >0. It is also possible to define anti-targets (exclusionary regions) which stop a propagating track... in its tracks. These are defined per network (i.e., per brik) by voxels with values <0.",
+            "id": "NETROIS",
+            "name": "NETROIS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NETROIS]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput file name part.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "an include a brainmask within which to calculate things. Otherwise, data should be masked already.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-thru_mask",
+            "description": "ptional extra restrictor mask, through which paths are (strictly) required to pass in order to be included when passing through or connecting targets. It doesn't discriminate based on target ROI number, so it's probably mostly useful in examining specific pairwise connections. It is also not like one of the target '-netrois' in that no statistics are calculated for it. Must be same number of briks as '-netrois' set.",
+            "id": "THRU_MASK",
+            "name": "THRU_MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THRU_MASK]"
+        },
+        {
+            "command-line-flag": "-targ_surf_stop",
+            "description": "ake the final tracts and tracked regions stop at the outer surface of the target ROIs, rather than being able to journey arbitrarily far into them (latter being the default behavior.  Might be useful when you want meaningful distances *between* targets.  Tracts stop after going *into* the outer layer of a target. This can be applied to DET, MINIP, or PROB modes. NB: this only affects the connections between pairs of targets (= AND-logic, off-diagonal elements in output matrices), not the single-target tracts (= OR-logic, on-diagonal elements in output matrices); see also a related option, below.",
+            "id": "TARG_SURF_STOP",
+            "name": "TARG_SURF_STOP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TARG_SURF_STOP]"
+        },
+        {
+            "command-line-flag": "-targ_surf_twixt",
+            "description": "uite similar to '-targ_surf_stop', above, but the tracts stop *before* entering the target surfaces, so that they are only between (or betwixt) the targets. Again, only affects tracts between pairs of targets.",
+            "id": "TARG_SURF_TWIXT",
+            "name": "TARG_SURF_TWIXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TARG_SURF_TWIXT]"
+        },
+        {
+            "command-line-flag": "-logic",
+            "description": "-logic {OR|AND} :when in one of '-mode {DET | MINIP}', one will look for either OR- or AND-logic connections among target ROIs per network (multiple networks can be entered as separate briks in '-netrois ROIS'): i.e., one keeps either any track going through at least one network ROI or only those tracks which join a pair of ROIs. When using AND here, default behavior is to only keep voxels in tracks between the ROIs they connect (i.e., cut off track bits which run beyond ROIs).",
+            "id": "LOGIC",
+            "name": "LOGIC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOGIC]"
+        },
+        {
+            "command-line-flag": "-mini_num",
+            "description": "ill run a small number NUM of whole brain Monte Carlo iterations perturbing relevant tensor values in accord with their uncertainty values (hence, the need for also using `-uncert' with this option). This might be useful for giving a flavor of a broader range of connections while still seeing estimated tracks themselves. NB: if NUM is large, you might be *big* output track files; e.g., perhaps try NUM = 5 or 9 or so to start. Requires '-mode MINIP' in commandline.",
+            "id": "MINI_NUM",
+            "name": "MINI_NUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MINI_NUM]"
+        },
+        {
+            "command-line-flag": "-bundle_thr",
+            "description": "he number of tracts for a given connection is called a bundle. For '-mode {DET | MINIP}', one can choose to NOT output tracts, matrix info, etc. for any bundle with fewer than V tracts. This might be useful to weed out ugly/false tracts (default: V=1).",
+            "id": "BUNDLE_THR",
+            "name": "BUNDLE_THR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BUNDLE_THR]"
+        },
+        {
+            "command-line-flag": "-uncert",
+            "description": "hen in one of '-mode {MINIP | PROB}', uncertainty values for eigenvector and WM skeleton (FA, GFA, etc.) maps are necessary. When using DTI ('-dti_*'), then use the 6-brik file from 3dDWUncert; format of the file given below. When using HARDI ('-hardi_*') with up to X directions per voxel, one needs U_FILE to have X+1 briks, where U_FILE[0] is the uncertainty for the GFAfile, and the other briks are ordered for directions given with '-hardi_dirs'. Whatever the values in the U_FILE, this program asserts a minimum uncertainty of stdevs, with defaults: for FA it is 0.015, and for GFA or -dti_extra sets it is 0.015 times the max value present (set with option '-unc_min_FA'); for each eigenvector or dir, it is 0.06rad (~3.4deg) (set with option '-unc_min_V')",
+            "id": "UNCERT",
+            "name": "UNCERT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNCERT]"
+        },
+        {
+            "command-line-flag": "-unc_min_FA",
+            "description": "hen using '-uncert', one can control the minimum stdev for perturbing FA (in '-dti_in'), or the EXTRA- file also in DTI ('-dti_extra'), or GFA (in '-hardi_*). Default value is: 0.015 for FA, and 0.015 times the max value in the EXTRA-file or in the GFA file.",
+            "id": "UNC_MIN_FA",
+            "name": "UNC_MIN_FA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNC_MIN_FA]"
+        },
+        {
+            "command-line-flag": "-unc_min_V",
+            "description": "hen using '-uncert', one can control the minimum stdev for perturbing eigen-/direction-vectors. In DTI, this is for tipping e_1 separately toward e2 and e3, and in HARDI, this is for defining a single degree of freedom uncertainty cone. Default values are 0.06rad (~3.4deg) for any eigenvector/direction. User assigns values in degrees.",
+            "id": "UNC_MIN_V",
+            "name": "UNC_MIN_V",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNC_MIN_V]"
+        },
+        {
+            "command-line-flag": "-algopt",
+            "description": "imple ASCII file with six numbers defining tracking parameter quantities (see list below); note the differences whether running in '-mode {DET | MINIP}' or in '-mode PROB': the first three parameters in each mode are the same, but the next three differ. The file can be in the more understandable html-type format with labels per quantity, or just as a column of the numbers, necessarily in the correct order. NB: each quantity can also be changed individually using a commandline option (see immediately following). If A_FILE ends with '.niml.opts' (such as would be produced using the '-write_opts' option), then it is expected that it is in nice labelled NIML format; otherwise, the file should just be a column of numbers in the right order. Examples of A_FILEs are given at the end of the option section.",
+            "id": "ALGOPT",
+            "name": "ALGOPT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALGOPT]"
+        },
+        {
+            "command-line-flag": "-alg_Thresh_FA",
+            "description": "et threshold for DTI FA map, '-dti_extra' FILE, or HARDI GFA map (default = 0.2).",
+            "id": "ALG_THRESH_FA",
+            "name": "ALG_THRESH_FA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALG_THRESH_FA]"
+        },
+        {
+            "command-line-flag": "-alg_Thresh_ANG",
+            "description": "et max angle (in deg) for turning when going to a new voxel during propagation (default = 60).",
+            "id": "ALG_THRESH_ANG",
+            "name": "ALG_THRESH_ANG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALG_THRESH_ANG]"
+        },
+        {
+            "command-line-flag": "-alg_Thresh_Len",
+            "description": "in physical length (in mm) of tracts to keep (default = 20).",
+            "id": "ALG_THRESH_LEN",
+            "name": "ALG_THRESH_LEN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALG_THRESH_LEN]"
+        },
+        {
+            "command-line-flag": "-alg_Nseed_X",
+            "description": "umber of seeds per vox in x-direc (default = 2).",
+            "id": "ALG_NSEED_X",
+            "name": "ALG_NSEED_X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALG_NSEED_X]"
+        },
+        {
+            "command-line-flag": "-alg_Nseed_Y",
+            "description": "umber of seeds per vox in y-direc (default = 2).",
+            "id": "ALG_NSEED_Y",
+            "name": "ALG_NSEED_Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALG_NSEED_Y]"
+        },
+        {
+            "command-line-flag": "-alg_Nseed_Z",
+            "description": "umber of seeds per vox in z-direc (default = 2). +-------> NB: in summation, for example the alg_Nseed_* options for '-mode {DET | MINIP} place 2x2x2=8 seed points, equally spread in a 3D cube, in each voxel when tracking.",
+            "id": "ALG_NSEED_Z",
+            "name": "ALG_NSEED_Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALG_NSEED_Z]"
+        },
+        {
+            "command-line-flag": "-alg_Thresh_Frac",
+            "description": "alue for thresholding how many tracks must pass through a voxel for a given connection before it is included in the final WM-ROI of that connection. It is a decimal value <=1, which will multiply the number of 'starting seeds' per voxel, Nseed_Vox*Nmonte (see just below for those). (efault = 0.001; for higher specificity, a value of 0.01-0.05 could be used).",
+            "id": "ALG_THRESH_FRAC",
+            "name": "ALG_THRESH_FRAC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALG_THRESH_FRAC]"
+        },
+        {
+            "command-line-flag": "-alg_Nseed_Vox",
+            "description": "umber of seeds per voxel per Monte Carlo iteration; seeds will be placed randomly (default = 5).",
+            "id": "ALG_NSEED_VOX",
+            "name": "ALG_NSEED_VOX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALG_NSEED_VOX]"
+        },
+        {
+            "command-line-flag": "-alg_Nmonte",
+            "description": "umber of Monte Carlo iterations (default = 1000). +-------> NB: in summation, the preceding three options for the '-mode PROB' will mean that 'I' Monte Carlo iterations will be run, each time using 'H' track seeds per relevant voxel, and that a voxel will need 'G*H*I' tracks of a given connection through it to be included in that WM-ROI. Default example: 1000 iterations with 5 seeds/voxel, and therefore a candidate voxel needs at least 0.001*5*1000 = 5 tracks/connection.",
+            "id": "ALG_NMONTE",
+            "name": "ALG_NMONTE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALG_NMONTE]"
+        },
+        {
+            "command-line-flag": "-extra_tr_par",
+            "description": "un three extra track parameter scalings for each target pair, output in the *.grid file. The NT value of each connection is scaled in the following manners for each subsequent matrix label: NTpTarVol  :div. by average target volume; NTpTarSA   :div. by average target surface area; NTpTarSAFA :div. by average target surface area bordering suprathreshold FA (or equi- valent WM proxy definition). NB: the volume and surface area numbers are given in terms of voxel counts and not using physical units (consistent: NT values themselves are just numbers.)",
+            "id": "EXTRA_TR_PAR",
+            "name": "EXTRA_TR_PAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXTRA_TR_PAR]"
+        },
+        {
+            "command-line-flag": "-uncut_at_rois",
+            "description": "hen looking for pairwise connections, keep entire length of any track passing through multiple targets, even when part ~overshoots a target (i.e., it's not between them).  When using OR tracking, this is automatically applied.  For probabilistic tracking, not recommended to use (are untrimmed ends meaningful?). The default behavior is to trim the tracts that AND- wise connect targets to only include sections that are between the targets, and not parts that run beyond one. (Not sure why one would want to use this option, to be honest; see '-targ_surf_stop' for really useful tract control.)",
+            "id": "UNCUT_AT_ROIS",
+            "name": "UNCUT_AT_ROIS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNCUT_AT_ROIS]"
+        },
+        {
+            "command-line-flag": "-dump_rois",
+            "description": "an output individual masks of ROI connections. Options for TYPE are: {DUMP | AFNI | BOTH | AFNI_MAP}. Using DUMP gives a set of 4-column ASCII files, each formatted like a 3dmaskdump data set; it can be recon- stituted using 3dUndump. Using AFNI gives a set of BRIK/HEAD (byte) files in a directory called PREFIX; using AFNI_MAP is like using AFNI, but it gives non- binarized *maps* of ROI connections. Using BOTH produces AFNI and DUMP formats of outputs.",
+            "id": "DUMP_ROIS",
+            "name": "DUMP_ROIS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DUMP_ROIS]"
+        },
+        {
+            "command-line-flag": "-dump_no_labtab",
+            "description": "f the ROIS file has a label table, the default is to use it in naming a '-dump_rois' output (if being used); using this switch turn that off-- output file names will be the same as if no label table were present.",
+            "id": "DUMP_NO_LABTAB",
+            "name": "DUMP_NO_LABTAB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DUMP_NO_LABTAB]"
+        },
+        {
+            "command-line-flag": "-dump_lab_consec",
+            "description": "f using `-dump_rois', then DON'T apply the numerical labels of the original ROIs input to the output names. This would only matter if input ROI labels aren't consecutive and starting with one (e.g., if instead they were 1,2,3,5,8,..). --->   This is the opposite  from previous default behavior, where the option '-lab_orig_rois' was used to switch away from consecutive-izing the labels in the output.",
+            "id": "DUMP_LAB_CONSEC",
+            "name": "DUMP_LAB_CONSEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DUMP_LAB_CONSEC]"
+        },
+        {
+            "command-line-flag": "-posteriori",
+            "description": "witch to have a bunch of individual files output, with the value in each being the number of tracks per voxel for that pair; works with '-dump_rois {AFNI | BOTH }', where you get track-path maps instead of masks; makes threshold for number of tracks between ROIs to keep to be one automatically, regardless of setting in algopt.",
+            "id": "POSTERIORI",
+            "name": "POSTERIORI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POSTERIORI]"
+        },
+        {
+            "command-line-flag": "-rec_orig",
+            "description": "ecord dataset origin in the header of the *.trk file. As of Sept. 2012, TrackVis doesn't use this info so it wasn't included, but if you might want to map your *.trk file later, then use the switch as the datasets's Origin is necessary info for the mapping (the default image in TrackVis might not pop up in the center of the viewing window, though, just be aware). NB: including the origin might become default at some point in time.",
+            "id": "REC_ORIG",
+            "name": "REC_ORIG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REC_ORIG]"
+        },
+        {
+            "command-line-flag": "-do_trk_out",
+            "description": "witch ON outputting *.trk files, which are mainly to be viewed in TrackVis (Wang et al., 2007). (Feb, 2015): Default is to NOT output *.trk files.",
+            "id": "DO_TRK_OUT",
+            "name": "DO_TRK_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DO_TRK_OUT]"
+        },
+        {
+            "command-line-flag": "-nifti",
+            "description": "utput the PAIRMAP, INDIMAP, and any '-dump_rois' in *.nii.gz format (default is BRIK/HEAD).",
+            "id": "NIFTI",
+            "name": "NIFTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NIFTI]"
+        },
+        {
+            "command-line-flag": "-no_indipair_out",
+            "description": "witch off outputting *INDIMAP* and *PAIRMAP* volumes. This is probably just if you want to save file space; also, for connectome-y studies with many (>100) target regions, the output INDI and PAIR maps can be quite large and/or difficult to write out. In some cases, it might be better to just use '-dump_rois AFNI' instead. Default is to output the INDI and PAIR map files.",
+            "id": "NO_INDIPAIR_OUT",
+            "name": "NO_INDIPAIR_OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_INDIPAIR_OUT]"
+        },
+        {
+            "command-line-flag": "-write_rois",
+            "description": "rite out a file (PREFIX.roi.labs) of all the ROI (re-)labels, for example if the input ROIs aren't simply consecutive and starting from 1. File has 3cols: Input_ROI   Condensed_form_ROI   Power_of_2_label",
+            "id": "WRITE_ROIS",
+            "name": "WRITE_ROIS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_ROIS]"
+        },
+        {
+            "command-line-flag": "-write_opts",
+            "description": "rite out all the option values into PREFIX.niml.opts.",
+            "id": "WRITE_OPTS",
+            "name": "WRITE_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_OPTS]"
+        },
+        {
+            "command-line-flag": "-pair_out_power",
+            "description": "witch to affect output of *PAIRMAP* output files. Now, the default format is to output the >0 bricks with tracks labelled by the target integers themselves. This is not a unique labelling system, but it *is* far easier to view and understand what's going on than using a purely unique system based on using powers of two of the ROIs (with integer summation for overlaps). Using the switch '-pair_out_power' will change the output of bricks [1] and higher to contain information on connections stored as powers of two, so that there is a unique decomposition in terms of overlapped connections. However, it's *far* easier to use '-dump_rois {AFNI | BOTH }' to get individual mask files of the ROIs clearly (as well as annoying to need to calculate powers of two simply to visualize the connections. -----> when considering this option, see the 'LABELTABLE' description up above for how the labels work, with or without an explicit table being entered.",
+            "id": "PAIR_OUT_POWER",
+            "name": "PAIR_OUT_POWER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAIR_OUT_POWER]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "erbosity level, default is 0.  ****************************************************************************  + ALGOPT FILE EXAMPLES (note that different MODES have some different opts): For '-mode {DET | MINIP}, the nicely readable NIML format of algopt file would have a file name ending '.niml.opts' and contain something like the: following seven lines: <TRACK_opts Thresh_FA=\"0.2\" Thresh_ANG=\"60.000000\" Thresh_Len=\"20.000000\" Nseed_X=\"2\" Nseed_Y=\"2\" Nseed_Z=\"2\" /> The values above are actually all default values, and such a file would be output using the '-write_opts' flag. For the same modes, one could get the same result using a plain column of numbers, whose meaning is defined by their order, contained in a file NOT ending in .niml.opts, such as exemplified in the next six lines: 0.2 60 20 2 2 2 For '-mode PROB', the nice NIML format algopt file would contain something like the next seven lines (again requiring the file name to end in '.niml.opts'): <TRACK_opts Thresh_FA=\"0.2\" Thresh_ANG=\"60.0\" Thresh_Len=\"20.0\" Thresh_Frac=\"0.001\" Nseed_Vox=\"5\" Nmonte=\"1000\" /> Again, those represent the default values, and could be given as a plain column of numbers, in that order.  * * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * ** * **  + DTI LIST FILE EXAMPLE: Consider, for example, if you hadn't used the '-sep_dsets' option when outputting all the tensor information from 3dDWItoDT.  Then one could specify the DTI inputs for this program with a file called, e.g., FILE_DTI_IN.niml.opts (the name *must* end with '.niml.opts'): <DTIFILE_opts dti_V1=\"SINGLEDT+orig[9..11]\" dti_V2=\"SINGLEDT+orig[12..14]\" dti_V3=\"SINGLEDT+orig[15..17]\" dti_FA=\"SINGLEDT+orig[18]\" dti_MD=\"SINGLEDT+orig[19]\" dti_L1=\"SINGLEDT+orig[6]\" dti_RD=\"SINGLEDT+orig[20]\" /> This represents the *minimum* set of input files needed when running 3dTrackID.  (Oct. 2016: RD now output by 3dDWItoDT, and not calc'ed internally by 3dTrackID.) One could also input extra data: an 'extra file' (XF) to take the place of an FA map for determining where tracks can propagate; and up to four other data sets (P1, P2, P3 and P4, standing for 'plus one' etc.) for calculating mean/stdev properties in the obtained WM-ROIs: <DTIFILE_opts dti_V1=\"SINGLEDT+orig[9..11]\" dti_V2=\"SINGLEDT+orig[12..14]\" dti_V3=\"SINGLEDT+orig[15..17]\" dti_XF=\"Segmented_WM.nii.gz\" dti_FA=\"SINGLEDT+orig[18]\" dti_MD=\"SINGLEDT+orig[19]\" dti_L1=\"SINGLEDT+orig[6]\" dti_RD=\"SINGLEDT+orig[20]\" dti_P1=\"SINGLEDT+orig[7]\" dti_P2=\"SINGLEDT+orig[8]\" dti_P3=\"T1_map.nii.gz\" dti_P4=\"PD_map.nii.gz\" />  ****************************************************************************  + EXAMPLES: Here are just a few scenarios-- please see the Demo data set for *maaany* more, as well as for fuller descriptions.  To obtain the Demo, type the following into a commandline: $ @Install_FATCAT_demo This will also unzip the archive, which contains required data (so it's pretty big, currently >200MB), a README.txt file, and several premade scripts that are ~heavily commented.  A) Deterministic whole-brain tracking; set of targets is just the volume mask. This can be useful for diagnostic purposes, sanity check for gradients+data, for interactively selecting interesting subsets later, etc. This uses most of the default algopts, but sets a higher minimum length for keeping tracks: $ 3dTrackID -mode DET                \\ -dti_in DTI/DT           \\ -netrois mask_DWI+orig   \\",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

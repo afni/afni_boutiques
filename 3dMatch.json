@@ -1,0 +1,96 @@
+{
+    "command-line": "3dMatch [INSET] [REFSET] [MASK] [IN_MIN] [IN_MAX] [REF_MIN] [REF_MAX] [PREFIX] [ONLY_DICE_THR]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-inset",
+            "description": "ile with M subbricks of data to match against another file.",
+            "id": "INSET",
+            "name": "INSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INSET]"
+        },
+        {
+            "command-line-flag": "-refset",
+            "description": "ile with N subbricks, serving as a reference for FILE1.  N=M is *not* a requirement; matching is done based on squares of values (with signs preserved), and both best fit of in->ref and ref->in are calculated and output.",
+            "id": "REFSET",
+            "name": "REFSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REFSET]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "mask of regions to include in the correlation of data sets; technically not necessary as relative correlation values shouldn't change, but the magnitudes would scale up without it. Dice coeff values should not be affected by absence or presence of wholebrain mask.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-in_min",
+            "description": "uring the correlation/matching analysis, values below THR1 in the `-inset' will be zeroed (and during Dice coefficient calculation, excluded from comparison). (See `-only_dice_thr' option, below.)",
+            "id": "IN_MIN",
+            "name": "IN_MIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_MIN]"
+        },
+        {
+            "command-line-flag": "-in_max",
+            "description": "uring the correlation/matching analysis, values above THR2 in the `-inset' will be zeroed (and during Dice coefficient calculation, excluded from comparison).",
+            "id": "IN_MAX",
+            "name": "IN_MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_MAX]"
+        },
+        {
+            "command-line-flag": "-ref_min",
+            "description": "uring the correlation/matching analysis, values below THR3 in the `-refset' will be zeroed (and during Dice coefficient calculation, excluded from comparison). (See `-only_dice_thr' option, below.)",
+            "id": "REF_MIN",
+            "name": "REF_MIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REF_MIN]"
+        },
+        {
+            "command-line-flag": "-ref_max",
+            "description": "uring the correlation/matching analysis, values above THR4 in the `-refset' will be zeroed (and during Dice coefficient calculation, excluded from comparison).",
+            "id": "REF_MAX",
+            "name": "REF_MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REF_MAX]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "refix out output name for both *BRIK/HEAD files, as well as for the *_coeff.vals text files (see below).",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-only_dice_thr",
+            "description": "f option is included in command line, the thresholding above is only applied during Dice evaluation, not during spatial correlation.  + OUTPUTS, named using prefix; *_REF+orig     :AFNI BRIK/HEAD file with the same number of subbricks as the `-refset' file, each one corresponding to a subbrick of the `-inset' file with highest weighted correlation. Any unmatched `-inset' subbricks are NOT appended at the end. (For example, you could underlay the -ref_set FILE2 and visually inspect the comparisons per slice.) *_REF_coeff.vals :simple text file with four columns, recording the original brick number slices which have been reordered in the output *_REF+orig file. Cols. 1&2- orig `-refset' and `-inset' indices, respectively; Col. 3- weighted correlation coefficient; Col 4.- simple Dice coefficient. *_IN+orig      :AFNI BRIK/HEAD file with the same number of subbricks as the `-inset' file, each one corresponding to a subbrick of the `-refset' file with highest weighted correlation. Any unmatched `-refset' subbricks are NOT appended at the end. (For example, you could underlay the -inset FILE1 and visually inspect the comparisons per slice.) *_IN_coeff.vals :simple text file with four columns, recording the original brick number slices which have been reordered in the output *_IN+orig file. Cols. 1&2- orig `-inset' and `-refset' indices, respectively; Col. 3- weighted correlation coefficient; Col 4.- simple Dice coefficient.  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  + EXAMPLE: 3dMatch                           \\ -inset CORREL_DATA+orig        \\ -refset STANDARD_RSNs+orig     \\ -mask mask+orig                \\ -in_min 0.4                    \\ -ref_min 2.3                   \\ -prefix MATCHED                \\ -only_dice_thr  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  If you use this program, please reference the introductory/description paper for the FATCAT toolbox: Taylor PA, Saad ZS (2013).  FATCAT: (An Efficient) Functional And Tractographic Connectivity Analysis Toolbox. Brain Connectivity 3(5):523-535. ____________________________________________________________________________",
+            "id": "ONLY_DICE_THR",
+            "name": "ONLY_DICE_THR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ONLY_DICE_THR]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

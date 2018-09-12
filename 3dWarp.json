@@ -1,0 +1,194 @@
+{
+    "command-line": "3dWarp [MATVEC_IN2OUT] [MATVEC_OUT2IN] [TTA2MNI] [MNI2TTA] [MATPARENT] [CARD2OBLIQUE] [OBLIQUE_PARENT] [DEOBLIQUE] [OBLIQUE2CARD] [LINEAR] [CUBIC] [NN] [QUINTIC] [FSL_MATVEC] [NEWGRID] [GRIDSET] [ZPAD] [VERB] [PREFIX] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-matvec_in2out",
+            "description": "Read a 3x4 affine transform matrix+vector from file 'mmm': x_out = Matrix x_in + Vector",
+            "id": "MATVEC_IN2OUT",
+            "name": "MATVEC_IN2OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATVEC_IN2OUT]"
+        },
+        {
+            "command-line-flag": "-matvec_out2in",
+            "description": "Read a 3x4 affine transform matrix+vector from file 'mmm': x_in = Matrix x_out + Vector  ** N.B.: The coordinate vectors described above are defined in DICOM ('RAI') coordinate order. (Also see the '-fsl_matvec option, below.) ** N.B.: Using the special name 'IDENTITY' for 'mmm' means to use the identity matrix. ** N.B.: You can put the matrix on the command line directly by using an argument of the form 'MATRIX(a11,a12,a13,a14,a21,a22,a23,a24,a31,a32,a33,a34)' in place of 'mmm', where the aij values are the matrix entries (aij = i-th row, j-th column), separated by commas. * You will need the 'forward single quotes' around the argument.",
+            "id": "MATVEC_OUT2IN",
+            "name": "MATVEC_OUT2IN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATVEC_OUT2IN]"
+        },
+        {
+            "command-line-flag": "-tta2mni",
+            "description": "Transform a dataset in Talairach-Tournoux Atlas coordinates to MNI-152 coordinates.",
+            "id": "TTA2MNI",
+            "name": "TTA2MNI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TTA2MNI]"
+        },
+        {
+            "command-line-flag": "-mni2tta",
+            "description": "Transform a dataset in MNI-152 coordinates to Talairach-Tournoux Atlas coordinates.",
+            "id": "MNI2TTA",
+            "name": "MNI2TTA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MNI2TTA]"
+        },
+        {
+            "command-line-flag": "-matparent",
+            "description": "Read in the matrix from WARPDRIVE_MATVEC_* attributes in the header of dataset 'mset', which must have been created by program 3dWarpDrive.  In this way, you can apply a transformation matrix computed from in 3dWarpDrive to another dataset.  ** N.B.: The above option is analogous to the -rotparent option in program 3drotate.  Use of -matparent should be limited to datasets whose spatial coordinate system corresponds to that which was used for input to 3dWarpDrive (i.e., the input to 3dWarp should overlay properly with the input to 3dWarpDrive that generated the -matparent dataset).",
+            "id": "MATPARENT",
+            "name": "MATPARENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MATPARENT]"
+        },
+        {
+            "command-line-flag": "-card2oblique",
+            "description": "-card2oblique obl_dset or",
+            "id": "CARD2OBLIQUE",
+            "name": "CARD2OBLIQUE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CARD2OBLIQUE]"
+        },
+        {
+            "command-line-flag": "-oblique_parent",
+            "description": "Read in the oblique transformation matrix from an oblique dataset and make cardinal dataset oblique to match.",
+            "id": "OBLIQUE_PARENT",
+            "name": "OBLIQUE_PARENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OBLIQUE_PARENT]"
+        },
+        {
+            "command-line-flag": "-deoblique",
+            "description": "-deoblique or",
+            "id": "DEOBLIQUE",
+            "name": "DEOBLIQUE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEOBLIQUE]"
+        },
+        {
+            "command-line-flag": "-oblique2card",
+            "description": "Transform an oblique dataset to a cardinal dataset Both these oblique transformation options require a new grid for the output as specified with the -newgrid or -gridset options or a new grid will be assigned based on the minimum voxel spacing ** N.B.: EPI time series data should be time shifted with 3dTshift before                rotating the volumes to a cardinal direction  Sample usages: 3dWarpDrive -affine_general -base d1+orig -prefix d2WW -twopass -input d2+orig 3dWarp -matparent d2WW+orig -prefix epi2WW epi2+orig  3dWarp -card2oblique oblique_epi+orig -prefix oblique_anat card_anat+orig 3dWarp -oblique2card -prefix card_epi_tshift -newgrid 3.5 epi_tshift+orig  Example of warping +tlrc results back to +orig space of some subject (get xform matrix, apply it, tell dataset it is not in orig space):  cat_matvec subj1_anat+tlrc::WARP_DATA > tlrc_xform.1D 3dWarp -matvec_out2in tlrc_xform.1D -prefix group_warped+tlrc \\ -gridset subj1_epi+orig -cubic group_data+tlrc 3drefit -view orig group_warped+tlrc  ----------------------- Other Transform Options: -----------------------",
+            "id": "OBLIQUE2CARD",
+            "name": "OBLIQUE2CARD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OBLIQUE2CARD]"
+        },
+        {
+            "command-line-flag": "-linear",
+            "description": "-linear     }",
+            "id": "LINEAR",
+            "name": "LINEAR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LINEAR]"
+        },
+        {
+            "command-line-flag": "-cubic",
+            "description": "= Chooses spatial interpolation method.",
+            "id": "CUBIC",
+            "name": "CUBIC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CUBIC]"
+        },
+        {
+            "command-line-flag": "-NN",
+            "description": "=   [default = linear]",
+            "id": "NN",
+            "name": "NN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NN]"
+        },
+        {
+            "command-line-flag": "-quintic",
+            "description": "-quintic    }",
+            "id": "QUINTIC",
+            "name": "QUINTIC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUINTIC]"
+        },
+        {
+            "command-line-flag": "-fsl_matvec",
+            "description": "Indicates that the matrix file 'mmm' uses FSL ordered coordinates ('LPI').  For use with matrix files from FSL and SPM.",
+            "id": "FSL_MATVEC",
+            "name": "FSL_MATVEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FSL_MATVEC]"
+        },
+        {
+            "command-line-flag": "-newgrid",
+            "description": "Tells program to compute new dataset on a new 3D grid, with spacing of 'ddd' mmm. * If this option is given, then the new 3D region of space covered by the grid is computed by warping the 8 corners of the input dataset, then laying down a regular grid with spacing 'ddd'. * If this option is NOT given, then the new dataset is computed on the old dataset's grid.",
+            "id": "NEWGRID",
+            "name": "NEWGRID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NEWGRID]"
+        },
+        {
+            "command-line-flag": "-gridset",
+            "description": "Tells program to compute new dataset on the same grid as dataset 'ggg'.",
+            "id": "GRIDSET",
+            "name": "GRIDSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GRIDSET]"
+        },
+        {
+            "command-line-flag": "-zpad",
+            "description": "Tells program to pad input dataset with 'N' planes of zeros on all sides before doing transformation. --------------------- Miscellaneous Options: ---------------------",
+            "id": "ZPAD",
+            "name": "ZPAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZPAD]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Print out some information along the way.",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Sets the prefix of the output dataset.   ++ Compile date = Sep  7 2018 {:}",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

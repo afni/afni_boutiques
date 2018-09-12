@@ -1,0 +1,66 @@
+{
+    "command-line": "imcutup [PREFIX] [XYNUM] [YXNUM] [NX] [NY] [FNAME1]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "Prefix the output files with string 'ppp'",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-xynum",
+            "description": "Number the output images in x-first, then y [default]",
+            "id": "XYNUM",
+            "name": "XYNUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[XYNUM]"
+        },
+        {
+            "command-line-flag": "-yxnum",
+            "description": "Number the output images in y-first, then x -x.ynum     = 2D numbering, x.y format -y.xnum     = 2D numbering, y.x format For example: imcutup -prefix Fred 64 64 3D:-1:0:256:128:1:zork.im will break up the big 256 by 128 image in file zork.im into 8 images, each 64 by 64.  The output filenames would be",
+            "id": "YXNUM",
+            "name": "YXNUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[YXNUM]"
+        },
+        {
+            "description": "NA",
+            "id": "nx",
+            "name": "nx",
+            "optional": false,
+            "type": "String",
+            "value-key": "[NX]"
+        },
+        {
+            "description": "NA",
+            "id": "ny",
+            "name": "ny",
+            "optional": false,
+            "type": "String",
+            "value-key": "[NY]"
+        },
+        {
+            "description": "NA",
+            "id": "fname1",
+            "name": "fname1",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FNAME1]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

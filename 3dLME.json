@@ -1,0 +1,285 @@
+{
+    "command-line": "3dLME [ICC] [ICCB] [LOGIT] [ML] [RIO] [SS_TYPE] [CIO] [CORSTR] [CUTOFF] [DATATABLE] [DBGARGS] [GLFCODE] [GLFLABEL] [GLTCODE] [GLTLABEL] [HELP] [JOBS] [LOGLIK] [MASK] [MODEL] [NUM_GLF] [NUM_GLT] [PREFIX] [QVARCENTERS] [QVARS] [RANEFF] [RESID] [SHOW_ALLOWED_OPTIONS] [VVARCENTERS] [VVARS]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-ICC",
+            "description": "This option allows 3dLME to compute voxel-wise intra-class correlation for the variables specified through option -ranEff. See Example 4 in in the help.",
+            "id": "ICC",
+            "name": "ICC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ICC]"
+        },
+        {
+            "command-line-flag": "-ICCb",
+            "description": "This option allows 3dLME to compute voxel-wise intra-class correlation through a Bayesian approach with Gamma priors for the variables specified through option -ranEff. The computation will take much longer due the sophistication involved. However, the Bayesian method is preferred to the old approach with -ICC for the typical FMRI data. R package 'blme' is required for this option.",
+            "id": "ICCB",
+            "name": "ICCB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ICCB]"
+        },
+        {
+            "command-line-flag": "-LOGIT",
+            "description": "This option allows 3dLME to perform voxel-wise logistic modeling. Currently no random effects are allowed ('-ranEff NA'), but this limitation can be removed later if demand occurs. The InputFile column is expected to list subjects' responses in 0s and 1s. In addition, one voxel-wise covariate is currently allowed. Each regression coefficient (including the intercept) and its z-statistic are saved in the output.",
+            "id": "LOGIT",
+            "name": "LOGIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOGIT]"
+        },
+        {
+            "command-line-flag": "-ML",
+            "description": "Add this option if Maximum Likelihood is wanted instead of the default method, Restricted Maximum Likelihood (REML).",
+            "id": "ML",
+            "name": "ML",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ML]"
+        },
+        {
+            "command-line-flag": "-Rio",
+            "description": "Use R's io functions. The alternative is -cio.",
+            "id": "RIO",
+            "name": "RIO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RIO]"
+        },
+        {
+            "command-line-flag": "-SS_type",
+            "description": "Specify the type for sums of squares in the F-statistics. Two options are currently supported: sequential (1) and marginal (3).",
+            "id": "SS_TYPE",
+            "name": "SS_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SS_TYPE]"
+        },
+        {
+            "command-line-flag": "-cio",
+            "description": "Use AFNI's C io functions, which is default. Alternatively -Rio can be used.",
+            "id": "CIO",
+            "name": "CIO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CIO]"
+        },
+        {
+            "command-line-flag": "-corStr",
+            "description": "Specify the correlation structure of the residuals. For example, when analyzing the effect estimates from multiple basis functions, one may consider account for the temporal structure of residuals with AR or ARMA.",
+            "id": "CORSTR",
+            "name": "CORSTR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CORSTR]"
+        },
+        {
+            "command-line-flag": "-cutoff",
+            "description": "Specify the cutoff value to obtain voxel-wise accuracy in logistic regression analysis. Default is 0 (no accuracy will be estimated).",
+            "id": "CUTOFF",
+            "name": "CUTOFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CUTOFF]"
+        },
+        {
+            "command-line-flag": "-dataTable",
+            "description": "List the data structure with a header as the first line.  NOTE:  1) This option has to occur last; that is, no other options are allowed thereafter. Each line should end with a backslash except for the last line.  2) The first column is fixed and reserved with label 'Subj', and the last is reserved for 'InputFile'. Each row should contain only one effect estimate in the table of long format (cf. wide format) as defined in R. The level labels of a factor should contain at least one character. Input files can be in AFNI, NIfTI or surface format. AFNI files can be specified with sub-brick selector (square brackets [] within quotes) specified with a number or label.  3) It is fine to have variables (or columns) in the table that are not modeled in the analysis.  4) The context of the table can be saved as a separate file, e.g., called table.txt. Do not forget to include a backslash at the end of each row. In the script specify the data with '-dataTable @table.txt'. This option is useful: (a) when there are many input files so that the program complains with an 'Arg list too long' error; (b) when you want to try different models with the same dataset.",
+            "id": "DATATABLE",
+            "name": "DATATABLE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATATABLE]"
+        },
+        {
+            "command-line-flag": "-dbgArgs",
+            "description": "This option will enable R to save the parameters in a file called .3dLME.dbg.AFNI.args in the current directory so that debugging can be performed.",
+            "id": "DBGARGS",
+            "name": "DBGARGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DBGARGS]"
+        },
+        {
+            "command-line-flag": "-glfCode",
+            "description": "Specify the k-th general linear F-test (GLF) through a weighted combination among factor levels. The symbolic coding has to be within (single or double) quotes. For example, the coding 'Condition : 1*A -1*B & 1*A -1*C Emotion : 1*pos' tests the main effect of Condition at the positive Emotion. Similarly the coding 'Condition : 1*A -1*B & 1*A -1*C Emotion : 1*pos -1*neg' shows the interaction between the three levels of Condition and the two. levels of Emotion.  NOTE:  1) The weights for a variable do not have to add up to 0.  2) When a quantitative variable is present, other effects are tested at the center value of the covariate unless the covariate value is specified as, for example, 'Group : 1*Old Age : 2', where the Old Group is tested at the Age of 2 above the center.  3)  The absence of a categorical variable in a coding means the levels of that factor are averaged (or collapsed) for the GLF.  4) The appearance of a categorical variable has to be followed by the linear combination of its levels.",
+            "id": "GLFCODE",
+            "name": "GLFCODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GLFCODE]"
+        },
+        {
+            "command-line-flag": "-glfLabel",
+            "description": "Specify the label for the k-th general linear F-test (GLF). A symbolic coding for the GLF is assumed to follow with each -glfLabel.",
+            "id": "GLFLABEL",
+            "name": "GLFLABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GLFLABEL]"
+        },
+        {
+            "command-line-flag": "-gltCode",
+            "description": "Specify the k-th general linear test (GLT) through a weighted combination among factor levels. The symbolic coding has to be within (single or double) quotes. For example, the following 'Condition : 2*House -3*Face Emotion : 1*positive ' requests for a test of comparing 2 times House condition with 3 times Face condition while Emotion is held at positive valence.  NOTE:  1) The weights for a variable do not have to add up to 0.  2) When a quantitative variable is present, other effects are tested at the center value of the covariate unless the covariate value is specified as, for example, 'Group : 1*Old Age : 2', where the Old Group is tested at the Age of 2 above the center.  3) The effect for a quantitative variable can be specified with, for example, 'Group : 1*Old Age : ', or 'Group : 1*Old - 1*Young Age : '  4) The absence of a categorical variable in a coding means the levels of that factor are averaged (or collapsed) for the GLT.  5) The appearance of a categorial variable has to be followed by the linear combination of its levels. Only a quantitative is allowed to have a dangling coding as seen in 'Age :'",
+            "id": "GLTCODE",
+            "name": "GLTCODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GLTCODE]"
+        },
+        {
+            "command-line-flag": "-gltLabel",
+            "description": "Specify the label for the k-th general linear test (GLT). A symbolic coding for the GLT is assumed to follow with each -gltLabel.",
+            "id": "GLTLABEL",
+            "name": "GLTLABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GLTLABEL]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "this help message",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-jobs",
+            "description": "On a multi-processor machine, parallel computing will speed up the program significantly. Choose 1 for a single-processor computer.",
+            "id": "JOBS",
+            "name": "JOBS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[JOBS]"
+        },
+        {
+            "command-line-flag": "-logLik",
+            "description": "Add this option if the voxel-wise log likelihood is wanted in the output. This option currently cannot be combined with -ICC, -ICCb, -LOGIT.",
+            "id": "LOGLIK",
+            "name": "LOGLIK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOGLIK]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Process voxels inside this mask only. Default is no masking.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-model",
+            "description": "Specify the terms of fixed effects for all explanatory, including quantitative, variables. The expression FORMULA with more than one variable has to be surrounded within (single or double) quotes. Variable names in the formula should be consistent with the ones used in the header of -dataTable. A+B represents the additive effects of A and B, A:B is the interaction between A and B, and A*B = A+B+A:B. Subject should not occur in the model specification here.",
+            "id": "MODEL",
+            "name": "MODEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODEL]"
+        },
+        {
+            "command-line-flag": "-num_glf",
+            "description": "Specify the number of general linear F-tests (GLFs). A glf involves the union of two or more simple tests. See details in -glfCode.",
+            "id": "NUM_GLF",
+            "name": "NUM_GLF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUM_GLF]"
+        },
+        {
+            "command-line-flag": "-num_glt",
+            "description": "Specify the number of general linear t-tests (GLTs). A glt is a linear combination of a factor levels. See details in -gltCode.",
+            "id": "NUM_GLT",
+            "name": "NUM_GLT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NUM_GLT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Output file name. For AFNI format, provide prefix only, with no view+suffix needed. Filename for NIfTI format should have .nii attached, while file name for surface data is expected to end with .niml.dset. The sub-brick labeled with the '(Intercept)', if present, should be interpreted as the effect with each factor at the reference level (alphabetically the lowest level) for each factor and with each quantitative covariate at the center value.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-qVarCenters",
+            "description": "Specify centering values for quantitative variables identified under -qVars. Multiple centers are separated by commas (,) without any other characters such as spaces and should be surrounded within (single or double) quotes. The order of the values should match that of the quantitative variables in -qVars. Default (absence of option -qVarsCetners) means centering on the average of the variable across ALL subjects regardless their grouping. If within-group centering is desirable, center the variable YOURSELF first before the values are fed into -dataTable.",
+            "id": "QVARCENTERS",
+            "name": "QVARCENTERS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QVARCENTERS]"
+        },
+        {
+            "command-line-flag": "-qVars",
+            "description": "Identify quantitative variables (or covariates) with this option. The list with more than one variable has to be separated with comma (,) without any other characters such as spaces and should be surrounded within (single or double) quotes. For example, -qVars \"Age,IQ\" WARNINGS: 1) Centering a quantitative variable through -qVarsCenters is very critical when other fixed effects are of interest. 2) Between-subjects covariates are generally acceptable. However EXTREME caution should be taken when the groups differ significantly in the average value of the covariate. 3) Within-subject covariates are better modeled with 3dLME.",
+            "id": "QVARS",
+            "name": "QVARS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QVARS]"
+        },
+        {
+            "command-line-flag": "-ranEff",
+            "description": "Specify the random effects. The simplest and most common one is random intercept, \"~1\", meaning each subject deviates some amount (called random effect) from the group average. \"~RT\" or \"~1+RT\" means that each subject has a unique intercept as well as a slope, and the correlation between the two random effects are estimated, not assumed, from the data. \"~0+RT\" indicates that only a random effect of slope is desired. Compound symmetry for a variance-covariance metric across the levels of factor A can be specified through pdCompSymm(~0+A) The list of random terms should be separated by space within (single or double) quotes. Notice: In the case of computing ICC values, list all the factors with which the ICC is to be obtained. For example, with two factors \"Scanner\" and \"Subj\", set it as -ranEff \"Scanner+Subj\". See Example 4 in the the help.",
+            "id": "RANEFF",
+            "name": "RANEFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RANEFF]"
+        },
+        {
+            "command-line-flag": "-resid",
+            "description": "Output file name for the residuals. For AFNI format, provide prefix only without view+suffix. Filename for NIfTI format should have .nii attached, while file name for surface data is expected to end with .niml.dset. The sub-brick labeled with the '(Intercept)', if present, should be interpreted as the effect with each factor at the reference level (alphabetically the lowest level) for each factor and with each quantitative covariate at the center value.",
+            "id": "RESID",
+            "name": "RESID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RESID]"
+        },
+        {
+            "command-line-flag": "-show_allowed_options",
+            "description": "list of allowed options",
+            "id": "SHOW_ALLOWED_OPTIONS",
+            "name": "SHOW_ALLOWED_OPTIONS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_ALLOWED_OPTIONS]"
+        },
+        {
+            "command-line-flag": "-vVarCenters",
+            "description": "Specify centering values for voxel-wise covariates identified under -vVars. Multiple centers are separated by commas (,) within (single or double) quotes. The order of the values should match that of the quantitative variables in -qVars. Default (absence of option -vVarsCetners) means centering on the average of the variable across ALL subjects regardless their grouping. If within-group centering is desirable, center the variable YOURSELF first before the files are fed into -dataTable.",
+            "id": "VVARCENTERS",
+            "name": "VVARCENTERS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VVARCENTERS]"
+        },
+        {
+            "command-line-flag": "-vVars",
+            "description": "Identify voxel-wise covariates with this option. Currently one voxel-wise covariate is allowed only, but this may change if demand occurs... By default mean centering is performed voxel-wise across all subjects. Alternatively centering can be specified through a global value under -vVarsCenters. If the voxel-wise covariates have already been centered, set the centers at 0 with -vVarsCenters.",
+            "id": "VVARS",
+            "name": "VVARS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VVARS]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,58 @@
+{
+    "command-line": "prompt_user [PAUSE] [TIMEOUT] [TO] [<-PAUSE] [MESSAGE>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-pause",
+            "description": "Pops a window prompting the user with MESSAGE. Program does not return until user responds. note: if MESSAGE is '-', it is read from stdin",
+            "id": "PAUSE",
+            "name": "PAUSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PAUSE]"
+        },
+        {
+            "command-line-flag": "-timeout",
+            "description": "Timeout in seconds of prompt message. Default answer is returned if TT seconds elapse without user input.",
+            "id": "TIMEOUT",
+            "name": "TIMEOUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TIMEOUT]"
+        },
+        {
+            "command-line-flag": "-to",
+            "description": "Same as -timeout TT  Ziad S. Saad SSCC/NIMH/NIH saadz@mail.nih.gov",
+            "id": "TO",
+            "name": "TO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TO]"
+        },
+        {
+            "description": "NA",
+            "id": "<-pause",
+            "name": "<-pause",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-PAUSE]"
+        },
+        {
+            "description": "NA",
+            "id": "MESSAGE>",
+            "name": "MESSAGE>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[MESSAGE>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

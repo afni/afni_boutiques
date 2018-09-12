@@ -1,0 +1,77 @@
+{
+    "command-line": "3dCM [MASK] [AUTOMASK] [SET] [LOCAL_IJK] [ROI_VALS] [ALL_ROIS] [DSET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-mask",
+            "description": "-mask mset   Means to use the dataset 'mset' as a mask: Only voxels with nonzero values in 'mset' will be averaged from 'dataset'.  Note that the mask dataset and the input dataset must have the same number of voxels.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "-automask    Generate the mask automatically.",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-set",
+            "description": "-set x y z   After computing the CM of the dataset, set the origin fields in the header so that the CM will be at (x,y,z) in DICOM coords.",
+            "id": "SET",
+            "name": "SET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET]"
+        },
+        {
+            "command-line-flag": "-local_ijk",
+            "description": "-local_ijk   Output values as (i,j,k) in local orienation.",
+            "id": "LOCAL_IJK",
+            "name": "LOCAL_IJK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LOCAL_IJK]"
+        },
+        {
+            "command-line-flag": "-roi_vals",
+            "description": "-roi_vals v0 v1 v2 ... : Compute center of mass for each blob with voxel value of v0, v1, v2, etc. This option is handy for getting ROI centers of mass.",
+            "id": "ROI_VALS",
+            "name": "ROI_VALS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ROI_VALS]"
+        },
+        {
+            "command-line-flag": "-all_rois",
+            "description": "-all_rois     Don't bother listing the values of ROIs you want the program will find all of them and produce a full list. NOTE: Masking options are ignored with -roi_vals and -all_rois  ++ Compile date = Sep  7 2018 {:}",
+            "id": "ALL_ROIS",
+            "name": "ALL_ROIS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_ROIS]"
+        },
+        {
+            "description": "NA",
+            "id": "dset",
+            "name": "dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

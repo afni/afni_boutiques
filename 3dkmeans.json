@@ -1,0 +1,177 @@
+{
+    "command-line": "3dkmeans [V] [F] [INPUT] [MASK] [MRANGE] [CMASK] [U] [PREFIX] [G] [K] [REMAP] [LABELTABLE] [CLABELS] [CLUST_INIT] [R] [RSIGS] [WRITE_DISTS] [SEED]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-v",
+            "description": "-v, --version Version information",
+            "id": "V",
+            "name": "V",
+            "optional": true,
+            "type": "String",
+            "value-key": "[V]"
+        },
+        {
+            "command-line-flag": "-f",
+            "description": "Input data to be clustered. You can specify multiple filenames in sequence and they will be catenated internally. e.g: -f F1+orig F2+orig F3+orig ... or -f F1+orig -f F2+orig -f F3+orig ...",
+            "id": "F",
+            "name": "F",
+            "optional": true,
+            "type": "String",
+            "value-key": "[F]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "Same as -f",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "-mask mset   Means to use the dataset 'mset' as a mask: Only voxels with nonzero values in 'mset' will be printed from 'dataset'.  Note that the mask dataset and the input dataset must have the same number of voxels.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-mrange",
+            "description": "-mrange a b  Means to further restrict the voxels from 'mset' so that only those mask values between 'a' and 'b' (inclusive) will be used.  If this option is not given, all nonzero values from 'mset' are used. Note that if a voxel is zero in 'mset', then it won't be included, even if a < 0 < b.",
+            "id": "MRANGE",
+            "name": "MRANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MRANGE]"
+        },
+        {
+            "command-line-flag": "-cmask",
+            "description": "-cmask 'opts' Means to execute the options enclosed in single quotes as a 3dcalc-like program, and produce produce a mask from the resulting 3D brick. Examples:",
+            "id": "CMASK",
+            "name": "CMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CMASK]"
+        },
+        {
+            "command-line-flag": "-u",
+            "description": "-u jobname    Allows you to specify a different name for the output files. (default is derived from the input file name)",
+            "id": "U",
+            "name": "U",
+            "optional": true,
+            "type": "String",
+            "value-key": "[U]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix PREFIX Allows you to specify a prefix for the output volumes. Default is the same as jobname There are two output volumes, one for the cluster membership and one with distance measures. The distance dataset, mostly for debugging puposes is formatted as follows: Sub-brick 0: Dc = 100*(1-Ci)+100*Di/(Dmax) with Ci the cluster number for voxel i, Di the distance of voxel i to the centroid of its assigned cluster, Dmax is the maximum distance in cluster Ci. Sub-bricks 1..k: Dc0k contains the distance of a voxel's data to the centroid of cluster k. Sub-brick k+1: Dc_norm = (1.0-Di/Ei)*100.0, where Ei is the smallest distance of voxel i to the remaining clusters that is larger than Di.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-g",
+            "description": "-g [0..8]     Specifies distance measure for clustering Note: Weight is a vector as long as the signatures and used when computing distances. However for the moment, all weights are set to 1 0: No clustering 1: Uncentered correlation distance Same as Pearson distance, except the means of v and s are not removed when computing correlation. 2: Pearson distance = (1-Weighted_Pearson_Correlation(v,s)) 3: Uncentered correlation distance, absolute value Same as abs(Pearson distance), except the means of v and s are not removed when computing correlation. 4: Pearson distance, absolute value = (1-abs(Weighted_Pearson_Correlation(v,s))) 5: Spearman's rank distance = (1-Spearman_Rank_Correlation(v,s)) No weighting is used 6: Kendall's distance = (1-Kendall_Tau(v,s)) No weighting is used 7: Euclidean distance between v and s = 1/sum(weight) * sum(weight[i]*(v[i]-s[i])^2) 8: City-block distance = 1/sum(weight) * sum(weight[i]*abs(v[i]-s[i]))  (default for -g is 1, 7 if input has one value per voxel)",
+            "id": "G",
+            "name": "G",
+            "optional": true,
+            "type": "String",
+            "value-key": "[G]"
+        },
+        {
+            "command-line-flag": "-k",
+            "description": "-k number     Specify number of clusters",
+            "id": "K",
+            "name": "K",
+            "optional": true,
+            "type": "String",
+            "value-key": "[K]"
+        },
+        {
+            "command-line-flag": "-remap",
+            "description": "-remap  METH  Reassign clusters numbers based on METH: NONE: No remapping (default) COUNT: based on cluster size ascending iCOUNT: COUNT, descending MAG:  based on ascending magnitude of centroid iMAG: MAG, descending",
+            "id": "REMAP",
+            "name": "REMAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REMAP]"
+        },
+        {
+            "command-line-flag": "-labeltable",
+            "description": "Attach labeltable LTFILE to clustering output. This labeltable will overwrite a table that is taken from CLUST_INIT should you use -clust_init option.",
+            "id": "LABELTABLE",
+            "name": "LABELTABLE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABELTABLE]"
+        },
+        {
+            "command-line-flag": "-clabels",
+            "description": "-clabels LAB1 LAB2 ...: Provide a label for each cluster. Labels cannot start with '-'.",
+            "id": "CLABELS",
+            "name": "CLABELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLABELS]"
+        },
+        {
+            "command-line-flag": "-clust_init",
+            "description": "Specify a dataset to initialize clustering. This option sets -r 0 . If CLUST_INIT has a labeltable and you do not specify one then CLUST_INIT's table is used for the output",
+            "id": "CLUST_INIT",
+            "name": "CLUST_INIT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CLUST_INIT]"
+        },
+        {
+            "command-line-flag": "-r",
+            "description": "-r number     For k-means clustering, the number of times the k-means clustering algorithm is run (default: 0 with -clust_init, 1 otherwise)",
+            "id": "R",
+            "name": "R",
+            "optional": true,
+            "type": "String",
+            "value-key": "[R]"
+        },
+        {
+            "command-line-flag": "-rsigs",
+            "description": "-rsigs SIGS   Calculate distances from each voxel's signature to the signatures in SIGS. SIGS is a multi-column 1D file with each column being a signature. The output is a dset the same size as the input with as many sub-bricks as there are columns in SIGS. With this option, no clustering is done.",
+            "id": "RSIGS",
+            "name": "RSIGS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RSIGS]"
+        },
+        {
+            "command-line-flag": "-write_dists",
+            "description": "-write_dists  Output text files containing various measures. FILE.kgg.1D : Cluster assignments FILE.dis.1D : Distance between clusters FILE.cen.1D : Cluster centroids FILE.info1.1D: Within cluster sum of distances FILE.info2.1D: Maximum distance within each cluster FILE.vcd.1D: Distance from voxel to its centroid",
+            "id": "WRITE_DISTS",
+            "name": "WRITE_DISTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_DISTS]"
+        },
+        {
+            "command-line-flag": "-seed",
+            "description": "-seed SEED    Seed for the random number generator. Default is 1234567",
+            "id": "SEED",
+            "name": "SEED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SEED]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

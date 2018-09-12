@@ -1,0 +1,40 @@
+{
+    "command-line": "ge_header [VERB] [FILE] [...]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-verb",
+            "description": "Print out some probably useless extra stuff.",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "description": "NA",
+            "id": "file",
+            "name": "file",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FILE]"
+        },
+        {
+            "description": "NA",
+            "id": "...",
+            "name": "...",
+            "optional": false,
+            "type": "String",
+            "value-key": "[...]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

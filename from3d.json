@@ -1,0 +1,105 @@
+{
+    "command-line": "from3d [V] [NSIZE] [RAW] [FLOAT] [ZFIRST] [ZLAST] [TFIRST] [TLAST] [INPUT] [PREFIX]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-v",
+            "description": "-v             Print out verbose information during the run.",
+            "id": "V",
+            "name": "V",
+            "optional": true,
+            "type": "String",
+            "value-key": "[V]"
+        },
+        {
+            "command-line-flag": "-nsize",
+            "description": "-nsize         Adjust size of 2D data file to be NxN, by padding with zeros, where N is a power of 2.",
+            "id": "NSIZE",
+            "name": "NSIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NSIZE]"
+        },
+        {
+            "command-line-flag": "-raw",
+            "description": "-raw           Write images in 'raw' format (just the data bytes) N.B.: there will be no header information saying what the image dimensions are - you'll have to get that information from the x and y axis information output by 3dinfo.",
+            "id": "RAW",
+            "name": "RAW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RAW]"
+        },
+        {
+            "command-line-flag": "-float",
+            "description": "-float         Write images as floats, no matter what they are in the dataset itself.",
+            "id": "FLOAT",
+            "name": "FLOAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLOAT]"
+        },
+        {
+            "command-line-flag": "-zfirst",
+            "description": "-zfirst num    Set 'num' = number of first z slice to be extracted. (default = 1)",
+            "id": "ZFIRST",
+            "name": "ZFIRST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZFIRST]"
+        },
+        {
+            "command-line-flag": "-zlast",
+            "description": "-zlast num     Set 'num' = number of last z slice to be extracted. (default = largest)",
+            "id": "ZLAST",
+            "name": "ZLAST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ZLAST]"
+        },
+        {
+            "command-line-flag": "-tfirst",
+            "description": "-tfirst num    Set 'num' = number of first time slice to be extracted. (default = 1)",
+            "id": "TFIRST",
+            "name": "TFIRST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TFIRST]"
+        },
+        {
+            "command-line-flag": "-tlast",
+            "description": "-tlast num     Set 'num' = number of last time slice to be extracted. (default = largest)",
+            "id": "TLAST",
+            "name": "TLAST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TLAST]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "-input fname   Read 3D dataset from file 'fname'. 'fname' may include a sub-brick selector list.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix rname  Write 2D images using prefix 'rname'.  (-input and -prefix are non-optional options: they) (must be present or the program will not execute. )  N.B.: * Image data is extracted directly from the dataset bricks. If a brick has a floating point scaling factor, it will NOT be applied. * Images are extracted parallel to the xy-plane of the dataset orientation (which can be determined by program 3dinfo). This is the order in which the images were input to the dataset originally, via to3d. * If either of these conditions is unacceptable, you can also try to use the Save:bkg function from an AFNI image window.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

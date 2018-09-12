@@ -1,0 +1,166 @@
+{
+    "command-line": "@ExamineGenFeatDists [FDIR] [FWILD] [SUFFIX] [EXFEAT] [EXCLASS] [ODIR] [NX] [ECHO] [HELP] [H_WEB] [HWEB] [H_VIEW] [HVIEW] [ALL_OPTS] [H_FIND] [<-FDIR] [FEATURES_DIR>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-fdir",
+            "description": "output directory of 3dGenFeatDists",
+            "id": "FDIR",
+            "name": "FDIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FDIR]"
+        },
+        {
+            "command-line-flag": "-fwild",
+            "description": "-fwild WILD1 [WILD2 ...]: Wildcards used to select feature histograms under DIR. Histograms picked would be those named: h.*WILD1.niml.hist and h.*WILD1-G-*.niml.hist",
+            "id": "FWILD",
+            "name": "FWILD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FWILD]"
+        },
+        {
+            "command-line-flag": "-suffix",
+            "description": "Output suffix, added to output images. Default nosuff",
+            "id": "SUFFIX",
+            "name": "SUFFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUFFIX]"
+        },
+        {
+            "command-line-flag": "-exfeat",
+            "description": "-exfeat FEAT1 [FEAT2 ...]: Exclude following features. String matching is partial",
+            "id": "EXFEAT",
+            "name": "EXFEAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXFEAT]"
+        },
+        {
+            "command-line-flag": "-exclass",
+            "description": "-exclass CLSS1 [CLSS2 ...]: Exclude following classes. String matching is partial",
+            "id": "EXCLASS",
+            "name": "EXCLASS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXCLASS]"
+        },
+        {
+            "command-line-flag": "-odir",
+            "description": "Output directory, default is DIR",
+            "id": "ODIR",
+            "name": "ODIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ODIR]"
+        },
+        {
+            "command-line-flag": "-nx",
+            "description": "Set number of panel along the horizontal direction",
+            "id": "NX",
+            "name": "NX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NX]"
+        },
+        {
+            "command-line-flag": "-echo",
+            "description": "Set echo",
+            "id": "ECHO",
+            "name": "ECHO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ECHO]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "this message  See also @FeatureHists  Example: @ExamineGenFeatDists    -fwild sc9 Xz Yz Zz FA.MAD07 MD \\ -fdir GenFeatDist.sc9 \\",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open webpage with help for this program",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "Same as -h_web",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open -help output in a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "Same as -hview",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "List all of the options for this script",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Search for lines containing WORD in -help output. Seach is approximate.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "description": "NA",
+            "id": "<-fdir",
+            "name": "<-fdir",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-FDIR]"
+        },
+        {
+            "description": "NA",
+            "id": "FEATURES_DIR>",
+            "name": "FEATURES_DIR>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FEATURES_DIR>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

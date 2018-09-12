@@ -1,0 +1,157 @@
+{
+    "command-line": "@diff.tree [DIFF_OPTS] [IGNORE_APPEND] [IA] [IGNORE_LIST] [IL] [IGNORE_MISSING] [NO_DIFFS] [QUIET] [SAVE] [SHOW] [SKIP_DATA] [VERB] [XXDIFF] [X] [NEW_DIR] [OLD_DIR\"]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-diff_opts",
+            "description": "-diff_opts 'OPTS'      : apply OPTS as options in diff commands",
+            "id": "DIFF_OPTS",
+            "name": "DIFF_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIFF_OPTS]"
+        },
+        {
+            "command-line-flag": "-ignore_append",
+            "description": "-ignore_append i1 ...  : append to ignore_list (list in quotes)",
+            "id": "IGNORE_APPEND",
+            "name": "IGNORE_APPEND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE_APPEND]"
+        },
+        {
+            "command-line-flag": "-ia",
+            "description": "short for -ignore_append",
+            "id": "IA",
+            "name": "IA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IA]"
+        },
+        {
+            "command-line-flag": "-ignore_list",
+            "description": "-ignore_list i1 ...    : create new ignore_list (list in quotes)",
+            "id": "IGNORE_LIST",
+            "name": "IGNORE_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE_LIST]"
+        },
+        {
+            "command-line-flag": "-il",
+            "description": "short for -ignore_list",
+            "id": "IL",
+            "name": "IL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IL]"
+        },
+        {
+            "command-line-flag": "-ignore_missing",
+            "description": "only compare overlapping files If different files, fail.",
+            "id": "IGNORE_MISSING",
+            "name": "IGNORE_MISSING",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE_MISSING]"
+        },
+        {
+            "command-line-flag": "-no_diffs",
+            "description": "only compare existence of files",
+            "id": "NO_DIFFS",
+            "name": "NO_DIFFS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_DIFFS]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "only list files with diffs",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-save",
+            "description": "save actual file differences (txt and pdf)",
+            "id": "SAVE",
+            "name": "SAVE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE]"
+        },
+        {
+            "command-line-flag": "-show",
+            "description": "show actual file differences",
+            "id": "SHOW",
+            "name": "SHOW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW]"
+        },
+        {
+            "command-line-flag": "-skip_data",
+            "description": "skip binary diff of select data files (.BRIK, .dcm, .BRIK.gz)",
+            "id": "SKIP_DATA",
+            "name": "SKIP_DATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKIP_DATA]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set verbosity level (0,1,2) (default 1)",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-xxdiff",
+            "description": "use xxdiff to show diffs",
+            "id": "XXDIFF",
+            "name": "XXDIFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[XXDIFF]"
+        },
+        {
+            "command-line-flag": "-X",
+            "description": "implies -xxdiff -ignore_missing   ---------------------------------------------------------------------- examples:  ---------------------------------------------------------------------- R Reynolds    written ages ago, but added 10 Jun, 2015 ----------------------------------------",
+            "id": "X",
+            "name": "X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[X]"
+        },
+        {
+            "description": "NA",
+            "id": "new_dir",
+            "name": "new_dir",
+            "optional": false,
+            "type": "String",
+            "value-key": "[NEW_DIR]"
+        },
+        {
+            "description": "NA",
+            "id": "old_dir\"",
+            "name": "old_dir\"",
+            "optional": false,
+            "type": "String",
+            "value-key": "[OLD_DIR\"]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

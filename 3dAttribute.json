@@ -1,0 +1,85 @@
+{
+    "command-line": "3dAttribute [NAME] [ALL] [CENTER] [SSEP] [SPREP] [QUOTE] [ANAME] [DSET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-name",
+            "description": "Include attribute name in printout",
+            "id": "NAME",
+            "name": "NAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NAME]"
+        },
+        {
+            "command-line-flag": "-all",
+            "description": "Print all attributes [don't put aname on command line] Also implies '-name'.  Attributes print in whatever order they are in the .HEAD file, one per line.  You may want to do '3dAttribute -all elvis+orig | sort' to get them in alphabetical order.",
+            "id": "ALL",
+            "name": "ALL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL]"
+        },
+        {
+            "command-line-flag": "-center",
+            "description": "Center of volume in RAI coordinates. Note that center is not itself an attribute in the .HEAD file. It is calculated from other attributes. Special options for string attributes:",
+            "id": "CENTER",
+            "name": "CENTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENTER]"
+        },
+        {
+            "command-line-flag": "-ssep",
+            "description": "-ssep SSEP    Use string SSEP as a separator between strings for multiple sub-bricks. The default is '~', which is what is used internally in AFNI's .HEAD file. For tcsh, I recommend ' ' which makes parsing easy, assuming each individual string contains no spaces to begin with. Try -ssep 'NUM'",
+            "id": "SSEP",
+            "name": "SSEP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SSEP]"
+        },
+        {
+            "command-line-flag": "-sprep",
+            "description": "-sprep SPREP  Use string SPREP to replace blank space in string attributes.",
+            "id": "SPREP",
+            "name": "SPREP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPREP]"
+        },
+        {
+            "command-line-flag": "-quote",
+            "description": "-quote        Use single quote around each string. Examples: 3dAttribute -quote -ssep ' '  BRICK_LABS SomeStatDset+tlrc.BRIK 3dAttribute -quote -ssep 'NUM' -sprep '+' BRICK_LABS SomeStatDset+tlrc.BRIK  ++ Compile date = Sep  7 2018 {:}",
+            "id": "QUOTE",
+            "name": "QUOTE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUOTE]"
+        },
+        {
+            "description": "NA",
+            "id": "aname",
+            "name": "aname",
+            "optional": false,
+            "type": "String",
+            "value-key": "[ANAME]"
+        },
+        {
+            "description": "NA",
+            "id": "dset",
+            "name": "dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

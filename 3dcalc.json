@@ -1,0 +1,249 @@
+{
+    "command-line": "3dcalc [B] [A] [EXPR] [HELP] [VERBOSE] [DATUM] [FLOAT] [SHORT] [BYTE] [FSCALE] [GSCALE] [NSCALE] [PREFIX] [SESSION] [USETEMP] [DT] [TR] [TAXIS] [RGBFAC] [CX2R] [SORT] [C] [DICOM] [RAI] [SPM] [LPI]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-b",
+            "description": "-b a+i -c a-i -d a+j -e a-j -f a+k -g a-k     \\ -expr 'a*amongst(0,b,c,d,e,f,g)'  consider similar erode or dilate operations: erosion:  -expr 'a*(1-amongst(0,b,c,d,e,f,g))' dilation: -expr 'amongst(1,a,b,c,d,e,f,g)'  ------------------------------------------------------------------------ ARGUMENTS for 3dcalc (must be included on command line): ~1~ ---------",
+            "id": "B",
+            "name": "B",
+            "optional": true,
+            "type": "String",
+            "value-key": "[B]"
+        },
+        {
+            "command-line-flag": "-a",
+            "description": "Read dataset 'dname' and call the voxel values 'a' in the expression (-expr) that is input below. Up to 26 dnames (-a, -b, -c, ... -z) can be included in a single 3dcalc calculation/expression. ** If some letter name is used in the expression, but not present in one of the dataset options here, then that variable is set to 0. ** You can use the subscript '[]' method to select sub-bricks of datasets, as in",
+            "id": "A",
+            "name": "A",
+            "optional": true,
+            "type": "String",
+            "value-key": "[A]"
+        },
+        {
+            "command-line-flag": "-expr",
+            "description": "Apply the expression - within quotes - to the input datasets (dnames), one voxel at time, to produce the output dataset. ** You must use 1 and only 1 '-expr' option!  NOTE: If you want to average or sum up a lot of datasets, programs 3dTstat and/or 3dMean and/or 3dmerge are better suited for these purposes.  A common request is to increase the number of input datasets beyond 26, but in almost all cases such users simply want to do simple addition!  NOTE: If you want to include shell variables in the expression (or in the dataset sub-brick selection), then you should use double \"quotes\" and the '$' notation for the shell variables; this example uses csh notation to set the shell variable 'z':  set z = 3.5 3dcalc -a moose.nii -prefix goose.nii -expr \"a*$z\"  The shell will not expand variables inside single 'quotes', and 3dcalc's parser will not understand the '$' character.  NOTE: You can use the ccalc program to play with the expression evaluator, in order to get a feel for how it works and what it accepts.  ------------------------------------------------------------------------ OPTIONS for 3dcalc: ~1~ -------",
+            "id": "EXPR",
+            "name": "EXPR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXPR]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "Show this help.",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-verbose",
+            "description": "Makes the program print out various information as it progresses.",
+            "id": "VERBOSE",
+            "name": "VERBOSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERBOSE]"
+        },
+        {
+            "command-line-flag": "-datum",
+            "description": "Coerce the output data to be stored as the given type, which may be byte, short, or float. [default = datum of first input dataset]",
+            "id": "DATUM",
+            "name": "DATUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATUM]"
+        },
+        {
+            "command-line-flag": "-float",
+            "description": "",
+            "id": "FLOAT",
+            "name": "FLOAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLOAT]"
+        },
+        {
+            "command-line-flag": "-short",
+            "description": "= Alternative options to specify output data format.",
+            "id": "SHORT",
+            "name": "SHORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHORT]"
+        },
+        {
+            "command-line-flag": "-byte",
+            "description": "",
+            "id": "BYTE",
+            "name": "BYTE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BYTE]"
+        },
+        {
+            "command-line-flag": "-fscale",
+            "description": "Force scaling of the output to the maximum integer range. This only has effect if the output datum is byte or short (either forced or defaulted). This option is often necessary to eliminate unpleasant truncation artifacts. [The default is to scale only if the computed values seem to need it -- are all <= 1.0 or there is at least one value beyond the integer upper limit.]  ** In earlier versions of 3dcalc, scaling (if used) was applied to all sub-bricks equally -- a common scale factor was used.  This would cause trouble if the values in different sub-bricks were in vastly different scales. In this version, each sub-brick gets its own scale factor. To override this behavior, use the '-gscale' option.",
+            "id": "FSCALE",
+            "name": "FSCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FSCALE]"
+        },
+        {
+            "command-line-flag": "-gscale",
+            "description": "Same as '-fscale', but also forces each output sub-brick to get the same scaling factor.  This may be desirable for 3D+time datasets, for example. ** N.B.: -usetemp and -gscale are incompatible!!",
+            "id": "GSCALE",
+            "name": "GSCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GSCALE]"
+        },
+        {
+            "command-line-flag": "-nscale",
+            "description": "Don't do any scaling on output to byte or short datasets. This may be especially useful when operating on mask datasets whose output values are only 0's and 1's. ** Only use this option if you are sure you want the output dataset to be integer-valued!",
+            "id": "NSCALE",
+            "name": "NSCALE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NSCALE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use 'pname' for the output dataset prefix name. [default='calc']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-session",
+            "description": "Use 'dir' for the output dataset session directory. [default='./'=current working directory] You can also include the output directory in the 'pname' parameter to the -prefix option.",
+            "id": "SESSION",
+            "name": "SESSION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SESSION]"
+        },
+        {
+            "command-line-flag": "-usetemp",
+            "description": "With this option, a temporary file will be created to hold intermediate results.  This will make the program run slower, but can be useful when creating huge datasets that won't all fit in memory at once. * The program prints out the name of the temporary file; if 3dcalc crashes, you might have to delete this file manually. ** N.B.: -usetemp and -gscale are incompatible!!",
+            "id": "USETEMP",
+            "name": "USETEMP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USETEMP]"
+        },
+        {
+            "command-line-flag": "-dt",
+            "description": "Use 'tstep' as the TR for \"manufactured\" 3D+time *OR*          datasets.",
+            "id": "DT",
+            "name": "DT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DT]"
+        },
+        {
+            "command-line-flag": "-TR",
+            "description": "If not given, defaults to 1 second.",
+            "id": "TR",
+            "name": "TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR]"
+        },
+        {
+            "command-line-flag": "-taxis",
+            "description": "If only 3D datasets are input (no 3D+time or .1D files), *OR*          then normally only a 3D dataset is calculated.  With",
+            "id": "TAXIS",
+            "name": "TAXIS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TAXIS]"
+        },
+        {
+            "command-line-flag": "-rgbfac",
+            "description": "For RGB input datasets, the 3 channels (r,g,b) are collapsed to one for the purposes of 3dcalc, using the formula value = A*r + B*g + C*b  The default values are A=0.299 B=0.587 C=0.114, which gives the grayscale intensity.  To pick out the Green channel only, use '-rgbfac 0 1 0', for example.  Note that each channel in an RGB dataset is a byte in the range 0..255.  Thus, '-rgbfac 0.001173 0.002302 0.000447' will compute the intensity rescaled to the range 0..1.0 (i.e., 0.001173=0.299/255, etc.)",
+            "id": "RGBFAC",
+            "name": "RGBFAC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RGBFAC]"
+        },
+        {
+            "command-line-flag": "-cx2r",
+            "description": "For complex input datasets, the 2 channels must be converted to 1 real number for calculation.  The methods available are:  REAL  IMAG  ABS  PHASE * The default method is ABS = sqrt(REAL^2+IMAG^2) * PHASE = atan2(IMAG,REAL) * Multiple '-cx2r' options can be given: when a complex dataset is given on the command line, the most recent previous method will govern. This also means that for -cx2r to affect a variable it must precede it. For example, to compute the phase of data in 'a' you should use 3dcalc -cx2r PHASE -a dft.lh.TS.niml.dset -expr 'a' However, the -cx2r option will have no effect in 3dcalc -a dft.lh.TS.niml.dset -cx2r PHASE -expr 'a' which will produce the default ABS of 'a' The -cx2r option in the latter example only applies to variables that will be defined after it. When in doubt, check your output. * If a complex dataset is used in a differential subscript, then the most recent previous -cx2r method applies to the extraction; for example -cx2r REAL -a cx+orig -cx2r IMAG -b 'a[0,0,0,0]' means that variable 'a' refers to the real part of the input dataset and variable 'b' to the imaginary part of the input dataset. * 3dcalc cannot be used to CREATE a complex dataset! [See program 3dTwotoComplex for that purpose.]",
+            "id": "CX2R",
+            "name": "CX2R",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CX2R]"
+        },
+        {
+            "command-line-flag": "-sort",
+            "description": "Sort each output brick separately, before output:",
+            "id": "SORT",
+            "name": "SORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SORT]"
+        },
+        {
+            "command-line-flag": "-c",
+            "description": "red.1D  This indicates that the n-th value from file fred.1D is to be associated with the spatial voxel index i=n (respectively j=n and k=n for 'J: and K: input dataset names).  This technique can be useful if you want to scale each slice by a fixed constant; for example:  -a dset+orig -b K:slicefactor.1D -expr 'a*b'  In this example, the '-b' value only varies in the k-index spatial direction.  ------------------------------------------------------------------------ COORDINATES and PREDEFINED VALUES: ~1~ ---------------------------------  If you don't use '-x', '-y', or '-z' for a dataset, then the voxel spatial coordinates will be loaded into those variables.  For example, the expression 'a*step(x*x+y*y+z*z-100)' will zero out all the voxels inside a 10 mm radius of the origin x=y=z=0.  Similarly, the '-t' value, if not otherwise used by a dataset or *.1D input, will be loaded with the voxel time coordinate, as determined from the header file created for the OUTPUT.  Please note that the units of this are variable; they might be in milliseconds, seconds, or Hertz. In addition, slices of the dataset might be offset in time from one another, and this is allowed for in the computation of 't'.  Use program 3dinfo to find out the structure of your datasets, if you are not sure. If no input datasets are 3D+time, then the effective value of TR is tstep in the output dataset, with t=0 at the first sub-brick.  Similarly, the '-i', '-j', and '-k' values, if not otherwise used, will be loaded with the voxel spatial index coordinates.  The '-l' (letter 'ell') value will be loaded with the temporal index coordinate.  The '-n' value, if not otherwise used, will be loaded with the overall voxel 1D index.  For a 3D dataset, n = i + j*NX + k*NX*NY, where NX, NY, NZ are the array dimensions of the 3D grid.  [29 Jul 2010]  Otherwise undefined letters will be set to zero.  In the future, new default values for other letters may be added.  NOTE WELL: By default, the coordinate order of (x,y,z) is the order in *********  which the data array is stored on disk; this order is output by 3dinfo.  The options below control can change this order:",
+            "id": "C",
+            "name": "C",
+            "optional": true,
+            "type": "String",
+            "value-key": "[C]"
+        },
+        {
+            "command-line-flag": "-dicom",
+            "description": "Sets the coordinates to appear in DICOM standard (RAI) order,",
+            "id": "DICOM",
+            "name": "DICOM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DICOM]"
+        },
+        {
+            "command-line-flag": "-RAI",
+            "description": "(the AFNI standard), so that -x=Right, -y=Anterior , -z=Inferior, +x=Left , +y=Posterior, +z=Superior.",
+            "id": "RAI",
+            "name": "RAI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RAI]"
+        },
+        {
+            "command-line-flag": "-SPM",
+            "description": "Sets the coordinates to appear in SPM (LPI) order,",
+            "id": "SPM",
+            "name": "SPM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPM]"
+        },
+        {
+            "command-line-flag": "-LPI",
+            "description": "so that -x=Left , -y=Posterior, -z=Inferior, +x=Right, +y=Anterior , +z=Superior.  The -LPI/-RAI behavior can also be achieved via the AFNI_ORIENT environment variable (27 Aug, 2014). ------------------------------------------------------------------------ DIFFERENTIAL SUBSCRIPTS [22 Nov 1999]: ~1~ -----------------------  Normal calculations with 3dcalc are strictly on a per-voxel basis: there is no 'cross-talk' between spatial or temporal locations. The differential subscript feature allows you to specify variables that refer to different locations, relative to the base voxel. For example, -a fred+orig -b 'a[1,0,0,0]' -c 'a[0,-1,0,0]' -d 'a[0,0,2,0]' means: symbol 'a' refers to a voxel in dataset fred+orig, symbol 'b' refers to the following voxel in the x-direction, symbol 'c' refers to the previous voxel in the y-direction symbol 'd' refers to the 2nd following voxel in the z-direction  To use this feature, you must define the base dataset (e.g., 'a') first.  Then the differentially subscripted symbols are defined using the base dataset symbol followed by 4 integer subscripts, which are the shifts in the x-, y-, z-, and t- (or sub-brick index) directions. For example,  -a fred+orig -b 'a[0,0,0,1]' -c 'a[0,0,0,-1]' -expr 'median(a,b,c)'  will produce a temporal median smoothing of a 3D+time dataset (this can be done more efficiently with program 3dTsmooth).  Note that the physical directions of the x-, y-, and z-axes depend on how the dataset was acquired or constructed.  See the output of program 3dinfo to determine what direction corresponds to what axis.  For convenience, the following abbreviations may be used in place of some common subscript combinations:  [1,0,0,0] == +i    [-1, 0, 0, 0] == -i [0,1,0,0] == +j    [ 0,-1, 0, 0] == -j [0,0,1,0] == +k    [ 0, 0,-1, 0] == -k [0,0,0,1] == +l    [ 0, 0, 0,-1] == -l  The median smoothing example can thus be abbreviated as  -a fred+orig -b a+l -c a-l -expr 'median(a,b,c)'  When a shift calls for a voxel that is outside of the dataset range, one of three things can happen:  STOP => shifting stops at the edge of the dataset WRAP => shifting wraps back to the opposite edge of the dataset ZERO => the voxel value is returned as zero  Which one applies depends on the setting of the shifting mode at the time the symbol using differential subscripting is defined.  The mode is set by one of the switches '-dsSTOP', '-dsWRAP', or '-dsZERO'.  The default mode is STOP.  Suppose that a dataset has range 0..99 in the x-direction.  Then when voxel 101 is called for, the value returned is  STOP => value from voxel 99 [didn't shift past edge of dataset] WRAP => value from voxel 1  [wrapped back through opposite edge] ZERO => the number 0.0  You can set the shifting mode more than once - the most recent setting on the command line applies when a differential subscript symbol is encountered.  N.B.: You can also use program 3dLocalstat to process data from a spatial neighborhood of each voxel; for example, to compute the maximum over a sphere of radius 9 mm placed around each voxel: 3dLocalstat -nbhd 'SPHERE(9)' -stat max -prefix Amax9 A+orig  ------------------------------------------------------------------------ ISSUES: ~1~ ------  * Complex-valued datasets cannot be processed, except via '-cx2r'. * This program is not very efficient (but is faster than it once was). * Differential subscripts slow the program down even more.  ------------------------------------------------------------------------ ------------------------------------------------------------------------ EXPRESSIONS: ~1~ -----------  As noted above, datasets are referred to by single letter variable names. Arithmetic expressions are allowed, using + - * / ** ^ and parentheses. C relational, boolean, and conditional expressions are NOT implemented! * Note that the expression evaluator is designed not to fail;  illegal  * * operations like 'sqrt(-1)' are changed to legal ones to avoid crashes.* Built in functions include:  sin  , cos  , tan  , asin  , acos  , atan  , atan2, sinh , cosh , tanh , asinh , acosh , atanh , exp  , log  , log10, abs  , int   , sqrt  , max   , min  , J0   , J1   , Y0   , Y1    , erf   , erfc  , qginv, qg , rect , step , astep, bool  , and   , or    , mofn , sind , cosd , tand , median, lmode , hmode , mad  , gran , uran , iran , eran  , lran  , orstat, mod  , mean , stdev, sem  , Pleg  , cbrt  , rhddc2, hrfbk4,hrfbk5 minabove, maxbelow, extreme, absextreme    , acfwxm gamp , gampq  where some of the less obvious funcions are: * qg(x)    = reversed cdf of a standard normal distribution * qginv(x) = inverse function to qg * min, max, atan2 each take 2 arguments ONLY * J0, J1, Y0, Y1 are Bessel functions (see the holy book: Watson) * Pleg(m,x) is the m'th Legendre polynomial evaluated at x * erf, erfc are the error and complementary error functions * sind, cosd, tand take arguments in degrees (vs. radians) * median(a,b,c,...) computes the median of its arguments * mad(a,b,c,...) computes the MAD of its arguments * mean(a,b,c,...) computes the mean of its arguments * stdev(a,b,c,...) computes the standard deviation of its arguments * sem(a,b,c,...) computes standard error of the mean of its arguments, where sem(n arguments) = stdev(same)/sqrt(n) * orstat(n,a,b,c,...) computes the n-th order statistic of {a,b,c,...} - that is, the n-th value in size, starting at the bottom (e.g., orstat(1,a,b,c) is the minimum) * minabove(X,a,b,c,...) computes the smallest value amongst {a,b,c,...} that is LARGER than the first argument X; if all values are smaller than X, then X will be returned * maxbelow(X,a,b,c,...) similarly returns the largest value amongst {a,b,c,...} that is SMALLER than the first argument X. * extreme(a,b,c,...) finds the largest absolute value amongst {a,b,c,...} returning one of the original a,b,c,... values. * absextreme(a,b,c,...) finds the largest absolute value amongst {a,b,c,...} returning the maximum absolute value of a,b,c,... values. * lmode(a,b,c,...) and hmode(a,b,c,...) compute the mode of their arguments - lmode breaks ties by choosing the smallest value with the maximal count, hmode breaks ties by choosing the largest value with the maximal count [\"a,b,c,...\" indicates a variable number of arguments] * gran(m,s) returns a Gaussian deviate with mean=m, stdev=s * uran(r)   returns a uniform deviate in the range [0,r] * iran(t)   returns a random integer in the range [0..t] * eran(s)   returns an exponentially distributed deviate with parameter s; mean=s * lran(t)   returns a logistically distributed deviate with parameter t; mean=0, stdev=t*1.814 * mod(a,b)  returns (a modulo b) = a - b*int(a/b) * hrfbk4(t,L) and hrfbk5(t,L) are the BLOCK4 and BLOCK5 hemodynamic response functions from 3dDeconvolve (L=stimulus duration in sec, and t is the time in sec since start of stimulus); for example: 1deval -del 0.1 -num 400 -expr 'hrfbk5(t-2,20)' | 1dplot -stdin -del 0.1 These HRF functions are scaled to return values in the range [0..1]  * ACFWXM(a,b,c,x) returns the Full Width at X Maximum for the mixed model ACF function f(r) = a*expr(-r*r/(2*b*b))+(1-a)*exp(-r/c) for X between 0 and 1 (not inclusive).  This is the model function estimated in program 3dFWHMx. * gamp(peak,fwhm) returns the parameter p in the formula g(t) = (t/(p*q))^p * exp(p-t/q) that gives the peak value of g(t) occuring at t=peak when the FWHM of g(t) is given by fwhm; gamq(peak,fwhm) gives the q parameter. These functions are largely used for creating FMRI hemodynamic shapes.  You may use the symbol 'PI' to refer to the constant of that name. This is the only 2 letter symbol defined; all variables are referred to by 1 letter symbols.  The case of the expression is ignored (in fact, it is converted to uppercase as the first step in the parsing algorithm).  The following functions are designed to help implement logical functions, such as masking of 3D volumes against some criterion: step(x)    = {1 if x>0           , 0 if x<=0}, posval(x)  = {x if x>0           , 0 if x<=0}, astep(x,y) = {1 if abs(x) > y    , 0 otherwise} = step(abs(x)-y) within(x,MI,MX) = {1 if MI <= x <= MX , 0 otherwise}, rect(x)    = {1 if abs(x)<=0.5, 0 if abs(x)>0.5}, bool(x)    = {1 if x != 0.0   , 0 if x == 0.0}, notzero(x)    = bool(x), iszero(x)    = 1-bool(x) = { 0 if x != 0.0, 1 if x == 0.0 }, not(x)    = same as iszero(x) equals(x,y)  = 1-bool(x-y) = { 1 if x == y , 0 if x != y }, ispositive(x)  = { 1 if x > 0; 0 if x <= 0 }, isnegative(x)  = { 1 if x < 0; 0 if x >= 0 }, ifelse(x,t,f)  = { t if x != 0; f if x == 0 }, not(x)    = same as iszero(x) = Boolean negation and(a,b,...,c) = {1 if all arguments are nonzero, 0 if any are zero} or(a,b,...,c) = {1 if any arguments are nonzero, 0 if all are zero} mofn(m,a,...,c) = {1 if at least 'm' arguments are nonzero, else 0 } argmax(a,b,...) = index of largest argument; = 0 if all args are 0 argnum(a,b,...) = number of nonzero arguments pairmax(a,b,...)= finds the 'paired' argument that corresponds to the maximum of the first half of the input arguments; for example, pairmax(a,b,c,p,q,r) determines which of {a,b,c} is the max, then returns corresponding value from {p,q,r}; requires even number of args. pairmin(a,b,...)= Similar to pairmax, but for minimum; for example, pairmin(a,b,c,p,q,r} finds the minimum of {a,b,c} and returns the corresponding value from {p,q,r}; pairmin(3,2,7,5,-1,-2,-3,-4) = -2 (The 'pair' functions are Lukas Pezawas specials!) amongst(a,b,...)= Return value is 1 if any of the b,c,... values equals the a value; otherwise, return value is 0. choose(n,a,b,...)= chooses the n-th value from the a,b,... values. (e.g., choose(2,a,b,c) is b)  [These last 9 functions take a variable number of arguments.]  The following 27 functions are used for statistical conversions, as in the program 'cdf': fico_t2p(t,a,b,c), fico_p2t(p,a,b,c), fico_t2z(t,a,b,c), fitt_t2p(t,a)    , fitt_p2t(p,a)    , fitt_t2z(t,a)    , fift_t2p(t,a,b)  , fift_p2t(p,a,b)  , fift_t2z(t,a,b)  , fizt_t2p(t)      , fizt_p2t(p)      , fizt_t2z(t)      , fict_t2p(t,a)    , fict_p2t(p,a)    , fict_t2z(t,a)    , fibt_t2p(t,a,b)  , fibt_p2t(p,a,b)  , fibt_t2z(t,a,b)  , fibn_t2p(t,a,b)  , fibn_p2t(p,a,b)  , fibn_t2z(t,a,b)  , figt_t2p(t,a,b)  , figt_p2t(p,a,b)  , figt_t2z(t,a,b)  , fipt_t2p(t,a)    , fipt_p2t(p,a)    , fipt_t2z(t,a)    .  See the output of 'cdf -help' for documentation on the meanings of and arguments to these functions.  The two functions below use the NIfTI-1 statistical codes to map between statistical values and cumulative distribution values: cdf2stat(val,code,p1,p2,p3) -- val is between 0 and 1 stat2cdf(val,code,p1,p2,p3) -- val is legal for the given distribution where code is 2 = correlation statistic     p1 = DOF 3 = t statistic (central)     p1 = DOF 4 = F statistic (central)     p1 = num DOF, p2 = den DOF 5 = N(0,1) statistic          no parameters (p1=p2=p3=0) 6 = Chi-squared (central)     p1 = DOF 7 = Beta variable (central)   p1 = a , p2 = b 8 = Binomial variable         p1 = #trials, p2 = prob per trial 9 = Gamma distribution        p1 = shape, p2 = scale 10 = Poisson distribution      p1 = mean 11 = N(mu,variance) normal     p1 = mean, p2 = scale 12 = noncentral F statistic    p1 = num DOF, p2 = den DOF, p3 = noncen 13 = noncentral chi-squared    p1 = DOF, p2 = noncentrality parameter 14 = Logistic distribution     p1 = mean, p2 = scale 15 = Laplace distribution      p1 = mean, p2 = scale 16 = Uniform distribution      p1 = min, p2 = max 17 = noncentral t statistic    p1 = DOF, p2 = noncentrality parameter 18 = Weibull distribution      p1 = location, p2 = scale, p3 = power 19 = Chi statistic (central)   p1 = DOF 20 = inverse Gaussian variable p1 = mu, p2 = lambda 21 = Extreme value type I      p1 = location, p2 = scale 22 = 'p-value'                 no parameters 23 = -ln(p)                    no parameters 24 = -log10(p)                 no parameters When fewer than 3 parameters are needed, the values for later parameters are still required, but will be ignored.  An extreme case is code=5, where the correct call is (e.g.) cdf2stat(p,5,0,0,0)  Finally, note that the expression evaluator is designed not to crash, or to return NaN or Infinity.  Illegal operations, such as division by 0, logarithm of negative value, etc., are intercepted and something else (usually 0) will be returned.  To find out what that 'something else' is in any specific case, you should play with the ccalc program.  ** If you modify a statistical sub-brick, you may want to use program '3drefit' to modify the dataset statistical auxiliary parameters.  ** Computations are carried out in double precision before being truncated to the final output 'datum'.  ** Note that the quotes around the expression are needed so the shell doesn't try to expand * characters, or interpret parentheses.  ** Try the 'ccalc' program to see how the expression evaluator works. The arithmetic parser and evaluator is written in Fortran-77 and is derived from a program written long ago by RW Cox to facilitate compiling on an array processor hooked up to a VAX. (It's a mess, but it works - somewhat slowly - but hey, computers are fast these days.)  ++ Compile date = Sep  7 2018 {:}",
+            "id": "LPI",
+            "name": "LPI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LPI]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

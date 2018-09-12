@@ -1,0 +1,68 @@
+{
+    "command-line": "1dTsort [INC] [DEC] [FLIP] [COL] [IMODE] [FILE.1D]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-inc",
+            "description": "sort into increasing order [default]",
+            "id": "INC",
+            "name": "INC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INC]"
+        },
+        {
+            "command-line-flag": "-dec",
+            "description": "sort into decreasing order",
+            "id": "DEC",
+            "name": "DEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEC]"
+        },
+        {
+            "command-line-flag": "-flip",
+            "description": "transpose the file before OUTPUT * the INPUT can be transposed using file.1D\\' * thus, to sort each ROW, do something like 1dTsort -flip file.1D\\' > sfile.1D",
+            "id": "FLIP",
+            "name": "FLIP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP]"
+        },
+        {
+            "command-line-flag": "-col",
+            "description": "sort only on column #j (counting starts at 0), and carry the rest of the columns with it.",
+            "id": "COL",
+            "name": "COL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COL]"
+        },
+        {
+            "command-line-flag": "-imode",
+            "description": "typecast all values to integers, return the mode in the input then exit. No sorting results are returned.  N.B.: Data will be read from standard input if the filename IS stdin, and will also be row/column transposed if the filename is stdin\\' For example: 1deval -num 100 -expr 'uran(1)' | 1dTsort stdin | 1dplot stdin   ++ Compile date = Sep  7 2018 {:}",
+            "id": "IMODE",
+            "name": "IMODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IMODE]"
+        },
+        {
+            "description": "NA",
+            "id": "file.1D",
+            "name": "file.1D",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FILE.1D]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

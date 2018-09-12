@@ -1,0 +1,51 @@
+{
+    "command-line": "ClustExp_HistTable.py [STATDSET] [PREFIX] [SESSION] [OVERWRITE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-StatDSET",
+            "description": "-StatDSET STATDSET  Statistics dataset.  optional:",
+            "id": "STATDSET",
+            "name": "STATDSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STATDSET]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix PREFIX      Name for output (no path). [GroupOut]",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-session",
+            "description": "-session SESSION    Output parent folder if you don't want the current working directory. [./]",
+            "id": "SESSION",
+            "name": "SESSION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SESSION]"
+        },
+        {
+            "command-line-flag": "-overwrite",
+            "description": "-overwrite          Remove previous folder with same PREFIX  ------------------------------------------ Justin Rajendra circa 08/2017 I hope this will be useful for someone... Keep on keeping on! ------------------------------------------",
+            "id": "OVERWRITE",
+            "name": "OVERWRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OVERWRITE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,132 @@
+{
+    "command-line": "@surf_to_vol_spackle [SURFA] [PREFIX] [MASKSET] [SPEC] [SURFB] [SURFSET] [F_PN_MM] [MEANRAD] [NSTEPS] [KEEP_TEMP_FILES] [MAXITERS] [MODE] [IGNORE_UNKNOWN_OPTIONS]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-surfA",
+            "description": "-surfA smoothwm -surfB pial -surfset thickness.niml.dset    \\",
+            "id": "SURFA",
+            "name": "SURFA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURFA]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix vol_thick  Project data from a surface dataset into a volume primarily using 3dSurf2Vol but then filling any holes with an iterative smoothing procedure. If two surfaces are provided, then the dataset is filled between corresponding nodes. The filling is done by smoothing the holes with a local non-zero mean (or mode) in a spherical neighborhood. Holes come about because the lines from surfaces can miss some voxels. These are more likely with sparse surfaces, but can still happen even with high-resolution surfaces.  Required (mostly) options:",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-maskset",
+            "description": "-maskset mymask.nii     mask dataset in which to project surface measures",
+            "id": "MASKSET",
+            "name": "MASKSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASKSET]"
+        },
+        {
+            "command-line-flag": "-spec",
+            "description": "-spec mysurfs.spec      Surface specification file with list of surfaces",
+            "id": "SPEC",
+            "name": "SPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEC]"
+        },
+        {
+            "command-line-flag": "-surfB",
+            "description": "-surfB mysurf2          name of second surface. If not included, computes using normal vector",
+            "id": "SURFB",
+            "name": "SURFB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURFB]"
+        },
+        {
+            "command-line-flag": "-surfset",
+            "description": "-surfset data.niml.dset dataset of surface measures",
+            "id": "SURFSET",
+            "name": "SURFSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURFSET]"
+        },
+        {
+            "command-line-flag": "-f_pn_mm",
+            "description": "-f_pn_mm mm.m           normal vector length if only using a single surface (default 2 mm) (only applies if no surfB used)",
+            "id": "F_PN_MM",
+            "name": "F_PN_MM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[F_PN_MM]"
+        },
+        {
+            "command-line-flag": "-meanrad",
+            "description": "-meanrad mm.m           radius for search for mean to fill holes (default 2 mm)",
+            "id": "MEANRAD",
+            "name": "MEANRAD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MEANRAD]"
+        },
+        {
+            "command-line-flag": "-nsteps",
+            "description": "-nsteps nn              number of steps on line segments (default 10)",
+            "id": "NSTEPS",
+            "name": "NSTEPS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NSTEPS]"
+        },
+        {
+            "command-line-flag": "-keep_temp_files",
+            "description": "-keep_temp_files        do not remove any of the temporary files (default is to remove them)",
+            "id": "KEEP_TEMP_FILES",
+            "name": "KEEP_TEMP_FILES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_TEMP_FILES]"
+        },
+        {
+            "command-line-flag": "-maxiters",
+            "description": "-maxiters nn            maximum number of smoothing and filling iterations (default is 4)",
+            "id": "MAXITERS",
+            "name": "MAXITERS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAXITERS]"
+        },
+        {
+            "command-line-flag": "-mode",
+            "description": "-mode                   use mode instead of non-zero median (appropriate for ROIs)",
+            "id": "MODE",
+            "name": "MODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MODE]"
+        },
+        {
+            "command-line-flag": "-ignore_unknown_options",
+            "description": "-ignore_unknown_options ignore additional options that are not needed  Example usage: @surf_to_vol_spackle -maskset leftmask_1mm.nii.gz -spec quick.spec \\",
+            "id": "IGNORE_UNKNOWN_OPTIONS",
+            "name": "IGNORE_UNKNOWN_OPTIONS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IGNORE_UNKNOWN_OPTIONS]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

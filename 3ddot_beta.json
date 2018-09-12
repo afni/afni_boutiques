@@ -1,0 +1,51 @@
+{
+    "command-line": "3ddot_beta [INPUT] [PREFIX] [DOETA2] [MASK]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "ile with N bricks.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput test file will be called PREFIX_eta2.dat.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-doeta2",
+            "description": "ight now, required switch (more tests might be present in the future, if demand calls for it).",
+            "id": "DOETA2",
+            "name": "DOETA2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DOETA2]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "an include a mask within which to take values. Otherwise, data should be masked already.   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  + EXAMPLE: 3ddot_beta                    \\ -input  RSFC_MAPS_cat+orig  \\ -mask   mask.nii.gz         \\ -doeta2                     \\ -prefix My_Matrix_File  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ___________________________________________________________________________",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

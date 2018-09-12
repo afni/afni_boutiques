@@ -1,0 +1,842 @@
+{
+    "command-line": "3dinfo [VERB] [SHORT] [H] [HELP] [H_VIEW] [HVIEW] [H_WEB] [HWEB] [H_FIND] [H_RAW] [H_SPX] [H_ASPX] [ALL_OPTS] [EXISTS] [ID] [IS_ATLAS] [IS_NIFTI] [SPACE] [GEN_SPACE] [AV_SPACE] [IS_OBLIQUE] [HANDEDNESS] [OBLIQUITY] [PREFIX] [PREFIX_NOEXT] [NIJK] [NV] [NT] [N4] [NVI] [NTI] [NTIMES] [MAX_NODE] [DI] [DJ] [DK] [D3] [ADI] [ADJ] [ADK] [AD3] [VOXVOL] [OI] [OJ] [OK] [O3] [TR] [DMIN] [DMAX] [DMINUS] [DMAXUS] [SMODE] [HEADER_NAME] [BRICK_NAME] [INAME] [ORIENT] [EXTENT] [REXTENT] [LEXTENT] [AEXTENT] [PEXTENT] [IEXTENT] [SEXTENT] [ALL_NAMES] [FAC] [LABEL] [DATUM] [MIN] [MAX] [MINUS] [MAXUS] [LABELTABLE] [LABELTABLE_AS_ATLAS_POINTS] [ATLAS_POINTS] [HISTORY] [SLICE_TIMING] [HEADER_LINE] [HDR] [SB_DELIM] [NA_FLAG] [ATR_DELIM] [SAME_GRID] [SAME_DIM] [SAME_DELTA] [SAME_ORIENT] [SAME_CENTER] [SAME_OBL] [SAME_ALL_GRID] [VAL_DIFF] [SVAL_DIFF] [MONOG_PAIRS] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-verb",
+            "description": "-verb means to print out lots of stuff",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-short",
+            "description": "-short means to print out less stuff [now the default]",
+            "id": "SHORT",
+            "name": "SHORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHORT]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "Mini help, at time, same as -help in many cases.",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "The entire help output",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open help in text editor. AFNI will try to find a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open help in web browser. AFNI will try to find a browser.",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Look for lines in this programs's -help output that match (approximately) WORD.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "command-line-flag": "-h_raw",
+            "description": "Help string unedited",
+            "id": "H_RAW",
+            "name": "H_RAW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_RAW]"
+        },
+        {
+            "command-line-flag": "-h_spx",
+            "description": "Help string in sphinx loveliness, but do not try to autoformat",
+            "id": "H_SPX",
+            "name": "H_SPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_SPX]"
+        },
+        {
+            "command-line-flag": "-h_aspx",
+            "description": "Help string in sphinx with autoformatting of options, etc.",
+            "id": "H_ASPX",
+            "name": "H_ASPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_ASPX]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "Try to identify all options for the program from the output of its -help option. Some options might be missed and others misidentified. Use this output for hints only.  Alternative Usage (without either of the above options): ~1~ 3dinfo -label2index label dataset * Prints to stdout the index corresponding to the sub-brick with the name label, or a blank line if label not found. * If this option is used, then the ONLY output is this sub-brick index. This is intended to be used in a script, as in this tcsh fragment: set face = `3dinfo -label2index Face#0 AA_Decon+orig` set hous = `3dinfo -label2index House#0 AA_Decon+orig` 3dcalc -a AA_Decon+orig\"[$face]\" -b AA_Decon+orig\"[$hous]\" ... * Added per the request and efforts of Colm Connolly.  Alternate Alternative Usage: ~1~ 3dinfo <OPTION> [OPTION ..] dataset [dataset ...] Outputs a specific piece of information depending on OPTION.  ============================================================== Options producing one value (string) ~2~ ==============================================================",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "command-line-flag": "-exists",
+            "description": "1 if dset is loadable, 0 otherwise This works on prefix also.",
+            "id": "EXISTS",
+            "name": "EXISTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXISTS]"
+        },
+        {
+            "command-line-flag": "-id",
+            "description": "Idcodestring of dset",
+            "id": "ID",
+            "name": "ID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ID]"
+        },
+        {
+            "command-line-flag": "-is_atlas",
+            "description": "1 if dset is an atlas.",
+            "id": "IS_ATLAS",
+            "name": "IS_ATLAS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IS_ATLAS]"
+        },
+        {
+            "command-line-flag": "-is_nifti",
+            "description": "1 if dset is NIFTI format, 0 otherwise",
+            "id": "IS_NIFTI",
+            "name": "IS_NIFTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IS_NIFTI]"
+        },
+        {
+            "command-line-flag": "-space",
+            "description": "dataset's space",
+            "id": "SPACE",
+            "name": "SPACE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPACE]"
+        },
+        {
+            "command-line-flag": "-gen_space",
+            "description": "datasets generic space",
+            "id": "GEN_SPACE",
+            "name": "GEN_SPACE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GEN_SPACE]"
+        },
+        {
+            "command-line-flag": "-av_space",
+            "description": "AFNI format's view extension for the space",
+            "id": "AV_SPACE",
+            "name": "AV_SPACE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AV_SPACE]"
+        },
+        {
+            "command-line-flag": "-is_oblique",
+            "description": "1 if dset is oblique",
+            "id": "IS_OBLIQUE",
+            "name": "IS_OBLIQUE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IS_OBLIQUE]"
+        },
+        {
+            "command-line-flag": "-handedness",
+            "description": "L if orientation is Left handed, R if it is right handed",
+            "id": "HANDEDNESS",
+            "name": "HANDEDNESS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HANDEDNESS]"
+        },
+        {
+            "command-line-flag": "-obliquity",
+            "description": "Angle from plumb direction. Angles of 0 (or close) are for cardinal orientations",
+            "id": "OBLIQUITY",
+            "name": "OBLIQUITY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OBLIQUITY]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Return the prefix",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-prefix_noext",
+            "description": "Return the prefix without extensions -n[i|j|k]: Return the number of voxels in i, j, k dimensions",
+            "id": "PREFIX_NOEXT",
+            "name": "PREFIX_NOEXT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX_NOEXT]"
+        },
+        {
+            "command-line-flag": "-nijk",
+            "description": "Return ni*nj*nk",
+            "id": "NIJK",
+            "name": "NIJK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NIJK]"
+        },
+        {
+            "command-line-flag": "-nv",
+            "description": "Return number of points in time or the number of sub-bricks",
+            "id": "NV",
+            "name": "NV",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NV]"
+        },
+        {
+            "command-line-flag": "-nt",
+            "description": "same as -nv",
+            "id": "NT",
+            "name": "NT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NT]"
+        },
+        {
+            "command-line-flag": "-n4",
+            "description": "same as -ni -nj -nk -nv",
+            "id": "N4",
+            "name": "N4",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N4]"
+        },
+        {
+            "command-line-flag": "-nvi",
+            "description": "The maximum sub-brick index (= nv -1 )",
+            "id": "NVI",
+            "name": "NVI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NVI]"
+        },
+        {
+            "command-line-flag": "-nti",
+            "description": "same as -nvi",
+            "id": "NTI",
+            "name": "NTI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NTI]"
+        },
+        {
+            "command-line-flag": "-ntimes",
+            "description": "Return number of sub-bricks points in time This is an option for debugging use, stay away from it.",
+            "id": "NTIMES",
+            "name": "NTIMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NTIMES]"
+        },
+        {
+            "command-line-flag": "-max_node",
+            "description": "For a surface-based dset, return the maximum node index",
+            "id": "MAX_NODE",
+            "name": "MAX_NODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX_NODE]"
+        },
+        {
+            "command-line-flag": "-di",
+            "description": "Signed displacement per voxel along i direction, aka dx",
+            "id": "DI",
+            "name": "DI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DI]"
+        },
+        {
+            "command-line-flag": "-dj",
+            "description": "Signed displacement per voxel along j direction, aka dy",
+            "id": "DJ",
+            "name": "DJ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DJ]"
+        },
+        {
+            "command-line-flag": "-dk",
+            "description": "Signed displacement per voxel along k direction, aka dz",
+            "id": "DK",
+            "name": "DK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DK]"
+        },
+        {
+            "command-line-flag": "-d3",
+            "description": "same as -di -dj -dk",
+            "id": "D3",
+            "name": "D3",
+            "optional": true,
+            "type": "String",
+            "value-key": "[D3]"
+        },
+        {
+            "command-line-flag": "-adi",
+            "description": "Voxel size along i direction (abs(di))",
+            "id": "ADI",
+            "name": "ADI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ADI]"
+        },
+        {
+            "command-line-flag": "-adj",
+            "description": "Voxel size along j direction (abs(dj))",
+            "id": "ADJ",
+            "name": "ADJ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ADJ]"
+        },
+        {
+            "command-line-flag": "-adk",
+            "description": "Voxel size along k direction (abs(dk))",
+            "id": "ADK",
+            "name": "ADK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ADK]"
+        },
+        {
+            "command-line-flag": "-ad3",
+            "description": "same as -adi -adj -adk",
+            "id": "AD3",
+            "name": "AD3",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AD3]"
+        },
+        {
+            "command-line-flag": "-voxvol",
+            "description": "Voxel volume in cubic millimeters",
+            "id": "VOXVOL",
+            "name": "VOXVOL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VOXVOL]"
+        },
+        {
+            "command-line-flag": "-oi",
+            "description": "Volume origin along the i direction",
+            "id": "OI",
+            "name": "OI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OI]"
+        },
+        {
+            "command-line-flag": "-oj",
+            "description": "Volume origin along the j direction",
+            "id": "OJ",
+            "name": "OJ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OJ]"
+        },
+        {
+            "command-line-flag": "-ok",
+            "description": "Volume origin along the k direction",
+            "id": "OK",
+            "name": "OK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OK]"
+        },
+        {
+            "command-line-flag": "-o3",
+            "description": "same as -oi -oj -ok",
+            "id": "O3",
+            "name": "O3",
+            "optional": true,
+            "type": "String",
+            "value-key": "[O3]"
+        },
+        {
+            "command-line-flag": "-tr",
+            "description": "The TR value in seconds.",
+            "id": "TR",
+            "name": "TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR]"
+        },
+        {
+            "command-line-flag": "-dmin",
+            "description": "The dataset's minimum value, scaled by fac",
+            "id": "DMIN",
+            "name": "DMIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DMIN]"
+        },
+        {
+            "command-line-flag": "-dmax",
+            "description": "The dataset's maximum value, scaled by fac",
+            "id": "DMAX",
+            "name": "DMAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DMAX]"
+        },
+        {
+            "command-line-flag": "-dminus",
+            "description": "The dataset's minimum value, unscaled.",
+            "id": "DMINUS",
+            "name": "DMINUS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DMINUS]"
+        },
+        {
+            "command-line-flag": "-dmaxus",
+            "description": "The dataset's maximum value, unscaled.",
+            "id": "DMAXUS",
+            "name": "DMAXUS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DMAXUS]"
+        },
+        {
+            "command-line-flag": "-smode",
+            "description": "Dset storage mode string.",
+            "id": "SMODE",
+            "name": "SMODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SMODE]"
+        },
+        {
+            "command-line-flag": "-header_name",
+            "description": "Value of dset structure (sub)field 'header_name'",
+            "id": "HEADER_NAME",
+            "name": "HEADER_NAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HEADER_NAME]"
+        },
+        {
+            "command-line-flag": "-brick_name",
+            "description": "Value of dset structure (sub)field 'brick_name'",
+            "id": "BRICK_NAME",
+            "name": "BRICK_NAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BRICK_NAME]"
+        },
+        {
+            "command-line-flag": "-iname",
+            "description": "Name of dset as input on the command line",
+            "id": "INAME",
+            "name": "INAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INAME]"
+        },
+        {
+            "command-line-flag": "-orient",
+            "description": "Value of orientation string. For example, LPI means: i direction grows from Left(negative) to Right(positive). j direction grows from Posterior (neg.) to Anterior (pos.) k direction grows from Inferior (neg.) to Superior (pos.)",
+            "id": "ORIENT",
+            "name": "ORIENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ORIENT]"
+        },
+        {
+            "command-line-flag": "-extent",
+            "description": "The spatial extent of the dataset along R, L, A, P, I and S",
+            "id": "EXTENT",
+            "name": "EXTENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXTENT]"
+        },
+        {
+            "command-line-flag": "-Rextent",
+            "description": "Extent along R",
+            "id": "REXTENT",
+            "name": "REXTENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REXTENT]"
+        },
+        {
+            "command-line-flag": "-Lextent",
+            "description": "Extent along L",
+            "id": "LEXTENT",
+            "name": "LEXTENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LEXTENT]"
+        },
+        {
+            "command-line-flag": "-Aextent",
+            "description": "Extent along P",
+            "id": "AEXTENT",
+            "name": "AEXTENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AEXTENT]"
+        },
+        {
+            "command-line-flag": "-Pextent",
+            "description": "Extent along P",
+            "id": "PEXTENT",
+            "name": "PEXTENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PEXTENT]"
+        },
+        {
+            "command-line-flag": "-Iextent",
+            "description": "Extent along I",
+            "id": "IEXTENT",
+            "name": "IEXTENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IEXTENT]"
+        },
+        {
+            "command-line-flag": "-Sextent",
+            "description": "Extent along S",
+            "id": "SEXTENT",
+            "name": "SEXTENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SEXTENT]"
+        },
+        {
+            "command-line-flag": "-all_names",
+            "description": "Value of various dset structures handling filenames.  ============================================================== Options producing one value per sub-brick ~2~ ==============================================================",
+            "id": "ALL_NAMES",
+            "name": "ALL_NAMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_NAMES]"
+        },
+        {
+            "command-line-flag": "-fac",
+            "description": "Return the float scaling factor",
+            "id": "FAC",
+            "name": "FAC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FAC]"
+        },
+        {
+            "command-line-flag": "-label",
+            "description": "The label of each sub-brick",
+            "id": "LABEL",
+            "name": "LABEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABEL]"
+        },
+        {
+            "command-line-flag": "-datum",
+            "description": "The data storage type",
+            "id": "DATUM",
+            "name": "DATUM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DATUM]"
+        },
+        {
+            "command-line-flag": "-min",
+            "description": "The minimum value, scaled by fac",
+            "id": "MIN",
+            "name": "MIN",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MIN]"
+        },
+        {
+            "command-line-flag": "-max",
+            "description": "The maximum value, scaled by fac",
+            "id": "MAX",
+            "name": "MAX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX]"
+        },
+        {
+            "command-line-flag": "-minus",
+            "description": "The minimum value, unscaled.",
+            "id": "MINUS",
+            "name": "MINUS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MINUS]"
+        },
+        {
+            "command-line-flag": "-maxus",
+            "description": "The maximum value, unscaled.  ============================================================== Options producing multiple values (strings of multiple lines) ~2~ ============================================================== You can specify the delimiter between sub-brick parameters with -sb_delim DELIM. Default DELIM is \"|\"",
+            "id": "MAXUS",
+            "name": "MAXUS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAXUS]"
+        },
+        {
+            "command-line-flag": "-labeltable",
+            "description": "Show label table, if any",
+            "id": "LABELTABLE",
+            "name": "LABELTABLE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABELTABLE]"
+        },
+        {
+            "command-line-flag": "-labeltable_as_atlas_points",
+            "description": "Show label table in atlas point format.",
+            "id": "LABELTABLE_AS_ATLAS_POINTS",
+            "name": "LABELTABLE_AS_ATLAS_POINTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LABELTABLE_AS_ATLAS_POINTS]"
+        },
+        {
+            "command-line-flag": "-atlas_points",
+            "description": "Show atlas points list, if any",
+            "id": "ATLAS_POINTS",
+            "name": "ATLAS_POINTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ATLAS_POINTS]"
+        },
+        {
+            "command-line-flag": "-history",
+            "description": "History note.",
+            "id": "HISTORY",
+            "name": "HISTORY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HISTORY]"
+        },
+        {
+            "command-line-flag": "-slice_timing",
+            "description": "Show slice timing.  ============================================================== Options affecting output format ~2~ ==============================================================",
+            "id": "SLICE_TIMING",
+            "name": "SLICE_TIMING",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SLICE_TIMING]"
+        },
+        {
+            "command-line-flag": "-header_line",
+            "description": "Output as the first line the names of attributes in each field (column)",
+            "id": "HEADER_LINE",
+            "name": "HEADER_LINE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HEADER_LINE]"
+        },
+        {
+            "command-line-flag": "-hdr",
+            "description": "Same as -header_line",
+            "id": "HDR",
+            "name": "HDR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HDR]"
+        },
+        {
+            "command-line-flag": "-sb_delim",
+            "description": "Delimiter string between sub-brick values Default SB_DELIM is \"|\"",
+            "id": "SB_DELIM",
+            "name": "SB_DELIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SB_DELIM]"
+        },
+        {
+            "command-line-flag": "-NA_flag",
+            "description": "String to use when a field is not found or not applicable. Default is \"NA\"",
+            "id": "NA_FLAG",
+            "name": "NA_FLAG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NA_FLAG]"
+        },
+        {
+            "command-line-flag": "-atr_delim",
+            "description": "Delimiter string between attributes Default ATR_DELIM is the tab character.  ============================================================== Options requiring dataset pairing at input ~2~ ============================================================== 3dinfo allows you to make some comparisons between dataset pairs. The comparison is always done in both directions whether or not the answer can be different. For example: 3dinfo -same_grid dset1 dset2 will output two values, one comparing dset1 to dset2 and the second comparing dset2 to dset1. With -same_grid, the answers will always be identical, but this might be different for other queries. This behaviour allows you to mix options requiring dataset pairs with those that do not. For example: 3dinfo -header_line -prefix -n4 -same_grid \\ DSET1+orig DSET2.nii DSET3.nii DSET4.nii",
+            "id": "ATR_DELIM",
+            "name": "ATR_DELIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ATR_DELIM]"
+        },
+        {
+            "command-line-flag": "-same_grid",
+            "description": "Output 1 if the grid is identical between two dsets 0 otherwise. For -same_grid to be 1, all of -same_dim, -same_delta, -same_orient, -same_center, and -same_obl must return 1",
+            "id": "SAME_GRID",
+            "name": "SAME_GRID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAME_GRID]"
+        },
+        {
+            "command-line-flag": "-same_dim",
+            "description": "1 if dimensions are the same between dset pairs",
+            "id": "SAME_DIM",
+            "name": "SAME_DIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAME_DIM]"
+        },
+        {
+            "command-line-flag": "-same_delta",
+            "description": "1 if voxels sizes are the same between dset pairs",
+            "id": "SAME_DELTA",
+            "name": "SAME_DELTA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAME_DELTA]"
+        },
+        {
+            "command-line-flag": "-same_orient",
+            "description": "1 if orientation is the same between dset pairs",
+            "id": "SAME_ORIENT",
+            "name": "SAME_ORIENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAME_ORIENT]"
+        },
+        {
+            "command-line-flag": "-same_center",
+            "description": "1 if geometric center is the same between dset pairs",
+            "id": "SAME_CENTER",
+            "name": "SAME_CENTER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAME_CENTER]"
+        },
+        {
+            "command-line-flag": "-same_obl",
+            "description": "1 if obliquity is the same between dset pairs",
+            "id": "SAME_OBL",
+            "name": "SAME_OBL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAME_OBL]"
+        },
+        {
+            "command-line-flag": "-same_all_grid",
+            "description": "Equivalent to listing all of -same_dim -same_delta -same_orient, -same_center, and -same_obl on the command line.",
+            "id": "SAME_ALL_GRID",
+            "name": "SAME_ALL_GRID",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAME_ALL_GRID]"
+        },
+        {
+            "command-line-flag": "-val_diff",
+            "description": "Output the sum of absolute differences of all voxels in the dataset pair.",
+            "id": "VAL_DIFF",
+            "name": "VAL_DIFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VAL_DIFF]"
+        },
+        {
+            "command-line-flag": "-sval_diff",
+            "description": "Same as -val_diff, but the sum is divided (scaled) by the total number of voxels that are not zero in at least one of the two datasets.",
+            "id": "SVAL_DIFF",
+            "name": "SVAL_DIFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SVAL_DIFF]"
+        },
+        {
+            "command-line-flag": "-monog_pairs",
+            "description": "Instead of pairing each dset with the first, pair each couple separately. This requires you to have an even number of dsets on the command line  Examples with csh syntax using datasets in your afni binaries directory ~1~  0- First get some datasets with which we'll play set dsets = ( `apsearch -list_all_afni_P_dsets` )  1- The classic 3dinfo $dsets[1]  2- Produce a table of results using 1-value-options for two datasets 3dinfo  -echo_edu -prefix_noext -prefix -space -ni -nj -nk -nt  \\ $dsets[1-2]  3- Use some of the options that operate on pairs, mix with other options 3dinfo -echo_edu -header_line -prefix -n4 -same_grid $dsets[1-4]    ++ Compile date = Sep  7 2018 {:}",
+            "id": "MONOG_PAIRS",
+            "name": "MONOG_PAIRS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MONOG_PAIRS]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

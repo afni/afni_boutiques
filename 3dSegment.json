@@ -1,0 +1,78 @@
+{
+    "command-line": "3dSegment [DEBUG] [PREFIX] [SPHERE_HOOD] [T_MET] [DIST_MET] [MAX_LOOPS] [USE_GLOBAL_ESTIMATES]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-debug",
+            "description": "-debug DEBUG",
+            "id": "DEBUG",
+            "name": "DEBUG",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEBUG]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "-prefix PREFIX",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-sphere_hood",
+            "description": "-sphere_hood RAD  default is 4.0",
+            "id": "SPHERE_HOOD",
+            "name": "SPHERE_HOOD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPHERE_HOOD]"
+        },
+        {
+            "command-line-flag": "-T_met",
+            "description": "-T_met",
+            "id": "T_MET",
+            "name": "T_MET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[T_MET]"
+        },
+        {
+            "command-line-flag": "-Dist_met",
+            "description": "-Dist_met",
+            "id": "DIST_MET",
+            "name": "DIST_MET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DIST_MET]"
+        },
+        {
+            "command-line-flag": "-max_loops",
+            "description": "-max_loops",
+            "id": "MAX_LOOPS",
+            "name": "MAX_LOOPS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX_LOOPS]"
+        },
+        {
+            "command-line-flag": "-use_global_estimates",
+            "description": "-use_global_estimates",
+            "id": "USE_GLOBAL_ESTIMATES",
+            "name": "USE_GLOBAL_ESTIMATES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[USE_GLOBAL_ESTIMATES]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,149 @@
+{
+    "command-line": "mpeg_encode [STAT] [QUIET] [REALQUIET] [NO_FRAME_SUMMARY] [FLOAT_DCT] [GOP] [COMBINE_GOPS] [FRAMES] [COMBINE_FRAMES] [NICE] [MAX_MACHINES] [SNR] [BIT_RATE_INFO] [MV_HISTOGRAM] [PARAM_FILE]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-stat",
+            "description": "append stats to stat_file",
+            "id": "STAT",
+            "name": "STAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[STAT]"
+        },
+        {
+            "command-line-flag": "-quiet",
+            "description": "don't report remaining time for at least n seconds",
+            "id": "QUIET",
+            "name": "QUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QUIET]"
+        },
+        {
+            "command-line-flag": "-realquiet",
+            "description": "output nothing at all if successful",
+            "id": "REALQUIET",
+            "name": "REALQUIET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REALQUIET]"
+        },
+        {
+            "command-line-flag": "-no_frame_summary",
+            "description": "suppress frame summary lines",
+            "id": "NO_FRAME_SUMMARY",
+            "name": "NO_FRAME_SUMMARY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_FRAME_SUMMARY]"
+        },
+        {
+            "command-line-flag": "-float_dct",
+            "description": "use more accurate floating point DCT",
+            "id": "FLOAT_DCT",
+            "name": "FLOAT_DCT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLOAT_DCT]"
+        },
+        {
+            "command-line-flag": "-gop",
+            "description": "encode only the numbered GOP",
+            "id": "GOP",
+            "name": "GOP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GOP]"
+        },
+        {
+            "command-line-flag": "-combine_gops",
+            "description": "combine GOP files instead of encode",
+            "id": "COMBINE_GOPS",
+            "name": "COMBINE_GOPS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COMBINE_GOPS]"
+        },
+        {
+            "command-line-flag": "-frames",
+            "description": "encode only the specified frames",
+            "id": "FRAMES",
+            "name": "FRAMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FRAMES]"
+        },
+        {
+            "command-line-flag": "-combine_frames",
+            "description": "combine frame files instead of encode",
+            "id": "COMBINE_FRAMES",
+            "name": "COMBINE_FRAMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COMBINE_FRAMES]"
+        },
+        {
+            "command-line-flag": "-nice",
+            "description": "run slave processes nicely",
+            "id": "NICE",
+            "name": "NICE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NICE]"
+        },
+        {
+            "command-line-flag": "-max_machines",
+            "description": "use at most num_machines machines",
+            "id": "MAX_MACHINES",
+            "name": "MAX_MACHINES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MAX_MACHINES]"
+        },
+        {
+            "command-line-flag": "-snr",
+            "description": "print signal-to-noise ratio",
+            "id": "SNR",
+            "name": "SNR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SNR]"
+        },
+        {
+            "command-line-flag": "-bit_rate_info",
+            "description": "put bit rate in specified file",
+            "id": "BIT_RATE_INFO",
+            "name": "BIT_RATE_INFO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BIT_RATE_INFO]"
+        },
+        {
+            "command-line-flag": "-mv_histogram",
+            "description": "show histograms of motion vectors",
+            "id": "MV_HISTOGRAM",
+            "name": "MV_HISTOGRAM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MV_HISTOGRAM]"
+        },
+        {
+            "description": "NA",
+            "id": "param_file",
+            "name": "param_file",
+            "optional": false,
+            "type": "String",
+            "value-key": "[PARAM_FILE]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

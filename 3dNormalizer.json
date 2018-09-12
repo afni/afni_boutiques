@@ -1,0 +1,51 @@
+{
+    "command-line": "3dNormalizer [SAMPLE] [INPUT] [MASK] [PREFIX]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-sample",
+            "description": "Read dataset 'sss' as the sample.  MANDATORY",
+            "id": "SAMPLE",
+            "name": "SAMPLE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAMPLE]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "Read dataset 'iii' as the input.   MANDATORY",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-mask",
+            "description": "Read dataset 'iii' as the mask.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use 'ppp' for the output datset prefix.  Currently highly experimental! -- Zhark the nonGaussian",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

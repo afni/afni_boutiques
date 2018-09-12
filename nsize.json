@@ -1,0 +1,31 @@
+{
+    "command-line": "nsize [IMAGE_IN] [IMAGE_OUT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "description": "NA",
+            "id": "image_in",
+            "name": "image_in",
+            "optional": false,
+            "type": "String",
+            "value-key": "[IMAGE_IN]"
+        },
+        {
+            "description": "NA",
+            "id": "image_out",
+            "name": "image_out",
+            "optional": false,
+            "type": "String",
+            "value-key": "[IMAGE_OUT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,69 @@
+{
+    "command-line": "3dTORTOISEtoHere [DT_TORT] [PREFIX] [FLIP_X] [FLIP_Y] [FLIP_Z] [SCALE_FAC]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-dt_tort",
+            "description": "iffusion tensor file, which should have six bricks of DT components ordered in the TORTOISE manner, i.e., diagonals first: Dxx,Dyy,Dzz,Dxy,Dxz,Dyz.",
+            "id": "DT_TORT",
+            "name": "DT_TORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DT_TORT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "utput file name prefix. Will have N+1 bricks when GRADFILE has N rows of gradients.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-flip_x",
+            "description": "hange sign of first element of (inner) eigenvectors.",
+            "id": "FLIP_X",
+            "name": "FLIP_X",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_X]"
+        },
+        {
+            "command-line-flag": "-flip_y",
+            "description": "hange sign of second element of (inner) eigenvectors.",
+            "id": "FLIP_Y",
+            "name": "FLIP_Y",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_Y]"
+        },
+        {
+            "command-line-flag": "-flip_z",
+            "description": "hange sign of third element of (inner) eigenvectors. -> Only a single flip would ever be necessary; the combination of any two flips is mathematically equivalent to the sole application of the remaining one. Normally, it is the *gradients* that are flipped, not the DT, but if, for example, necessary files are missing, then one can apply the requisite changes here.",
+            "id": "FLIP_Z",
+            "name": "FLIP_Z",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FLIP_Z]"
+        },
+        {
+            "command-line-flag": "-scale_fac",
+            "description": "ptional switch to rescale the DT elements, dividing by a number X>0.  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  + EXAMPLE: 3dTORTOISEtoHere          \\ -dt_tort DTI/DT_DT+orig   \\ -scale_fac 1000           \\ -prefix AFNI_DT  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  If you use this program, please reference the introductory/description paper for the FATCAT toolbox: Taylor PA, Saad ZS (2013).  FATCAT: (An Efficient) Functional And Tractographic Connectivity Analysis Toolbox. Brain Connectivity 3(5):523-535. ____________________________________________________________________________",
+            "id": "SCALE_FAC",
+            "name": "SCALE_FAC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCALE_FAC]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

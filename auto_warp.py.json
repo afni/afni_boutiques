@@ -1,0 +1,285 @@
+{
+    "command-line": "auto_warp.py [SKULL_STRIP_INPUT] [BASE] [INPUT] [HELP] [QBLUR] [QWORKHARD] [QW_OPTS] [KEEP_RM_FILES] [PREP_ONLY] [LIMITED_HELP] [OPTION_HELP] [VERSION] [VER] [VERB] [SAVE_SCRIPT] [SKIP_AFFINE] [SKULL_STRIP_BASE] [EX_MODE] [OVERWRITE] [SUFFIX] [CHILD_ANAT] [WARP_DXYZ] [AFFINE_DXYZ] [AFFINE_INPUT_XMAT] [SMOOTH_ANAT] [SMOOTH_BASE] [UNIFIZE_INPUT] [OUTPUT_DIR] [FOLLOWERS] [AFFINE_FOLLOWERS_XMAT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-skull_strip_input",
+            "description": "-skull_strip_input yes  --------------------------------------------- REQUIRED OPTIONS:",
+            "id": "SKULL_STRIP_INPUT",
+            "name": "SKULL_STRIP_INPUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKULL_STRIP_INPUT]"
+        },
+        {
+            "command-line-flag": "-base",
+            "description": "name of reference or template volume",
+            "id": "BASE",
+            "name": "BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BASE]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "name of dataset to be registered  MAJOR OPTIONS:",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "this help message  OTHER OPTIONS:",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-qblur",
+            "description": "specify 3dQwarp blurs for base and source volumes",
+            "id": "QBLUR",
+            "name": "QBLUR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QBLUR]"
+        },
+        {
+            "command-line-flag": "-qworkhard",
+            "description": "set the two values for 3dQwarp's -workhard option",
+            "id": "QWORKHARD",
+            "name": "QWORKHARD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QWORKHARD]"
+        },
+        {
+            "command-line-flag": "-qw_opts",
+            "description": "-qw_opts 'OPTS': Pass all of OPTS as extra options directly to 3dQwarp  A full list of options for auto_warp.py:  -base use:                Template volume. -input use:                dataset to be aligned to the template",
+            "id": "QW_OPTS",
+            "name": "QW_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[QW_OPTS]"
+        },
+        {
+            "command-line-flag": "-keep_rm_files",
+            "description": "-keep_rm_files use:                Don't delete any of the temporary files created here",
+            "id": "KEEP_RM_FILES",
+            "name": "KEEP_RM_FILES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_RM_FILES]"
+        },
+        {
+            "command-line-flag": "-prep_only",
+            "description": "-prep_only use:                Do preprocessing steps only without alignment -help use:                The main help describing this program with options",
+            "id": "PREP_ONLY",
+            "name": "PREP_ONLY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREP_ONLY]"
+        },
+        {
+            "command-line-flag": "-limited_help",
+            "description": "-limited_help use:                The main help without all available options",
+            "id": "LIMITED_HELP",
+            "name": "LIMITED_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LIMITED_HELP]"
+        },
+        {
+            "command-line-flag": "-option_help",
+            "description": "-option_help use:                Help for all available options",
+            "id": "OPTION_HELP",
+            "name": "OPTION_HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OPTION_HELP]"
+        },
+        {
+            "command-line-flag": "-version",
+            "description": "-version use:                Show version number and exit",
+            "id": "VERSION",
+            "name": "VERSION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERSION]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "-ver use:                Show version number and exit",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "-verb use:                Be verbose in messages and options",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-save_script",
+            "description": "-save_script use:                save executed script in given file",
+            "id": "SAVE_SCRIPT",
+            "name": "SAVE_SCRIPT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SAVE_SCRIPT]"
+        },
+        {
+            "command-line-flag": "-skip_affine",
+            "description": "-skip_affine use:                Skip the affine registration process Equivalent to -affine_input_xmat ID (apply identity transformation)  allowed:            yes, no default:            no",
+            "id": "SKIP_AFFINE",
+            "name": "SKIP_AFFINE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKIP_AFFINE]"
+        },
+        {
+            "command-line-flag": "-skull_strip_base",
+            "description": "-skull_strip_base use:                Do not skullstrip base/template dataset allowed:            yes, no default:            no",
+            "id": "SKULL_STRIP_BASE",
+            "name": "SKULL_STRIP_BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKULL_STRIP_BASE]"
+        },
+        {
+            "command-line-flag": "-ex_mode",
+            "description": "-ex_mode use:                Command execution mode. quiet: execute commands quietly echo: echo commands executed dry_run: only echo commands  allowed:            quiet, echo, dry_run, script default:            script",
+            "id": "EX_MODE",
+            "name": "EX_MODE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EX_MODE]"
+        },
+        {
+            "command-line-flag": "-overwrite",
+            "description": "-overwrite use:                Overwrite existing files",
+            "id": "OVERWRITE",
+            "name": "OVERWRITE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OVERWRITE]"
+        },
+        {
+            "command-line-flag": "-suffix",
+            "description": "-suffix default:            _al",
+            "id": "SUFFIX",
+            "name": "SUFFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUFFIX]"
+        },
+        {
+            "command-line-flag": "-child_anat",
+            "description": "-child_anat use:                Names of child anatomical datasets -qblur use:                3dQwarp base and source blurs (FWHM)",
+            "id": "CHILD_ANAT",
+            "name": "CHILD_ANAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CHILD_ANAT]"
+        },
+        {
+            "command-line-flag": "-warp_dxyz",
+            "description": "-warp_dxyz use:                Resolution used for computing warp (cubic only)  default:            [0.0]",
+            "id": "WARP_DXYZ",
+            "name": "WARP_DXYZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WARP_DXYZ]"
+        },
+        {
+            "command-line-flag": "-affine_dxyz",
+            "description": "-affine_dxyz use:                Resolution used for computing initial transform (cubic only)  default:            [0.0]",
+            "id": "AFFINE_DXYZ",
+            "name": "AFFINE_DXYZ",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFFINE_DXYZ]"
+        },
+        {
+            "command-line-flag": "-affine_input_xmat",
+            "description": "-affine_input_xmat use:                Affine transform to put input in standard space. Special values are: 'AUTO' to use @auto_tlrc 'ID' to do nothing 'FILE.1D' for a pre-computed matrix FILE.1D will get applied to the input before Qwarping  default:            AUTO",
+            "id": "AFFINE_INPUT_XMAT",
+            "name": "AFFINE_INPUT_XMAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFFINE_INPUT_XMAT]"
+        },
+        {
+            "command-line-flag": "-smooth_anat",
+            "description": "-smooth_anat use:                Smooth anatomy before registration",
+            "id": "SMOOTH_ANAT",
+            "name": "SMOOTH_ANAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SMOOTH_ANAT]"
+        },
+        {
+            "command-line-flag": "-smooth_base",
+            "description": "-smooth_base use:                Smooth template before registration",
+            "id": "SMOOTH_BASE",
+            "name": "SMOOTH_BASE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SMOOTH_BASE]"
+        },
+        {
+            "command-line-flag": "-unifize_input",
+            "description": "-unifize_input use:                To unifize or not unifize the input  allowed:            yes, no default:            y e s",
+            "id": "UNIFIZE_INPUT",
+            "name": "UNIFIZE_INPUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNIFIZE_INPUT]"
+        },
+        {
+            "command-line-flag": "-output_dir",
+            "description": "-output_dir use:                Set directory for output datasets  default:            awpy",
+            "id": "OUTPUT_DIR",
+            "name": "OUTPUT_DIR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTPUT_DIR]"
+        },
+        {
+            "command-line-flag": "-followers",
+            "description": "-followers use:                Specify follower datasets",
+            "id": "FOLLOWERS",
+            "name": "FOLLOWERS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FOLLOWERS]"
+        },
+        {
+            "command-line-flag": "-affine_followers_xmat",
+            "description": "-affine_followers_xmat use:                Specify follower datasets' affine transforms",
+            "id": "AFFINE_FOLLOWERS_XMAT",
+            "name": "AFFINE_FOLLOWERS_XMAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AFFINE_FOLLOWERS_XMAT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

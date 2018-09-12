@@ -1,0 +1,78 @@
+{
+    "command-line": "@fat_tract_colorize [IN_FA] [IN_V1] [IN_TRACTS] [PREFIX] [IN_ULAY] [NO_VIEW] [ONLY_VIEW]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-in_fa",
+            "description": "A values of the DT fitting, which can be used to modulate the brightness of the RGB coloration.",
+            "id": "IN_FA",
+            "name": "IN_FA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_FA]"
+        },
+        {
+            "command-line-flag": "-in_v1",
+            "description": "irst eigenvector of the DT fitting, such as by 3dDWItoDT. The volume is supposed to be a unit vector with 3 components. The magnitudes of the components are each between [0, 1], so that (|x|, |y|, |z|) -> gets mapped to (R, G, B).",
+            "id": "IN_V1",
+            "name": "IN_V1",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_V1]"
+        },
+        {
+            "command-line-flag": "-in_tracts",
+            "description": "he INDIMAP or PAIRMAP file output by 3dTrackID, specifying the subbrick as well, if there are >1 in it (you likely need to put the subbrick in quotes, like NAME_INDIMAP+orig'[0]').",
+            "id": "IN_TRACTS",
+            "name": "IN_TRACTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_TRACTS]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "refix of all output files.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-in_ulay",
+            "description": "ptional ability load in a separate data set to underlay in both the AFNI SUMA viewers (as '-vol ...'  slices in SUMA).  For example, you might want to to load in an anatomical volume. Default is to use the FA data set.",
+            "id": "IN_ULAY",
+            "name": "IN_ULAY",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IN_ULAY]"
+        },
+        {
+            "command-line-flag": "-no_view",
+            "description": "witch to turn off the auto-running of AFNI_SUMA commands to view the output immediately",
+            "id": "NO_VIEW",
+            "name": "NO_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_VIEW]"
+        },
+        {
+            "command-line-flag": "-only_view",
+            "description": "witch to *only* view the data with AFNI+SUMA. This assumes that you have run the command at least once previously, so that there be data to view.  -------------------------------------------------------------------------  EXAMPLE:  @fat_tract_colorize -in_fa DTI/DT_FA+orig.                      \\ -in_v1 DTI/DT_V1+orig.                      \\ -in_tracts DTI/o.NET_000_PAIRMAP+orig'[0]'  \\ -prefix RGB  -------------------------------------------------------------------------",
+            "id": "ONLY_VIEW",
+            "name": "ONLY_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ONLY_VIEW]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

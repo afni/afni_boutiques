@@ -1,0 +1,42 @@
+{
+    "command-line": "inflate_compare [SPEC] [HEMI] [BOX]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-spec",
+            "description": "-spec <Spec file>",
+            "id": "SPEC",
+            "name": "SPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEC]"
+        },
+        {
+            "command-line-flag": "-hemi",
+            "description": "-hemi <left or right>: specify the hemisphere being processed  [-prefix <fileprefix>]: Prefix for distance and node color output files. This option is optional. Existing file will not be overwritten.",
+            "id": "HEMI",
+            "name": "HEMI",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HEMI]"
+        },
+        {
+            "command-line-flag": "-box",
+            "description": "-box <wX wY wZ>: restrict intersection computations for nodes contained in a box of w* dimensions. This might speed things up sometimes if the box dimension needs not be large. This option is pretty much useless.   For more help: https://afni.nimh.nih.gov/pub/dist/doc/htmldoc/SUMA/main_toc.html   If you can't get help here, please get help somewhere.   Compile Date: Sep  7 2018   Shruti Japee LBC/NIMH/NIH shruti@codon.nih.gov Ziad Saad SSSC/NIMH/NIH saadz@mail.nih.gov",
+            "id": "BOX",
+            "name": "BOX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BOX]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

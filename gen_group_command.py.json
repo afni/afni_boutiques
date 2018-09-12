@@ -1,0 +1,204 @@
+{
+    "command-line": "gen_group_command.py [DSETS] [AMINUSB] [SET_LABELS] [OPTIONS] [DSET_INDEX0_LIST] [DSET_INDEX1_LIST] [FACTORS] [HELP] [HIST] [SHOW_VALID_OPTS] [VER] [COMMAND] [TYPE] [KEEP_DIRENT_PRE] [PREFIX] [SUBJ_PREFIX] [SUBJ_SUFFIX] [SUBS_BETAS] [SUBS_TSTATS] [VERB] [WRITE_SCRIPT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-dsets",
+            "description": "-dsets stats*+tlrc.HEAD  or when the subject IDs are the varying part of the directory names (while the actual file names are identical), as in:  gen_group_command.py -command 3dttest++        \\",
+            "id": "DSETS",
+            "name": "DSETS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSETS]"
+        },
+        {
+            "command-line-flag": "-AminusB",
+            "description": "-AminusB or -BminusA, which is always included in the resulting command if there are 2 sets of data.  This program will always supply one of -AminusB or -BminusA, to be clear.  If the user does not provide one, -AminusB will be used.  Note also that 3dttest uses sub-brick labels which should make this clear.  1. The most simple case, providing just the datasets.  The subject IDs will be extracted from the dataset names.  Since no sub-bricks are provided, the betas will default to sub-brick 0 and the test will be the mean compared with 0.  gen_group_command.py -command 3dttest++        \\",
+            "id": "AMINUSB",
+            "name": "AMINUSB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AMINUSB]"
+        },
+        {
+            "command-line-flag": "-set_labels",
+            "description": "-set_labels Vrel Arel     \\ -subs_betas 'Vrel#0_Coef' 'Arel#0_Coef'  3. Request a paired t-test and apply a mask.  gen_group_command.py -command 3dttest++                         \\ -write_script cmd.tt++.3                   \\ -prefix tt++.3_V-A_paired                  \\",
+            "id": "SET_LABELS",
+            "name": "SET_LABELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SET_LABELS]"
+        },
+        {
+            "command-line-flag": "-options",
+            "description": "-options                                   \\ -paired -mask mask+tlrc  4. Exclude voxels that are identically zero across more than 20% of the input datasets (presumably masked at the single subject level). Convert output directly to z, since the DOF will vary across space.  gen_group_command.py -command 3dttest++                         \\ -write_script cmd.tt++.4                   \\ -prefix tt++.4_V-A_zskip                   \\",
+            "id": "OPTIONS",
+            "name": "OPTIONS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OPTIONS]"
+        },
+        {
+            "command-line-flag": "-dset_index0_list",
+            "description": "-dset_index0_list '0..3,5'     \\",
+            "id": "DSET_INDEX0_LIST",
+            "name": "DSET_INDEX0_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSET_INDEX0_LIST]"
+        },
+        {
+            "command-line-flag": "-dset_index1_list",
+            "description": "-dset_index1_list).  # assume these 9 subjects represent all under the 'data' dir set subjects = ( AA BB CC DD EE FF GG HH II )  a. Do a simple test on subjects AA, HH, II and FF.  Indices are: 0-based: 0, 7, 8, 5 (AA=0, ..., II=8) 1-based: 1, 8, 9, 6 (AA=1, ..., II=9)  gen_group_command.py -command 3dMEMA              \\ -write_script cmd.mema.3a    \\",
+            "id": "DSET_INDEX1_LIST",
+            "name": "DSET_INDEX1_LIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSET_INDEX1_LIST]"
+        },
+        {
+            "command-line-flag": "-factors",
+            "description": "-factors 2 3  2. 3dANOVA3 -type 4  Get more useful: - apply with an input data directory - specify a script name - specify a dataset prefix for the 3dANOVA3 command - specify simple contrasts  gen_group_command.py -command 3dANOVA3                          \\ -write_script cmd.A3.2                                       \\ -prefix outset.A3.2                                          \\",
+            "id": "FACTORS",
+            "name": "FACTORS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[FACTORS]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "show module history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-show_valid_opts",
+            "description": "list valid options",
+            "id": "SHOW_VALID_OPTS",
+            "name": "SHOW_VALID_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_VALID_OPTS]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "show current version  required parameters:",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-command",
+            "description": "resulting command, such as 3dttest++  The current list of group commands is: 3dttest++, 3dMEMA, 3dANOVA2, 3dANOVA3.  3dANOVA2:    applied as -type 3 only (factor x subjects) 3dANOVA3:    -type 4: condition x condition x subject (see -factors option)",
+            "id": "COMMAND",
+            "name": "COMMAND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COMMAND]"
+        },
+        {
+            "command-line-flag": "-type",
+            "description": "group x condition x subject",
+            "id": "TYPE",
+            "name": "TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TYPE]"
+        },
+        {
+            "command-line-flag": "-keep_dirent_pre",
+            "description": "keep directory entry prefix  Akin to -subj_prefix, this flag expands the subject prefix list to include everything up to the beginning of the directory names (at the level that varies across input datasets).  Example 1: datasets: subj.FP/betas+tlrc   subj.FR/betas+tlrc   subj.FT/betas+tlrc subj.FV/betas+tlrc   subj.FW/betas+tlrc   subj.FX/betas+tlrc subj.FY/betas+tlrc   subj.FZ/betas+tlrc  The default subject IDs would be: P R T V W X Y Z  When using -keep_dirent_pre, subject IDs would be: subj.FP subj.FR subj.FT subj.FV subj.FW subj.FX subj.FY subj.FZ  Note that these IDs come at the directory level, since the dataset names do not vary.  Example 2: datasets: subj.FP/OLSQ.FP.betas+tlrc   subj.FR/OLSQ.FR.betas+tlrc subj.FT/OLSQ.FT.betas+tlrc   subj.FV/OLSQ.FV.betas+tlrc subj.FW/OLSQ.FW.betas+tlrc   subj.FX/OLSQ.FX.betas+tlrc subj.FY/OLSQ.FY.betas+tlrc   subj.FZ/OLSQ.FZ.betas+tlrc  The default subject IDs would be: P R T V W X Y Z  When using -keep_dirent_pre, subject IDs would be: OLSQ.FP OLSQ.FR OLSQ.FT OLSQ.FV OLSQ.FW OLSQ.FX OLSQ.FY OLSQ.FZ  Note that these IDs come at the dataset level, since the dataset names vary.",
+            "id": "KEEP_DIRENT_PRE",
+            "name": "KEEP_DIRENT_PRE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KEEP_DIRENT_PRE]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "apply as COMMAND -prefix",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-subj_prefix",
+            "description": "prefix for subject names (3dMEMA)",
+            "id": "SUBJ_PREFIX",
+            "name": "SUBJ_PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUBJ_PREFIX]"
+        },
+        {
+            "command-line-flag": "-subj_suffix",
+            "description": "suffix for subject names (3dMEMA)",
+            "id": "SUBJ_SUFFIX",
+            "name": "SUBJ_SUFFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUBJ_SUFFIX]"
+        },
+        {
+            "command-line-flag": "-subs_betas",
+            "description": "sub-bricks for beta weights (or similar)  If this option is not given, sub-brick 0 will be used.  The entries can be either numbers or labels (which should match what is seen in the afni GUI, for example).  If there are 2 -set_labels, there should be 2 betas (or no option).",
+            "id": "SUBS_BETAS",
+            "name": "SUBS_BETAS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUBS_BETAS]"
+        },
+        {
+            "command-line-flag": "-subs_tstats",
+            "description": "sub-bricks for t-stats (3dMEMA)  If this option is not given, sub-brick 1 will be used.  The entries can be either numbers or labels (which should match what is seen in the afni GUI, for example).  This option applies only to 3dMEMA currently, and in that case, its use should match that of -subs_betas.  See also -subs_betas.",
+            "id": "SUBS_TSTATS",
+            "name": "SUBS_TSTATS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SUBS_TSTATS]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set the verbosity level",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-write_script",
+            "description": "write command script to FILE_NAME  If this option is given, the command will be written to the specified file name.  Otherwise, it will be written to the terminal window.  ----------------------------------------------------------------------------- R Reynolds    October 2010 =============================================================================",
+            "id": "WRITE_SCRIPT",
+            "name": "WRITE_SCRIPT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WRITE_SCRIPT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

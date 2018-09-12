@@ -1,0 +1,95 @@
+{
+    "command-line": "dicom_hdr [HEX] [NONAME] [SEXINFO] [MULFRAM] [V] [NO_LENGTH] [SLICE_TIMES] [SLICE_TIMES_VERB] [FNAME]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-hex",
+            "description": "Include hexadecimal printout for integer values.",
+            "id": "HEX",
+            "name": "HEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HEX]"
+        },
+        {
+            "command-line-flag": "-noname",
+            "description": "Don't include element names in the printout.",
+            "id": "NONAME",
+            "name": "NONAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NONAME]"
+        },
+        {
+            "command-line-flag": "-sexinfo",
+            "description": "Dump Siemens EXtra INFO text (0029 1020), if present (can be VERY lengthy).",
+            "id": "SEXINFO",
+            "name": "SEXINFO",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SEXINFO]"
+        },
+        {
+            "command-line-flag": "-mulfram",
+            "description": "Dump multi-frame information, if present (1 line per frame, plus an XML-style header/footer) [-mulfram also implies -noname]",
+            "id": "MULFRAM",
+            "name": "MULFRAM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MULFRAM]"
+        },
+        {
+            "command-line-flag": "-v",
+            "description": "Dump n words of binary data also.",
+            "id": "V",
+            "name": "V",
+            "optional": true,
+            "type": "String",
+            "value-key": "[V]"
+        },
+        {
+            "command-line-flag": "-no_length",
+            "description": "Skip lengths and offsets (helps diffs).",
+            "id": "NO_LENGTH",
+            "name": "NO_LENGTH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_LENGTH]"
+        },
+        {
+            "command-line-flag": "-slice_times",
+            "description": "Show slice times from Siemens mosaic images.",
+            "id": "SLICE_TIMES",
+            "name": "SLICE_TIMES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SLICE_TIMES]"
+        },
+        {
+            "command-line-flag": "-slice_times_verb",
+            "description": "Same, but be more verbose about it.  Based on program dcm_dump_file from the RSNA, developed at the Mallinckrodt Institute of Radiology.  See the source code file mri_dicom_hdr.c for their Copyright and license.  SOME SAMPLE OUTPUT LINES:  0028 0010      2 [1234   ] //              IMG Rows// 512 0028 0011      2 [1244   ] //           IMG Columns// 512 0028 0030     18 [1254   ] //     IMG Pixel Spacing//0.488281\\0.488281 0028 0100      2 [1280   ] //    IMG Bits Allocated// 16 0028 0101      2 [1290   ] //       IMG Bits Stored// 12 0028 0102      2 [1300   ] //          IMG High Bit// 11  * The first 2 numbers on each line are the DICOM group and element tags, in hexadecimal. * The next number is the number of data bytes, in decimal. * The next number [in brackets] is the offset in the file of the data, in decimal.  This is where the data bytes start, and does not include the tag, Value Representation, etc. * If -noname is NOT given, then the string in the '// ... //' region is the standard DICOM dictionary name for this data element.  If this string is blank, then this element isn't in the dictionary (e.g., is a private tag, or an addition to DICOM that the program doesn't know about, etc.). * The value after the last '//' is the value of the data in the element. * In the example above, we have a 512x512 image with 0.488281 mm pixels, with 12 bits (stored in 16 bits) per pixel. * For vastly more detail on DICOM standard, you can start with the documents at ftp://afni.nimh.nih.gov/dicom/ (1000+ pages of PDF)! * Also see program dicom_hinfo -- which will print out just a few user-chosen values for each input file.  It can be used in a script to sort through a lot of files at once.",
+            "id": "SLICE_TIMES_VERB",
+            "name": "SLICE_TIMES_VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SLICE_TIMES_VERB]"
+        },
+        {
+            "description": "NA",
+            "id": "fname",
+            "name": "fname",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FNAME]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

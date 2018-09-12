@@ -1,0 +1,149 @@
+{
+    "command-line": "3dFWHMx [MASK] [AUTOMASK] [INPUT] [DSET] [DEMED] [UNIF] [DETREND] [DETPREFIX] [GEOM] [ARITH] [COMBINE] [OUT] [COMPAT] [ACF] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-mask",
+            "description": "Use only voxels that are nonzero in dataset 'mmm'.",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-automask",
+            "description": "Compute a mask from THIS dataset, a la 3dAutomask. [Default = use all voxels]",
+            "id": "AUTOMASK",
+            "name": "AUTOMASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTOMASK]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": " *OR*     }= Use dataset 'ddd' as the input.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-dset",
+            "description": "",
+            "id": "DSET",
+            "name": "DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSET]"
+        },
+        {
+            "command-line-flag": "-demed",
+            "description": "If the input dataset has more than one sub-brick (e.g., has a time axis), then subtract the median of each voxel's time series before processing FWHM. This will tend to remove intrinsic spatial structure and leave behind the noise. [Default = don't do this]",
+            "id": "DEMED",
+            "name": "DEMED",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEMED]"
+        },
+        {
+            "command-line-flag": "-unif",
+            "description": "If the input dataset has more than one sub-brick, then normalize each voxel's time series to have the same MAD before processing FWHM.  Implies -demed. [Default = don't do this]",
+            "id": "UNIF",
+            "name": "UNIF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UNIF]"
+        },
+        {
+            "command-line-flag": "-detrend",
+            "description": "-detrend [q]= Instead of demed (0th order detrending), detrend to order 'q'.  If q is not given, the program picks q=NT/30.",
+            "id": "DETREND",
+            "name": "DETREND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DETREND]"
+        },
+        {
+            "command-line-flag": "-detprefix",
+            "description": "Save the detrended file into a dataset with prefix 'd'. Used mostly to figure out what the hell is going on, when strange results transpire.  >>>>>",
+            "id": "DETPREFIX",
+            "name": "DETPREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DETPREFIX]"
+        },
+        {
+            "command-line-flag": "-geom",
+            "description": "If the input dataset has more than one sub-brick, *OR*     }= compute the final estimate as the geometric mean",
+            "id": "GEOM",
+            "name": "GEOM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GEOM]"
+        },
+        {
+            "command-line-flag": "-arith",
+            "description": "or the arithmetic mean of the individual sub-brick FWHM estimates. [Default = -geom, for no good reason]  >>>>>",
+            "id": "ARITH",
+            "name": "ARITH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ARITH]"
+        },
+        {
+            "command-line-flag": "-combine",
+            "description": "combine the final measurements along each axis into one result  >>>>>",
+            "id": "COMBINE",
+            "name": "COMBINE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COMBINE]"
+        },
+        {
+            "command-line-flag": "-out",
+            "description": "Write output to file 'ttt' (3 columns of numbers). If not given, the sub-brick outputs are not written. Use '-out -' to write to stdout, if desired.  >>>>>",
+            "id": "OUT",
+            "name": "OUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT]"
+        },
+        {
+            "command-line-flag": "-compat",
+            "description": "Be compatible with the older 3dFWHM, where if a voxel is in the mask, then its neighbors are used for differencing, even if they are not themselves in the mask.  This was an error; now, neighbors must also be in the mask to be used in the differencing. Use '-compat' to use the older method. ** NOT RECOMMENDED except for comparison purposes! **",
+            "id": "COMPAT",
+            "name": "COMPAT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[COMPAT]"
+        },
+        {
+            "command-line-flag": "-ACF",
+            "description": "-ACF [anam] = ** new option Nov 2015 ** *or*         The '-ACF' option computes the spatial autocorrelation",
+            "id": "ACF",
+            "name": "ACF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ACF]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

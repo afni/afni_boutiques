@@ -1,0 +1,141 @@
+{
+    "command-line": "gen_epi_review.py [WINDOWS] [HELP] [HIST] [SHOW_VALID_OPTS] [VER] [DSETS] [SCRIPT] [VERB] [IM_SIZE] [IM_XOFF] [IM_YOFF] [GR_SIZE] [GR_XOFF] [GR_YOFF]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-windows",
+            "description": "-windows sagittal axial coronal                         \\ -script @review_epi_windows  4. specify the graph size and position (can do the same for image windows)  gen_epi_review.py -dsets pb00.sb23.blk.r*.tcat+orig.HEAD        \\ -gr_size 600 450 -gr_xoff 100 -gr_yoff 200              \\ -script @review_epi_posn  ---------------------------------------------------------------------- OPTIONS: ---------------------------------------------------------------------- informational arguments:",
+            "id": "WINDOWS",
+            "name": "WINDOWS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[WINDOWS]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "display this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "display the modification history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-show_valid_opts",
+            "description": "display all valid options (short format)",
+            "id": "SHOW_VALID_OPTS",
+            "name": "SHOW_VALID_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_VALID_OPTS]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "display the version number  ---------------------------------------- required argument:",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-dsets",
+            "description": "-dsets dset1 dset2 ...      : specify input datasets for processing  e.g. -dsets epi_r*+orig.HEAD  This option is used to provide a list of datasets to be processed in the resulting script.  ---------------------------------------- optional arguments:",
+            "id": "DSETS",
+            "name": "DSETS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSETS]"
+        },
+        {
+            "command-line-flag": "-script",
+            "description": "specify the name of the generated script  e.g. -script review.epi.subj23  By default, the script name will be '@' followed by the name used for the '-generate' option.  So when using '-generate review_epi_data', the default script name will be '@review_epi_data'.  This '-script' option can be used to override the default.",
+            "id": "SCRIPT",
+            "name": "SCRIPT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCRIPT]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "specify a verbosity level  e.g. -verb 3  Use this option to print extra information to the screen",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-im_size",
+            "description": "set image dimensions, in pixels  e.g. -im_size 300 300  Use this option to alter the size of the image windows.  This option takes 2 parameters, the pixels in the X and Y directions.",
+            "id": "IM_SIZE",
+            "name": "IM_SIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IM_SIZE]"
+        },
+        {
+            "command-line-flag": "-im_xoff",
+            "description": "set the X-offset for the image, in pixels  e.g. -im_xoff 420  Use this option to alter the placement of images along the x-axis. Note that the x-axis is across the screen, from left to right.",
+            "id": "IM_XOFF",
+            "name": "IM_XOFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IM_XOFF]"
+        },
+        {
+            "command-line-flag": "-im_yoff",
+            "description": "set the Y-offset for the image, in pixels  e.g. -im_xoff 400  Use this option to alter the placement of images along the y-axis. Note that the y-axis is down the screen, from top to bottom.",
+            "id": "IM_YOFF",
+            "name": "IM_YOFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IM_YOFF]"
+        },
+        {
+            "command-line-flag": "-gr_size",
+            "description": "set graph dimensions, in pixels  e.g. -gr_size 400 300  Use this option to alter the size of the graph window.  This option takes 2 parameters, the pixels in the X and Y directions.",
+            "id": "GR_SIZE",
+            "name": "GR_SIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GR_SIZE]"
+        },
+        {
+            "command-line-flag": "-gr_xoff",
+            "description": "set the X-offset for the graph, in pixels  e.g. -gr_xoff 0  Use this option to alter the placement of the graph along the x-axis. Note that the x-axis is across the screen, from left to right.",
+            "id": "GR_XOFF",
+            "name": "GR_XOFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GR_XOFF]"
+        },
+        {
+            "command-line-flag": "-gr_yoff",
+            "description": "set the Y-offset for the graph, in pixels  e.g. -gr_xoff 400  Use this option to alter the placement of the graph along the y-axis. Note that the y-axis is down the screen, from top to bottom.   - R Reynolds  June 27, 2008 ===========================================================================",
+            "id": "GR_YOFF",
+            "name": "GR_YOFF",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GR_YOFF]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

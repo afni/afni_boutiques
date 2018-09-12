@@ -1,0 +1,41 @@
+{
+    "command-line": "@2dwarper.Allin [MASK] [PREFIX] [INPUT_PREFIX]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-mask",
+            "description": "provide the prefix of an existing mask dataset",
+            "id": "MASK",
+            "name": "MASK",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "provide the prefix for output datasets",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "description": "NA",
+            "id": "INPUT_PREFIX",
+            "name": "INPUT_PREFIX",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT_PREFIX]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

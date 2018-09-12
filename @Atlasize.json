@@ -1,0 +1,175 @@
+{
+    "command-line": "@Atlasize [DSET] [SPACE] [LAB_FILE] [LAB_FILE_DELIM] [ATLAS_TYPE] [ATLAS_DESCRIPTION] [ATLAS_NAME] [AUTO_BACKUP] [CENTERS] [SKIP_NOVOXELS] [H_WEB] [HWEB] [H_VIEW] [HVIEW] [ALL_OPTS] [H_FIND] [<-DSET] [DSET>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-dset",
+            "description": "Make DSET an atlas",
+            "id": "DSET",
+            "name": "DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DSET]"
+        },
+        {
+            "command-line-flag": "-space",
+            "description": "Mark DSET as being in space SPACE",
+            "id": "SPACE",
+            "name": "SPACE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPACE]"
+        },
+        {
+            "command-line-flag": "-lab_file",
+            "description": "Labels and keys are in text file FILE. cLAB is the index of column containing labels vVAL is the index of column containing keys (1st column is indexed at 0)",
+            "id": "LAB_FILE",
+            "name": "LAB_FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LAB_FILE]"
+        },
+        {
+            "command-line-flag": "-lab_file_delim",
+            "description": "Set column delimiter for -lab_file option Default is ' ' (space), but you can set your own. ';' for example. Note that the delimiter is passed directly to awk's -F",
+            "id": "LAB_FILE_DELIM",
+            "name": "LAB_FILE_DELIM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[LAB_FILE_DELIM]"
+        },
+        {
+            "command-line-flag": "-atlas_type",
+            "description": "Set the atlas type where TP is 'S' for subject-based and 'G' for group-based atlases, respectively. A subject-based atlas will remain in the current directory. Its entry is added to the atlas file SessionAtlases.niml. A group atlas will get copied to your custom atlas directory. If you do not have one, the script will help you create it. The entry for a group atlas is made in CustomAtlases.niml which will reside in your custom atlases directory specified by environment variable AFNI_SUPP_ATLAS_DIR which, if not set already can easily be added with something like: @AfniEnv -set AFNI_SUPP_ATLAS_DIR ~/CustomAtlases",
+            "id": "ATLAS_TYPE",
+            "name": "ATLAS_TYPE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ATLAS_TYPE]"
+        },
+        {
+            "command-line-flag": "-atlas_description",
+            "description": "Something with which to describe atlas Default is 'My Atlas'",
+            "id": "ATLAS_DESCRIPTION",
+            "name": "ATLAS_DESCRIPTION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ATLAS_DESCRIPTION]"
+        },
+        {
+            "command-line-flag": "-atlas_name",
+            "description": "Something by which to call for the atlas. Default name is based on prefix of DSET.",
+            "id": "ATLAS_NAME",
+            "name": "ATLAS_NAME",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ATLAS_NAME]"
+        },
+        {
+            "command-line-flag": "-auto_backup",
+            "description": "When using -atlas_type G, a copy of dset is made in your custom atlas directory. If the same dset with the same name exists already, this option will back it up and allow an overwrite. You could endup with a lot of backed volumes and niml files, so you might want to to cleanup now and then.",
+            "id": "AUTO_BACKUP",
+            "name": "AUTO_BACKUP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AUTO_BACKUP]"
+        },
+        {
+            "command-line-flag": "-centers",
+            "description": "Add center of mass coordinates to atlas",
+            "id": "CENTERS",
+            "name": "CENTERS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENTERS]"
+        },
+        {
+            "command-line-flag": "-skip_novoxels",
+            "description": "Skip regions without any voxels in the dataset  Global Help Options: --------------------",
+            "id": "SKIP_NOVOXELS",
+            "name": "SKIP_NOVOXELS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SKIP_NOVOXELS]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open webpage with help for this program",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "Same as -h_web",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open -help output in a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "Same as -hview",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "List all of the options for this script",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Search for lines containing WORD in -help output. Seach is approximate.  Examples: Say you have a dataset DSET with ROIs in it and that a text file named KEYS.txt contains the assignment of labels to integer keys: 1   Amygda 2   Hippo 5   Cerebellum .... You can turn DSET into an atlas which gets handled in a special manner in AFNI's interactive GUI and in whereami.  There are two classes of atlases: Single-subject atlases are ROIs dsets or parcellations like those created by freesurfer and handled in @SUMA_Make_Spec_FS, or perhaps ones you would create by drawing regions on the anatomy. Single-subject datasets and their accompanying SessionAtlases.niml file usually reside in that subject's directory.  Case 1, single-subject atlas: @Atlasize -space MNI -dset atlas_for_joe.nii \\ -lab_file keys.txt 1 0  Launching afni in that directory will now show atlas_for_joe.nii as an atlas: Special colors, labels appear next to voxel values, and in slice windows if you turn labels on (right click on gray scale, and set Labels menu) Whereami queries will also return results from the new atlas.  Case 1.1, dset is already an atlas but it is not in an atlas file and therefore is not visible from whereami. @Atlasize -dset atlas_for_joe.nii  Note: For NIFTI volumes, all changes are made in the header extension, so non-AFNI programs should not be bothered by this.  Case 2, Group-level atlases: These atlases are stored in your custom atlas directory (the scipt will help you create it), along with the CustomAtlases.niml file. If you have not set up your custom atlas directory, just run:  @AfniEnv -set AFNI_SUPP_ATLAS_DIR ~/MyCustomAtlases/  Then: @Atlasize -space MNI -dset atlas_for_all.nii \\ -lab_file keys.txt 1 0 -atlas_type G  In ~/MyCustomAtlases/ you will now find  atlas_for_all.nii along along with a modified CustomAtlases.niml file.  Launching afni from any directory will make atlas_for_all.nii available, in addition to the other atlases in afni's bin directory.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "description": "NA",
+            "id": "<-dset",
+            "name": "<-dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-DSET]"
+        },
+        {
+            "description": "NA",
+            "id": "DSET>",
+            "name": "DSET>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

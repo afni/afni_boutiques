@@ -1,0 +1,369 @@
+{
+    "command-line": "SurfClust [SPEC] [SURF_A] [I] [INPUT] [RMM] [THRESH_COL] [THRESH] [ATHRESH] [IR_RANGE] [EX_RANGE] [AMM2] [N] [PREFIX] [OUT_CLUSTERDSET] [OUT_ROIDSET] [PREPEND_NODE_INDEX] [OUT_FULLLIST] [SORT_NONE] [SORT_N_NODES] [SORT_AREA] [UPDATE] [NO_CENT] [CENT] [H] [HELP] [H_VIEW] [HVIEW] [H_WEB] [HWEB] [H_FIND] [H_RAW] [H_SPX] [H_ASPX] [ALL_OPTS] [PROGRAM] [TO] [PERFORM] [CLUSTERING] [ANALYSIS] [SURFACES.]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-spec",
+            "description": "The surface spec file.",
+            "id": "SPEC",
+            "name": "SPEC",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SPEC]"
+        },
+        {
+            "command-line-flag": "-surf_A",
+            "description": "The input surface name. or with:",
+            "id": "SURF_A",
+            "name": "SURF_A",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SURF_A]"
+        },
+        {
+            "command-line-flag": "-i",
+            "description": "With insurf being the full name of the surface.",
+            "id": "I",
+            "name": "I",
+            "optional": true,
+            "type": "String",
+            "value-key": "[I]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "-input inData.dset dcol_index: The input dataset and the index of the datacolumn to use (index 0 for 1st column). Values of 0 indicate inactive nodes.",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-rmm",
+            "description": "Maximum distance between an activated node and the cluster to which it belongs. Distance is measured on the surface's graph (mesh). If you want the distance to be in number of edges, set rad to -N for an N edge max distance. For example -rmm -2 means that nodes connected by 1 or two edges are in a cluster.  Optional Parameters:",
+            "id": "RMM",
+            "name": "RMM",
+            "optional": true,
+            "type": "String",
+            "value-key": "[RMM]"
+        },
+        {
+            "command-line-flag": "-thresh_col",
+            "description": "Index of thresholding column. Default is column 0.",
+            "id": "THRESH_COL",
+            "name": "THRESH_COL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THRESH_COL]"
+        },
+        {
+            "command-line-flag": "-thresh",
+            "description": "Apply thresholding prior to clustering. A node n is considered if thresh_col[n] >= tval.",
+            "id": "THRESH",
+            "name": "THRESH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[THRESH]"
+        },
+        {
+            "command-line-flag": "-athresh",
+            "description": "Apply absolute thresholding prior to clustering. A node n is considered if | thresh_col[n] | >= tval.",
+            "id": "ATHRESH",
+            "name": "ATHRESH",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ATHRESH]"
+        },
+        {
+            "command-line-flag": "-ir_range",
+            "description": "Apply thresholding in range. A node n is considered if thresh_col[n] >= R0 && thresh_col[n] <= R1",
+            "id": "IR_RANGE",
+            "name": "IR_RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[IR_RANGE]"
+        },
+        {
+            "command-line-flag": "-ex_range",
+            "description": "Apply thresholding outside of range. A node n is considered if thresh_col[n] < R0 || thresh_col[n] > R1",
+            "id": "EX_RANGE",
+            "name": "EX_RANGE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EX_RANGE]"
+        },
+        {
+            "command-line-flag": "-amm2",
+            "description": "Do not output results for clusters having an area less than minarea. If minarea < 0 AND -n is not set (or < 0) then minnodes = -minarea . See option -n below.",
+            "id": "AMM2",
+            "name": "AMM2",
+            "optional": true,
+            "type": "String",
+            "value-key": "[AMM2]"
+        },
+        {
+            "command-line-flag": "-n",
+            "description": "Do not output results for clusters having less nodes than minnodes. minnodes can get set with negative minarea above.",
+            "id": "N",
+            "name": "N",
+            "optional": true,
+            "type": "String",
+            "value-key": "[N]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Prefix for output. Default is the prefix of the input dataset. If this option is used, the cluster table is written to a file called OUTPREF_ClstTable_rXX_aXX.1D. Otherwise the table is written to stdout. You can specify the output format by adding extensions to OUTPREF. For example, OUTPREF.1D.dset will force the output to be in the .1D format. See ConvertDset for many more format options.",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-out_clusterdset",
+            "description": "Output a clustered version of inData.1D preserving only the values of nodes that belong to clusters that passed the rmm and amm2 conditions above. The clustered dset's prefix has _Clustered_rXX_aXX affixed to the OUTPREF",
+            "id": "OUT_CLUSTERDSET",
+            "name": "OUT_CLUSTERDSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_CLUSTERDSET]"
+        },
+        {
+            "command-line-flag": "-out_roidset",
+            "description": "Output an ROI dataset with the value at each node being the rank of its cluster. The ROI dataset's prefix has _ClstMsk_rXX_aXX affixed to the OUTPREF where XX represent the values for the the -rmm and -amm2 options respectively. The program will not overwrite pre-existing dsets.",
+            "id": "OUT_ROIDSET",
+            "name": "OUT_ROIDSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_ROIDSET]"
+        },
+        {
+            "command-line-flag": "-prepend_node_index",
+            "description": "Force the output dataset to have node indices in column 0 of output. Use this option if you are parsing .1D format datasets.",
+            "id": "PREPEND_NODE_INDEX",
+            "name": "PREPEND_NODE_INDEX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREPEND_NODE_INDEX]"
+        },
+        {
+            "command-line-flag": "-out_fulllist",
+            "description": "Output a value for all nodes of insurf. This option must be used in conjuction with -out_roidset and/or out_clusterdset. With this option, the output files might be mostly 0, if you have small clusters. However, you should use it if you are to maintain the same row-to-node correspondence across multiple datasets.",
+            "id": "OUT_FULLLIST",
+            "name": "OUT_FULLLIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUT_FULLLIST]"
+        },
+        {
+            "command-line-flag": "-sort_none",
+            "description": "No sorting of ROI clusters.",
+            "id": "SORT_NONE",
+            "name": "SORT_NONE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SORT_NONE]"
+        },
+        {
+            "command-line-flag": "-sort_n_nodes",
+            "description": "Sorting based on number of nodes in cluster.",
+            "id": "SORT_N_NODES",
+            "name": "SORT_N_NODES",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SORT_N_NODES]"
+        },
+        {
+            "command-line-flag": "-sort_area",
+            "description": "Sorting based on area of clusters (default).",
+            "id": "SORT_AREA",
+            "name": "SORT_AREA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SORT_AREA]"
+        },
+        {
+            "command-line-flag": "-update",
+            "description": "Pacify me when perc of the data have been processed. perc is between 1% and 50%. Default is no update.",
+            "id": "UPDATE",
+            "name": "UPDATE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[UPDATE]"
+        },
+        {
+            "command-line-flag": "-no_cent",
+            "description": "Do not find the central nodes. Finding the central node is a relatively slow operation. Use this option to skip it.",
+            "id": "NO_CENT",
+            "name": "NO_CENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_CENT]"
+        },
+        {
+            "command-line-flag": "-cent",
+            "description": "Do find the central nodes (default)  The cluster table output: A table where ach row shows results from one cluster. Each row contains 13 columns: Col. 0  Rank of cluster (sorting order). Col. 1  Number of nodes in cluster. Col. 2  Total area of cluster. Units are the the surface coordinates' units^2. Col. 3  Mean data value in cluster. Col. 4  Mean of absolute data value in cluster. Col. 5  Central node of cluster (see below). Col. 6  Weighted central node (see below). Col. 7  Minimum value in cluster. Col. 8  Node where minimum value occurred. Col. 9  Maximum value in cluster. Col. 10 Node where maximum value occurred. Col. 11 Variance of values in cluster. Col. 12 Standard error of the mean ( sqrt(variance/number of nodes) ). Col. 13 = Minimum |value| Col. 14 = |Minimum| node Col. 15  = Maximum |value| Col. 16 = |Maximum| node Col. 17 = Center of Mass x Col. 18 = Center of Mass y Col. 19 = Center of Mass z Col. 20 = Centroid x Col. 21 = Centroid y Col. 22 = Centroid z The CenterNode n is such that: ( sum (Uia * dia * wi) ) - ( Uca * dca * sum (wi) ) is minimal where i is a node in the cluster a is an anchor node on the surface sum is carried over all nodes i in a cluster w. is the weight of a node = 1.0 for central node = value at node for the weighted central node U.. is the unit vector between two nodes d.. is the distance between two nodes on the graph (an approximation of the geodesic distance) If -no_cent is used, CenterNode columns are set to 0.  [-novolreg]: Ignore any Rotate, Volreg, Tagalign, or WarpDrive transformations present in the Surface Volume. [-noxform]: Same as -novolreg [-setenv \"'ENVname=ENVvalue'\"]: Set environment variable ENVname to be ENVvalue. Quotes are necessary. Example: suma -setenv \"'SUMA_BackgroundColor = 1 0 1'\" See also options -update_env, -environment, etc in the output of 'suma -help' Common Debugging Options: [-trace]: Turns on In/Out debug and Memory tracing. For speeding up the tracing log, I recommend you redirect stdout to a file when using this option. For example, if you were running suma you would use: suma -spec lh.spec -sv ... > TraceFile This option replaces the old -iodbg and -memdbg. [-TRACE]: Turns on extreme tracing. [-nomall]: Turn off memory tracing. [-yesmall]: Turn on memory tracing (default). NOTE: For programs that output results to stdout (that is to your shell/screen), the debugging info might get mixed up with your results.   Global Options (available to all AFNI/SUMA programs)",
+            "id": "CENT",
+            "name": "CENT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[CENT]"
+        },
+        {
+            "command-line-flag": "-h",
+            "description": "Mini help, at time, same as -help in many cases.",
+            "id": "H",
+            "name": "H",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "The entire help output",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-h_view",
+            "description": "Open help in text editor. AFNI will try to find a GUI editor",
+            "id": "H_VIEW",
+            "name": "H_VIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_VIEW]"
+        },
+        {
+            "command-line-flag": "-hview",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HVIEW",
+            "name": "HVIEW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HVIEW]"
+        },
+        {
+            "command-line-flag": "-h_web",
+            "description": "Open help in web browser. AFNI will try to find a browser.",
+            "id": "H_WEB",
+            "name": "H_WEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_WEB]"
+        },
+        {
+            "command-line-flag": "-hweb",
+            "description": "on your machine. You can control which it should use by setting environment variable AFNI_GUI_EDITOR.",
+            "id": "HWEB",
+            "name": "HWEB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HWEB]"
+        },
+        {
+            "command-line-flag": "-h_find",
+            "description": "Look for lines in this programs's -help output that match (approximately) WORD.",
+            "id": "H_FIND",
+            "name": "H_FIND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_FIND]"
+        },
+        {
+            "command-line-flag": "-h_raw",
+            "description": "Help string unedited",
+            "id": "H_RAW",
+            "name": "H_RAW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_RAW]"
+        },
+        {
+            "command-line-flag": "-h_spx",
+            "description": "Help string in sphinx loveliness, but do not try to autoformat",
+            "id": "H_SPX",
+            "name": "H_SPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_SPX]"
+        },
+        {
+            "command-line-flag": "-h_aspx",
+            "description": "Help string in sphinx with autoformatting of options, etc.",
+            "id": "H_ASPX",
+            "name": "H_ASPX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[H_ASPX]"
+        },
+        {
+            "command-line-flag": "-all_opts",
+            "description": "Try to identify all options for the program from the output of its -help option. Some options might be missed and others misidentified. Use this output for hints only.    Compile Date: Sep  7 2018  Ziad S. Saad SSCC/NIMH/NIH saadz@mail.nih.gov",
+            "id": "ALL_OPTS",
+            "name": "ALL_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ALL_OPTS]"
+        },
+        {
+            "description": "NA",
+            "id": "program",
+            "name": "program",
+            "optional": false,
+            "type": "String",
+            "value-key": "[PROGRAM]"
+        },
+        {
+            "description": "NA",
+            "id": "to",
+            "name": "to",
+            "optional": false,
+            "type": "String",
+            "value-key": "[TO]"
+        },
+        {
+            "description": "NA",
+            "id": "perform",
+            "name": "perform",
+            "optional": false,
+            "type": "String",
+            "value-key": "[PERFORM]"
+        },
+        {
+            "description": "NA",
+            "id": "clustering",
+            "name": "clustering",
+            "optional": false,
+            "type": "String",
+            "value-key": "[CLUSTERING]"
+        },
+        {
+            "description": "NA",
+            "id": "analysis",
+            "name": "analysis",
+            "optional": false,
+            "type": "String",
+            "value-key": "[ANALYSIS]"
+        },
+        {
+            "description": "NA",
+            "id": "surfaces.",
+            "name": "surfaces.",
+            "optional": false,
+            "type": "String",
+            "value-key": "[SURFACES.]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

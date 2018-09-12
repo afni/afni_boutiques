@@ -1,0 +1,141 @@
+{
+    "command-line": "neuro_deconvolve.py [HELP] [HIST] [SHOW_VALID_OPTS] [VER] [INPUT] [PREFIX] [SCRIPT] [KERNEL] [KERNEL_FILE] [MASK_DSET] [OLD] [TR] [TR_NUP] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-help",
+            "description": "display this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-hist",
+            "description": "display the modification history",
+            "id": "HIST",
+            "name": "HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HIST]"
+        },
+        {
+            "command-line-flag": "-show_valid_opts",
+            "description": "display all valid options (short format)",
+            "id": "SHOW_VALID_OPTS",
+            "name": "SHOW_VALID_OPTS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW_VALID_OPTS]"
+        },
+        {
+            "command-line-flag": "-ver",
+            "description": "display the version number  ---------------------------------------- required arguments:",
+            "id": "VER",
+            "name": "VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VER]"
+        },
+        {
+            "command-line-flag": "-input",
+            "description": "set the data to deconvolve  e.g. -input epi_data.1D",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "set the prefix for output filenames  e.g. -prefix neuro_resp  --> might create: neuro_resp+orig.HEAD/.BRIK",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-script",
+            "description": "specify the name of the output script  e.g. -script neuro.script  ---------------------------------------- optional arguments:",
+            "id": "SCRIPT",
+            "name": "SCRIPT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCRIPT]"
+        },
+        {
+            "command-line-flag": "-kernel",
+            "description": "set the response kernel  default: -kernel GAM",
+            "id": "KERNEL",
+            "name": "KERNEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KERNEL]"
+        },
+        {
+            "command-line-flag": "-kernel_file",
+            "description": "set the filename to store the kernel in  default: -kernel_file resp_kernel.1D  * This data should be at the upsampled TR.  See -tr_nup.",
+            "id": "KERNEL_FILE",
+            "name": "KERNEL_FILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[KERNEL_FILE]"
+        },
+        {
+            "command-line-flag": "-mask_dset",
+            "description": "set a mask dataset for 3dTfitter to use  e.g. -mask_dset automask+orig",
+            "id": "MASK_DSET",
+            "name": "MASK_DSET",
+            "optional": true,
+            "type": "String",
+            "value-key": "[MASK_DSET]"
+        },
+        {
+            "command-line-flag": "-old",
+            "description": "make old-style script  Make pre-2015.02.24 script for 1D case.",
+            "id": "OLD",
+            "name": "OLD",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OLD]"
+        },
+        {
+            "command-line-flag": "-tr",
+            "description": "set the scanner TR  e.g. -tr 2.0  The TR is needed for 1D formatted input files.  It is not needed for AFNI 3d+time datasets, since the TR is in the file.",
+            "id": "TR",
+            "name": "TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR]"
+        },
+        {
+            "command-line-flag": "-tr_nup",
+            "description": "upsample factor for TR  e.g. -tr_nup 25  Deconvolution is generally done on an upsampled TR, which allows for sub-TR events and more accurate deconvolution.  NUP should be the number of pieces each original TR is divided into.  For example, to upsample a TR of 2.0 to one of 0.1, use NUP = 20.  TR must be an integral multiple of TR_UP.",
+            "id": "TR_NUP",
+            "name": "TR_NUP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR_NUP]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set the verbose level  e.g. -verb 2   - R Reynolds  June 12, 2008 ===========================================================================",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

@@ -1,0 +1,105 @@
+{
+    "command-line": "gifti_test [SLIST] [HELP] [GIFTI_HIST] [GIFTI_VER] [ENCODING] [GFILE] [INFILE] [NO_DATA] [SHOW] [VERB]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-slist",
+            "description": "-slist 3 0 4 5  options:",
+            "id": "SLIST",
+            "name": "SLIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SLIST]"
+        },
+        {
+            "command-line-flag": "-help",
+            "description": "show this help",
+            "id": "HELP",
+            "name": "HELP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[HELP]"
+        },
+        {
+            "command-line-flag": "-gifti_hist",
+            "description": "show giftilib history",
+            "id": "GIFTI_HIST",
+            "name": "GIFTI_HIST",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GIFTI_HIST]"
+        },
+        {
+            "command-line-flag": "-gifti_ver",
+            "description": "show giftilib version",
+            "id": "GIFTI_VER",
+            "name": "GIFTI_VER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GIFTI_VER]"
+        },
+        {
+            "command-line-flag": "-encoding",
+            "description": "set the data encoding for any output file TYPE = ASCII      : ASCII encoding TYPE = BASE64     : base64 binary TYPE = BASE64GZIP : base64 compressed binary",
+            "id": "ENCODING",
+            "name": "ENCODING",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ENCODING]"
+        },
+        {
+            "command-line-flag": "-gfile",
+            "description": "write out dataset as gifti image",
+            "id": "GFILE",
+            "name": "GFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[GFILE]"
+        },
+        {
+            "command-line-flag": "-infile",
+            "description": "specify INPUT as the GIFTI dataset to read",
+            "id": "INFILE",
+            "name": "INFILE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INFILE]"
+        },
+        {
+            "command-line-flag": "-no_data",
+            "description": "do not write out data",
+            "id": "NO_DATA",
+            "name": "NO_DATA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NO_DATA]"
+        },
+        {
+            "command-line-flag": "-show",
+            "description": "show final gifti image",
+            "id": "SHOW",
+            "name": "SHOW",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SHOW]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "set verbose level ------------------------------------------------------------",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

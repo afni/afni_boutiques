@@ -1,0 +1,41 @@
+{
+    "command-line": "3ddup [SESSION] [PREFIX] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-session",
+            "description": "Write output into given directory (default=./)",
+            "id": "SESSION",
+            "name": "SESSION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SESSION]"
+        },
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use 'pname' for the output directory prefix (default=dup) N.B.: Even if the new dataset is anatomical, it will not contain any markers, duplicated from the original, or otherwise.  ++ Compile date = Sep  7 2018 {:}",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

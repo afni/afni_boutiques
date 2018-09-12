@@ -1,0 +1,78 @@
+{
+    "command-line": "3dTSgen [INPUT] [SIGNAL] [NOISE] [SCONSTR] [NCONSTR] [SIGMA] [OUTPUT]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-input",
+            "description": "filename of prototype 3d + time data file [-inTR]            set the TR of the created timeseries to be the TR of the prototype dataset [The default is to compute with TR = 1.] [The model functions are called for a  ] [time grid of 0, TR, 2*TR, 3*TR, ....  ]",
+            "id": "INPUT",
+            "name": "INPUT",
+            "optional": false,
+            "type": "String",
+            "value-key": "[INPUT]"
+        },
+        {
+            "command-line-flag": "-signal",
+            "description": "name of (non-linear) signal model",
+            "id": "SIGNAL",
+            "name": "SIGNAL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SIGNAL]"
+        },
+        {
+            "command-line-flag": "-noise",
+            "description": "name of (linear) noise model",
+            "id": "NOISE",
+            "name": "NOISE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NOISE]"
+        },
+        {
+            "command-line-flag": "-sconstr",
+            "description": " c <= gs[k] <= d",
+            "id": "SCONSTR",
+            "name": "SCONSTR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SCONSTR]"
+        },
+        {
+            "command-line-flag": "-nconstr",
+            "description": " c+b[k] <= gn[k] <= d+b[k]",
+            "id": "NCONSTR",
+            "name": "NCONSTR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NCONSTR]"
+        },
+        {
+            "command-line-flag": "-sigma",
+            "description": "std. dev. of additive Gaussian noise [-voxel num]       screen output for voxel #num",
+            "id": "SIGMA",
+            "name": "SIGMA",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SIGMA]"
+        },
+        {
+            "command-line-flag": "-output",
+            "description": "filename of output 3d + time data file   The following commands generate individual AFNI 1 sub-brick datasets:  [-scoef k fname]   write kth signal parameter gs[k]; output 'fim' is written to prefix filename fname [-ncoef k fname]   write kth noise parameter gn[k]; output 'fim' is written to prefix filename fname   The following commands generate one AFNI 'bucket' type dataset:  [-bucket n prefixname]   create one AFNI 'bucket' dataset containing n sub-bricks; n=0 creates default output; output 'bucket' is written to prefixname The mth sub-brick will contain: [-brick m scoef k label]   kth signal parameter regression coefficient [-brick m ncoef k label]   kth noise parameter regression coefficient  ++ Compile date = Sep  7 2018 {:}",
+            "id": "OUTPUT",
+            "name": "OUTPUT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OUTPUT]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

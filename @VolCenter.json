@@ -1,0 +1,40 @@
+{
+    "command-line": "@VolCenter [OR] [<-DSET] [DSET>]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-or",
+            "description": "-or option  Example: @VolCenter -dset Vol+orig.BRIK -or RAI outputs the center of Vol+orig in RAI coordinate system",
+            "id": "OR",
+            "name": "OR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[OR]"
+        },
+        {
+            "description": "NA",
+            "id": "<-dset",
+            "name": "<-dset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[<-DSET]"
+        },
+        {
+            "description": "NA",
+            "id": "DSET>",
+            "name": "DSET>",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DSET>]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

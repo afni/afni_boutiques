@@ -1,0 +1,66 @@
+{
+    "command-line": "FIRdesign [TR] [BAND] [NTAP] [FBOT] [FTOP] [NTAP]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-TR",
+            "description": "Set time grid spacing to 'dd' [default is 1.0]",
+            "id": "TR",
+            "name": "TR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TR]"
+        },
+        {
+            "command-line-flag": "-band",
+            "description": "Alternative way to specify the passband",
+            "id": "BAND",
+            "name": "BAND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BAND]"
+        },
+        {
+            "command-line-flag": "-ntap",
+            "description": "Alternative way to specify the number of taps  EXAMPLES: --------- FIRdesign 0.01 0.10 180 | 1dplot -stdin FIRdesign 0.01 0.10 180 | 1dfft -nodetrend -nfft 512 stdin: - \\ | 1dplot -stdin -xaxis 0:0.5:10:10 -dt 0.001953  The first line plots the filter weights The second line plots the frequency response (0.001953 = 1/512)  NOTES: ------ * http://en.wikipedia.org/wiki/Parks-McClellan_filter_design_algorithm * The Remez algorithm code is written and GPL-ed by Jake Janovetz * Multiple passbands could be designed this way; let me know if you need such an option; a Hilbert transform FIR is also possible * Don't try to be stupidly clever when using this program * RWCox -- May 2012",
+            "id": "NTAP",
+            "name": "NTAP",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NTAP]"
+        },
+        {
+            "description": "NA",
+            "id": "fbot",
+            "name": "fbot",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FBOT]"
+        },
+        {
+            "description": "NA",
+            "id": "ftop",
+            "name": "ftop",
+            "optional": false,
+            "type": "String",
+            "value-key": "[FTOP]"
+        },
+        {
+            "description": "NA",
+            "id": "ntap",
+            "name": "ntap",
+            "optional": false,
+            "type": "String",
+            "value-key": "[NTAP]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

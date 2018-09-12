@@ -1,0 +1,77 @@
+{
+    "command-line": "3dDFT [PREFIX] [ABS] [NFFT] [DETREND] [TAPER] [INVERSE] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "use 'PP' as the prefix of the output file",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-abs",
+            "description": "output float dataset = abs(DFT) * Otherwise, the output file is complex-valued. You can then use 3dcalc to extract the real part, the imaginary part, the phase, etc.; see its '-cx2r' option: 3dcalc  -cx2r REAL -a cxset+orig-expr a -prefix rset+orig * Please note that if you view a complex dataset in AFNI, the default operation is that you are looking at the absolute value of the dataset. ++ You can control the way a complex IMAGE appears via the 'Disp' control panel (ABS, PHASE, REAL, IMAGE). ++ You can control the way a complex TIME SERIES graph appears via environment variable AFNI_GRAPH_CX2R (in 'EditEnv').",
+            "id": "ABS",
+            "name": "ABS",
+            "optional": true,
+            "type": "String",
+            "value-key": "[ABS]"
+        },
+        {
+            "command-line-flag": "-nfft",
+            "description": "use 'N' for DFT length (must be >= #time points)",
+            "id": "NFFT",
+            "name": "NFFT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NFFT]"
+        },
+        {
+            "command-line-flag": "-detrend",
+            "description": "least-squares remove linear drift before DFT [for more intricate detrending, use 3dDetrend first]",
+            "id": "DETREND",
+            "name": "DETREND",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DETREND]"
+        },
+        {
+            "command-line-flag": "-taper",
+            "description": "taper 'f' fraction of data at ends (0 <= f <= 1). [Hamming 'raised cosine' taper of f/2 of the ] [data length at each end; default is no taper] [cf. 3dPeriodogam -help for tapering details!]",
+            "id": "TAPER",
+            "name": "TAPER",
+            "optional": true,
+            "type": "String",
+            "value-key": "[TAPER]"
+        },
+        {
+            "command-line-flag": "-inverse",
+            "description": "Do the inverse DFT: SUM{ data[j] * exp(+2*PI*i*j/nfft) } * 1/nfft instead of the forward transform SUM{ data[j] * exp(-2*PI*i*j/nfft) }  ++ Compile date = Sep  7 2018 {:}",
+            "id": "INVERSE",
+            "name": "INVERSE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[INVERSE]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}

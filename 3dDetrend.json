@@ -1,0 +1,113 @@
+{
+    "command-line": "3dDetrend [PREFIX] [SESSION] [VERB] [REPLACE] [NORMALIZE] [BYSLICE] [VECTOR] [EXPR] [POLORT] [DEL] [DATASET]",
+    "description": "tool description",
+    "inputs": [
+        {
+            "command-line-flag": "-prefix",
+            "description": "Use 'pname' for the output dataset prefix name. [default='detrend']",
+            "id": "PREFIX",
+            "name": "PREFIX",
+            "optional": true,
+            "type": "String",
+            "value-key": "[PREFIX]"
+        },
+        {
+            "command-line-flag": "-session",
+            "description": "Use 'dir' for the output dataset session directory. [default='./'=current working directory]",
+            "id": "SESSION",
+            "name": "SESSION",
+            "optional": true,
+            "type": "String",
+            "value-key": "[SESSION]"
+        },
+        {
+            "command-line-flag": "-verb",
+            "description": "Print out some verbose output as the program runs.",
+            "id": "VERB",
+            "name": "VERB",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VERB]"
+        },
+        {
+            "command-line-flag": "-replace",
+            "description": "Instead of subtracting the fit from each voxel, replace the voxel data with the time series fit.",
+            "id": "REPLACE",
+            "name": "REPLACE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[REPLACE]"
+        },
+        {
+            "command-line-flag": "-normalize",
+            "description": "Normalize each output voxel time series; that is, make the sum-of-squares equal to 1. N.B.: This option is only valid if the input dataset is stored as floats! (1D files are always floats.)",
+            "id": "NORMALIZE",
+            "name": "NORMALIZE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[NORMALIZE]"
+        },
+        {
+            "command-line-flag": "-byslice",
+            "description": "Treat each input vector (infra) as describing a set of time series interlaced across slices.  If NZ is the number of slices and NT is the number of time points, then each input vector should have NZ*NT values when this option is used (usually, they only need NT values). The values must be arranged in slice order, then time order, in each vector column, as shown here: f(z=0,t=0)       // first slice, first time f(z=1,t=0)       // second slice, first time ... f(z=NZ-1,t=0)    // last slice, first time f(z=0,t=1)       // first slice, second time f(z=1,t=1)       // second slice, second time ... f(z=NZ-1,t=NT-1) // last slice, last time  Component Options: These options determine the components that will be removed from each dataset voxel time series.  They may be repeated to specify multiple regression.  At least one component must be specified.",
+            "id": "BYSLICE",
+            "name": "BYSLICE",
+            "optional": true,
+            "type": "String",
+            "value-key": "[BYSLICE]"
+        },
+        {
+            "command-line-flag": "-vector",
+            "description": "Remove components proportional to the columns vectors of the ASCII *.1D file 'vvv'.  You may use a sub-vector selector string to specify which columns to use; otherwise, all columns will be used. For example: -vector 'xyzzy.1D[3,5]' will remove the 4th and 6th columns of file xyzzy.1D from the dataset (sub-vector indexes start at 0). You can use multiple -vector instances to specify components from different files.",
+            "id": "VECTOR",
+            "name": "VECTOR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[VECTOR]"
+        },
+        {
+            "command-line-flag": "-expr",
+            "description": "Remove components proportional to the function specified in the expression string 'eee'. Any single letter from a-z may be used as the independent variable in 'eee'.  For example: -expr 'cos(2*PI*t/40)' -expr 'sin(2*PI*t/40)' will remove sine and cosine waves of period 40 from the dataset.",
+            "id": "EXPR",
+            "name": "EXPR",
+            "optional": true,
+            "type": "String",
+            "value-key": "[EXPR]"
+        },
+        {
+            "command-line-flag": "-polort",
+            "description": "Add Legendre polynomials of order up to and including 'ppp' in the list of vectors to remove.",
+            "id": "POLORT",
+            "name": "POLORT",
+            "optional": true,
+            "type": "String",
+            "value-key": "[POLORT]"
+        },
+        {
+            "command-line-flag": "-del",
+            "description": "Use the numerical value 'ddd' for the stepsize in subsequent -expr options.  If no -del option is ever given, then the TR given in the dataset header is used for 'ddd'; if that isn't available, then 'ddd'=1.0 is assumed.  The j-th time point will have independent variable = j * ddd, starting at j=0.  For example: -expr 'sin(x)' -del 2.0 -expr 'z**3' means that the stepsize in 'sin(x)' is delta-x=TR, but the stepsize in 'z**3' is delta-z = 2.  N.B.: expressions are NOT calculated on a per-slice basis when the -byslice option is used.  If you have to do this, you could compute vectors with the required time series using 1deval.  Detrending 1D files ------------------- As far as '3d' programs are concerned, you can input a 1D file as a 'dataset'.  Each row is a separate voxel, and each column is a separate time point.  If you want to detrend a single column, then you need to transpose it on input.  For example:  3dDetrend -prefix - -vector G1.1D -polort 3 G5.1D\\' | 1dplot -stdin  Note that the '-vector' file is NOT transposed with \\', but that the input dataset file IS transposed.  This is because in the first case the program expects a 1D file, and so knows that the column direction is time.  In the second case, the program expects a 3D dataset, and when given a 1D file, knows that the row direction is time -- so it must be transposed.  I'm sorry if this is confusing, but that's the way it is.  NOTE: to have the output file appear so that time is in the column direction, you'll have to add the option '-DAFNI_1D_TRANOUT=YES' to the command line, as in  3dDetrend -DAFNI_1D_TRANOUT=YES -prefix - -vector G1.1D -polort 3 G5.1D\\' > Q.1D   ++ Compile date = Sep  7 2018 {:}",
+            "id": "DEL",
+            "name": "DEL",
+            "optional": true,
+            "type": "String",
+            "value-key": "[DEL]"
+        },
+        {
+            "description": "NA",
+            "id": "dataset",
+            "name": "dataset",
+            "optional": false,
+            "type": "String",
+            "value-key": "[DATASET]"
+        }
+    ],
+    "name": "tool name",
+    "schema-version": "0.5",
+    "suggested-resources": {
+        "cpu-cores": 1,
+        "ram": 1,
+        "walltime-estimate": 60
+    },
+    "tags": {},
+    "tool-version": "v0.1.0"
+}
