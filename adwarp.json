@@ -7,8 +7,8 @@
             "description": "Set the anat parent dataset to 'aset'.  This is a nonoptional option (must be present).",
             "id": "APAR",
             "name": "APAR",
-            "optional": true,
-            "type": "String",
+            "optional": false,
+            "type": "File",
             "value-key": "[APAR]"
         },
         {
@@ -16,8 +16,8 @@
             "description": "Set the data parent dataset to 'dset'.  This is a nonoptional option (must be present). Note: dset may contain a sub-brick selector, e.g.,  -dpar 'dset+orig[2,5,7]'",
             "id": "DPAR",
             "name": "DPAR",
-            "optional": true,
-            "type": "String",
+            "optional": false,
+            "type": "File",
             "value-key": "[DPAR]"
         },
         {
@@ -35,7 +35,9 @@
             "id": "DXYZ",
             "name": "DXYZ",
             "optional": true,
-            "type": "String",
+            "type": "Number",
+            "minimum": 0,
+            "exclusive-minimum": true,
             "value-key": "[DXYZ]"
         },
         {
@@ -44,7 +46,7 @@
             "id": "VERBOSE",
             "name": "VERBOSE",
             "optional": true,
-            "type": "String",
+            "type": "Flag",
             "value-key": "[VERBOSE]"
         },
         {
@@ -53,7 +55,7 @@
             "id": "FORCE",
             "name": "FORCE",
             "optional": true,
-            "type": "String",
+            "type": "Flag",
             "value-key": "[FORCE]"
         },
         {
@@ -63,6 +65,8 @@
             "name": "RESAM",
             "optional": true,
             "type": "String",
+            "value-choices": ["NN", "Li", "Cu", "Bk"],
+            "default-value": "Li",
             "value-key": "[RESAM]"
         },
         {
@@ -72,6 +76,7 @@
             "name": "THR",
             "optional": true,
             "type": "String",
+            "value-choices": ["NN", "Li", "Cu", "Bk"],
             "value-key": "[THR]"
         },
         {
@@ -81,7 +86,58 @@
             "name": "FUNC",
             "optional": true,
             "type": "String",
+            "value-choices": ["NN", "Li", "Cu", "Bk"],
             "value-key": "[FUNC]"
+        }
+    ],
+    "groups": [
+        {
+            "id": "thres_func_group",
+            "name": "Threshold and functional group",
+            "all-or-none": true,
+            "members": ["THR", "FUNC"]
+        }
+    ],
+    "output-files": [
+        {
+            "id": "no_prefix_head_output",
+            "name": "no_prefix_head_output",
+            "optional": true,
+            "path-template": "[DPAR]+tlrc.HEAD",
+            "path-template-stripped-extensions": [
+              ".HEAD", ".BRICK", ".",
+              "+orig", "+acpc"
+            ]
+        },
+        {
+            "id": "no_prefix_brick_output",
+            "name": "no_prefix_brick_output",
+            "optional": true,
+            "path-template": "[DPAR]+tlrc.BRICK",
+            "path-template-stripped-extensions": [
+              ".HEAD", ".BRICK", ".",
+              "+orig", "+acpc"
+            ]
+        },
+        {
+            "id": "prefix_head_output",
+            "name": "prefix_head_output",
+            "optional": true,
+            "path-template": "[PREFIX]+tlrc.HEAD",
+            "path-template-stripped-extensions": [
+              ".HEAD", ".BRICK", ".",
+              "+orig", "+acpc"
+            ]
+        },
+        {
+            "id": "prefix_brick_output",
+            "name": "prefix_brick_output",
+            "optional": true,
+            "path-template": "[PREFIX]+tlrc.BRICK",
+            "path-template-stripped-extensions": [
+              ".HEAD", ".BRICK", ".",
+              "+orig", "+acpc"
+            ]
         }
     ],
     "name": "tool name",
