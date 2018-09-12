@@ -1,13 +1,13 @@
 {
-    "command-line": "@toMNI_Awarp [DIRNAME] [DATASET1] [DATASET2] [...]",
+    "command-line": "@toMNI_Awarp [DIRNAME] [DATASETS]",
     "description": "tool description",
     "inputs": [
         {
-            "description": "NA",
+            "description": "output directory",
             "id": "dirname",
             "name": "dirname",
             "optional": false,
-            "type": "String",
+            "type": "File",
             "value-key": "[DIRNAME]"
         },
         {
@@ -15,25 +15,18 @@
             "id": "dataset1",
             "name": "dataset1",
             "optional": false,
-            "type": "String",
-            "value-key": "[DATASET1]"
-        },
-        {
-            "description": "NA",
-            "id": "dataset2",
-            "name": "dataset2",
-            "optional": false,
-            "type": "String",
-            "value-key": "[DATASET2]"
-        },
-        {
-            "description": "NA",
-            "id": "...",
-            "name": "...",
-            "optional": false,
-            "type": "String",
-            "value-key": "[...]"
+            "type": "File",
+            "list": true,
+            "min-list-entries": 1,
+            "value-key": "[DATASETS]"
         }
+    ],
+    "output-files": [
+      {
+          "path-template": "[DIRNAME]",
+          "name": "MNI Awarped stuffz",
+          "id": "output_name"
+      }
     ],
     "name": "tool name",
     "schema-version": "0.5",
