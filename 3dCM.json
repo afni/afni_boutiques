@@ -17,7 +17,7 @@
             "id": "AUTOMASK",
             "name": "AUTOMASK",
             "optional": true,
-            "type": "String",
+            "type": "Flag",
             "value-key": "[AUTOMASK]"
         },
         {
